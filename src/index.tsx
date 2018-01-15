@@ -8,5 +8,5 @@ ReactDOM.render(
   <App />,
   document.getElementById('root') as HTMLElement
 );
-alert(process.env.REACT_APP_API_ADDRESS);
+// alert(process.env.REACT_APP_API_ADDRESS);
 registerServiceWorker();
