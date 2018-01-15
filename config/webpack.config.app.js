@@ -33,7 +33,7 @@ const webpackSetting = {
         chunkFilename:  isProduction() 
             ? 'static/js/[name].[chunkhash:8].chunk.js' 
             : 'static/js/[name].chunk.js', 
-        publicPath: isProduction() ? '/' : '/', 
+        publicPath: isProduction() ? paths.servedPath : '/', 
         // dev or production mode 
         devtoolModuleFilenameTemplate: isProduction() 
             ? info =>
@@ -176,10 +176,8 @@ function initWebpackSetting(webpackConfig) {
     } 
     let publicUrl;
     if (isProduction()) {
-        //let publicPath = paths.servedPath; 
-        let publicUrl = paths.servedPath.slice(0, -1);  
-    }else {
-        //let publicPath = '/';     
+        publicUrl = webpackSetting.output.publicPath.slice(0, -1);  
+    }else { 
         publicUrl = '';  
     }
     // reset InterpolateHtmlPlugin|DefinePlugin on step 5
