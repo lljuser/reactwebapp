@@ -2,8 +2,9 @@ reactwebapp:
 1. require
     babel-polyfill    >=ie9
     raf               >=ie9
-
-
+    antd|antd-mobile -> tsconfig.json -> "allowSyntheticDefaultImports": true, 
+    webpack.config.app -> set webpackSetting->antd use antd design ui
+    
 2. dev-tools 
     less              for antd
     less-loader       for antd
