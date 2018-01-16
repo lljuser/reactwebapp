@@ -6,9 +6,15 @@ const webpack = require('webpack');
 // add other path to paths  
 paths.appDirectory = fs.realpathSync(process.cwd());
 paths.styleTheme = resolveApp('public/theme.less'); 
-paths.envKeyPrefix= 'REACT_APP_';
+paths.envKeyPrefix= 'REACT_APP_'; 
 
 const webpackSetting = { 
+    antd: {
+        // use antd design ui antd|antd-mobile
+        libraryName: 'antd-mobile',
+        libraryDirectory: 'es',
+        style: true,
+    },
     // setting multi enty
     entry: ['index','expert'],
     // process env environment variables for production|development or jscode|index.html
@@ -117,11 +123,9 @@ function initWebpackSetting(webpackConfig) {
                         let tsLoaderOptions= {
                             transpileOnly: true,
                             getCustomTransformers: () => ({
-                              before: [ TsImportPluginFactory({
-                                libraryName: 'antd',
-                                libraryDirectory: 'es',
-                                style: 'true',
-                              }) ]
+                              before: [ TsImportPluginFactory(
+                                  webpackSetting.antd
+                              ) ]
                             }),                            
                         };  
 
