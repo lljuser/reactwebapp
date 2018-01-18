@@ -20,7 +20,6 @@ function testDeploy() {
  
 function webDeploy() {  
     let buldEnv = readEnv();
-    console.log(buldEnv);
 
     if(buldEnv.isDeploy) {
         console.log(chalk.yellow('\n\n-----------------webdeploy-----------------'));
