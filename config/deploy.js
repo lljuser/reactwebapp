@@ -35,6 +35,7 @@ function webDeploy() {
             port: buldEnv.port,
             localRoot: sourceDir,
             remoteRoot: "/",
+            exclude: ['.git','*.map'],
             // include: ['build/*.txt'],
             // exclude: ['.git', '.idea', 'tmp/*', 'build/*']
         }
