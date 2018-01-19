@@ -26,10 +26,7 @@ class App extends React.Component<AppProp, {}> {
         >  
           <Market title="市场"/> 
           <Trade title="交易"/>
-          <Product title="产品"/>
-          {/* <Route exact={true} path="/" component={Market}/>
-          <Route path="/product" component={Product}/>
-          <Route path="/trade" component={Trade}/>  */}
+          <Product title="产品"/> 
         </Tabs>
       </div>  
     );
