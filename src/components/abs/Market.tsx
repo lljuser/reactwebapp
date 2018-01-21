@@ -1,19 +1,19 @@
 import * as React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import ProductDetail from './ProductDetail';
+import {  Link } from 'react-router-dom';
+
+import '../AbsApp.css';
 import '../../public/css/theme.css';
 import 'amfe-flexible';
 
 interface Props {
     title: string;
-  }
-  
+}
+
 export default class MyComponent extends React.Component<Props, {}> {
-    render() { 
-        return (
-            <Router>
+    render() {
+        return ( 
                 <div className="appH5_body">
-                    <div id="root" className="appH5_content"> 
+                    <div id="root" className="appH5_content">
                         <div className="appH5_panel  appH5_panel_mb" >
                             <div className="appH5_title"><span>市场概要</span></div>
                             <div>
@@ -24,7 +24,7 @@ export default class MyComponent extends React.Component<Props, {}> {
                                             <th className="text-right">今年(单)</th>
                                             <th className="text-right">今年(亿)</th>
                                             <th className="text-right">累计(亿)</th>
-                                        </tr> 
+                                        </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
@@ -40,11 +40,10 @@ export default class MyComponent extends React.Component<Props, {}> {
                         <div className="appH5_panel">
                             <div className="appH5_title"><span>发行统计</span></div>
                             <div>highcharts</div>
-                        </div> 
-                    </div>
-                    <Route path="/productDetail/:id" component={ProductDetail}/> 
-                </div> 
-            </Router> 
+                        </div>
+                    </div> 
+                </div>
+            
         );
     }
 }
