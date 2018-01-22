@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button } from 'antd-mobile'; 
+import { NavBar, Icon } from 'antd-mobile'; 
  
 interface Props {
     title: string;
@@ -8,9 +8,19 @@ interface Props {
 export default class MyComponent extends React.Component<Props, {}> {
     render() {  
         return (
-            <div> 
-                <Button type="primary">产品详情</Button>
-            </div> 
+            <div>
+                <NavBar
+                    mode="light"
+                    icon={<Icon type="left" />}
+                    onLeftClick={() => console.log('onLeftClick')}
+                    rightContent={[
+                        <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
+                        <Icon key="1" type="ellipsis" />,
+                    ]}
+                >
+                    NavBar
+                </NavBar> 
+        </div>
         );
     }
 } 
