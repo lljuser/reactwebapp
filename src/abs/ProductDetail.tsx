@@ -17,7 +17,7 @@ export default class MyComponent extends React.Component<Props, {}> {
     render() {  
         return (
             <div>
-                <NavBar
+                <NavBar 
                     mode="light"
                     icon={<Link to="/product"><Icon type="left" /></Link>} 
                     rightContent={[
