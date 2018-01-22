@@ -5,7 +5,7 @@ import 'amfe-flexible';
 
 interface Props {
     title: string;
-  }
+}
   
 export default class MyComponent extends React.Component<Props, {}> {
     render() { 
@@ -31,6 +31,24 @@ export default class MyComponent extends React.Component<Props, {}> {
                                         <td>110</td>
                                         <td>110</td>
                                     </tr>
+                                    <tr>
+                                        <td><Link to="/productDetail/10">企业ABN</Link></td>
+                                        <td>10</td>
+                                        <td>110</td>
+                                        <td>110</td>
+                                    </tr>
+                                    <tr>
+                                        <td><Link to="/productDetail/10">企业ABN</Link></td>
+                                        <td>10</td>
+                                        <td>110</td>
+                                        <td>110</td>
+                                    </tr>
+                                    <tr>
+                                        <td><Link to="/productDetail/10">企业ABN</Link></td>
+                                        <td>10</td>
+                                        <td>110</td>
+                                        <td>110</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -40,8 +58,7 @@ export default class MyComponent extends React.Component<Props, {}> {
                         <div>highcharts</div>
                     </div> 
                 </div> 
-            </div> 
-           
+            </div>
         );
     }
 }
