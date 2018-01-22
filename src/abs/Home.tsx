@@ -16,6 +16,7 @@ const tabs = [
 ];
 
 interface AppProp {
+  // 对应tab选项卡中的 name 字段
   tab: string;
 }
 
@@ -53,7 +54,7 @@ class App extends React.Component<RouteComponentProps<AppProp>, AppState> {
 
   onChange = (p, index) => {
     const { history } = this.props;
-    history.push(`/${p.name}`, { index: index });
+    history.push(`/${p.name}`);
   }
 
   render() {
