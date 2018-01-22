@@ -16,6 +16,7 @@ const tabs = [
 ];
 
 interface AppProp {
+  tab: string;
 }
 
 interface AppState {
@@ -34,9 +35,10 @@ class App extends React.Component<RouteComponentProps<AppProp>, AppState> {
 
   getIndex(props?: RouteComponentProps<AppProp>): number {
     props = props || this.props;
-    const { location } = props;
-    if (location.state != null) {
-      return location.state.index;
+    const { match } = props;
+    if (match.params && match.params.tab) {
+      const idx = tabs.findIndex((current) => current.name === match.params.tab);
+      return idx >= 0 ? idx : 0;
     }
 
     return 0; 
