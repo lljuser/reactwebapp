@@ -49,7 +49,7 @@ function handleError(error: AxiosError): Promise<any> {
 
 // 处理响应数据
 function parseResponse(response: AxiosResponse<any>): Promise<any> {
-    const error = new Error('数据格式错误');
+    
     return new Promise((resolve: any, reject: any): void => {
   
       if (response && response.status === 200 && response.data) {
@@ -81,7 +81,7 @@ function parseResponse(response: AxiosResponse<any>): Promise<any> {
   
       }
   
-      reject(error);
+      reject(new Error('数据格式错误'));
   
     });
 }
