@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Post from '../components/http/request/post';
+import Request from '../components/http/request';
  
 interface Props {
     title: string;
@@ -8,9 +8,13 @@ interface Props {
 export default class MyComponent extends React.Component<Props, {}> {
 
   componentDidMount() {
-    Post('http://localhost:64811/api/person', {}, (data) => {
+    Request.post('http://localhost:64811/api/person', {}, (data) => {
       console.log(data);
     });
+  }
+
+  shouldComponentUpdate() {
+    return false;
   }
 
   render() { 
