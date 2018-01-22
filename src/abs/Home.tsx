@@ -67,7 +67,6 @@ class App extends React.Component<RouteComponentProps<AppProp>, AppState> {
           tabs={tabs}
           tabBarBackgroundColor={'#000000'}
           tabBarInactiveTextColor={'#ffffff'}
-          tabBarActiveTextColor={'#ffc446'}
           onChange={this.onChange}
           tabBarUnderlineStyle={{ borderColor: '#ffc446', width: '40px', left: `${this.state.index * 100 + anchorTextWidth}px` }}
         >

@@ -1,11 +1,12 @@
-.am-tabs-default-bar-top .am-tabs-default-bar-content, .am-tabs-default-bar-bottom .am-tabs-default-bar-content {
+.am-tabs-default-bar-top .am-tabs-default-bar-content, 
+.am-tabs-default-bar-bottom .am-tabs-default-bar-content {
     width: 300px;
     margin: auto;
 }
 
-.am-tabs-default-bar-top .am-tabs-default-bar-tab {
+/* .am-tabs-default-bar-top .am-tabs-default-bar-tab {
     border-bottom: none;
-}
+} */
 
 @media (-webkit-min-device-pixel-ratio: 2), not all, (min-resolution: 2dppx)
 {
