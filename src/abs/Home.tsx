@@ -1,48 +1,39 @@
 import * as React from 'react';
-import { Route, Link } from 'react-router-dom';
+import { HashRouter as Router,  Route , Link } from 'react-router-dom';  
+import Market from './Market';
+import Product from './Product';
+import Trade from './Trade'; 
 import ProductDetail from './ProductDetail';
-import '../../public/css/theme.css';
-import 'amfe-flexible';
+import '../public/css/theme.css';
 
-interface Props {
-    title: string;
-  }
-  
-export default class MyComponent extends React.Component<Props, {}> {
-    render() { 
-        return (
-            <div className="appH5_body">
-                <div id="root" className="appH5_content"> 
-                    <div className="appH5_panel  appH5_panel_mb" >
-                        <div className="appH5_title"><span>市场概要</span></div>
-                        <div>
-                            <table className="appH5_table">
-                                <thead>
-                                    <tr>
-                                        <th>分类</th>
-                                        <th className="text-right">今年(单)</th>
-                                        <th className="text-right">今年(亿)</th>
-                                        <th className="text-right">累计(亿)</th>
-                                    </tr> 
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><Link to="/productDetail/10">企业ABN</Link></td>
-                                        <td>10</td>
-                                        <td>110</td>
-                                        <td>110</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div className="appH5_panel">
-                        <div className="appH5_title"><span>发行统计</span></div>
-                        <div>highcharts</div>
-                    </div> 
-                </div> 
-            </div> 
-           
-        );
-    }
+// const tabs = [
+//   { title: '市场 ', name: 'market' },
+//   { title: '产品', name: 'product' },
+//   { title: '交易', name: 'trade' },
+// ];
+
+interface AppProp {
+  name?: string;
+  version?: string;
 }
+
+class App extends React.Component<AppProp, {}> {
+   render() {
+    return ( 
+        <div id="app" className="cnabs-bg">
+          <div v-if="!showHeader" className="appH5_navbar_bg">
+            <div className="appH5_navbar" >
+              <Link to="/market" className="appH5_tab">市场</Link>
+              <Link to="/product"   className="appH5_tab">产品</Link>
+              <Link to="/trade" className="appH5_tab">交易</Link>
+            </div>
+          </div>    
+          <Route exact={true} path="/market" component={Market}/> 
+          <Route path="/product" component={Product}/> 
+          <Route path="/trade" component={Trade}/>  
+        </div> 
+    );
+  }
+} 
+ 
+export default App;  
