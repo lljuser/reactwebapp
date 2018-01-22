@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import ProductDetail from './ProductDetail';
 import '../../public/css/theme.css';
 import 'amfe-flexible';
