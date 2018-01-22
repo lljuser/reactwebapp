@@ -1,6 +1,5 @@
 import * as React from 'react';
-import Post from '../../http/request/post';
-import Get from '../../http/request/get';
+import Post from '../components/http/request/post';
  
 interface Props {
     title: string;
@@ -9,10 +8,6 @@ interface Props {
 export default class MyComponent extends React.Component<Props, {}> {
 
   componentDidMount() {
-    Get('http://localhost:64811/api/person', {}, (data) => {
-      console.log(data);
-    });
-
     Post('http://localhost:64811/api/person', {}, (data) => {
       console.log(data);
     });

@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { Route, Link } from 'react-router-dom';
-import ProductDetail from './ProductDetail';
-import '../../public/css/theme.css';
+import { Link } from 'react-router-dom';
+import '../public/css/theme.css';
 import 'amfe-flexible';
 
 interface Props {
