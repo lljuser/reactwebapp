@@ -12,7 +12,7 @@ export default class App extends React.Component<AppProp, {}> {
    render() {
     return (
       <Switch>
-          <Route exact={true} path="/:tab(market|trade|product)?" component={Home}/>  
+          <Route exact={true} path="/:tab(market|trade|product)" component={Home}/>  
           <Route exact={true} path="/productDetail/:id" component={ProductDetail}/> 
           <Redirect path="*" to="/market" />
       </Switch>

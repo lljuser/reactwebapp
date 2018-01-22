@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { timeout, handleError, parseResponse } from './helper';
-import { AbortBus } from './abort';
+import AbortBus from './abort';
 
 // 默认请求超时时间
 const defaultTimeout = 10 * 1000;

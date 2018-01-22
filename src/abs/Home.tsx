@@ -16,6 +16,8 @@ const tabs = [
 ];
 
 interface AppProp {
+  // 对应tab选项卡中的 name 字段
+  tab: string;
 }
 
 interface AppState {
@@ -34,9 +36,10 @@ class App extends React.Component<RouteComponentProps<AppProp>, AppState> {
 
   getIndex(props?: RouteComponentProps<AppProp>): number {
     props = props || this.props;
-    const { location } = props;
-    if (location.state != null) {
-      return location.state.index;
+    const { match } = props;
+    if (match.params && match.params.tab) {
+      const idx = tabs.findIndex((current) => current.name === match.params.tab);
+      return idx >= 0 ? idx : 0;
     }
 
     return 0; 
@@ -51,7 +54,7 @@ class App extends React.Component<RouteComponentProps<AppProp>, AppState> {
 
   onChange = (p, index) => {
     const { history } = this.props;
-    history.push(`/${p.name}`, { index: index });
+    history.push(`/${p.name}`);
   }
 
   render() {
