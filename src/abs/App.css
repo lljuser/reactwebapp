@@ -1,20 +1,16 @@
-.hello {
-    text-align: center;
-    margin: 20px;
-    font-size: 48px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
-  }
-  
-.hello button {
-    margin-left: 25px;
-    margin-right: 25px;
-    font-size: 40px;
-    min-width: 50px;
+.am-tabs-default-bar-top .am-tabs-default-bar-content, .am-tabs-default-bar-bottom .am-tabs-default-bar-content {
+    width: 300px;
+    margin: auto;
 }
-  
-.content { 
-    top: '40px';
-    margin-left: 20px;
+
+.am-tabs-default-bar-top .am-tabs-default-bar-tab {
+    border-bottom: none;
 }
-  
+
+@media (-webkit-min-device-pixel-ratio: 2), not all, (min-resolution: 2dppx)
+{
+    html:not([data-scale]) .am-tabs-default-bar-top .am-tabs-default-bar-tab::after {
+        height: 0;
+    }
+}
  
