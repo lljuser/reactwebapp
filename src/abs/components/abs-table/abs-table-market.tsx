@@ -1,16 +1,17 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+import ABSBaseTable from './abs-table';
 import './abs-table.less';
-import 'amfe-flexible';
+import 'amfe-flexible'; 
 
 interface Props {
     title?: string;
 }
 
-export default class ABSTableMarketComponent extends React.Component<Props, {}> {
+export default class ABSTableMarketComponent extends ABSBaseTable<Props, {}> {
     render() {
         return (
-                <table className="abs-table">
+                <table className="abs-table" title="{this.props.title}">
                     <thead>
                         <tr>
                             <th>分类</th>

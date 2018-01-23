@@ -31,15 +31,11 @@ export default class MarketComponent extends React.Component<Props, {}> {
     render() { 
         return (
             <div>
-                <ABSPanel title="市场概要">
-                    <ABSTableMarket>
-                        <div>市场-table</div>
-                    </ABSTableMarket>
+                <ABSPanel title="市场概要" >
+                    <ABSTableMarket />   
                 </ABSPanel>
                 <ABSPanel title="发行统计">
-                    <ABSChartMarket>
-                        <div>市场-图表</div>
-                    </ABSChartMarket>
+                    <ABSChartMarket />
                 </ABSPanel>
             </div>
         );
