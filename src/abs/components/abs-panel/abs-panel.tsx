@@ -4,7 +4,7 @@ import './abs-panel.less';
 import 'amfe-flexible';
 
 interface Props {
-    title?: string;
+    title: string;
 }
 
 export default class ABSPanelComponent extends React.Component<Props, {}> {

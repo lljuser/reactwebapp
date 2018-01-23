@@ -10,7 +10,7 @@ interface Props {
 export default class MarketComponent extends React.Component<Props, {}> {
     render() { 
         return (
-             <ABSPanel >
+             <ABSPanel title="市场概要">
                  <div>ABC</div>
              </ABSPanel>
         );
