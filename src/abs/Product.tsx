@@ -2,6 +2,7 @@ import * as React from 'react';
 import Request from '../components/http/request/index';
 import * as ReactDOM from 'react-dom';
 import { ListView } from 'antd-mobile';
+import '../public/css/theme.css';
 
 interface Parameter {
   dataSource: any;   
@@ -11,16 +12,17 @@ interface Parameter {
   useBodyScroll: boolean;
   hasMore: boolean;
   initialListSize: number;
+  info: string;
 }
   
 function MyBody(props: any) {
   return (
-    <div >
+    <div className={props.sectionID}>
       <div className={'appH5_body'}>
           <div className={'appH5_panel'}>
-          <table className={'appH5_table'}>
+          <table id={'productTableId'} className={'appH5_table'}>
           <thead>
-            <tr key={'11111'}>
+            <tr>
               <th>产品名称</th>
               <th className={'text-right'}>总额(亿)</th>
               <th className={'text-right'}>产品分类</th>
@@ -39,6 +41,7 @@ function MyBody(props: any) {
 const NUM_ROWS = 15;
 let pageIndex = 0;
 var lv: ListView|null;
+var rData: Object[] = [];
 
 export default class Product extends React.Component<{}, Parameter> {
 
@@ -56,6 +59,7 @@ export default class Product extends React.Component<{}, Parameter> {
       useBodyScroll: false,
       hasMore: true,
       initialListSize: NUM_ROWS,
+      info: '',
     };
   }
 
@@ -63,14 +67,24 @@ export default class Product extends React.Component<{}, Parameter> {
 
     var url = 'http://10.1.1.35/modeal/getdeallist';
     url = url + '/' + 0 + '/' + 0 + '/' + 0;
-    url = url + '/' + pageIndex + '/' + 1 * NUM_ROWS + '/' + NUM_ROWS;
+    url = url + '/' + pageIndex + '/' + (pageIndex + 1) * NUM_ROWS + '/' + NUM_ROWS;
   
-      // tslint:disable-next-line:no-shadowed-variable
     Request.post(url, {}, (data) => {
-      pageIndex++;
-      
-      this.setState({dataSource: this.state.dataSource.cloneWithRows(data.Deal)});
-    });
+        pageIndex++;
+
+        if ( data.Deal.length === 0 ) {
+          this.setState({ info: '已全部加载' , hasMore: false});
+
+        } else {
+          rData = [...rData, ...data.Deal];
+          console.log(pageIndex);
+          this.setState({
+            dataSource: this.state.dataSource.cloneWithRows(rData),
+            isLoading: false,
+            info: '加载完成',
+          });
+        }
+      });
   }
 
   componentDidUpdate() {
@@ -84,43 +98,35 @@ export default class Product extends React.Component<{}, Parameter> {
   componentDidMount() {
     const hei = this.state.height - (ReactDOM.findDOMNode(lv as ListView) as any).offsetTop;
 
-    setTimeout(() => {
-      this.genData();
-      this.setState({
+    this.genData();
+    this.setState({
         height: hei,
         refreshing: false,
-        isLoading: false,
       });
-    },         1500);
   }
 
     onRefresh = () => {
     
       this.setState({ refreshing: true, isLoading: true });
-      // simulate initial Ajax
-      setTimeout(() => {
-        this.genData();
-        this.setState({
+      this.genData();
+      this.setState({
           refreshing: false,
-          isLoading: false,
         });
-      },         600);
     }
 
   onEndReached = (event) => {
     // load new data
     // hasMore: from backend data, indicates whether it is the last page, here is false
+    console.log(this.state.hasMore);
     if (this.state.isLoading && !this.state.hasMore) {
       return;
     }
+
     console.log('reach end', event);
-    this.setState({ isLoading: true });
-    setTimeout(() => {
-      this.genData();
-      this.setState({
-        isLoading: false,
-      });
-    },         1000);
+    this.setState({ isLoading: true, info: '正在加载...'});
+
+    this.genData();
+
   }
 
   render() {
@@ -144,17 +150,17 @@ export default class Product extends React.Component<{}, Parameter> {
           dataSource={this.state.dataSource}
           initialListSize={this.state.initialListSize}
           renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>
-            {this.state.isLoading ? 'Loading...' : 'Loaded'}
+            {this.state.info}
           </div>)}
-          renderSectionBodyWrapper={() => <MyBody />}
+          renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey}/>}
           renderRow={row}
           useBodyScroll={this.state.useBodyScroll}
           style={this.state.useBodyScroll ? {} : {
             height: this.state.height,
           }}
-        
+          
           onEndReached={this.onEndReached}
-          pageSize={5}
+          pageSize={15}
       />     
     );
   }
