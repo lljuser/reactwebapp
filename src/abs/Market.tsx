@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import '../public/css/theme.css';
+import './abs-panel/abs-panel.css';
 import 'amfe-flexible';
 
 interface Props {
@@ -10,12 +10,12 @@ interface Props {
 export default class MyComponent extends React.Component<Props, {}> {
     render() { 
         return (
-            <div className="appH5_body">
-                <div id="root" className="appH5_content"> 
-                    <div className="appH5_panel  appH5_panel_mb" >
-                        <div className="appH5_title"><span>市场概要</span></div>
-                        <div>
-                            <table className="appH5_table">
+            <div className="abs-panel-body">
+                <div id="root" className="abs-panel-content"> 
+                    <div className="abs-panel-panel  abs-panel-panel_mb" >
+                        <div className="abs-panel-title"><span>市场概要</span></div>
+                        <div className="abs-panel-container">
+                            <table className="abs-panel-table">
                                 <thead>
                                     <tr>
                                         <th>分类</th>
@@ -53,8 +53,8 @@ export default class MyComponent extends React.Component<Props, {}> {
                             </table>
                         </div>
                     </div>
-                    <div className="appH5_panel">
-                        <div className="appH5_title"><span>发行统计</span></div>
+                    <div className="abs-panel-panel">
+                        <div className="abs-panel-title"><span>发行统计</span></div>
                         <div>highcharts</div>
                     </div> 
                 </div> 
