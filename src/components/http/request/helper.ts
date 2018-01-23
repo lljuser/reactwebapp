@@ -1,15 +1,26 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 
-// 超时
-function timeout(requestTimeout: number): Promise<any> {
+class HttpHelpers {
+  /**
+   * 请求超时设置
+   * 
+   * @param {number} requestTimeout 请求超时时间
+   * @returns {Promise<any>} Promise
+   */
+  static timeout(requestTimeout: number): Promise<any> {
     requestTimeout = requestTimeout;
     return new Promise((resolve, reject) => {
         setTimeout(() => reject(new Error('网络请求超时')), requestTimeout);
     });
-}
+  }
 
-// 错误处理(需手动catch)
-function handleError(error: AxiosError): Promise<any> {
+  /**
+   * 错误处理(需手动catch)
+   * 
+   * @param {AxiosError} error 
+   * @returns {Promise<any>} Promise
+   */
+  static handleError(error: AxiosError): Promise<any> {
     return new Promise((resolve: any, reject: any) => {
         // handle canceled request error
         if (axios.isCancel(error)) {
@@ -45,13 +56,18 @@ function handleError(error: AxiosError): Promise<any> {
             reject(error);
         }
     });
-}
+  }
 
-// 处理响应数据
-function parseResponse(response: AxiosResponse<any>): Promise<any> {
-    
+  /**
+   * 处理响应数据
+   * 
+   * @param {AxiosResponse<any>} response 请求响应
+   * @returns {Promise<any>} Promise
+   */
+  static parseResponse(response: AxiosResponse<any>): Promise<any> {
+      
     return new Promise((resolve: any, reject: any): void => {
-  
+
       if (response && response.status === 200 && response.data) {
         // 记录服务端响应数据
         let serverResponseData;
@@ -66,24 +82,25 @@ function parseResponse(response: AxiosResponse<any>): Promise<any> {
             // nothing to do
           }
         }
-  
+
         // handle data or error
         if (serverResponseData && typeof serverResponseData === 'object') {
-  
+
           if (serverResponseData.status === 'ok' && serverResponseData.hasOwnProperty('data')) {
             resolve(serverResponseData.data);
             return;
           }
-  
+
           reject(new Error(serverResponseData.data));
           return;
         }
-  
+
       }
-  
+
       reject(new Error('数据格式错误'));
-  
+
     });
+  }
 }
-  
-export { timeout, handleError, parseResponse };
+
+export default HttpHelpers;
