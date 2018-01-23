@@ -1,7 +1,7 @@
 import * as React from 'react';
+import Request from '../components/http/request/index';
 import * as ReactDOM from 'react-dom';
 import { ListView } from 'antd-mobile';
-import Post from '../components/http/request/post';
 
 interface Parameter {
   dataSource: any;   
@@ -10,6 +10,7 @@ interface Parameter {
   height: number;
   useBodyScroll: boolean;
   hasMore: boolean;
+  initialListSize: number;
 }
   
 function MyBody(props: any) {
@@ -17,12 +18,12 @@ function MyBody(props: any) {
     <div >
       <div className={'appH5_body'}>
           <div className={'appH5_panel'}>
-          <table id={'productTableId'} className={'appH5_table'}>
+          <table className={'appH5_table'}>
           <thead>
-            <tr>
-              <th>²úÆ·Ãû³Æ</th>
-              <th className={'text-right'}>×Ü¶î(ÒÚ)</th>
-              <th className={'text-right'}>²úÆ··ÖÀà</th>
+            <tr key={'11111'}>
+              <th>äº§å“åç§°</th>
+              <th className={'text-right'}>æ€»é¢(äº¿)</th>
+              <th className={'text-right'}>äº§å“åˆ†ç±»</th>
             </tr>
           </thead>
           <tbody>
@@ -35,36 +36,9 @@ function MyBody(props: any) {
   );
 }
 
-const data = [
-  {
-    TotalOffering: '1',
-    DealName: '²»ÊÇËùÓĞ',
-    DealType: '½ğÈÚ',
-  },
-  {
-    TotalOffering: '2',
-    DealName: '²»ÊÇËùÓĞ',
-    DealType: '½ğÈÚ',
-  },
-  {
-    TotalOffering: '3',
-    DealName: '²»ÊÇËùÓĞ',
-    DealType: '½ğÈÚ',
-  },
-];
-
 const NUM_ROWS = 15;
 let pageIndex = 0;
-var rData: string[];
 var lv: ListView|null;
-
-function genData(pIndex: number = 0) {
-  const dataArr: string[] = [];
-  for (let i = 0; i < NUM_ROWS; i++) {
-    dataArr.push(`row - ${(pIndex * NUM_ROWS) + i}`);
-  }
-  return dataArr;
-}
 
 export default class Product extends React.Component<{}, Parameter> {
 
@@ -81,7 +55,22 @@ export default class Product extends React.Component<{}, Parameter> {
       height: document.documentElement.clientHeight,
       useBodyScroll: false,
       hasMore: true,
+      initialListSize: NUM_ROWS,
     };
+  }
+
+  genData() {
+
+    var url = 'http://10.1.1.35/modeal/getdeallist';
+    url = url + '/' + 0 + '/' + 0 + '/' + 0;
+    url = url + '/' + pageIndex + '/' + 1 * NUM_ROWS + '/' + NUM_ROWS;
+  
+      // tslint:disable-next-line:no-shadowed-variable
+    Request.post(url, {}, (data) => {
+      pageIndex++;
+      
+      this.setState({dataSource: this.state.dataSource.cloneWithRows(data.Deal)});
+    });
   }
 
   componentDidUpdate() {
@@ -95,19 +84,9 @@ export default class Product extends React.Component<{}, Parameter> {
   componentDidMount() {
     const hei = this.state.height - (ReactDOM.findDOMNode(lv as ListView) as any).offsetTop;
 
-    var url = 'http://10.1.1.35/modeal/getdeallist';
-    url = url + '/' + 0 + '/' + 0 + '/' + 0;
-    url = url + '/' + pageIndex + '/' + 1 * NUM_ROWS + '/' + NUM_ROWS;
-
-    // tslint:disable-next-line:no-shadowed-variable
-    Post(url, {}, (data) => {
-      console.log(data);
-    });
-
     setTimeout(() => {
-      rData = genData();
+      this.genData();
       this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(genData()),
         height: hei,
         refreshing: false,
         isLoading: false,
@@ -115,19 +94,18 @@ export default class Product extends React.Component<{}, Parameter> {
     },         1500);
   }
 
-  onRefresh = () => {
-   
-    this.setState({ refreshing: true, isLoading: true });
-    // simulate initial Ajax
-    setTimeout(() => {
-      rData = genData();
-      this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(rData),
-        refreshing: false,
-        isLoading: false,
-      });
-    },         600);
-  }
+    onRefresh = () => {
+    
+      this.setState({ refreshing: true, isLoading: true });
+      // simulate initial Ajax
+      setTimeout(() => {
+        this.genData();
+        this.setState({
+          refreshing: false,
+          isLoading: false,
+        });
+      },         600);
+    }
 
   onEndReached = (event) => {
     // load new data
@@ -138,30 +116,24 @@ export default class Product extends React.Component<{}, Parameter> {
     console.log('reach end', event);
     this.setState({ isLoading: true });
     setTimeout(() => {
-      rData = [...rData, ...genData(++pageIndex)];
+      this.genData();
       this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(rData),
         isLoading: false,
       });
     },         1000);
   }
 
   render() {
-   
-    let index = data.length - 1;
+
     const row = (rowData, sectionID, rowID) => {
-      if (index < 0) {
-        index = data.length - 1;
-      }
-      const obj = data[index--];
-      console.log(rowID);
       return (
-        <tr key={rowID} className={rowID} >
+        
+        <tr key={rowData.DealId} className={rowData.DealId} >
           <td className={'text-left'}>
-            <div className={'td_elips1'}> {obj.DealName}</div>
+            <div className={'td_elips1'}> {rowData.DealName}</div>
           </td>
-          <td className={'text-right appH5_color_red'} style={{ fontSize: '17px'}}>{obj.TotalOffering}</td>
-          <td style={{color: 'white'}} className={'text-right td_elips2'}><div style={{width: '100%', float: 'right'}}><div>{obj.DealType}</div></div></td>
+          <td className={'text-right appH5_color_red'} style={{ fontSize: '17px'}}>{rowData.TotalOffering}</td>
+          <td style={{color: 'white'}} className={'text-right td_elips2'}><div style={{width: '100%', float: 'right'}}><div>{rowData.DealType}</div></div></td>
         </tr >
       );
     };
@@ -170,6 +142,7 @@ export default class Product extends React.Component<{}, Parameter> {
           key={this.state.useBodyScroll ? '0' : '1'}
           ref={el => lv = el}
           dataSource={this.state.dataSource}
+          initialListSize={this.state.initialListSize}
           renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>
             {this.state.isLoading ? 'Loading...' : 'Loaded'}
           </div>)}
@@ -185,4 +158,4 @@ export default class Product extends React.Component<{}, Parameter> {
       />     
     );
   }
-}
+} 
