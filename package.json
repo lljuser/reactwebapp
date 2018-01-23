@@ -29,6 +29,7 @@
     "react": "^16.2.0",
     "react-dev-utils": "4.2.1",
     "react-dom": "^16.2.0",
+    "react-loadable": "^5.3.1",
     "react-router-dom": "^4.2.2",
     "source-map-loader": "^0.2.1",
     "style-loader": "0.19.0",

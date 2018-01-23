@@ -477,3 +477,34 @@ select{
 .mint-loadmore-top{
 	font-size: 12px;
 }
+
+/*  Prodct.tsx  */
+.table_td_number{
+	font-size: 17px;
+  }
+ 
+  .td_elips1 {
+	width:105%;
+	text-overflow: ellipsis;
+	 white-space: nowrap;
+	 overflow: hidden;
+  }
+ 
+  .td_elips2 div{
+	width: 100%;
+	text-overflow: ellipsis;
+	 white-space: nowrap;
+	 overflow: hidden;
+	 float: right;
+  }
+
+  #productTableId{
+	table-layout: fixed;
+  }
+  
+  #productTableId th:nth-of-type(2){
+  width: 55px;
+  }
+  #productTableId th:nth-of-type(3){
+  width: 35%;
+  }
