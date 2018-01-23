@@ -11,7 +11,7 @@ export default class ABSPanelComponent extends React.Component<Props, {}> {
     render() {
         return (
             <div className="abs-panel-body">
-                <div id="root" className="abs-panel-content">
+                <div className="abs-panel-content">
                     <div className="abs-panel-panel  abs-panel-panel_mb" >
                         <div className="abs-panel-title"><span>{this.props.title}</span></div>
                         <div className="abs-panel-container">
