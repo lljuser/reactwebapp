@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import ReactDOM from 'react-dom';
-import './abs-panel/abs-panel.less';
+import './abs-panel.less';
 import 'amfe-flexible';
 
 interface Props {
-    title: string;
+    title?: string;
 }
 
 export default class ABSPanelComponent extends React.Component<Props, {}> {
@@ -64,8 +63,4 @@ export default class ABSPanelComponent extends React.Component<Props, {}> {
     }
 
 }
-
-ReactDOM.render(
-    <abs-panel title="市场概要" />,
-    mountNode
-);
+ 

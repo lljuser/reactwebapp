@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { ListView } from 'antd-mobile';
-import Post from '../components/http/request/post';
+import Request from '../components/http/request';
 
 interface Parameter {
   dataSource: any;   
@@ -20,9 +20,9 @@ function MyBody(props: any) {
           <table id={'productTableId'} className={'appH5_table'}>
           <thead>
             <tr>
-              <th>²úÆ·Ãû³Æ</th>
-              <th className={'text-right'}>×Ü¶î(ÒÚ)</th>
-              <th className={'text-right'}>²úÆ··ÖÀà</th>
+              <th>ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½</th>
+              <th className={'text-right'}>ï¿½Ü¶ï¿½(ï¿½ï¿½)</th>
+              <th className={'text-right'}>ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½</th>
             </tr>
           </thead>
           <tbody>
@@ -38,18 +38,18 @@ function MyBody(props: any) {
 const data = [
   {
     TotalOffering: '1',
-    DealName: '²»ÊÇËùÓÐ',
-    DealType: '½ðÈÚ',
+    DealName: 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
+    DealType: 'ï¿½ï¿½ï¿½ï¿½',
   },
   {
     TotalOffering: '2',
-    DealName: '²»ÊÇËùÓÐ',
-    DealType: '½ðÈÚ',
+    DealName: 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
+    DealType: 'ï¿½ï¿½ï¿½ï¿½',
   },
   {
     TotalOffering: '3',
-    DealName: '²»ÊÇËùÓÐ',
-    DealType: '½ðÈÚ',
+    DealName: 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
+    DealType: 'ï¿½ï¿½ï¿½ï¿½',
   },
 ];
 
@@ -100,7 +100,7 @@ export default class Product extends React.Component<{}, Parameter> {
     url = url + '/' + pageIndex + '/' + 1 * NUM_ROWS + '/' + NUM_ROWS;
 
     // tslint:disable-next-line:no-shadowed-variable
-    Post(url, {}, (data) => {
+    Request.post(url, {}, (data) => {
       console.log(data);
     });
 

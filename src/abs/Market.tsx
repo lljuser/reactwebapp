@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
-import './abs-panel/abs-panel.less';
+// import { Link } from 'react-router-dom';
 import 'amfe-flexible';
-import ABSPanelComponent from './abs-panel/abs-panel';
+import ABSPanel from './components/abs-panel/abs-panel';
 
 interface Props {
     title: string;
@@ -11,7 +10,9 @@ interface Props {
 export default class MarketComponent extends React.Component<Props, {}> {
     render() { 
         return (
-            <abs-panel title='sss'></abs-panel>
+             <ABSPanel >
+                 <div>ABC</div>
+             </ABSPanel>
         );
     }
 }
