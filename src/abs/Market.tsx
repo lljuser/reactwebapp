@@ -8,6 +8,24 @@ interface Props {
 }
   
 export default class MarketComponent extends React.Component<Props, {}> {
+    // constructor(props: Props) {
+    //     super(props);
+    //     this.timerID = updateTimer;
+    // }
+    // componentDidMount() {
+    //     this.timerID = setInterval(
+    //         () => this.tick(),
+    //         1000
+    //       );
+    // }
+
+    // updateTimer() {
+    //     setInterval(
+    //         () => this.tick(),
+    //         1000
+    //       );
+    // }
+
     render() { 
         return (
              <ABSPanel title="市场概要">
