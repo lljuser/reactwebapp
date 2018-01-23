@@ -8,6 +8,11 @@ interface Props {
 }
 
 export default class ABSPanelComponent extends React.Component<Props, {}> {
+    constructor(props: Props) {
+        super(props);
+        this.props = props;
+    } 
+    
     render() {
         return (
             <div className="abs-panel-body">
