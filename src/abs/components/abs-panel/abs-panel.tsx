@@ -5,6 +5,7 @@ import 'amfe-flexible';
 
 interface Props {
     title: string;
+    data?: any;
 }
 
 export default class ABSPanelComponent extends React.Component<Props, {}> { 
