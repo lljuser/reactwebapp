@@ -5,7 +5,7 @@ import Loadable from 'react-loadable';
 import Loading from '../components/loading';
 
 const AsyncHome = Loadable({
-  loader: () => import('./Home'),
+  loader: () => import(/*webpackChunkName:'home'*/'./Home'),
   loading: Loading
 });
 
