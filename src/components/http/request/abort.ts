@@ -1,19 +1,19 @@
 import axios, { Canceler, CancelToken } from 'axios';
 
-export default class Abort {
+class Abort {
   
-  static AbortRequest: Canceler;
+  AbortRequest: Canceler;
 
   cancelToken: CancelToken;
 
   CreateToken = () => {
     this.cancelToken = new axios.CancelToken ((canceler: Canceler) => {
       // An executor function receives a cancel function as a parameter
-      Abort.AbortRequest = canceler;
+      this.AbortRequest = canceler;
     });
   }
 }
 
 const AbortBus = new Abort();
 
-export { AbortBus };
+export default AbortBus;
