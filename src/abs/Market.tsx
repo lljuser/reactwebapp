@@ -15,7 +15,7 @@ const marketProps = {
 };
 
 export default class MarketComponent extends React.Component<Props, any> { 
-    render() { 
+    render() {  
         return (
             <React.Fragment>
                 <ABSPanel {...marketProps} >

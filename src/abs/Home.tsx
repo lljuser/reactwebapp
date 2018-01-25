@@ -1,32 +1,23 @@
-import * as React from 'react';
-import { RouteComponentProps } from 'react-router';
+import * as React from 'react'; 
 import { Route } from 'dva/router';
+import { connect } from 'dva';
 import { Tabs } from 'antd-mobile';
 
 import Market from './Market';
 import Product from './Product';
-import Trade from './Trade';
-
+import Trade from './Trade'; 
 import './App.css';
 
 const tabs = [
   { title: '市场', name: 'market' },
   { title: '产品', name: 'product' },
   { title: '交易', name: 'trade' },
-];
-
-interface AppProp {
-  // 对应tab选项卡中的 name 字段
-  tab: string;
-}
-
-interface AppState {
-  index: number;
-}
-
-class App extends React.Component<RouteComponentProps<AppProp>, AppState> {
-  constructor(props: RouteComponentProps<AppProp>) {
-    super(props);
+];  
+ 
+class App extends React.Component<any, any> {
+  constructor(props: any) {
+    super(props); 
+    console.log(props);
     this.state = {
       index: this.getIndex()
     };
@@ -34,7 +25,7 @@ class App extends React.Component<RouteComponentProps<AppProp>, AppState> {
     this.onChange = this.onChange.bind(this);
   }
 
-  getIndex(props?: RouteComponentProps<AppProp>): number {
+  getIndex(props?: any): number {
     props = props || this.props;
     const { match } = props;
     if (match.params && match.params.tab) {
@@ -45,7 +36,7 @@ class App extends React.Component<RouteComponentProps<AppProp>, AppState> {
     return 0; 
   }
 
-  componentWillReceiveProps(next: RouteComponentProps<AppProp>) {
+  componentWillReceiveProps(next: any) {
     let nextIndex = this.getIndex(next);
     this.setState({
       index: nextIndex
@@ -78,4 +69,12 @@ class App extends React.Component<RouteComponentProps<AppProp>, AppState> {
   }
 }
 
-export default App;  
+function mapStateToProps(state: any) {
+  return {
+    count: state.count,
+  };
+}
+
+export default connect(mapStateToProps)(App);
+
+// export default App;  
