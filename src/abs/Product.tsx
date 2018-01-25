@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Request from '../components/http/request/index';
 import * as ReactDOM from 'react-dom';
-import { ListView } from 'antd-mobile';
+import { ListView, PullToRefresh } from 'antd-mobile';
 import '../public/css/theme.css';
 
 interface Parameter {
@@ -63,27 +63,33 @@ export default class Product extends React.Component<{}, Parameter> {
     };
   }
 
-  genData() {
+  genData(refreshing: boolean= false) {
+
+    if (refreshing) {
+      pageIndex = 0;
+      rData = [];
+    } else {
+      pageIndex++;
+    }
 
     var url = 'http://10.1.1.35/modeal/getdeallist';
     url = url + '/' + 0 + '/' + 0 + '/' + 0;
     url = url + '/' + pageIndex + '/' + (pageIndex + 1) * NUM_ROWS + '/' + NUM_ROWS;
   
     Request.post(url, {}, (data) => {
-        pageIndex++;
-
+      
         if ( data.Deal.length === 0 ) {
           this.setState({ info: '已全部加载' , hasMore: false});
-
         } else {
           rData = [...rData, ...data.Deal];
-          console.log(pageIndex);
+          console.log(rData);
           this.setState({
             dataSource: this.state.dataSource.cloneWithRows(rData),
             isLoading: false,
             info: '加载完成',
           });
         }
+       
       });
   }
 
@@ -94,8 +100,9 @@ export default class Product extends React.Component<{}, Parameter> {
       document.body.style.overflow = 'hidden';
     }
   }
-
+ 
   componentDidMount() {
+    console.log('componentDidMount');
     const hei = this.state.height - (ReactDOM.findDOMNode(lv as ListView) as any).offsetTop;
 
     this.genData();
@@ -105,19 +112,19 @@ export default class Product extends React.Component<{}, Parameter> {
       });
   }
 
-    onRefresh = () => {
-    
-      this.setState({ refreshing: true, isLoading: true });
-      this.genData();
-      this.setState({
-          refreshing: false,
-        });
-    }
+  onRefresh = () => {
+    console.log('onRefresh');
+    this.setState({ refreshing: true, isLoading: true });
+    this.genData(true);
+    this.setState({
+      refreshing: false 
+    });
+  }
 
   onEndReached = (event) => {
     // load new data
     // hasMore: from backend data, indicates whether it is the last page, here is false
-    console.log(this.state.hasMore);
+    console.log('onEndReached');
     if (this.state.isLoading && !this.state.hasMore) {
       return;
     }
@@ -158,7 +165,16 @@ export default class Product extends React.Component<{}, Parameter> {
           style={this.state.useBodyScroll ? {} : {
             height: this.state.height,
           }}
-          
+          pullToRefresh={<PullToRefresh 
+            getScrollContainer={() => lv}
+            direction={'down'}
+            refreshing={this.state.refreshing}
+            onRefresh={this.onRefresh}
+            distanceToRefresh={25}
+            indicator={{
+              activate: <div>下拉刷新数据</div>
+            }}
+          />}
           onEndReached={this.onEndReached}
           pageSize={15}
       />     
