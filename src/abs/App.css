@@ -9,6 +9,13 @@ body {
     margin: auto;
 }
 
+.am-tabs-tab-bar-wrap{
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
 /* .am-tabs-default-bar-top .am-tabs-default-bar-tab {
     border-bottom: none;
 } */
