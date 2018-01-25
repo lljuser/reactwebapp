@@ -2,10 +2,6 @@
 # yarn lockfile v1
 
 
-"@types/history@*":
-  version "4.6.2"
-  resolved "http://registry.npm.taobao.org/@types/history/download/@types/history-4.6.2.tgz#12cfaba693ba20f114ed5765467ff25fdf67ddb0"
-
 "@types/jest@^22.0.1":
   version "22.0.1"
   resolved "http://registry.npm.taobao.org/@types/jest/download/@types/jest-22.0.1.tgz#6370a6d60cce3845e4cd5d00bf65f654264685bc"
@@ -19,21 +15,6 @@
   resolved "http://registry.npm.taobao.org/@types/react-dom/download/@types/react-dom-16.0.3.tgz#8accad7eabdab4cca3e1a56f5ccb57de2da0ff64"
   dependencies:
     "@types/node" "*"
-    "@types/react" "*"
-
-"@types/react-router-dom@^4.2.3":
-  version "4.2.3"
-  resolved "http://registry.npm.taobao.org/@types/react-router-dom/download/@types/react-router-dom-4.2.3.tgz#06e0b67ff536adc0681dffdbe592ae91fb85887d"
-  dependencies:
-    "@types/history" "*"
-    "@types/react" "*"
-    "@types/react-router" "*"
-
-"@types/react-router@*":
-  version "4.0.20"
-  resolved "http://registry.npm.taobao.org/@types/react-router/download/@types/react-router-4.0.20.tgz#3404f54e44bba2239ea4320ea701d86d92f05486"
-  dependencies:
-    "@types/history" "*"
     "@types/react" "*"
 
 "@types/react@*", "@types/react@^16.0.34":
@@ -4880,7 +4861,7 @@ react-redux@^5.0.5:
     loose-envify "^1.1.0"
     prop-types "^15.5.10"
 
-react-router-dom@^4.1.2, react-router-dom@^4.2.2:
+react-router-dom@^4.1.2:
   version "4.2.2"
   resolved "http://registry.npm.taobao.org/react-router-dom/download/react-router-dom-4.2.2.tgz#c8a81df3adc58bba8a76782e946cbd4eae649b8d"
   dependencies:
