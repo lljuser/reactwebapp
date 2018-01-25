@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
-import { Route } from 'react-router-dom';
+import { Route } from 'dva/router';
 import { Tabs } from 'antd-mobile';
 
 import Market from './Market';

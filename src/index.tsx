@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom'; 
 import App from './abs/App'; 
-import { Router } from 'react-router-dom';
+import { Router } from 'dva/router';
 import history from './components/http/request/listener';
 import registerServiceWorker from './registerServiceWorker'; 
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Switch, Route , Redirect } from 'react-router-dom';
+import { Switch, Route , Redirect } from 'dva/router';
 import ProductDetail from './ProductDetail'; 
 import Loadable from 'react-loadable';
 import Loading from '../components/loading';

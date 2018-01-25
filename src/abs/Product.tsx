@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Request from '../components/http/request/index';
 import * as ReactDOM from 'react-dom';
-import { Link } from 'react-router-dom';
+import { Link } from 'dva/router';
 import { ListView, PullToRefresh } from 'antd-mobile';
 import '../public/css/theme.css';
 import { ProductApi } from '../config/api';

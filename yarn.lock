@@ -2,6 +2,12 @@
 # yarn lockfile v1
 
 
+"@types/dva@^1.1.0":
+  version "1.1.0"
+  resolved "http://registry.npm.taobao.org/@types/dva/download/@types/dva-1.1.0.tgz#59fbf3b334c1b0ae837fb0bd2050cd0e5fdd8c49"
+  dependencies:
+    dva "*"
+
 "@types/jest@^22.0.1":
   version "22.0.1"
   resolved "http://registry.npm.taobao.org/@types/jest/download/@types/jest-22.0.1.tgz#6370a6d60cce3845e4cd5d00bf65f654264685bc"
@@ -1562,7 +1568,7 @@ dva-core@^1.1.0:
     redux-saga "^0.15.4"
     warning "^3.0.0"
 
-dva@^2.1.0:
+dva@*, dva@^2.1.0:
   version "2.1.0"
   resolved "http://registry.npm.taobao.org/dva/download/dva-2.1.0.tgz#5a2ffea411f86d3744e2e9aef3fa0a5db6961e3a"
   dependencies:
