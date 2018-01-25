@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Request from '../components/http/request/index';
 import * as ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom';
 import { ListView, PullToRefresh } from 'antd-mobile';
 import '../public/css/theme.css';
 import { ProductApi } from '../config/api';
@@ -144,7 +145,7 @@ export default class Product extends React.Component<{}, Parameter> {
         
         <tr key={rowData.DealId} className={rowData.DealId} >
           <td className={'text-left'}>
-            <div className={'td_elips1'}> {rowData.DealName}</div>
+          <Link to={`/productdetail/${rowData.DealId}`}><div className={'td_elips1'}>{rowData.DealName}</div></Link>
           </td>
           <td className={'text-right appH5_color_red'} style={{ fontSize: '17px'}}>{rowData.TotalOffering}</td>
           <td style={{color: 'white'}} className={'text-right td_elips2'}><div style={{width: '100%', float: 'right'}}><div>{rowData.DealType}</div></div></td>
