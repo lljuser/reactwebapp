@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { Switch, Route , Redirect } from 'react-router-dom';
-// import ProductDetail from './ProductDetail'; 
+import ProductDetail from './ProductDetail'; 
 import Loadable from 'react-loadable';
 import Loading from '../components/loading';
 
 const AsyncHome = Loadable({
-  loader: () => import('./Home'),
+  loader: () => import(/*webpackChunkName:'home'*/'./Home'),
   loading: Loading
 });
 
@@ -19,7 +19,7 @@ export default class App extends React.Component<AppProp, {}> {
     return (
       <Switch>
           <Route exact={true} path="/:tab(market|trade|product)" component={AsyncHome}/>  
-          {/* <Route exact={true} path="/productDetail/:id" component={ProductDetail}/>  */}
+          <Route exact={true} path="/productDetail/:id" component={ProductDetail}/>
           <Redirect path="*" to="/market" />
       </Switch>
     );

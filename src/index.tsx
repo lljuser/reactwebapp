@@ -11,5 +11,5 @@ ReactDOM.render(
   </Router> ,  
   document.getElementById('root') as HTMLElement
 );
-// alert(process.env.REACT_APP_API_ADDRESS);
+ 
 registerServiceWorker();

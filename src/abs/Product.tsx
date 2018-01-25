@@ -3,6 +3,7 @@ import Request from '../components/http/request/index';
 import * as ReactDOM from 'react-dom';
 import { ListView, PullToRefresh } from 'antd-mobile';
 import '../public/css/theme.css';
+import { ProductApi } from '../config/api';
 
 interface Parameter {
   dataSource: any;   
@@ -72,7 +73,7 @@ export default class Product extends React.Component<{}, Parameter> {
       pageIndex++;
     }
 
-    var url = 'http://10.1.1.35/modeal/getdeallist';
+    var url = ProductApi.list;
     url = url + '/' + 0 + '/' + 0 + '/' + 0;
     url = url + '/' + pageIndex + '/' + (pageIndex + 1) * NUM_ROWS + '/' + NUM_ROWS;
   
