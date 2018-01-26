@@ -15,6 +15,11 @@ const marketProps = {
 };
 
 export default class MarketComponent extends React.Component<Props, any> { 
+    constructor(props: Props) {
+        super(props); 
+        console.log('MarketComponent constructor');
+    }
+    
     render() {  
         return (
             <React.Fragment>

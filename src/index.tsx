@@ -1,6 +1,7 @@
 import * as React from 'react';
 import dva from 'dva';
 import { Router } from 'dva/router'; 
+import createLoading from 'dva-loading';
 import defaultHistory from './components/http/request/listener';
 import registerServiceWorker from './registerServiceWorker'; 
 import App from './abs/App';  
@@ -10,6 +11,7 @@ import countModel from './models/count';
 const app = dva({
   history: defaultHistory,
 });
+app.use(createLoading());
 
 // 2. Model 
 app.model(countModel);

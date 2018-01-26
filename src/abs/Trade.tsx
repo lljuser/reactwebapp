@@ -21,6 +21,7 @@ interface AppState {
     refreshing?: boolean;
     initialListSize: number; // 组件刚挂载的时候渲染数据行数
 }
+<<<<<<< HEAD
 
 var lv: ListView | null;
 // 数据查询条数
@@ -186,6 +187,17 @@ export default class Trade extends React.Component<{}, AppState> {
                 <TradeItem TradeId={rowData.TradeId} SecurityId={rowData.SecurityId} TradeTypeId={rowData.TradeTypeId} SecurityName={rowData.SecurityName} TotalOffering={rowData.TotalOffering} AssetType={rowData.AssetType} />
             );
         };
+=======
+  
+export default class TradeComponent extends React.Component<Props, {}> {
+    constructor(props: Props) {
+        super(props); 
+        console.log('TradeComponent constructor');
+    }
+
+    render() { 
+        console.log('Trade render');
+>>>>>>> 8c3c1ac6cec20f5c1ecc3b1b980434796d5e93aa
         return (
             <ListView
                 key={this.state.useBodyScroll ? '0' : '1'}
