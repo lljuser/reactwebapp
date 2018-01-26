@@ -8,7 +8,6 @@ import ABSChartMarket from './components/abs-chart/abs-chart-market';
 interface Props {
     title: string;
 }
-  
 const marketProps = {
     title: '市场概要',
     data: {}

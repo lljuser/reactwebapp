@@ -5,18 +5,19 @@ import { Tabs, Badge } from 'antd-mobile';
 
 import Market from './Market';
 import Product from './Product';
-import Trade from './Trade'; 
-import './App.css'; 
- 
+import Trade from './Trade';
+
+import './components/abs-tabs/abs-tabs.less';
+
 class App extends React.Component<any, any> {
   private tabs = [
     { title: <Badge text={this.props.count.current}>市场</Badge>, name: 'market' },
     { title: '产品', name: 'product' },
     { title: '交易', name: 'trade' },
-  ];  
-  
+  ];
+
   constructor(props: any) {
-    super(props); 
+    super(props);
     console.log(props);
     this.state = {
       index: this.getIndex()
@@ -33,7 +34,7 @@ class App extends React.Component<any, any> {
       return idx >= 0 ? idx : 0;
     }
 
-    return 0; 
+    return 0;
   }
 
   componentWillReceiveProps(next: any) {
@@ -55,9 +56,10 @@ class App extends React.Component<any, any> {
       { title: <Badge text={this.props.count.current}>市场</Badge>, name: 'market' },
       { title: '产品', name: 'product' },
       { title: '交易', name: 'trade' },
-    ];  
+    ];
 
     return (
+      <div className="abs-tabs">
         <Tabs
           initialPage={this.state.index}
           page={this.state.index}
@@ -65,8 +67,8 @@ class App extends React.Component<any, any> {
           tabBarBackgroundColor={'#000000'}
           tabBarInactiveTextColor={'#ffffff'}
           onChange={this.onChange}
-          onTabClick={(tab, index) => { 
-             this.props.dispatch({ type: 'count/add' });
+          onTabClick={(tab, index) => {
+            this.props.dispatch({ type: 'count/add' });
           }}
           tabBarUnderlineStyle={{ borderColor: '#ffc446', width: '40px', left: `${this.state.index * 100 + anchorTextWidth}px` }}
         >
@@ -74,6 +76,7 @@ class App extends React.Component<any, any> {
           <Route path="/product" component={Product} />
           <Route path="/trade" component={Trade} />
         </Tabs>
+      </div>
     );
   }
 }
@@ -85,5 +88,3 @@ function mapStateToProps(state: any) {
 }
 
 export default connect(mapStateToProps)(App);
-
-// export default App;  

@@ -1,7 +1,16 @@
-@hd: 1px; // 基本单位
+// ABS UI 定制主题变量，提供给各个组件使用
 
-// 支付宝钱包默认主题
-// https://github.com/ant-design/ant-design-mobile/wiki/设计变量表及命名规范
+// 标准前缀名
+@abs-prefix: abs;
+
+// ABS-link 中的主色调
+@abs-brand-black: #000000;
+@abs-brand-white: #ffffff;
+@abs-brand-orange: #ff610b;
+@abs-brand-gray: #2B2B2B;
+@abs-brand-yellow: #ffc446;
+
+@hd: 1px; // 基本单位
 
 // 色彩
 // ---
@@ -16,7 +25,7 @@
 @color-link: @brand-primary;             // 链接
 
 // 背景色
-@fill-base: #fff;                           // 组件默认背景
+@fill-base: #eee;                           // 组件默认背景
 @fill-body: #f5f5f9;                        // 页面背景
 @fill-tap: #ddd;                            // 组件默认背景 - 按下
 @fill-disabled: #ddd;                       // 通用失效背景
@@ -28,8 +37,8 @@
 @opacity-disabled: 0.3;   // switch checkbox radio 等组件禁用的透明度
 
 // 全局/品牌色
-@brand-primary: #108ee9;
-@brand-primary-tap: #0e80d2;
+@brand-primary: #ffc446;
+@brand-primary-tap: #ffc446;
 @brand-success: #6abf47;
 @brand-warning: #ffc600;
 @brand-error: #f4333c;
@@ -189,3 +198,4 @@
 @popup-zindex: 999;
 @modal-zindex: 999; // modal.alert 应该最大，其他应该较小
 @tabs-pagination-zindex: 999;
+
