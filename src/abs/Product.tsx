@@ -2,7 +2,7 @@ import * as React from 'react';
 import Request from '../components/http/request/index';
 import * as ReactDOM from 'react-dom';
 import { Link } from 'dva/router';
-import { ListView, PullToRefresh } from 'antd-mobile';
+import { ListView, PullToRefresh, Picker } from 'antd-mobile';
 import '../public/css/theme.css';
 import { ProductApi } from '../config/api';
 
@@ -15,14 +15,30 @@ interface Parameter {
   hasMore: boolean;
   initialListSize: number;
   info: string;
+  CurrentStatus: PickerItem[][];
+  DealType: PickerItem[][];
+  ProductType: PickerItem[][];
+  isFirstLoad: boolean;
 }
-  
+
+interface PickerItem {
+  label: string;
+  value: string;
+ }
+
+const PickerChildren = props => (
+  <div
+    onClick={props.onClick}
+  >
+    <div style={{width: '30%', float: 'left', fontSize: '20px'}}>{props.extra}</div>
+  </div>
+);
+
 function MyBody(props: any) {
-  return (
-    <div className={props.sectionID}>
-      <div className={'appH5_body'}>
-          <div className={'appH5_panel'}>
-          <table id={'productTableId'} className={'appH5_table'}>
+  return ( 
+    <div className={'appH5_body'}>
+      <div className={'appH5_panel'}>
+        <table id={'productTableId'} className={'appH5_table'}>
           <thead>
             <tr>
               <th>产品名称</th>
@@ -31,30 +47,35 @@ function MyBody(props: any) {
             </tr>
           </thead>
           <tbody>
-            {props.children}
-            </tbody>
-          </table>
-          </div>
-        </div>
-    </div > 
+              {props.children}
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 }
 
 const NUM_ROWS = 15;
 let pageIndex = 0;
-var lv: ListView|null;
-var rData: Object[] = [];
+let lv: ListView|null;
+let rData: Object[] = [];
 
 export default class Product extends React.Component<{}, Parameter> {
+
+  CurrentStatusValue: string[] = [];
+  DealTypeValue: string[] = [];
+  ProductTypeValue: string[] = [];
 
   constructor(props: object) {
     super(props);
     const dataSource = new ListView.DataSource({
       rowHasChanged: (row1, row2) => row1 !== row2,
     });
-
     this.state = {
       dataSource: dataSource,
+      CurrentStatus: [],
+      DealType: [],
+      ProductType: [],
       refreshing: true,
       isLoading: true,
       height: document.documentElement.clientHeight,
@@ -62,36 +83,72 @@ export default class Product extends React.Component<{}, Parameter> {
       hasMore: true,
       initialListSize: NUM_ROWS,
       info: '',
+      isFirstLoad: true
     };
   }
 
-  genData(refreshing: boolean= false) {
+  formatPickerData(data: any) {
+    let CurrentStatus: PickerItem[] = [];
+    let DealType: PickerItem[] = [];
+    let ProductType: PickerItem[] = [];
+    data.CurrentStatus.forEach(element => {
+      let item = element as any;
+      CurrentStatus.push({label: item.Text, value: item.Value });
+    });
+    data.DealType.forEach(element => {
+      let item = element as any;
+      DealType.push({label: item.Text, value: item.Value });
+    });
+    data.ProductType.forEach(element => {
+      let item = element as any;
+      ProductType.push({label: item.Text, value: item.Value });
+    });
+    
+    this.CurrentStatusValue = [CurrentStatus[0].value];
+    this.DealTypeValue = [DealType[0].value];
+    this.ProductTypeValue = [ProductType[0].value];
 
+    this.setState({       
+      CurrentStatus: [CurrentStatus],
+      DealType: [DealType],
+      ProductType: [ProductType]
+    });
+   
+  }
+
+  genData(refreshing: boolean= false) {
     if (refreshing) {
       pageIndex = 0;
       rData = [];
     } else {
       pageIndex++;
     }
+    
+    let CurrentStatusValue = this.CurrentStatusValue[0] === undefined ? 0 : this.CurrentStatusValue[0];
+    let DealTypeValue = this.DealTypeValue[0] === undefined ? 0 : this.DealTypeValue[0];
+    let ProductTypeValue = this.ProductTypeValue[0] === undefined ? 0 : this.ProductTypeValue[0];
 
-    var url = ProductApi.list;
-    url = url + '/' + 0 + '/' + 0 + '/' + 0;
+    let url = ProductApi.list;
+    url = url + '/' + CurrentStatusValue + '/' + DealTypeValue + '/' + ProductTypeValue;
     url = url + '/' + pageIndex + '/' + (pageIndex + 1) * NUM_ROWS + '/' + NUM_ROWS;
-  
+
     Request.post(url, {}, (data) => {
-      
         if ( data.Deal.length === 0 ) {
           this.setState({ info: '已全部加载' , hasMore: false});
         } else {
           rData = [...rData, ...data.Deal];
-          console.log(rData);
+
+          if (this.state.isFirstLoad === true) {
+            this.formatPickerData(data);
+            this.setState({isFirstLoad: false});
+          }
+
           this.setState({
             dataSource: this.state.dataSource.cloneWithRows(rData),
             isLoading: false,
             info: '加载完成',
           });
         }
-       
       });
   }
 
@@ -105,9 +162,9 @@ export default class Product extends React.Component<{}, Parameter> {
  
   componentDidMount() {
     console.log('componentDidMount');
-    const hei = this.state.height - (ReactDOM.findDOMNode(lv as ListView) as any).offsetTop;
+    const hei = this.state.height - (ReactDOM.findDOMNode(lv as ListView) as any).offsetTop - 50;
 
-    this.genData();
+    this.genData(true);
     this.setState({
         height: hei,
         refreshing: false,
@@ -138,8 +195,20 @@ export default class Product extends React.Component<{}, Parameter> {
 
   }
 
-  render() {
+  PickerChange(picker: string, val: string[]) {
+    if (picker === 'CurrentStatusValue') {
+      this.CurrentStatusValue = val;
+    }
+    if (picker === 'DealTypeValue') {
+      this.DealTypeValue = val;
+    }
+    if (picker === 'ProductTypeValue') {
+      this.ProductTypeValue = val;
+    }
+    this.onRefresh();
+  }
 
+  render() {
     const row = (rowData, sectionID, rowID) => {
       return (
         
@@ -153,6 +222,36 @@ export default class Product extends React.Component<{}, Parameter> {
       );
     };
     return (
+      <div>
+      <div style={{height: '50px'}}>
+        <Picker  
+          title="选择市场" 
+          data={this.state.CurrentStatus} 
+          cascade={false}
+          value={this.CurrentStatusValue}
+          onOk={v => this.PickerChange('CurrentStatusValue', v)}
+        >
+          <PickerChildren>选择市场</PickerChildren>
+        </Picker>
+        <Picker  
+          title="选择产品" 
+          data={this.state.DealType} 
+          cascade={false}
+          value={this.DealTypeValue}
+          onOk={v => this.PickerChange('DealTypeValue', v)}
+        >
+          <PickerChildren>选择产品</PickerChildren>
+        </Picker>
+        <Picker 
+          title="选择状态" 
+          data={this.state.ProductType} 
+          cascade={false}
+          value={this.ProductTypeValue}
+          onOk={v => this.PickerChange('ProductTypeValue', v)}
+        >
+          <PickerChildren>选择状态</PickerChildren>
+        </Picker>
+     </div>
       <ListView
           key={this.state.useBodyScroll ? '0' : '1'}
           ref={el => lv = el}
@@ -161,7 +260,7 @@ export default class Product extends React.Component<{}, Parameter> {
           renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>
             {this.state.info}
           </div>)}
-          renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey}/>}
+          renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey}  CurrentStatus={this.state.CurrentStatus} CurrentStatusValue={this.CurrentStatusValue} DealType={this.state.DealType} DealTypeValue={this.DealTypeValue} ProductType={this.state.ProductType} ProductTypeValue={this.ProductTypeValue} />}
           renderRow={row}
           useBodyScroll={this.state.useBodyScroll}
           style={this.state.useBodyScroll ? {} : {
@@ -179,7 +278,8 @@ export default class Product extends React.Component<{}, Parameter> {
           />}
           onEndReached={this.onEndReached}
           pageSize={15}
-      />     
+      />    
+      </div >  
     );
   }
 } 

@@ -508,3 +508,7 @@ select{
   #productTableId th:nth-of-type(3){
   width: 35%;
   }
+
+  .forss {
+	width:40%;
+  }
