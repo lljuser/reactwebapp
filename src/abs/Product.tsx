@@ -246,7 +246,7 @@ export default class Product extends React.Component<{}, Parameter> {
           title="选择状态" 
           data={this.state.ProductType} 
           cascade={false}
-          value={this.ProductTypeValue}
+          value={this.ProductTypeValue} 
           onOk={v => this.PickerChange('ProductTypeValue', v)}
         >
           <PickerChildren>选择状态</PickerChildren>
