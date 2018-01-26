@@ -45,13 +45,14 @@ let pageIndex = 0;
 var lv: ListView|null;
 var rData: Object[] = [];
 
-export default class Product extends React.Component<{}, Parameter> {
-
+export default class ProductComponent extends React.Component<{}, Parameter> { 
   constructor(props: object) {
     super(props);
     const dataSource = new ListView.DataSource({
       rowHasChanged: (row1, row2) => row1 !== row2,
     });
+
+    console.log('ProductComponent constructor');
 
     this.state = {
       dataSource: dataSource,
