@@ -36,7 +36,7 @@ export default class ABSTableMarketComponent extends React.Component<{}, Paramet
 
     fetchMarketSummary() {
         const marketListUrl = 'http://10.1.1.35/momarket/productsummary';
-        Request.post(marketListUrl, {}, (data) => {
+        Request.post(marketListUrl, {}).then((data) => {
             this.setState({ marketSummary: data });
             console.log(data);
         }, (error) => {

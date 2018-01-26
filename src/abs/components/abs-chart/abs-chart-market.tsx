@@ -33,7 +33,7 @@ export default class ABSChartMarketComponent extends React.Component<{}, Paramet
 
     fetchChartData() {
         var chartUrl = 'http://10.1.1.35/momarket/getissuestatchartdata';
-        Request.post(chartUrl, {}, (response) => {
+        Request.post(chartUrl, {}).then((response) => {
             const json = response;
             if (json !== null) {
                 var chartData = json;
@@ -118,9 +118,7 @@ export default class ABSChartMarketComponent extends React.Component<{}, Paramet
                 // this.options = data;
                 // callback(data);
             }
-        }, (error) => {
-            console.log(error);
-        });
+        }).catch(error => console.log(error.message));
     }
 
     render() {
