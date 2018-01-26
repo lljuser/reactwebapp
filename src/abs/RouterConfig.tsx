@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Router, Switch, Route , Redirect } from 'dva/router'; 
-// import asyncLoader from '../components/ayncLoader';
+import { Router, Switch, Route , Redirect } from 'dva/router';  
 import dynamic from 'dva/dynamic'; 
-
+// import asyncLoader from '../components/ayncLoader';
 // const AsyncHome = asyncLoader(import(/*webpackChunkName:'home'*/'./Home'));  
+
 function RouterConfig({ history, app }: any) {  
   const Home = dynamic({
     app,

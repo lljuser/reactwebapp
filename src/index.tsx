@@ -5,18 +5,18 @@ import registerServiceWorker from './registerServiceWorker';
 import routerConfig from './abs/RouterConfig';   
 
 // 1. Initialize
-const app = dva({
+const appDva = dva({
   history: defaultHistory,
 });
-app.use(createLoading());
+appDva.use(createLoading());
 
-// 2. Model |move to ruoterconfig setting
+// 2. Model |move to ruoterconfig
 // app.model(countModel);
 
 // 3. Router
-app.router(({props}: any) =>  routerConfig(props));
+appDva.router(({history, app}: any) =>  routerConfig({history, app}));
 
 // 4. Start
-app.start('#root');  
+appDva.start('#root');  
 
 registerServiceWorker();
