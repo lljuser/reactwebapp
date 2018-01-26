@@ -1,13 +1,9 @@
 import * as React from 'react';
 import { Switch, Route , Redirect } from 'dva/router';
 import ProductDetail from './ProductDetail'; 
-import Loadable from 'react-loadable';
-import Loading from '../components/loading';
+import asyncLoader from '../components/ayncLoader';
 
-const AsyncHome = Loadable({
-  loader: () => import(/*webpackChunkName:'home'*/'./Home'),
-  loading: Loading
-});
+const AsyncHome = asyncLoader(import(/*webpackChunkName:'home'*/'./Home'));
 
 interface AppProp {
   name?: string;
