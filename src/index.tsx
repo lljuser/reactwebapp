@@ -1,11 +1,8 @@
-import * as React from 'react';
 import dva from 'dva';
-import { Router } from 'dva/router'; 
 import createLoading from 'dva-loading';
 import defaultHistory from './components/http/request/listener';
 import registerServiceWorker from './registerServiceWorker'; 
-import App from './abs/App';  
-import countModel from './models/count';
+import routerConfig from './abs/RouterConfig';   
 
 // 1. Initialize
 const app = dva({
@@ -14,15 +11,10 @@ const app = dva({
 app.use(createLoading());
 
 // 2. Model 
-app.model(countModel);
+// app.model(countModel);
 
 // 3. Router
-app.router((props: {history: History}) => ( 
-    <Router history={props.history}> 
-      <App />
-    </Router>
-  )
-);
+app.router(({props}: any) =>  routerConfig(props));
 
 // 4. Start
 app.start('#root');  
