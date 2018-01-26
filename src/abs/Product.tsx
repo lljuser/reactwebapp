@@ -223,7 +223,7 @@ export default class Product extends React.Component<{}, Parameter> {
     };
     return (
       <div>
-      <div style={{height: '50px'}}>
+      <div style={{height: '50px', marginTop: '50px'}}>
         <Picker  
           title="选择市场" 
           data={this.state.CurrentStatus} 
