@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { NavBar, Icon } from 'antd-mobile'; 
-import { Link } from 'react-router-dom';
+import { Link } from 'dva/router';
 
 interface Props {
     title: string;

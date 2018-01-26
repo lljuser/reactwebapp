@@ -4,8 +4,10 @@ import AbortBus from './abort';
 
 export default class Request {
 
-  // 默认请求超时时间
-  private static defaultTimeout = 10 * 1000;
+  /**
+   * 请求默认超时时间
+   */
+  private static readonly defaultTimeout = 10 * 1000;
 
   /**
    * 发送一个GET异步请求

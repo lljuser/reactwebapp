@@ -8,36 +8,27 @@ import ABSChartMarket from './components/abs-chart/abs-chart-market';
 interface Props {
     title: string;
 }
+const marketProps = {
+    title: '市场概要',
+    data: {}
+};
 
-export default class MarketComponent extends React.Component<Props, {}> {
-    // constructor(props: Props) {
-    //     super(props);
-    //     this.timerID = updateTimer;
-    // }
-    // componentDidMount() {
-    //     this.timerID = setInterval(
-    //         () => this.tick(),
-    //         1000
-    //       );
-    // }
-
-    // updateTimer() {
-    //     setInterval(
-    //         () => this.tick(),
-    //         1000
-    //       );
-    // }
-
-    render() { 
+export default class MarketComponent extends React.Component<Props, any> { 
+    constructor(props: Props) {
+        super(props); 
+        console.log('MarketComponent constructor');
+    }
+    
+    render() {  
         return (
-            <div className="abs-market">
-                <ABSPanel title="市场概要" >
+            <React.Fragment>
+                <ABSPanel {...marketProps} >
                     <ABSTableMarket />   
-                </ABSPanel>
+                </ABSPanel> 
                 <ABSPanel title="发行统计">
                     <ABSChartMarket />
                 </ABSPanel>
-            </div>
+            </React.Fragment>
         );
     }
 }

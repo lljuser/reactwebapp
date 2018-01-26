@@ -1,15 +1,30 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom'; 
-import App from './abs/App'; 
-import { Router } from 'react-router-dom';
-import history from './components/http/request/listener';
+import dva from 'dva';
+import { Router } from 'dva/router'; 
+import createLoading from 'dva-loading';
+import defaultHistory from './components/http/request/listener';
 import registerServiceWorker from './registerServiceWorker'; 
+import App from './abs/App';  
+import countModel from './models/count';
 
-ReactDOM.render(
-  <Router history={history}>
-    <App/>
-  </Router>,
-  document.getElementById('root') as HTMLElement
+// 1. Initialize
+const app = dva({
+  history: defaultHistory,
+});
+app.use(createLoading());
+
+// 2. Model 
+app.model(countModel);
+
+// 3. Router
+app.router((props: {history: History}) => ( 
+    <Router history={props.history}> 
+      <App />
+    </Router>
+  )
 );
-// alert(process.env.REACT_APP_API_ADDRESS);
+
+// 4. Start
+app.start('#root');  
+
 registerServiceWorker();

@@ -6,9 +6,10 @@ import 'amfe-flexible';
 
 interface Props {
     title: string;
+    data?: any;
 }
 
-export default class ABSPanelComponent extends React.Component<Props, {}> { 
+export default class ABSPanelComponent extends React.Component<Props, {}> {
     render() {
         return (
             <div className="abs-panel">
@@ -22,4 +23,3 @@ export default class ABSPanelComponent extends React.Component<Props, {}> {
     }
 
 }
- 
