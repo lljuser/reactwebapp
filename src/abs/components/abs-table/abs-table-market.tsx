@@ -46,28 +46,30 @@ export default class ABSTableMarketComponent extends React.Component<{}, Paramet
 
     render() {
         return (
-            <table className="abs-table abs-table-market" title="{this.props.title}">
-                <thead>
-                    <tr>
-                        <th>分类</th>
-                        <th className="text-right">今年(单)</th>
-                        <th className="text-right">今年(亿)</th>
-                        <th className="text-right">累计(亿)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        this.state.marketSummary.map((item) =>
-                            <tr key={item.ProductTypeId}>
-                                <td><a href="javascript:"> {item.SimpleProductType}</a></td>
-                                <td className="text-right">{item.DealCountCurrentYear}</td>
-                                <td className="text-right appH5_color_red">{item.BalanceCurrentYear}</td>
-                                <td className="text-right">{item.BalanceCumulative}</td>
-                            </tr>
-                        )
-                    }
-                </tbody>
-            </table>
+            <div className="abs-table abs-table-market" >
+                <table title="{this.props.title}">
+                    <thead>
+                        <tr>
+                            <th>分类</th>
+                            <th className="text-right">今年(单)</th>
+                            <th className="text-right">今年(亿)</th>
+                            <th className="text-right">累计(亿)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            this.state.marketSummary.map((item) =>
+                                <tr key={item.ProductTypeId}>
+                                    <td><a href="javascript:"> {item.SimpleProductType}</a></td>
+                                    <td className="text-right">{item.DealCountCurrentYear}</td>
+                                    <td className="text-right appH5_color_red">{item.BalanceCurrentYear}</td>
+                                    <td className="text-right">{item.BalanceCumulative}</td>
+                                </tr>
+                            )
+                        }
+                    </tbody>
+                </table>
+            </div>
         );
     }
 }

@@ -60,27 +60,17 @@ let pageIndex = 0;
 let lv: ListView|null;
 let rData: Object[] = [];
 
-<<<<<<< HEAD
-export default class ProductComponent extends React.Component<{}, Parameter> { 
-=======
 export default class Product extends React.Component<{}, Parameter> {
 
   CurrentStatusValue: string[] = [];
   DealTypeValue: string[] = [];
   ProductTypeValue: string[] = [];
 
->>>>>>> 2f2901361a8491bf24643bb138601c7b1fe4f219
   constructor(props: object) {
     super(props);
     const dataSource = new ListView.DataSource({
       rowHasChanged: (row1, row2) => row1 !== row2,
     });
-<<<<<<< HEAD
-
-    console.log('ProductComponent constructor');
-
-=======
->>>>>>> 2f2901361a8491bf24643bb138601c7b1fe4f219
     this.state = {
       dataSource: dataSource,
       CurrentStatus: [],
