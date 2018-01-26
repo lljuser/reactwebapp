@@ -11,7 +11,7 @@ const appDva = dva({
 appDva.use(createLoading());
 
 // 2. Model |move to ruoterconfig
-// app.model(countModel);
+// appDva.model(countModel);
 
 // 3. Router
 appDva.router(({history, app}: any) =>  routerConfig({history, app}));
