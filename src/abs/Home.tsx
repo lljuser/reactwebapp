@@ -7,7 +7,7 @@ import Market from './Market';
 import Product from './Product';
 import Trade from './Trade';
 
-import './App.css';
+import './components/abs-tabs/abs-tabs.less';
 
 const tabs = [
   { title: '市场', name: 'market' },
@@ -61,6 +61,7 @@ class App extends React.Component<RouteComponentProps<AppProp>, AppState> {
     // 定义tab项内容的真实宽度
     const anchorTextWidth = 30;
     return (
+      <div className="abs-tabs">
         <Tabs
           initialPage={this.state.index}
           page={this.state.index}
@@ -74,6 +75,7 @@ class App extends React.Component<RouteComponentProps<AppProp>, AppState> {
           <Route path="/product" component={Product} />
           <Route path="/trade" component={Trade} />
         </Tabs>
+      </div>
     );
   }
 }

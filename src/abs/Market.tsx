@@ -8,7 +8,7 @@ import ABSChartMarket from './components/abs-chart/abs-chart-market';
 interface Props {
     title: string;
 }
-  
+
 export default class MarketComponent extends React.Component<Props, {}> {
     // constructor(props: Props) {
     //     super(props);
@@ -30,7 +30,7 @@ export default class MarketComponent extends React.Component<Props, {}> {
 
     render() { 
         return (
-            <div>
+            <div className="abs-market">
                 <ABSPanel title="市场概要" >
                     <ABSTableMarket />   
                 </ABSPanel>

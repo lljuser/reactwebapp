@@ -4,13 +4,15 @@ import './abs-chart.less';
 import 'amfe-flexible';
 
 interface Props {
-    title?: string;
+    title?: string; 
 }
 
 export default class ABSChartMarketComponent extends React.Component<Props, {}> {
     render() {
         return (
-            <div className="abs-chart">这里是市场图表</div>
+            <div className="abs-chart">
+                <p>这里是市场图表</p>
+            </div>
         );
     }
 

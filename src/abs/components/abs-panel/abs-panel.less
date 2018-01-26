@@ -1,39 +1,32 @@
 /*!
- * @author Dengju Deng from ABSUI
+ * @author Dengju Deng from ABS-UI
  * @version 1.0
  * @date 2018/1/23
  * @description 移动端通用面板组件
  */
-.abs-panel-body{
-	color:#fff;
-	font-family: "Microsoft YaHei","微软雅黑","SimSun","宋体","arial", "serif";
-	padding:0;
-	margin: 0; 
-	background-color: #191919;
-	text-align:left;
-    padding-top: 56px;
-    .abs-panel-content{
-        margin: 0 auto;
-        width:10rem;
-        font-size: 15px;
-        .abs-panel-panel{
-            background-color: black;
-	        padding: 0.32rem;
-            .abs-panel-title{
-                height:19px;
-                line-height: 19px;
-                border-left: 0.133333rem solid #ff610b;
-                font-size: 19px;
-                padding-left: 0.266667rem;
-                margin-bottom: 0.4rem;
-            }
-            .abs-panel-container{
-                
-            }
-        } 
-        .abs-panel-panel_mb{
 
-        }
+@import "../theme-abs.less";
+
+@panel-prefix-cls: ~"@{abs-prefix}-panel";
+
+ .@{panel-prefix-cls}{
+    padding: 0px 10px 20px 10px;
+    margin-top: 10px;
+    background-color: @abs-brand-black;
+    &-title{
+        height:18px;
+        line-height: 18px;
+        border-left: 0.133333rem solid @abs-brand-orange;
+        font-size: 16px;
+        padding-left: 0.266667rem;
+        margin-bottom: 0.4rem;
+    }
+    &-container{
+        color: @abs-brand-gray;
+        text-align: center;
+        height: 30px;
+        line-height: 30px;
+        width: 100%;
     }
 }
 

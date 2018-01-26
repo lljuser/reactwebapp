@@ -7,8 +7,8 @@ import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
   <Router history={history}>
-    <App />
-  </Router> ,  
+    <App/>
+  </Router>,
   document.getElementById('root') as HTMLElement
 );
 // alert(process.env.REACT_APP_API_ADDRESS);
