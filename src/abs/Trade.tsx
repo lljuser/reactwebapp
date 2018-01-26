@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import TradeItem from './TradeItem';
-import { ListView, PullToRefresh } from 'antd-mobile';
+import { ListView, PullToRefresh, Picker } from 'antd-mobile';
 import { TradeApi } from '../config/api';
 import Request from '../components/http/request/index';
 import '../public/css/theme.css';
@@ -20,8 +20,8 @@ interface AppState {
     endInfo: string; // 结尾信息
     refreshing?: boolean;
     initialListSize: number; // 组件刚挂载的时候渲染数据行数
+
 }
-<<<<<<< HEAD
 
 var lv: ListView | null;
 // 数据查询条数
@@ -31,6 +31,22 @@ let pageIndex = 1;
 // table数据
 var rData: Object[] = [];
 
+// 评级集合
+let ratingList: any[] = [];
+// 利率集合
+let couponList: any[] = [];
+// 期限集合
+let walbuckList: any[] = [];
+
+// 如果不是使用 List.Item 作为 children
+const CustomChildren = props => (
+    <div onClick={props.onClick}>
+        <div style={{ display: 'table-cell', height: '30px', lineHeight: '30px' }}>
+            <div style={{ fontSize: 15 }}>{props.extra}</div>
+        </div>
+    </div>
+);
+
 /**
  * 自定义组件
  * 
@@ -39,36 +55,58 @@ var rData: Object[] = [];
  */
 function MyBody(props: any) {
     return (
-        <div className={props.sectionID}>
-            <div className={'appH5_body'}>
-                <div className={'appH5_panel'}>
-                    <table className={'appH5_table'} cellSpacing={0} cellPadding={0}>
-                        <thead>
-                            <tr>
-                                <th />
-                                <th>证券简称</th>
-                                <th className="text-right">金额(亿)</th>
-                                <th className="text-right">资产类别</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {props.children}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+        <div className={'appH5_body'}>
+            <div className={'appH5_panel'}>
+                <table className="appH5_select_div trade_select_div" cellSpacing={0} cellPadding={0} >
+                    <tbody>
+                        <tr>
+                            <td>
+                                <Picker data={ratingList} title="选择评级" cols={1} value={props.ratingValues} onOk={v => props.onPickerChange('ratingValues', v)}>
+                                    <CustomChildren />
+                                </Picker>
+                            </td>
+                            <td>
+                                <Picker data={couponList} title="选择利率" cols={1} value={props.couponValues} onOk={v => props.onPickerChange('couponValues', v)}>
+                                    <CustomChildren />
+                                </Picker>
+                            </td>
+                            <td>
+                                <Picker data={walbuckList} title="选择期限" cols={1} value={props.walbuckValues} onOk={v => props.onPickerChange('walbuckValues', v)}>
+                                    <CustomChildren />
+                                </Picker>
+                            </td>
+                        </tr >
+                    </tbody>
+                </table >
+                <table className={'appH5_table'} cellSpacing={0} cellPadding={0}>
+                    <thead>
+                        <tr>
+                            <th />
+                            <th>证券简称</th>
+                            <th className="text-right">金额(亿)</th>
+                            <th className="text-right">资产类别</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {props.children}
+                    </tbody>
+                </table>
+            </div >
         </div >
     );
 }
 
 /**
- * 
+ * 默认返回Trade组件
  * 
  * @export
  * @class Trade
  * @extends {React.Component<{}, AppState>}
  */
 export default class Trade extends React.Component<{}, AppState> {
+    ratingValues: string[] = []; // 评级value集合
+    couponValues: string[] = [];   // 利率value集合
+    walbuckValues: string[] = []; // 期限value集合
     constructor(props: any) {
         super(props);
         const dataSource = new ListView.DataSource({
@@ -83,22 +121,110 @@ export default class Trade extends React.Component<{}, AppState> {
             useBodyScroll: false,
             hasMore: true,
             initialListSize: NUM_ROWS,
-            endInfo: '',
+            endInfo: ''
         };
+
+        this.onPickerChange = this.onPickerChange.bind(this);
+    }
+
+    /**
+     * picker选择器确认修改方法
+     * 
+     * @param {string} cmd 
+     * @memberof Trade
+     */
+    onPickerChange(cmd: string, content: string[]) {
+        if (cmd === 'ratingValues') {
+            this.ratingValues = content;
+        } else if (cmd === 'couponValues') {
+            this.couponValues = content;
+        } else {
+            this.walbuckValues = content;
+        }
+        this.onRefresh(true);
+    }
+
+    /**
+     * 调用获取期限集合接口
+     * 
+     * @memberof Trade
+     */
+    getWalbuckList() {
+        if (walbuckList.length > 0) {
+            this.walbuckValues.push(walbuckList[0].value);
+        } else {
+            Request.post(TradeApi.walbuckList, {}, (res) => {
+                if (res.length > 0) {
+                    res.forEach(element => {
+                        walbuckList.push({ label: element.Value, value: element.Key });
+                    });
+                    this.walbuckValues.push(walbuckList[0].value);
+                }
+            });
+        }
+
+    }
+
+    /**
+     * 调用获取利率集合接口
+     * 
+     * @memberof Trade
+     */
+    getCouponList() {
+        if (couponList.length > 0) {
+            this.couponValues.push(couponList[0].value);
+        } else {
+            Request.post(TradeApi.couponList, {}, (res) => {
+                if (res.length > 0) {
+                    res.forEach(element => {
+                        couponList.push({ label: element.Value, value: element.Key });
+                    });
+                    this.couponValues.push(couponList[0].value);
+                }
+            });
+        }
+    }
+
+    /**
+     * 调用获取评级集合接口
+     * 
+     * @memberof Trade
+     */
+    getRatingList() {
+        if (ratingList.length > 0) {
+            this.ratingValues.push(ratingList[0].value);
+        } else {
+            Request.post(TradeApi.ratingList, {}, (res) => {
+                if (res.length > 0) {
+                    res.forEach(element => {
+                        ratingList.push({ label: element.Value, value: element.Key });
+                    });
+                    this.ratingValues.push(ratingList[0].value);
+                }
+            });
+        }
     }
 
     /**
      * 调用接口获取数据源
      * 
      * @param {number} page 页数
-     * @param {number} direction 方向(1--向下) 
+     * @param {number} direction 方向(1--向下;0--默认) 
      * @memberof Trade
      */
-    genData(page: number = 0, direction: number = 0) {
+    genData(refresh: boolean = false, page: number = 0, direction: number = 0) {
+        if (refresh) {
+            rData = [];
+        }
+
+        var ratingValue = (this.ratingValues[0] === undefined ? 0 : this.ratingValues[0]) as string;
+        var couponValue = (this.couponValues[0] === undefined ? 0 : this.couponValues[0]) as string;
+        var walbuckValue = (this.walbuckValues[0] === undefined ? 0 : this.walbuckValues[0]) as string;
+
         var url = TradeApi.list;
-        url = url + '/' + 0 + '/' + 0 + '/' + 0;
+        url = url + '/' + ratingValue + '/' + couponValue + '/' + walbuckValue;
         url = url + '/' + direction + '/' + page * NUM_ROWS + '/' + NUM_ROWS;
-        console.log(url);
+
         Request.post(url, {}, (res) => {
             if (res.length === 0) {
                 this.setState({ endInfo: '没有更多了', hasMore: false });
@@ -134,12 +260,13 @@ export default class Trade extends React.Component<{}, AppState> {
      * @memberof Trade
      */
     componentDidMount() {
-        console.log('componentDidMount');
-        console.log((ReactDOM.findDOMNode(lv as ListView) as any).offsetTop);
+        this.getWalbuckList();
+        this.getCouponList();
+        this.getRatingList();
         // ListView组件高度
         const hei = this.state.height - (ReactDOM.findDOMNode(lv as ListView) as any).offsetTop;
         setTimeout(() => {
-            this.genData(1, 0);
+            this.genData(false, 1, 0);
             this.setState({
                 height: hei,
                 isLoading: false,
@@ -164,7 +291,7 @@ export default class Trade extends React.Component<{}, AppState> {
         console.log('reach end', event);
         this.setState({ isLoading: true, endInfo: '正在加载...' });
 
-        this.genData(pageIndex++, 1);
+        this.genData(false, pageIndex++, 1);
     }
 
     /**
@@ -172,10 +299,10 @@ export default class Trade extends React.Component<{}, AppState> {
      * 
      * @memberof Trade
      */
-    onRefresh = () => {
+    onRefresh = (refresh: boolean = false) => {
         console.log('onRefresh');
         this.setState({ refreshing: true, isLoading: true });
-        this.genData(1);
+        this.genData(refresh, 1);
         this.setState({
             refreshing: false
         });
@@ -187,17 +314,6 @@ export default class Trade extends React.Component<{}, AppState> {
                 <TradeItem TradeId={rowData.TradeId} SecurityId={rowData.SecurityId} TradeTypeId={rowData.TradeTypeId} SecurityName={rowData.SecurityName} TotalOffering={rowData.TotalOffering} AssetType={rowData.AssetType} />
             );
         };
-=======
-  
-export default class TradeComponent extends React.Component<Props, {}> {
-    constructor(props: Props) {
-        super(props); 
-        console.log('TradeComponent constructor');
-    }
-
-    render() { 
-        console.log('Trade render');
->>>>>>> 8c3c1ac6cec20f5c1ecc3b1b980434796d5e93aa
         return (
             <ListView
                 key={this.state.useBodyScroll ? '0' : '1'}
@@ -207,7 +323,7 @@ export default class TradeComponent extends React.Component<Props, {}> {
                 renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>
                     {this.state.endInfo}
                 </div>)}
-                renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey} />}
+                renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey} ratingValues={this.ratingValues} couponValues={this.couponValues} walbuckValues={this.walbuckValues} onPickerChange={this.onPickerChange} />}
                 renderRow={row}
                 useBodyScroll={this.state.useBodyScroll}
                 style={this.state.useBodyScroll ? {} : {
