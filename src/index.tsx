@@ -10,7 +10,7 @@ const app = dva({
 });
 app.use(createLoading());
 
-// 2. Model 
+// 2. Model |move to ruoterconfig setting
 // app.model(countModel);
 
 // 3. Router
