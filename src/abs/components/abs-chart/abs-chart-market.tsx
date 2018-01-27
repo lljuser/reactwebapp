@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Request from '../../../components/http/request/index';
+import Request from '../../../core/http/request';
 import ReactHighcharts from 'react-highcharts';
 // import { Link } from 'react-router-dom';
 import './abs-chart.less';

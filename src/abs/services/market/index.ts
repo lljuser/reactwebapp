@@ -1,5 +1,5 @@
 import { MarketApi } from '../../config/api';
-import Request from  '../../../components/http/request';
+import Request from  '../../../core/http/request';
 
 class MarketService {
 

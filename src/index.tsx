@@ -1,14 +1,19 @@
 import dva from 'dva';
 import createLoading from 'dva-loading';
-import defaultHistory from './components/http/request/listener';
+import defaultHistory from './core/http/request/listener';
 import registerServiceWorker from './registerServiceWorker'; 
-import routerConfig from './abs/RouterConfig';   
+import routerConfig from './abs/RouterConfig';  
+import { createLogger } from 'redux-logger';
 
 // 1. Initialize
 const appDva = dva({
-  history: defaultHistory,
+  history: defaultHistory, 
+  onAction: [
+    createLogger(), // logger publish remove 
+  ]
 });
 appDva.use(createLoading());
+// appDva.use(createLogger());
 
 // 2. Model |move to ruoterconfig
 // appDva.model(countModel);
