@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { connect } from 'dva';
-import Request from '../../../core/http/request';
 import ReactHighcharts from 'react-highcharts';
 // import { Link } from 'react-router-dom';
 import './abs-chart.less';

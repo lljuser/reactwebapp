@@ -5,8 +5,8 @@ import { Link } from 'dva/router';
 import { WingBlank, SegmentedControl, ListView, PullToRefresh, Picker } from 'antd-mobile';
 // import '../public/css/theme.css';
 // import ABSPanel from './components/abs-panel/abs-panel';
-import './components/abs-table/abs-table.less';
-import './components/abs-picker/abs-picker.less';
+import '../components/abs-table/abs-table.less';
+import '../components/abs-picker/abs-picker.less';
 import { ProductApi } from '../config/api';
 
 interface Parameter {
