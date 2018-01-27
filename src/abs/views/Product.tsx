@@ -1,9 +1,9 @@
 import * as React from 'react';
-import Request from '../components/http/request/index';
+import Request from '../../components/http/request';
 import * as ReactDOM from 'react-dom';
 import { Link } from 'dva/router';
 import { ListView, PullToRefresh, Picker } from 'antd-mobile';
-import '../public/css/theme.css';
+import '../../public/css/theme.css';
 import { ProductApi } from '../config/api';
 
 interface Parameter {

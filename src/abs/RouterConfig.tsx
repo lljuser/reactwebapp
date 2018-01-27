@@ -11,12 +11,12 @@ function RouterConfig({ history, app }: any) {
       import('./models/count'),
       import('./models/market'),
     ],
-    component: () => import(/*webpackChunkName:'home'*/'./Home'),
+    component: () => import(/*webpackChunkName:'home'*/'./views/Home'),
   });
 
   const ProductDetail = dynamic({
     app, 
-    component: () => import('./ProductDetail'),
+    component: () => import('./views/ProductDetail'),
   });
 
   return (
