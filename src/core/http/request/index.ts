@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import HttpHelpers from './helper';
-import AbortBus from './abort';
+import helper from './helper';
+// import AbortBus from './abort';
 
 export default class Request {
 
@@ -24,8 +25,9 @@ export default class Request {
       method: 'GET',
       params: params
     };
-  
-    await Request.request(defaultConfig, successCallback, errorCallback);
+
+    let jsonData = await Request.request(defaultConfig);
+    return jsonData;
   }
   
   /**
@@ -37,14 +39,15 @@ export default class Request {
    * @param {(error: string) => void} [errorCallback] 错误时的回调
    * @memberof Request
    */
-  static async post(url: string, data: any, successCallback?: (data: any) => void, errorCallback?: (error: string) => void) {
+  static async post(url: string, data?: any) {
     const defaultConfig = {
       url: url,
       method: 'POST',
       data: data
     };
   
-    await Request.request(defaultConfig, successCallback, errorCallback);
+    let jsonData = await Request.request(defaultConfig);
+    return jsonData;
   }
 
   /**
@@ -54,24 +57,22 @@ export default class Request {
    * @param {(data: any) => void} [successCallback] 成功时的回调
    * @param {(error: string) => void} [errorCallback] 错误时的回调
    */
-  private static async request(config: AxiosRequestConfig, successCallback?: (data: any) => void, errorCallback?: (error: string) => void) {
+  private static async request(config: AxiosRequestConfig) {
     const defaultConfig = Object.assign({
       timeout: Request.defaultTimeout,
       headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
       },
       withCredentials: true,
-      cancelToken: AbortBus.cancelToken
+      // cancelToken: AbortBus.cancelToken
     }, config) as AxiosRequestConfig;
-  
-    Promise.race([HttpHelpers.timeout(defaultConfig.timeout || 0), axios.request(defaultConfig) as Promise<any>])
-      .then(response => HttpHelpers.parseResponse(response))
-      .then(jsonData => successCallback ? successCallback(jsonData) : undefined)
-      .catch(error => HttpHelpers.handleError(error))
-      .catch(e => {
-        errorCallback ? errorCallback(e.message) : alert(e.message);
-      });
-  }
 
+    const timeout = defaultConfig.timeout || Request.defaultTimeout;
+
+    let asyncResult = axios.request(defaultConfig)
+                          .then(response => HttpHelpers.parseResponse(response));
+
+    return Promise.race([helper.timeout(timeout), asyncResult]);
+  }
 }

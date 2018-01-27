@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Request from '../components/http/request/index';
+import Request from '../../core/http/request';
 import * as ReactDOM from 'react-dom';
 import { Link } from 'dva/router';
 import { WingBlank, SegmentedControl, ListView, PullToRefresh, Picker } from 'antd-mobile';
@@ -145,7 +145,7 @@ export default class Product extends React.Component<{}, Parameter> {
     url = url + '/' + CurrentStatusValue + '/' + DealTypeValue + '/' + ProductTypeValue;
     url = url + '/' + pageIndex + '/' + (pageIndex + 1) * NUM_ROWS + '/' + NUM_ROWS;
 
-    Request.post(url, {}, (data) => {
+    Request.post(url).then((data) => {
         if ( data.Deal.length === 0 ) {
           this.setState({ info: '已全部加载' , hasMore: false});
         } else {
