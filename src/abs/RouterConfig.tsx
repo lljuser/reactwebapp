@@ -8,7 +8,7 @@ function RouterConfig({ history, app }: any) {
   const Home = dynamic({
     app,
     models: () => [
-      import('../models/count'),
+      import('./models/count'),
     ],
     component: () => import(/*webpackChunkName:'home'*/'./Home'),
   });
