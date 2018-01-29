@@ -3,7 +3,7 @@ import { WingBlank, WhiteSpace } from 'antd-mobile';
 import './index.less'; 
 
 interface Props {
-    title: string;
+    title?: string;
     data?: any; 
     minHeight?: string;
 }  
@@ -21,6 +21,7 @@ export default class ABSPanelComponent extends React.Component<Props, {}> {
     } 
 
     render() {
+      if (this.props.title) {
         return (
             <div className="abs-panel" style={this.panelStyles}>
                 <WhiteSpace size="lg"/>
@@ -30,6 +31,16 @@ export default class ABSPanelComponent extends React.Component<Props, {}> {
                 </WingBlank>
             </div>
         );
+      }
+
+      return (
+        <div className="abs-panel" style={this.panelStyles}>
+            <WhiteSpace size="lg"/>
+            <WingBlank size="sm">
+                <div className="abs-panel-content">{this.props.children}</div>
+            </WingBlank>
+        </div>
+    );
     }
 
 }  

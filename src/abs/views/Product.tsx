@@ -5,6 +5,7 @@ import { ListView, PullToRefresh, Picker } from 'antd-mobile';  // WingBlank, Se
 import '../components/abs-table/index.less';
 import '../components/abs-picker/index.less';
 import { connect } from 'dva';
+import ABSPanel from '../components/abs-panel'; 
 
 // 真实产品选择piker点
 const PickerChildren = props => (
@@ -124,6 +125,7 @@ class Product extends React.Component<any, {}> {
     };
    
     return (
+      <ABSPanel>
       <div className="abs-picker">
         <div style={{height: '30px'}}>
           <Picker  
@@ -181,7 +183,8 @@ class Product extends React.Component<any, {}> {
             onEndReached={this.onEndReached}
             pageSize={15}
         />    
-      </div >  
+      </div>
+      </ABSPanel>
     );
   }
 }
