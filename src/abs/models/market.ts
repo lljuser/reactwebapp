@@ -5,7 +5,7 @@ export default {
   state: {
     marketSummary: [],
     chart: defaultChart,
-    loading: true
+    loading: false
   },
   reducers: {
     load(state: any, action: any) {
@@ -17,7 +17,7 @@ export default {
       return {...state, marketSummary, chart, loading};
     }
   },
-  effects: {
+  effects: { 
     *fetch(action: any, { call, put }: any) {
       try {
 
