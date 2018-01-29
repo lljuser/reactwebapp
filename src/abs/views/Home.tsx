@@ -58,13 +58,11 @@ class Home extends React.Component<any, any> {
           initialPage={this.state.index}
           page={this.state.index}
           tabs={this.tabs}
-          tabBarBackgroundColor={'#000000'}
-          tabBarInactiveTextColor={'#ffffff'}
           onChange={this.onChange}
           onTabClick={(tab, index) => {
             this.props.dispatch({ type: 'count/add' });
           }}
-          tabBarUnderlineStyle={{ borderColor: '#ffc446', width: '40px', left: `${this.state.index * 100 + anchorTextWidth}px` }}
+          tabBarUnderlineStyle={{ left: `${this.state.index * 100 + anchorTextWidth}px` }}
         >
           <Route path="/market" component={Market} />
           <Route path="/product" component={Product} />

@@ -20,7 +20,7 @@ class ABSChartMarketComponent extends React.Component<any> {
     render() {
       return (
           <div className="abs-chart">
-              <ReactHighcharts config={this.props.chart} />
+              <ReactHighcharts config={this.props.chart}/>
           </div>
       );
     }
