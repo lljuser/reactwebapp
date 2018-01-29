@@ -18,7 +18,7 @@ export default {
         productType: [],
         productTypeValue: [],
         refreshing: true,
-        isLoading: true,
+        loading: true,
         height: document.documentElement.clientHeight,
         useBodyScroll: false,
         hasMore: true,
@@ -43,7 +43,7 @@ export default {
                         pageIndex: action.pageIndex,
                         refreshing: action.refreshing,
                         info: action.info,
-                        isLoading: action.isLoading
+                        loading: action.loading
                     };
                 case 'DealTypeValue':
                     console.log(action.val);
@@ -56,7 +56,7 @@ export default {
                         pageIndex: action.pageIndex,
                         refreshing: action.refreshing,
                         info: action.info,
-                        isLoading: action.isLoading
+                        loading: action.loading
                     };
                 case 'ProductTypeValue':
                     return { 
@@ -68,7 +68,7 @@ export default {
                         pageIndex: action.pageIndex,
                         refreshing: action.refreshing,
                         info: action.info,
-                        isLoading: action.isLoading
+                        loading: action.loading
                     };
                 default:
                     return {...state}; 
@@ -89,7 +89,7 @@ export default {
                 hasMore: action.hasMore,
                 refreshing: action.refreshing,
                 info: action.info,
-                isLoading: action.isLoading
+                loading: action.loading
             }; 
         },
         returnList(state: any, action: any) {
@@ -101,21 +101,21 @@ export default {
                 refreshing: action.refreshing,
                 pageIndex: action.pageIndex,
                 info: action.info,
-                isLoading: action.isLoading
+                loading: action.loading
             }; 
         },
         changeListState(state: any, action: any) {
             return {
                 ...state,
                 info: action.info,
-                isLoading: action.isLoading,
+                loading: action.loading,
                 refreshing: action.refreshing
             }; 
         }
       },
       effects: {
         *firstload(action: any, { call, put }: any) {
-            yield put({type: 'changeListState', info: '正在加载...' , isLoading: true, refreshing: false});
+            yield put({type: 'changeListState', info: '正在加载...' , loading: true, refreshing: false});
             const res = yield call([productService, productService.getData],
                 0,
                 action.rows,
@@ -140,11 +140,11 @@ export default {
                 hasMore: res.hasMore,
                 refreshing: false,
                 info: res.info,
-                isLoading: false
+                loading: false
             });
         },
         *changePicker(action: any , { call, put }: any) {
-            yield put({type: 'changeListState', info: '正在加载...' , isLoading: true, refreshing: false});
+            yield put({type: 'changeListState', info: '正在加载...' , loading: true, refreshing: false});
 
             let currentStatusValue = action.currentStatusValue[0] === undefined ? 0 : action.currentStatusValue[0];
             let dealTypeValue = action.dealTypeValue[0] === undefined ? 0 : action.dealTypeValue[0];
@@ -178,12 +178,12 @@ export default {
                 pageIndex: 0,
                 refreshing: false,
                 info: res.info,
-                isLoading: false
+                loading: false
             });
         },
         *getList(action: any , { call, put }: any) {
             console.log(action);
-            yield put({type: 'changeListState', info: '正在加载...' , isLoading: true, refreshing: false});
+            yield put({type: 'changeListState', info: '正在加载...' , loading: true, refreshing: false});
             const res = yield call([productService, productService.getData],
                 action.pageIndex,
                 action.rows,
@@ -201,11 +201,11 @@ export default {
                 pageIndex: action.pageIndex,
                 refreshing: false,
                 info: res.info,
-                isLoading: false
+                loading: false
             });
         },
         *RefreshListView( action: any , { call, put }: any) {
-            yield put({type: 'changeListState', info: '正在加载...' , isLoading: true, refreshing: true});
+            yield put({type: 'changeListState', info: '正在加载...' , loading: true, refreshing: true});
 
             const res = yield call([productService, productService.getData],
                 0,
@@ -223,7 +223,7 @@ export default {
                 pageIndex: 0,
                 refreshing: false,
                 info: res.info,
-                isLoading: false
+                loading: false
             });
         },
 
