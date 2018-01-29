@@ -7,12 +7,10 @@ interface Props {
   
 export default class TradeComponent extends React.Component<Props, {}> {
     constructor(props: Props) {
-        super(props); 
-        console.log('TradeComponent constructor');
+        super(props);  
     }
 
-    render() { 
-        console.log('Trade render');
+    render() {  
         return (
             <div>
                 <span>Trade:{this.props.title}</span>

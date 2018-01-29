@@ -171,8 +171,7 @@ export default class Product extends React.Component<{}, Parameter> {
     }
   }
  
-  componentDidMount() {
-    console.log('componentDidMount');
+  componentDidMount() { 
     const hei = this.state.height - (ReactDOM.findDOMNode(lv as ListView) as any).offsetTop - 50;
 
     this.genData(true);

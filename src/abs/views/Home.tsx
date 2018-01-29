@@ -16,8 +16,7 @@ class Home extends React.Component<any, any> {
   ];
 
   constructor(props: any) {
-    super(props);
-    console.log(props);
+    super(props); 
     this.state = {
       index: this.getIndex()
     };

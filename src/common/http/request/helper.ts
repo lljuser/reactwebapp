@@ -97,7 +97,7 @@ class HttpHelpers {
 
       }
 
-      reject(new Error('数据格式错误'));
+      // reject(new Error('数据格式错误'));
 
     });
   }
