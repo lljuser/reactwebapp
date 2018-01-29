@@ -9,38 +9,21 @@
 
  @import "../theme-abs.less";
 
- @tabs-prefix-cls: ~"@{abs-prefix}-tabs";
- // 根据node_module中tabs,对蚂蚁UI部分重写和覆盖
+ @navbar-prefix-cls: ~"@{ant-prefix}-navbar";
+ // 根据node_module中navbar,对蚂蚁UI部分重写和覆盖
  
- .@{tabs-prefix-cls}{
-     background: @abs-brand-gray;
-     color: @abs-brand-white;
-     .am-tabs-default-bar-top{
-         background: @abs-brand-black !important;
-         .am-tabs-default-bar-content{
-             // width: 300px;
-             margin: auto;
-             .am-tabs-default-bar-tab {
-                 color: @abs-brand-white;
-                 // .hairline('bottom');
-                 &:after{
-                   height: 0px;
-                 }
-             }
-             .am-tabs-default-bar-tab-active{
-               color: @abs-brand-yellow;
-             }
-             .am-tabs-default-bar-underline{
-               // width: 40px !important;
-               border-color: @abs-brand-yellow; 
-             }
-         }
-     }
-     .am-tabs-default-bar-bottom{
-         .am-tabs-default-bar-content{
-             width: 300px;
-             margin: auto;
-         }   
-     }  
- }
+.@{navbar-prefix-cls}{
+    background-color: @abs-brand-black;
+    &-left{
+        &-icon{
+            a{
+                color: @abs-brand-yellow;
+            }
+        }
+    }
+    &-title{
+         color: @abs-brand-yellow;
+    }
+}
+
  
