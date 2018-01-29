@@ -8,8 +8,8 @@ import '../components/abs-picker/index.less';
 import { ProductApi } from '../config/api';
 
 interface Parameter {
-  dataSource: any;   
-  refreshing: boolean; 
+  dataSource: any;
+  refreshing: boolean;
   isLoading: boolean;
   height: number;
   useBodyScroll: boolean;
@@ -176,9 +176,9 @@ export default class Product extends React.Component<{}, Parameter> {
 
     this.genData(true);
     this.setState({
-        height: hei,
-        refreshing: false,
-      });
+      height: hei,
+      refreshing: false,
+    });
   }
 
   onRefresh = () => {
@@ -186,7 +186,7 @@ export default class Product extends React.Component<{}, Parameter> {
     this.setState({ refreshing: true, isLoading: true });
     this.genData(true);
     this.setState({
-      refreshing: false 
+      refreshing: false
     });
   }
 
@@ -199,7 +199,7 @@ export default class Product extends React.Component<{}, Parameter> {
     }
 
     console.log('reach end', event);
-    this.setState({ isLoading: true, info: '正在加载...'});
+    this.setState({ isLoading: true, info: '正在加载...' });
 
     this.genData();
 
@@ -223,17 +223,17 @@ export default class Product extends React.Component<{}, Parameter> {
       return (
         <tr key={rowData.DealId} className={rowData.DealId} >
           <td className={'text-left'}>
-          <Link to={`/productdetail/${rowData.DealId}`}><div className={'td_elips1'}>{rowData.DealName}</div></Link>
+            <Link to={`/productdetail/${rowData.DealId}`}><div className={'td_elips1'}>{rowData.DealName}</div></Link>
           </td>
-          <td className={'text-right appH5_color_red'} style={{ fontSize: '17px'}}>{rowData.TotalOffering}</td>
-          <td style={{color: 'white'}} className={'text-right td_elips2'}><div style={{width: '100%', float: 'right'}}><div>{rowData.DealType}</div></div></td>
+          <td className={'text-right appH5_color_red'} style={{ fontSize: '17px' }}>{rowData.TotalOffering}</td>
+          <td style={{ color: 'white' }} className={'text-right td_elips2'}><div style={{ width: '100%', float: 'right' }}><div>{rowData.DealType}</div></div></td>
         </tr >
       );
     };
     return (
       <div className="abs-picker">
         <PickerFakeChildren/>
-        <div style={{height: '30px'}}>
+        <div style={{height: '30px'}} >
           <Picker  
             title="选择市场" 
             data={this.state.CurrentStatus} 
@@ -292,5 +292,4 @@ export default class Product extends React.Component<{}, Parameter> {
       </div >  
     );
   }
-  
 }
