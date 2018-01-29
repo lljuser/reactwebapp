@@ -1,3 +1,13 @@
+es6: promise|array|set|map|...|let/const|import/export|object
+books: http://es6.ruanyifeng.com/
+
+reactjs: React.Component/ComponentLifecycle|ReactDom|Jsx|Props/State|Event|Styling and CSS
+books: http://www.css88.com/react/docs/jsx-in-depth.html
+       https://reactjs.org/docs/hello-world.html
+
+typescript:
+books: https://www.tslang.cn/
+
 reactwebapp:
 1. require
     babel-polyfill    >=ie9
