@@ -15,7 +15,7 @@ const marketProps = {
 };
 
 class MarketComponent extends React.Component<Props, any> { 
-  
+
   render() {
     console.log('render MarketComponent');
     return (
