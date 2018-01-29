@@ -1,0 +1,46 @@
+
+
+/*!
+ * @author Dengju Deng from ABS-UI
+ * @version 1.0
+ * @date 2018/1/23
+ * @description 移动端通用导航切换组件
+ */
+
+ @import "../theme-abs.less";
+
+ @tabs-prefix-cls: ~"@{abs-prefix}-tabs";
+ // 根据node_module中tabs,对蚂蚁UI部分重写和覆盖
+ 
+ .@{tabs-prefix-cls}{
+     background: @abs-brand-gray;
+     color: @abs-brand-white;
+     .am-tabs-default-bar-top{
+         background: @abs-brand-black !important;
+         .am-tabs-default-bar-content{
+             // width: 300px;
+             margin: auto;
+             .am-tabs-default-bar-tab {
+                 color: @abs-brand-white;
+                 // .hairline('bottom');
+                 &:after{
+                   height: 0px;
+                 }
+             }
+             .am-tabs-default-bar-tab-active{
+               color: @abs-brand-yellow;
+             }
+             .am-tabs-default-bar-underline{
+               // width: 40px !important;
+               border-color: @abs-brand-yellow; 
+             }
+         }
+     }
+     .am-tabs-default-bar-bottom{
+         .am-tabs-default-bar-content{
+             width: 300px;
+             margin: auto;
+         }   
+     }  
+ }
+ 
