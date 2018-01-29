@@ -16,7 +16,7 @@ class MarketComponent extends React.Component<any, any> {
             return;
         }
 
-        this.props.dispatch({type: 'marketChart/fetch'});
+        this.props.dispatch({type: 'market/fetch'});
     }
 
     render() { 
