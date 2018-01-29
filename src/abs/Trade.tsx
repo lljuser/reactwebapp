@@ -141,7 +141,7 @@ export default class Trade extends React.Component<{}, AppState> {
         } else {
             this.walbuckValues = content;
         }
-        this.onRefresh(true);
+        this.onRefresh();
     }
 
     /**
@@ -213,6 +213,7 @@ export default class Trade extends React.Component<{}, AppState> {
      * @memberof Trade
      */
     genData(refresh: boolean = false, page: number = 0, direction: number = 0) {
+        console.log(refresh);
         if (refresh) {
             rData = [];
         }
@@ -227,7 +228,10 @@ export default class Trade extends React.Component<{}, AppState> {
 
         Request.post(url, {}, (res) => {
             if (res.length === 0) {
-                this.setState({ endInfo: '没有更多了', hasMore: false });
+                this.setState({
+                    endInfo: '没有更多了',
+                    hasMore: false
+                });
             } else {
                 rData = [...rData, ...res];
                 this.setState({
@@ -299,7 +303,7 @@ export default class Trade extends React.Component<{}, AppState> {
      * 
      * @memberof Trade
      */
-    onRefresh = (refresh: boolean = false) => {
+    onRefresh = (refresh: boolean = true) => {
         console.log('onRefresh');
         this.setState({ refreshing: true, isLoading: true });
         this.genData(refresh, 1);
