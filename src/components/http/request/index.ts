@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import helper from './helper';
-// import AbortBus from './abort';
+import HttpHelpers from './helper';
+import AbortBus from './abort';
 
 export default class Request {
 
@@ -24,9 +24,8 @@ export default class Request {
       method: 'GET',
       params: params
     };
-
-    let jsonData = await Request.request(defaultConfig);
-    return jsonData;
+  
+    await Request.request(defaultConfig, successCallback, errorCallback);
   }
   
   /**
@@ -38,15 +37,14 @@ export default class Request {
    * @param {(error: string) => void} [errorCallback] 错误时的回调
    * @memberof Request
    */
-  static async post(url: string, data?: any) {
+  static async post(url: string, data: any, successCallback?: (data: any) => void, errorCallback?: (error: string) => void) {
     const defaultConfig = {
       url: url,
       method: 'POST',
       data: data
     };
   
-    let jsonData = await Request.request(defaultConfig);
-    return jsonData;
+    await Request.request(defaultConfig, successCallback, errorCallback);
   }
 
   /**
@@ -56,22 +54,24 @@ export default class Request {
    * @param {(data: any) => void} [successCallback] 成功时的回调
    * @param {(error: string) => void} [errorCallback] 错误时的回调
    */
-  private static async request(config: AxiosRequestConfig) {
+  private static async request(config: AxiosRequestConfig, successCallback?: (data: any) => void, errorCallback?: (error: string) => void) {
     const defaultConfig = Object.assign({
       timeout: Request.defaultTimeout,
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
       },
       withCredentials: true,
-      // cancelToken: AbortBus.cancelToken
+      cancelToken: AbortBus.cancelToken
     }, config) as AxiosRequestConfig;
-
-    const timeout = defaultConfig.timeout || Request.defaultTimeout;
-
-    let asyncResult = axios.request(defaultConfig)
-                          .then(response => helper.parseResponse(response));
-
-    return Promise.race([helper.timeout(timeout), asyncResult]);
+  
+    Promise.race([HttpHelpers.timeout(defaultConfig.timeout || 0), axios.request(defaultConfig) as Promise<any>])
+      .then(response => HttpHelpers.parseResponse(response))
+      .then(jsonData => successCallback ? successCallback(jsonData) : undefined)
+      .catch(error => HttpHelpers.handleError(error))
+      .catch(e => {
+        errorCallback ? errorCallback(e.message) : alert(e.message);
+      });
   }
+
 }

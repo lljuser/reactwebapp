@@ -15,7 +15,6 @@ module.exports = {
     },
     style: {
       fontFamily: '"Microsoft YaHei", 微软雅黑, 宋体, Verdana, Arial, Helvetica, sans-serif',
-      height: '300px',
     },
     plotBorderColor: '#606063',
   },
@@ -46,7 +45,7 @@ module.exports = {
     title: {
       style: {
         color: '#A0A0A3',
-        fontSize: '12px',
+        fontSize: '14px',
       },
     },
   },
@@ -56,7 +55,7 @@ module.exports = {
     labels: {
       style: {
         color: '#E0E0E3',
-        fontSize: '12px',
+        fontSize: '14px',
       },
     },
     lineColor: '#707073',
@@ -75,7 +74,7 @@ module.exports = {
     backgroundColor: 'rgba(80, 80, 80, 0.95)',
     style: {
       color: '#F0F0F0',
-      fontSize: '12px',
+      fontSize: '14px',
     },
   },
   plotOptions: {
@@ -97,7 +96,7 @@ module.exports = {
   legend: {
     itemStyle: {
       color: '#E0E0E3',
-      fontSize: '12px',
+      fontSize: '14px',
       fontWeight: null,
     },
     itemHoverStyle: {
@@ -112,13 +111,13 @@ module.exports = {
   credits: {
     style: {
       color: '#666',
-      fontSize: '12px',
+      fontSize: '14px',
     },
   },
   labels: {
     style: {
       color: '#707073',
-      fontSize: '12px',
+      fontSize: '14px',
     },
   },
   drilldown: {
