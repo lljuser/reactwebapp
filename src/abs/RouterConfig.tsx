@@ -9,8 +9,7 @@ function RouterConfig({ history, app }: any) {
     app,
     models: () => [
       import('./models/count'),
-      import('./models/market'),
-      import('./models/marketChart'),
+      import('./models/market'),     
     ],
     component: () => import(/*webpackChunkName:'home'*/'./views/Home'),
   });
