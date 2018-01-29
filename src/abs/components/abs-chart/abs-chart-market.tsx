@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { connect } from 'dva';
+import { connect } from 'dva'; 
 import ReactHighcharts from 'react-highcharts';
-// import { Link } from 'react-router-dom';
 import './abs-chart.less';
 import 'amfe-flexible';
 import * as chartTheme from '../../../public/js/chartTheme';

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Request from '../../core/http/request';
+import Request from '../../common/http/request';
 import * as ReactDOM from 'react-dom';
 import { Link } from 'dva/router';
 import { WingBlank, SegmentedControl, ListView, PullToRefresh, Picker } from 'antd-mobile';

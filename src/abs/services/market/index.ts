@@ -1,5 +1,5 @@
 import { MarketApi } from '../../config/api';
-import Request from  '../../../core/http/request';
+import Request from  '../../../common/http/request';
 import ReactHighcharts from 'react-highcharts';
 
 // 默认图表数据

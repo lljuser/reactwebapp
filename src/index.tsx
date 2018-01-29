@@ -1,6 +1,6 @@
 import dva from 'dva';
 import createLoading from 'dva-loading';
-import defaultHistory from './core/http/request/listener';
+import defaultHistory from './common/http/request/listener';
 import registerServiceWorker from './registerServiceWorker'; 
 import routerConfig from './abs/RouterConfig';  
 import { createLogger } from 'redux-logger';
