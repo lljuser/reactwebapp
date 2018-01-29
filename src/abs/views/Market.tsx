@@ -15,16 +15,7 @@ const marketProps = {
 };
 
 class MarketComponent extends React.Component<Props, any> { 
-  constructor(props: any) {
-    super(props);
-    console.log('new MarketComponent()');
-  }
-
-  shouldComponentUpdate() {
-    console.log('shouldComponentUpdate MarketComponent');
-    return false;
-  }
-
+  
   render() {
     console.log('render MarketComponent');
     return (

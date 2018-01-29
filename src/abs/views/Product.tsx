@@ -2,8 +2,11 @@ import * as React from 'react';
 import Request from '../../common/http/request';
 import * as ReactDOM from 'react-dom';
 import { Link } from 'dva/router';
-import { ListView, PullToRefresh, Picker } from 'antd-mobile';
-import '../../public/css/theme.css';
+import { WingBlank, SegmentedControl, ListView, PullToRefresh, Picker } from 'antd-mobile';
+// import '../public/css/theme.css';
+// import ABSPanel from './components/abs-panel/abs-panel';
+import '../components/abs-table/abs-table.less';
+import '../components/abs-picker/abs-picker.less';
 import { ProductApi } from '../config/api';
 
 interface Parameter {
@@ -26,32 +29,42 @@ interface PickerItem {
   value: string;
  }
 
+// 按钮切换事件
+var onFakePickerClick = (e) => {
+  alert(`selectedIndex:${e.nativeEvent.selectedSegmentIndex}`);
+};
+
+// 虚拟切换按钮组
+const PickerFakeChildren = props => (
+  <WingBlank size="lg" className="sc-example">
+    <SegmentedControl values={['全部状态', '全部产品', '全部市场']} onChange={onFakePickerClick}/>
+  </WingBlank>
+);
+
+// 真实产品选择piker点
 const PickerChildren = props => (
-  <div
-    onClick={props.onClick}
-  >
-    <div style={{width: '30%', float: 'left', fontSize: '20px'}}>{props.extra}</div>
+  <div onClick={props.onClick}>
+    <div style={{ width: '30%', float: 'left', fontSize: '20px' }}>{props.extra}</div>
   </div>
 );
 
+// 列表组件
 function MyBody(props: any) {
-  return ( 
-    <div className={'appH5_body'}>
-      <div className={'appH5_panel'}>
-        <table id={'productTableId'} className={'appH5_table'}>
-          <thead>
-            <tr>
-              <th>产品名称</th>
-              <th className={'text-right'}>总额(亿)</th>
-              <th className={'text-right'}>产品分类</th>
-            </tr>
-          </thead>
-          <tbody>
-              {props.children}
-          </tbody>
-        </table>
+  return (
+      <div className="abs-table abs-table-product">
+          <table>
+            <thead>
+              <tr>
+                <th>产品名称</th>
+                <th>总额(亿)</th>
+                <th>产品分类</th>
+              </tr>
+            </thead>
+            <tbody>
+                {props.children}
+            </tbody>
+          </table>
       </div>
-    </div>
   );
 }
 
@@ -211,7 +224,6 @@ export default class Product extends React.Component<{}, Parameter> {
   render() {
     const row = (rowData, sectionID, rowID) => {
       return (
-        
         <tr key={rowData.DealId} className={rowData.DealId} >
           <td className={'text-left'}>
           <Link to={`/productdetail/${rowData.DealId}`}><div className={'td_elips1'}>{rowData.DealName}</div></Link>
@@ -222,64 +234,66 @@ export default class Product extends React.Component<{}, Parameter> {
       );
     };
     return (
-      <div>
-      <div style={{height: '50px', marginTop: '50px'}}>
-        <Picker  
-          title="选择市场" 
-          data={this.state.CurrentStatus} 
-          cascade={false}
-          value={this.CurrentStatusValue}
-          onOk={v => this.PickerChange('CurrentStatusValue', v)}
-        >
+      <div className="abs-picker">
+        <PickerFakeChildren/>
+        <div style={{height: '30px'}}>
+          <Picker  
+            title="选择市场" 
+            data={this.state.CurrentStatus} 
+            cascade={false}
+            value={this.CurrentStatusValue}
+            onOk={v => this.PickerChange('CurrentStatusValue', v)}
+          >
           <PickerChildren>选择市场</PickerChildren>
-        </Picker>
-        <Picker  
-          title="选择产品" 
-          data={this.state.DealType} 
-          cascade={false}
-          value={this.DealTypeValue}
-          onOk={v => this.PickerChange('DealTypeValue', v)}
-        >
+          </Picker>
+          <Picker  
+            title="选择产品" 
+            data={this.state.DealType} 
+            cascade={false}
+            value={this.DealTypeValue}
+            onOk={v => this.PickerChange('DealTypeValue', v)}
+          >
           <PickerChildren>选择产品</PickerChildren>
-        </Picker>
-        <Picker 
-          title="选择状态" 
-          data={this.state.ProductType} 
-          cascade={false}
-          value={this.ProductTypeValue} 
-          onOk={v => this.PickerChange('ProductTypeValue', v)}
-        >
-          <PickerChildren>选择状态</PickerChildren>
-        </Picker>
-     </div>
-      <ListView
-          key={this.state.useBodyScroll ? '0' : '1'}
-          ref={el => lv = el}
-          dataSource={this.state.dataSource}
-          initialListSize={this.state.initialListSize}
-          renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>
-            {this.state.info}
-          </div>)}
-          renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey}  CurrentStatus={this.state.CurrentStatus} CurrentStatusValue={this.CurrentStatusValue} DealType={this.state.DealType} DealTypeValue={this.DealTypeValue} ProductType={this.state.ProductType} ProductTypeValue={this.ProductTypeValue} />}
-          renderRow={row}
-          useBodyScroll={this.state.useBodyScroll}
-          style={this.state.useBodyScroll ? {} : {
-            height: this.state.height,
-          }}
-          pullToRefresh={<PullToRefresh 
-            getScrollContainer={() => lv}
-            direction={'down'}
-            refreshing={this.state.refreshing}
-            onRefresh={this.onRefresh}
-            distanceToRefresh={25}
-            indicator={{
-              activate: <div>下拉刷新数据</div>
+          </Picker>
+          <Picker 
+            title="选择状态" 
+            data={this.state.ProductType} 
+            cascade={false}
+            value={this.ProductTypeValue} 
+            onOk={v => this.PickerChange('ProductTypeValue', v)}
+          >
+            <PickerChildren>选择状态</PickerChildren>
+          </Picker>
+        </div>
+        <ListView
+            key={this.state.useBodyScroll ? '0' : '1'}
+            ref={el => lv = el}
+            dataSource={this.state.dataSource}
+            initialListSize={this.state.initialListSize}
+            renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>
+              {this.state.info}
+            </div>)}
+            renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey}  CurrentStatus={this.state.CurrentStatus} CurrentStatusValue={this.CurrentStatusValue} DealType={this.state.DealType} DealTypeValue={this.DealTypeValue} ProductType={this.state.ProductType} ProductTypeValue={this.ProductTypeValue} />}
+            renderRow={row}
+            useBodyScroll={this.state.useBodyScroll}
+            style={this.state.useBodyScroll ? {} : {
+              height: this.state.height,
             }}
-          />}
-          onEndReached={this.onEndReached}
-          pageSize={15}
-      />    
+            pullToRefresh={<PullToRefresh 
+              getScrollContainer={() => lv}
+              direction={'down'}
+              refreshing={this.state.refreshing}
+              onRefresh={this.onRefresh}
+              distanceToRefresh={25}
+              indicator={{
+                activate: <div>下拉刷新数据</div>
+              }}
+            />}
+            onEndReached={this.onEndReached}
+            pageSize={15}
+        />    
       </div >  
     );
   }
-} 
+  
+}
