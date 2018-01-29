@@ -6,24 +6,16 @@ import ABSPanel from '../components/abs-panel';
 import ABSChartMarket from '../components/abs-chart';
 import MarketTable from './market/MarketTable';
 
-interface Props {
-    title: string;
-}
-const marketProps = {
-    title: '市场概要',
-    data: {}
-};
-
-class MarketComponent extends React.Component<Props, any> { 
+class MarketComponent extends React.Component<any, any> { 
 
   render() { 
     return (
         <React.Fragment>
-            <ABSPanel {...marketProps} >
-                <MarketTable />   
+            <ABSPanel title="市场概要" >
+                <MarketTable marketSummary={this.props.marketSummary} />   
             </ABSPanel> 
             <ABSPanel title="发行统计">
-                <ABSChartMarket />
+                <ABSChartMarket data={this.props.chart} />
             </ABSPanel>
         </React.Fragment>
     );
