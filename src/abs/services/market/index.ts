@@ -71,7 +71,7 @@ class MarketService {
             },
             labels: {
                 formatter: function () {
-                    // console.log(this.value);
+                    // console.log(this.value); 
                     return ReactHighcharts.Highcharts.numberFormat((this  as any).value, 0, '.', ',') + '';
                 }
             }
