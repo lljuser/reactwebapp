@@ -20,5 +20,4 @@ export class ABSNavBar extends React.Component<Props, any> {
             </NavBar> 
         );
     }
-}  
- 
+}   
