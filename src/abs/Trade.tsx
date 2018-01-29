@@ -5,12 +5,9 @@ interface Props {
     title: string;
 }
   
-export default class TradeComponent extends React.Component<Props, {}> {
-    constructor(props: Props) {
-        super(props);  
-    }
-
-    render() {  
+export default class MyComponent extends React.Component<Props, {}> {
+    render() { 
+        console.log('Trade render');
         return (
             <div>
                 <span>Trade:{this.props.title}</span>
