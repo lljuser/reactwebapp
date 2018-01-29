@@ -5,16 +5,16 @@ export default {
   state: {
     marketSummary: [],
     chart: defaultChart,
-    loaded: false
+    loading: true
   },
   reducers: {
     load(state: any, action: any) {
-      const {marketSummary, chart, loaded} = action.data;
-      if (state.loaded) {
+      const {marketSummary, chart, loading} = action.data;
+      if (state.loading) {
         return state;
       }
 
-      return {...state, marketSummary, chart, loaded};
+      return {...state, marketSummary, chart, loading};
     }
   },
   effects: {
@@ -29,7 +29,7 @@ export default {
         yield put({
           type: 'load',
           data: {
-            marketSummary, chart, loaded: true
+            marketSummary, chart, loading: true
           }
         });
       } catch (e) {

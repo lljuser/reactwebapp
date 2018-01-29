@@ -12,7 +12,7 @@ function mapStateToProps(state: any) {
  
 class MarketComponent extends React.Component<any, any> { 
     componentDidMount() {
-        if (this.props.loaded) {
+        if (!this.props.loading) {
             return;
         }
 

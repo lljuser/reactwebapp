@@ -58,9 +58,7 @@ class Home extends React.Component<any, any> {
           page={this.state.index}
           tabs={this.tabs}
           onChange={this.onChange}
-          onTabClick={(tab, index) => {
-            this.props.dispatch({ type: 'count/add' });
-          }}
+          // onTabClick={(tab, index) => {}}
           // tabBarUnderlineStyle={{ left: `${this.state.index * 100 + anchorTextWidth}px` }}
         >
           <Route path="/market" component={Market} />
