@@ -7,13 +7,10 @@
 
 @import "../theme-abs.less";
 
-@picker-prefix-cls: ~"@{abs-prefix}-picker";
-.@{picker-prefix-cls}{
-
-}
+@picker-prefix-cls: ~"@{ant-prefix}-picker";
 
 .am-picker-popup {
-    background-color: #000;
+    background-color: @abs-brand-black;
     .am-picker-popup-content{
         .am-picker-popup-body{
             .am-picker-popup-header{
@@ -53,7 +50,12 @@
                         background-repeat: no-repeat;
                     }
                     .am-picker-col-indicator {
-
+                        &:before{
+                            height: 0px;
+                        }
+                        &:after{
+                            height: 0px;
+                        }
                     }
                 }
             }
