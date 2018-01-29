@@ -224,10 +224,6 @@ export default class Product extends React.Component<{}, Parameter> {
   render() {
     const row = (rowData, sectionID, rowID) => {
       return (
-<<<<<<< HEAD:src/abs/Product.tsx
-
-=======
->>>>>>> 53cc8dc69aa6e6d146a2a662e6144e06a684dc4f:src/abs/views/Product.tsx
         <tr key={rowData.DealId} className={rowData.DealId} >
           <td className={'text-left'}>
             <Link to={`/productdetail/${rowData.DealId}`}><div className={'td_elips1'}>{rowData.DealName}</div></Link>
@@ -240,7 +236,7 @@ export default class Product extends React.Component<{}, Parameter> {
     return (
       <div className="abs-picker">
         <PickerFakeChildren/>
-        <div style={{height: '30px'}}>
+        <div style={{height: '30px'}} >
           <Picker  
             title="选择市场" 
             data={this.state.CurrentStatus} 
@@ -299,5 +295,4 @@ export default class Product extends React.Component<{}, Parameter> {
       </div >  
     );
   }
-  
 }

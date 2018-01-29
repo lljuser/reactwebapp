@@ -1,10 +1,11 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import TradeItem from './TradeItem';
-import { ListView, PullToRefresh, Picker } from 'antd-mobile';
+import { ListView, PullToRefresh, Picker, WingBlank, SegmentedControl } from 'antd-mobile';
 import { TradeApi } from '../config/api';
-import Request from '../components/http/request/index';
-import '../public/css/theme.css';
+import Request from '../../core/http/request';
+import '../components/abs-table/abs-table.less';
+import '../components/abs-picker/abs-picker.less';
 
 /**
  * 组件state
@@ -47,6 +48,18 @@ const CustomChildren = props => (
     </div>
 );
 
+// 按钮切换事件
+var onFakePickerClick = (e) => {
+    alert(`selectedIndex:${e.nativeEvent.selectedSegmentIndex}`);
+};
+
+// 虚拟切换按钮组
+const PickerFakeChildren = props => (
+    <WingBlank size="lg" className="sc-example">
+        <SegmentedControl values={['全部状态', '全部产品', '全部市场']} onChange={onFakePickerClick} />
+    </WingBlank>
+);
+
 /**
  * 自定义组件
  * 
@@ -55,43 +68,12 @@ const CustomChildren = props => (
  */
 function MyBody(props: any) {
     return (
-        <div className={'appH5_body'}>
-            <div className={'appH5_panel'}>
-                <table className="appH5_select_div trade_select_div" cellSpacing={0} cellPadding={0} >
-                    <tbody>
-                        <tr>
-                            <td>
-                                <Picker data={ratingList} title="选择评级" cols={1} value={props.ratingValues} onOk={v => props.onPickerChange('ratingValues', v)}>
-                                    <CustomChildren />
-                                </Picker>
-                            </td>
-                            <td>
-                                <Picker data={couponList} title="选择利率" cols={1} value={props.couponValues} onOk={v => props.onPickerChange('couponValues', v)}>
-                                    <CustomChildren />
-                                </Picker>
-                            </td>
-                            <td>
-                                <Picker data={walbuckList} title="选择期限" cols={1} value={props.walbuckValues} onOk={v => props.onPickerChange('walbuckValues', v)}>
-                                    <CustomChildren />
-                                </Picker>
-                            </td>
-                        </tr >
-                    </tbody>
-                </table >
-                <table className={'appH5_table'} cellSpacing={0} cellPadding={0}>
-                    <thead>
-                        <tr>
-                            <th />
-                            <th>证券简称</th>
-                            <th className="text-right">金额(亿)</th>
-                            <th className="text-right">资产类别</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {props.children}
-                    </tbody>
-                </table>
-            </div >
+        <div className="abs-table abs-table-product">
+            <table cellSpacing={0} cellPadding={0}>
+                <tbody>
+                    {props.children}
+                </tbody>
+            </table>
         </div >
     );
 }
@@ -112,7 +94,6 @@ export default class Trade extends React.Component<{}, AppState> {
         const dataSource = new ListView.DataSource({
             rowHasChanged: (row1, row2) => row1 !== row2,
         });
-
         this.state = {
             dataSource: dataSource,
             refreshing: true,
@@ -141,6 +122,7 @@ export default class Trade extends React.Component<{}, AppState> {
         } else {
             this.walbuckValues = content;
         }
+        pageIndex = 1;
         this.onRefresh();
     }
 
@@ -153,7 +135,7 @@ export default class Trade extends React.Component<{}, AppState> {
         if (walbuckList.length > 0) {
             this.walbuckValues.push(walbuckList[0].value);
         } else {
-            Request.post(TradeApi.walbuckList, {}, (res) => {
+            Request.post(TradeApi.walbuckList).then((res) => {
                 if (res.length > 0) {
                     res.forEach(element => {
                         walbuckList.push({ label: element.Value, value: element.Key });
@@ -174,7 +156,7 @@ export default class Trade extends React.Component<{}, AppState> {
         if (couponList.length > 0) {
             this.couponValues.push(couponList[0].value);
         } else {
-            Request.post(TradeApi.couponList, {}, (res) => {
+            Request.post(TradeApi.couponList).then((res) => {
                 if (res.length > 0) {
                     res.forEach(element => {
                         couponList.push({ label: element.Value, value: element.Key });
@@ -194,7 +176,7 @@ export default class Trade extends React.Component<{}, AppState> {
         if (ratingList.length > 0) {
             this.ratingValues.push(ratingList[0].value);
         } else {
-            Request.post(TradeApi.ratingList, {}, (res) => {
+            Request.post(TradeApi.ratingList).then((res) => {
                 if (res.length > 0) {
                     res.forEach(element => {
                         ratingList.push({ label: element.Value, value: element.Key });
@@ -212,12 +194,13 @@ export default class Trade extends React.Component<{}, AppState> {
      * @param {number} direction 方向(1--向下;0--默认) 
      * @memberof Trade
      */
-    genData(refresh: boolean = false, page: number = 0, direction: number = 0) {
+    genData(cmd: string, refresh: boolean = false, page: number = 0, direction: number = 0) {
         console.log(refresh);
         if (refresh) {
+            pageIndex = 1;
             rData = [];
         }
-
+        console.log(page);
         var ratingValue = (this.ratingValues[0] === undefined ? 0 : this.ratingValues[0]) as string;
         var couponValue = (this.couponValues[0] === undefined ? 0 : this.couponValues[0]) as string;
         var walbuckValue = (this.walbuckValues[0] === undefined ? 0 : this.walbuckValues[0]) as string;
@@ -226,12 +209,21 @@ export default class Trade extends React.Component<{}, AppState> {
         url = url + '/' + ratingValue + '/' + couponValue + '/' + walbuckValue;
         url = url + '/' + direction + '/' + page * NUM_ROWS + '/' + NUM_ROWS;
 
-        Request.post(url, {}, (res) => {
+        Request.post(url).then((res) => {
             if (res.length === 0) {
-                this.setState({
-                    endInfo: '没有更多了',
-                    hasMore: false
-                });
+                if (cmd === 'onRefresh') {
+                    this.setState({
+                        dataSource: this.state.dataSource.cloneWithRows([]),
+                        endInfo: '没有更多了',
+                        hasMore: false
+                    });
+                } else {
+                    this.setState({
+                        endInfo: '没有更多了',
+                        hasMore: false
+                    });
+                }
+
             } else {
                 rData = [...rData, ...res];
                 this.setState({
@@ -268,12 +260,12 @@ export default class Trade extends React.Component<{}, AppState> {
         this.getCouponList();
         this.getRatingList();
         // ListView组件高度
-        const hei = this.state.height - (ReactDOM.findDOMNode(lv as ListView) as any).offsetTop;
+        const hei = this.state.height - (ReactDOM.findDOMNode(lv as ListView) as any).offsetTop - 50;
         setTimeout(() => {
-            this.genData(false, 1, 0);
+            this.genData('', true, 1, 0);
             this.setState({
                 height: hei,
-                isLoading: false,
+                refreshing: false,
             });
         }, 0);
     }
@@ -285,17 +277,13 @@ export default class Trade extends React.Component<{}, AppState> {
      * @memberof Trade
      */
     onEndReached = (event) => {
-        // load new data
-        // hasMore: from backend data, indicates whether it is the last page, here is false
-        console.log('onEndReached');
+        console.log('end');
         if (this.state.isLoading && !this.state.hasMore) {
             return;
         }
-
-        console.log('reach end', event);
         this.setState({ isLoading: true, endInfo: '正在加载...' });
 
-        this.genData(false, pageIndex++, 1);
+        this.genData('', false, pageIndex++, 1);
     }
 
     /**
@@ -304,9 +292,8 @@ export default class Trade extends React.Component<{}, AppState> {
      * @memberof Trade
      */
     onRefresh = (refresh: boolean = true) => {
-        console.log('onRefresh');
         this.setState({ refreshing: true, isLoading: true });
-        this.genData(refresh, 1);
+        this.genData('onRefresh', refresh, 1);
         this.setState({
             refreshing: false
         });
@@ -319,33 +306,67 @@ export default class Trade extends React.Component<{}, AppState> {
             );
         };
         return (
-            <ListView
-                key={this.state.useBodyScroll ? '0' : '1'}
-                ref={el => lv = el}
-                dataSource={this.state.dataSource}
-                initialListSize={this.state.initialListSize}
-                renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>
-                    {this.state.endInfo}
-                </div>)}
-                renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey} ratingValues={this.ratingValues} couponValues={this.couponValues} walbuckValues={this.walbuckValues} onPickerChange={this.onPickerChange} />}
-                renderRow={row}
-                useBodyScroll={this.state.useBodyScroll}
-                style={this.state.useBodyScroll ? {} : {
-                    height: this.state.height,
-                }}
-                pullToRefresh={<PullToRefresh
-                    getScrollContainer={() => lv}
-                    direction={'down'}
-                    refreshing={this.state.refreshing}
-                    onRefresh={this.onRefresh}
-                    distanceToRefresh={25}
-                    indicator={{
-                        activate: <div>下拉刷新数据</div>
+            <div className="abs-table abs-table-product">
+                <PickerFakeChildren />
+                <table cellSpacing={0} cellPadding={0} >
+                    <tbody>
+                        <tr>
+                            <td>
+                                <Picker data={ratingList} title="选择评级" cols={1} value={this.ratingValues} onOk={v => this.onPickerChange('ratingValues', v)}>
+                                    <CustomChildren />
+                                </Picker>
+                            </td>
+                            <td>
+                                <Picker data={couponList} title="选择利率" cols={1} value={this.couponValues} onOk={v => this.onPickerChange('couponValues', v)}>
+                                    <CustomChildren />
+                                </Picker>
+                            </td>
+                            <td>
+                                <Picker data={walbuckList} title="选择期限" cols={1} value={this.walbuckValues} onOk={v => this.onPickerChange('walbuckValues', v)}>
+                                    <CustomChildren />
+                                </Picker>
+                            </td>
+                        </tr >
+                    </tbody>
+                </table >
+                <table cellSpacing={0} cellPadding={0}>
+                    <thead>
+                        <tr>
+                            <th />
+                            <th>证券简称</th>
+                            <th className="text-right">金额(亿)</th>
+                            <th className="text-right">资产类别</th>
+                        </tr>
+                    </thead>
+                </table>
+                <ListView
+                    key={this.state.useBodyScroll ? '0' : '1'}
+                    ref={el => lv = el}
+                    dataSource={this.state.dataSource}
+                    initialListSize={this.state.initialListSize}
+                    renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>
+                        {this.state.endInfo}
+                    </div>)}
+                    renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey} />}
+                    renderRow={row}
+                    useBodyScroll={this.state.useBodyScroll}
+                    style={this.state.useBodyScroll ? {} : {
+                        height: this.state.height,
                     }}
-                />}
-                onEndReached={this.onEndReached}
-                pageSize={15}
-            />
+                    pullToRefresh={<PullToRefresh
+                        getScrollContainer={() => lv}
+                        direction={'down'}
+                        refreshing={this.state.refreshing}
+                        onRefresh={this.onRefresh}
+                        distanceToRefresh={25}
+                        indicator={{
+                            activate: <div>下拉刷新数据</div>
+                        }}
+                    />}
+                    onEndReached={this.onEndReached}
+                    pageSize={15}
+                />
+            </div >
         );
     }
 }
