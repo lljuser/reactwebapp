@@ -1,17 +1,16 @@
 import * as React from 'react'; 
 import { Route } from 'dva/router';
 import { connect } from 'dva';
-import { Tabs, Badge } from 'antd-mobile';
+import { Tabs } from 'antd-mobile';
 
 import Market from './Market';
 import Product from './Product';
 import Trade from './Trade';
-
-import './components/abs-tabs/abs-tabs.less';
+import '../components/abs-tabs/abs-tabs.less';
 
 class App extends React.Component<any, any> {
   private tabs = [
-    { title: <Badge text={this.props.count.current}>市场</Badge>, name: 'market' },
+    { title: '市场', name: 'market' },
     { title: '产品', name: 'product' },
     { title: '交易', name: 'trade' },
   ];
@@ -52,11 +51,6 @@ class App extends React.Component<any, any> {
   render() {
     // 定义tab项内容的真实宽度
     const anchorTextWidth = 30;
-    this.tabs = [
-      { title: <Badge text={this.props.count.current}>市场</Badge>, name: 'market' },
-      { title: '产品', name: 'product' },
-      { title: '交易', name: 'trade' },
-    ];
 
     return (
       <div className="abs-tabs">

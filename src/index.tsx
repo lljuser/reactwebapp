@@ -1,30 +1,27 @@
-import * as React from 'react';
 import dva from 'dva';
-import { Router } from 'dva/router'; 
 import createLoading from 'dva-loading';
-import defaultHistory from './components/http/request/listener';
+import defaultHistory from './core/http/request/listener';
 import registerServiceWorker from './registerServiceWorker'; 
-import App from './abs/App';  
-import countModel from './models/count';
+import routerConfig from './abs/RouterConfig';  
+import { createLogger } from 'redux-logger';
 
 // 1. Initialize
-const app = dva({
-  history: defaultHistory,
+const appDva = dva({
+  history: defaultHistory, 
+  onAction: [
+    createLogger(), // logger publish remove 
+  ]
 });
-app.use(createLoading());
+appDva.use(createLoading());
+// appDva.use(createLogger());
 
-// 2. Model 
-app.model(countModel);
+// 2. Model |move to ruoterconfig
+// appDva.model(countModel);
 
 // 3. Router
-app.router((props: {history: History}) => ( 
-    <Router history={props.history}> 
-      <App />
-    </Router>
-  )
-);
+appDva.router(({history, app}: any) =>  routerConfig({history, app}));
 
 // 4. Start
-app.start('#root');  
+appDva.start('#root');  
 
 registerServiceWorker();
