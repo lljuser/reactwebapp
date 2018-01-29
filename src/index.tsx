@@ -3,14 +3,14 @@ import createLoading from 'dva-loading';
 import defaultHistory from './common/http/request/listener';
 import registerServiceWorker from './registerServiceWorker'; 
 import routerConfig from './abs/RouterConfig';  
-import { createLogger } from 'redux-logger';
+// import { createLogger } from 'redux-logger';
 
 // 1. Initialize
 const appDva = dva({
   history: defaultHistory, 
-  onAction: [
-    createLogger(), // logger publish remove 
-  ]
+  // onAction: [
+  //   createLogger(), // logger publish remove 
+  // ]
 });
 appDva.use(createLoading());
 // appDva.use(createLogger());

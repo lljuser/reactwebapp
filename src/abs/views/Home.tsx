@@ -73,12 +73,6 @@ class Home extends React.Component<any, any> {
       </div>
     );
   }
-}
-
-function mapStateToProps(state: any) {
-  return {
-    count: state.count,
-  };
-}
-
-export default connect(mapStateToProps)(Home);
+} 
+ 
+export default connect()(Home);
