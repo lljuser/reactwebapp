@@ -1,9 +1,10 @@
 import * as React from 'react';
+import Request from '../components/http/request/index';
 import * as ReactDOM from 'react-dom';
 import { Link } from 'dva/router';
-import { ListView, Picker } from 'antd-mobile';
+import { ListView, PullToRefresh, Picker } from 'antd-mobile';
 import '../public/css/theme.css';
-import { connect } from 'dva';
+import { ProductApi } from '../config/api';
 
 interface Parameter {
   dataSource: any;   
@@ -55,15 +56,17 @@ function MyBody(props: any) {
 }
 
 const NUM_ROWS = 15;
+let pageIndex = 0;
 let lv: ListView|null;
+let rData: Object[] = [];
 
-class Product extends React.Component<any, Parameter> {
+export default class Product extends React.Component<{}, Parameter> {
 
   CurrentStatusValue: string[] = [];
   DealTypeValue: string[] = [];
   ProductTypeValue: string[] = [];
 
-  constructor(props: any) {
+  constructor(props: object) {
     super(props);
     const dataSource = new ListView.DataSource({
       rowHasChanged: (row1, row2) => row1 !== row2,
@@ -82,10 +85,6 @@ class Product extends React.Component<any, Parameter> {
       info: '',
       isFirstLoad: true
     };
-  }
-
-  componentWillReceiveProps() {
-    console.log('componentWillReceiveProps');
   }
 
   formatPickerData(data: any) {
@@ -117,6 +116,42 @@ class Product extends React.Component<any, Parameter> {
    
   }
 
+  genData(refreshing: boolean= false) {
+    if (refreshing) {
+      pageIndex = 0;
+      rData = [];
+    } else {
+      pageIndex++;
+    }
+    
+    let CurrentStatusValue = this.CurrentStatusValue[0] === undefined ? 0 : this.CurrentStatusValue[0];
+    let DealTypeValue = this.DealTypeValue[0] === undefined ? 0 : this.DealTypeValue[0];
+    let ProductTypeValue = this.ProductTypeValue[0] === undefined ? 0 : this.ProductTypeValue[0];
+
+    let url = ProductApi.list;
+    url = url + '/' + CurrentStatusValue + '/' + DealTypeValue + '/' + ProductTypeValue;
+    url = url + '/' + pageIndex + '/' + (pageIndex + 1) * NUM_ROWS + '/' + NUM_ROWS;
+
+    Request.post(url, {}, (data) => {
+        if ( data.Deal.length === 0 ) {
+          this.setState({ info: '已全部加载' , hasMore: false});
+        } else {
+          rData = [...rData, ...data.Deal];
+
+          if (this.state.isFirstLoad === true) {
+            this.formatPickerData(data);
+            this.setState({isFirstLoad: false});
+          }
+
+          this.setState({
+            dataSource: this.state.dataSource.cloneWithRows(rData),
+            isLoading: false,
+            info: '加载完成',
+          });
+        }
+      });
+  }
+
   componentDidUpdate() {
     if (this.state.useBodyScroll) {
       document.body.style.overflow = 'auto';
@@ -128,18 +163,18 @@ class Product extends React.Component<any, Parameter> {
   componentDidMount() {
     console.log('componentDidMount');
     const hei = this.state.height - (ReactDOM.findDOMNode(lv as ListView) as any).offsetTop - 50;
-    this.props.dispatch({ 
-      type: 'product/firstload', 
-      rows: this.props.product.rows,
-      height: hei
-    });
 
+    this.genData(true);
+    this.setState({
+        height: hei,
+        refreshing: false,
+      });
   }
 
   onRefresh = () => {
     console.log('onRefresh');
     this.setState({ refreshing: true, isLoading: true });
-    // this.genData(true);
+    this.genData(true);
     this.setState({
       refreshing: false 
     });
@@ -148,34 +183,32 @@ class Product extends React.Component<any, Parameter> {
   onEndReached = (event) => {
     // load new data
     // hasMore: from backend data, indicates whether it is the last page, here is false
-    // console.log('onEndReached');
+    console.log('onEndReached');
     if (this.state.isLoading && !this.state.hasMore) {
       return;
     }
 
-    // console.log('reach end', event);
+    console.log('reach end', event);
     this.setState({ isLoading: true, info: '正在加载...'});
 
-    // this.genData();
+    this.genData();
 
   }
 
   PickerChange(picker: string, val: string[]) {
-
-    this.props.dispatch({ 
-      type: 'product/changePicker', 
-      picker: picker , 
-      val: val,
-      currentStatusValue: this.props.product.currentStatusValue,
-      dealTypeValue: this.props.product.dealTypeValue,
-      productTypeValue: this.props.product.productTypeValue,
-      rows: this.props.product.rows,
-    });
-
+    if (picker === 'CurrentStatusValue') {
+      this.CurrentStatusValue = val;
+    }
+    if (picker === 'DealTypeValue') {
+      this.DealTypeValue = val;
+    }
+    if (picker === 'ProductTypeValue') {
+      this.ProductTypeValue = val;
+    }
+    this.onRefresh();
   }
 
   render() {
-
     const row = (rowData, sectionID, rowID) => {
       return (
         
@@ -220,42 +253,33 @@ class Product extends React.Component<any, Parameter> {
         </Picker>
      </div>
       <ListView
-          key={this.props.product.useBodyScroll ? '0' : '1'}
+          key={this.state.useBodyScroll ? '0' : '1'}
           ref={el => lv = el}
-          dataSource={this.props.product.dataSource}
-          initialListSize={this.props.product.initialListSize}
+          dataSource={this.state.dataSource}
+          initialListSize={this.state.initialListSize}
           renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>
             {this.state.info}
           </div>)}
-          renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey}  CurrentStatus={this.props.product.CurrentStatus} CurrentStatusValue={this.props.product.CurrentStatusValue} DealType={this.props.product.DealType} DealTypeValue={this.props.product.DealTypeValue} ProductType={this.props.product.ProductType} ProductTypeValue={this.props.product.ProductTypeValue} />}
+          renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey}  CurrentStatus={this.state.CurrentStatus} CurrentStatusValue={this.CurrentStatusValue} DealType={this.state.DealType} DealTypeValue={this.DealTypeValue} ProductType={this.state.ProductType} ProductTypeValue={this.ProductTypeValue} />}
           renderRow={row}
-          useBodyScroll={this.props.product.useBodyScroll}
-          style={this.props.product.useBodyScroll ? {} : {
-            height: this.props.product.height,
+          useBodyScroll={this.state.useBodyScroll}
+          style={this.state.useBodyScroll ? {} : {
+            height: this.state.height,
           }}
-          // pullToRefresh={<PullToRefresh 
-          //   getScrollContainer={() => lv}
-          //   direction={'down'}
-          //   refreshing={this.props.product.refreshing}
-          //   onRefresh={this.onRefresh}
-          //   distanceToRefresh={25}
-          //   indicator={{
-          //     activate: <div>下拉刷新数据</div>
-          //   }}
-          // />}
+          pullToRefresh={<PullToRefresh 
+            getScrollContainer={() => lv}
+            direction={'down'}
+            refreshing={this.state.refreshing}
+            onRefresh={this.onRefresh}
+            distanceToRefresh={25}
+            indicator={{
+              activate: <div>下拉刷新数据</div>
+            }}
+          />}
           onEndReached={this.onEndReached}
           pageSize={15}
       />    
       </div >  
     );
   }
-}
-
-function mapStateToProps(state: any) {
-
-  return {
-    product: state.product,
-  };
-}
-
-export default connect(mapStateToProps)(Product);
+} 
