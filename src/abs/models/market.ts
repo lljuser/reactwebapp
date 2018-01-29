@@ -1,26 +1,36 @@
-import service from '../services/market';
+import service, { defaultChart } from '../services/market';
 
 export default {
   namespace: 'market',
   state: {
-    marketSummary: []
+    marketSummary: [],
+    chart: defaultChart,
+    loading: false
   },
   reducers: {
     load(state: any, action: any) {
-      const marketSummary = action.data;
-      if (marketSummary && marketSummary.length > 0) {
-        return { ...state, marketSummary };
+      const {marketSummary, chart, loading} = action.data;
+      if (state.loading) {
+        return state;
       }
-      return state;
+
+      return {...state, marketSummary, chart, loading};
     }
   },
-  effects: {
+  effects: { 
     *fetch(action: any, { call, put }: any) {
       try {
-        const data = yield call(service.getMarketSummary);
+
+        const [marketSummary, chart] = yield [
+          call(service.getMarketSummary),
+          call(service.getMarketChartData)
+        ];
+
         yield put({
           type: 'load',
-          data: data
+          data: {
+            marketSummary, chart, loading: true
+          }
         });
       } catch (e) {
         alert(e.message);

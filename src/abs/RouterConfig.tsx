@@ -7,11 +7,9 @@ import dynamic from 'dva/dynamic';
 function RouterConfig({ history, app }: any) {  
   const Home = dynamic({
     app,
-    models: () => [
-      import('./models/count'),
-      import('./models/market'),
-      import('./models/marketChart'),
-      import('./models/product'),
+    models: () => [ 
+      import('./models/market'), 
+      import('./models/product'), 
     ],
     component: () => import(/*webpackChunkName:'home'*/'./views/Home'),
   });

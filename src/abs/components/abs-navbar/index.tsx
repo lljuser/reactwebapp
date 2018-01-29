@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link } from 'dva/router';
 import { NavBar, Icon } from 'antd-mobile';
-
+import './index.less';
 interface Props {
     path: string;
     title?: string;
@@ -10,8 +10,7 @@ interface Props {
 export class ABSNavBar extends React.Component<Props, any> {
     render() {
         return (
-            <NavBar 
-                mode="light"
+            <NavBar
                 icon={<Link to="/{this.props.path}"><Icon type="left" /></Link>} 
                 rightContent={[ 
                     <Icon key="1" type="ellipsis" />,
@@ -21,5 +20,4 @@ export class ABSNavBar extends React.Component<Props, any> {
             </NavBar> 
         );
     }
-}  
- 
+}   

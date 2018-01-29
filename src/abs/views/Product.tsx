@@ -6,18 +6,6 @@ import '../components/abs-table/index.less';
 import '../components/abs-picker/index.less';
 import { connect } from 'dva';
 
-// 按钮切换事件
-// var onFakePickerClick = (e) => {
-//   alert(`selectedIndex:${e.nativeEvent.selectedSegmentIndex}`);
-// };
-
-// 虚拟切换按钮组
-// const PickerFakeChildren = props => (
-//   <WingBlank size="lg" className="sc-example">
-//     <SegmentedControl values={['全部状态', '全部产品', '全部市场']} onChange={onFakePickerClick}/>
-//   </WingBlank>
-// );
-
 // 真实产品选择piker点
 const PickerChildren = props => (
   <div onClick={props.onClick}>
@@ -85,6 +73,7 @@ class Product extends React.Component<any, {}> {
       currentStatusValue: this.props.currentStatusValue,
       dealTypeValue: this.props.dealTypeValue,
       productTypeValue: this.props.productTypeValue,
+
     });
   }
 
@@ -92,9 +81,10 @@ class Product extends React.Component<any, {}> {
     // load new data
     // hasMore: from backend data, indicates whether it is the last page, here is false
 
-    if (this.props.isLoading && !this.props.hasMore) {
+    if (this.props.loading && !this.props.hasMore) {
       return;
     }
+
     this.props.dispatch({ 
       type: 'product/getList', 
       rows: this.props.rows,
@@ -104,7 +94,7 @@ class Product extends React.Component<any, {}> {
       dealTypeValue: this.props.dealTypeValue,
       productTypeValue: this.props.productTypeValue,
     });
-
+  
   }
 
   PickerChange(picker: string, val: string[]) {
@@ -125,17 +115,16 @@ class Product extends React.Component<any, {}> {
       return (
         <tr key={rowData.DealId} className={rowData.DealId} >
           <td className={'text-left'}>
-          <Link to={`/productdetail/${rowData.DealId}`}><div className={'td_elips1'}>{rowData.DealName}</div></Link>
+            <Link to={`/productdetail/${rowData.DealId}`}><div className={'td_elips1'}>{rowData.DealName}</div></Link>
           </td>
-          <td className={'text-right appH5_color_red'} style={{ fontSize: '17px'}}>{rowData.TotalOffering}</td>
-          <td style={{color: 'white'}} className={'text-right td_elips2'}><div style={{width: '100%', float: 'right'}}><div>{rowData.DealType}</div></div></td>
+          <td className={'text-right appH5_color_red'} style={{ fontSize: '17px' }}>{rowData.TotalOffering}</td>
+          <td style={{ color: 'white' }} className={'text-right td_elips2'}><div style={{ width: '100%', float: 'right' }}><div>{rowData.DealType}</div></div></td>
         </tr >
       );
     };
     console.log(this.props);
     return (
       <div className="abs-picker">
-        {/* <PickerFakeChildren/> */}
         <div style={{height: '30px'}}>
           <Picker  
             title="选择市场" 
@@ -195,7 +184,6 @@ class Product extends React.Component<any, {}> {
       </div >  
     );
   }
-  
 }
 
 function mapStateToProps(state: any) {
@@ -203,5 +191,4 @@ function mapStateToProps(state: any) {
     ...state.product,
   };
 }
-
 export default connect(mapStateToProps)(Product);
