@@ -1,5 +1,4 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import HttpHelpers from './helper';
 import helper from './helper';
 // import AbortBus from './abort';
 
@@ -71,7 +70,7 @@ export default class Request {
     const timeout = defaultConfig.timeout || Request.defaultTimeout;
 
     let asyncResult = axios.request(defaultConfig)
-                          .then(response => HttpHelpers.parseResponse(response));
+                          .then(response => helper.parseResponse(response));
 
     return Promise.race([helper.timeout(timeout), asyncResult]);
   }
