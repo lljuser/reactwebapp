@@ -3,7 +3,7 @@ import * as React from 'react';
 import 'amfe-flexible';
 import { connect } from 'dva';
 import ABSPanel from '../components/abs-panel';
-import ABSTableMarket from '../components/abs-table';
+import MarketTable from './market/MarketTable';
 import ABSChartMarket from '../components/abs-chart';
 
 interface Props {
@@ -20,7 +20,7 @@ class MarketComponent extends React.Component<Props, any> {
     return (
         <React.Fragment>
             <ABSPanel {...marketProps} >
-                <ABSTableMarket />   
+                <MarketTable />   
             </ABSPanel> 
             <ABSPanel title="发行统计">
                 <ABSChartMarket />

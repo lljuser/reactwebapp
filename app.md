@@ -1,3 +1,10 @@
+Technology Road Map:
+Technology: typescript|reactjs|dva(react-router)|dva(react-redux)|dva(redux-saga)|less
+ProjectStructure: mvc area 
+DevelopTools: vscode|react-devtools|redux-devtoos|chrome/safari
+BuildTools: abs-cli|webpack|webpackdev|typescript
+CodeReview: eslint|tslint
+
 reactwebapp:
 1. require
     babel-polyfill    >=ie9
