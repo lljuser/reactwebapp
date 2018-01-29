@@ -49,7 +49,7 @@ class Home extends React.Component<any, any> {
 
   render() {
     // 定义tab项内容的真实宽度
-    const anchorTextWidth = 30;
+    // const anchorTextWidth = 30;
 
     return (
       <div className="abs-tabs">
@@ -61,7 +61,7 @@ class Home extends React.Component<any, any> {
           onTabClick={(tab, index) => {
             this.props.dispatch({ type: 'count/add' });
           }}
-          tabBarUnderlineStyle={{ left: `${this.state.index * 100 + anchorTextWidth}px` }}
+          // tabBarUnderlineStyle={{ left: `${this.state.index * 100 + anchorTextWidth}px` }}
         >
           <Route path="/market" component={Market} />
           <Route path="/product" component={Product} />
