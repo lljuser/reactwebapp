@@ -14,45 +14,18 @@
         border-collapse: collapse;
         width:100%;
         background: @abs-brand-black;
+        font-size: 14px;
         thead{
             tr{
                 th{
-                    text-align: right;
-                    background-color: @abs-brand-gray-table;
-                    color:@abs-brand-white;
-                    padding: 0.28rem 0.146667rem;
-                    font-weight: normal;
-                    font-size: 14px;
-                    white-space: nowrap;
-                    &:first-child{
-                        text-align: center;
-                        padding-left: 0.32rem;
-                    }
-                    &:last-child{
-                        padding-left: 0.32rem;
-                    }
+                    .fn-table('th');
                 }
             }
         }
         tbody{
             tr{
                 td{
-                    text-align: right;
-                    padding: 0.26rem 0.146667rem;
-                    border-bottom:1px solid @abs-brand-gray-table;
-                    white-space: nowrap;
-                    font-size: 14px;
-                    &:first-child{
-                        text-align: center;
-                        padding-left: 0.32rem;
-                    }
-                    &:last-child{
-                        padding-right: 0.32rem;
-                    }
-                    a {
-                        color: @abs-brand-yellow;
-                    }
-
+                    .fn-table('td');
                 }
                 &:last-child{
                     td{
@@ -63,3 +36,36 @@
         }
     }
 }
+
+// 表格less配置函树
+
+.fn-table(@type) when (@type = 'th') {
+    text-align: right;
+    padding: 0.28rem 0.146667rem;
+    font-weight: normal;
+    background-color: @abs-brand-gray-table;
+    &:first-child{
+        text-align: center;
+        padding-left: 0.32rem;
+    }
+    &:last-child{
+        padding-left: 0.32rem;
+    }
+}
+
+.fn-table(@type) when (@type = 'td') {
+    text-align: right;
+    padding: 0.26rem 0.146667rem;
+    border-bottom:1px solid @abs-brand-gray-table;
+    &:first-child {
+        text-align: center;
+        padding-left: 0.32rem;
+    }
+    &:last-child {
+        padding-right: 0.32rem;
+    }
+    a {
+        color: @abs-brand-yellow;
+    }
+}
+                    
