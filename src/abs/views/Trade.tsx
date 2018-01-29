@@ -260,7 +260,7 @@ export default class Trade extends React.Component<{}, AppState> {
         this.getCouponList();
         this.getRatingList();
         // ListView组件高度
-        const hei = this.state.height - (ReactDOM.findDOMNode(lv as ListView) as any).offsetTop - 50;
+        const hei = this.state.height - (ReactDOM.findDOMNode(lv as ListView) as any).offsetTop;
         setTimeout(() => {
             this.genData('', true, 1, 0);
             this.setState({
