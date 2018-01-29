@@ -7,7 +7,7 @@ import * as chartTheme from '../../../public/js/chartTheme';
 
 ReactHighcharts.Highcharts.setOptions(chartTheme);
 
-class ABSChartMarketComponent extends React.Component<any> {
+class ABSChartComponent extends React.Component<any> {
 
     componentDidMount() {
       if (this.props.loaded) {
@@ -33,4 +33,4 @@ function mapStateToProps(state: any) {
   };
 }
 
-export default connect(mapStateToProps)(ABSChartMarketComponent);
+export default connect(mapStateToProps)(ABSChartComponent);
