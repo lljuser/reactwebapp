@@ -5,7 +5,6 @@ import defaultHistory from './components/http/request/listener';
 import registerServiceWorker from './registerServiceWorker'; 
 import App from './abs/App';  
 import countModel from './models/count';
-import productModel from './models/product';
 
 // 1. Initialize
 const app = dva({
@@ -14,7 +13,6 @@ const app = dva({
 
 // 2. Model 
 app.model(countModel);
-app.model(productModel);
 
 // 3. Router
 app.router((props: {history: History}) => ( 
