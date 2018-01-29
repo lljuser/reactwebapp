@@ -20,7 +20,7 @@ export default {
         refreshing: true,
         loading: true,
         height: document.documentElement.clientHeight,
-        useBodyScroll: false,
+        useBodyScroll: true,
         hasMore: true,
         initialListSize: 15,
         info: '',
