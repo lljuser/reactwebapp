@@ -8,7 +8,7 @@ import Product from './Product';
 import Trade from './Trade';
 import '../components/abs-tabs/abs-tabs.less';
 
-class App extends React.Component<any, any> {
+class Home extends React.Component<any, any> {
   private tabs = [
     { title: '市场', name: 'market' },
     { title: '产品', name: 'product' },
@@ -81,4 +81,4 @@ function mapStateToProps(state: any) {
   };
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(Home);
