@@ -2,11 +2,9 @@ import * as React from 'react';
 import Request from '../../common/http/request';
 import * as ReactDOM from 'react-dom';
 import { Link } from 'dva/router';
-import { WingBlank, SegmentedControl, ListView, PullToRefresh, Picker } from 'antd-mobile';
-// import '../public/css/theme.css';
-// import ABSPanel from './components/abs-panel/abs-panel';
-import '../components/abs-table/abs-table.less';
-import '../components/abs-picker/abs-picker.less';
+import { WingBlank, SegmentedControl, ListView, PullToRefresh, Picker } from 'antd-mobile'; 
+import '../components/abs-table/index.less';
+import '../components/abs-picker/index.less';
 import { ProductApi } from '../config/api';
 
 interface Parameter {

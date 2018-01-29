@@ -1,7 +1,7 @@
 import * as React from 'react';
 // import { NavBar, Icon } from 'antd-mobile'; 
 // import { Link } from 'dva/router';
-import { ABSNavBar } from '../components/abs-back/index';
+import { ABSNavBar } from '../components/abs-back';
 
 interface Props {
     title: string;

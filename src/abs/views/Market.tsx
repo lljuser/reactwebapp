@@ -2,9 +2,9 @@ import * as React from 'react';
 // import { Link } from 'react-router-dom';
 import 'amfe-flexible';
 import { connect } from 'dva';
-import ABSPanel from '../components/abs-panel/abs-panel';
-import ABSTableMarket from '../components/abs-table/abs-table-market';
-import ABSChartMarket from '../components/abs-chart/abs-chart-market';
+import ABSPanel from '../components/abs-panel';
+import ABSTableMarket from '../components/abs-table';
+import ABSChartMarket from '../components/abs-chart';
 
 interface Props {
     title: string;

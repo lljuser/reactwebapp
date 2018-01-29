@@ -1,7 +1,6 @@
 import * as React from 'react';
-// import { Link } from 'react-router-dom';
 import { connect } from 'dva';
-import './abs-table.less';
+import './index.less';
 import 'amfe-flexible';
 
 class ABSTableMarketComponent extends React.Component<any> {

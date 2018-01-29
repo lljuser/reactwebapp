@@ -6,7 +6,7 @@ import { Tabs } from 'antd-mobile';
 import Market from './Market';
 import Product from './Product';
 import Trade from './Trade';
-import '../components/abs-tabs/abs-tabs.less';
+import '../components/abs-tabs/index.less';
 
 class Home extends React.Component<any, any> {
   private tabs = [
