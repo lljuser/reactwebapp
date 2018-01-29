@@ -1,7 +1,7 @@
 import * as React from 'react';
 // import { Link } from 'react-router-dom';
 import { WingBlank, WhiteSpace } from 'antd-mobile';
-import './abs-panel.less';
+import './index.less';
 import 'amfe-flexible';
 
 interface Props {

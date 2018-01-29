@@ -1,5 +1,5 @@
 import { MarketApi } from '../../config/api';
-import Request from  '../../../core/http/request';
+import Request from  '../../../common/http/request';
 import ReactHighcharts from 'react-highcharts';
 
 // 默认图表数据
@@ -71,7 +71,7 @@ class MarketService {
             },
             labels: {
                 formatter: function () {
-                    // console.log(this.value);
+                    // console.log(this.value); 
                     return ReactHighcharts.Highcharts.numberFormat((this  as any).value, 0, '.', ',') + '';
                 }
             }

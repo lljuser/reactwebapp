@@ -2,9 +2,9 @@ import * as React from 'react';
 // import { Link } from 'react-router-dom';
 import 'amfe-flexible';
 import { connect } from 'dva';
-import ABSPanel from '../components/abs-panel/abs-panel';
-import ABSTableMarket from '../components/abs-table/abs-table-market';
-import ABSChartMarket from '../components/abs-chart/abs-chart-market';
+import ABSPanel from '../components/abs-panel'; 
+import ABSChartMarket from '../components/abs-chart';
+import MarketTable from './market/MarketTable';
 
 interface Props {
     title: string;
@@ -15,13 +15,12 @@ const marketProps = {
 };
 
 class MarketComponent extends React.Component<Props, any> { 
-  
-  render() {
-    console.log('render MarketComponent');
+
+  render() { 
     return (
         <React.Fragment>
             <ABSPanel {...marketProps} >
-                <ABSTableMarket />   
+                <MarketTable />   
             </ABSPanel> 
             <ABSPanel title="发行统计">
                 <ABSChartMarket />

@@ -3,9 +3,9 @@ import * as ReactDOM from 'react-dom';
 import TradeItem from './TradeItem';
 import { ListView, PullToRefresh, Picker, WingBlank, SegmentedControl } from 'antd-mobile';
 import { TradeApi } from '../config/api';
-import Request from '../../core/http/request';
-import '../components/abs-table/abs-table.less';
-import '../components/abs-picker/abs-picker.less';
+import Request from '../../common/http/request';
+import '../components/abs-table/index.less';
+import '../components/abs-picker/index.less';
 
 /**
  * 组件state

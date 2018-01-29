@@ -6,9 +6,9 @@ import { Tabs } from 'antd-mobile';
 import Market from './Market';
 import Product from './Product';
 import Trade from './Trade';
-import '../components/abs-tabs/abs-tabs.less';
+import '../components/abs-tabs/index.less';
 
-class App extends React.Component<any, any> {
+class Home extends React.Component<any, any> {
   private tabs = [
     { title: '市场', name: 'market' },
     { title: '产品', name: 'product' },
@@ -16,8 +16,7 @@ class App extends React.Component<any, any> {
   ];
 
   constructor(props: any) {
-    super(props);
-    console.log(props);
+    super(props); 
     this.state = {
       index: this.getIndex()
     };
@@ -50,7 +49,7 @@ class App extends React.Component<any, any> {
 
   render() {
     // 定义tab项内容的真实宽度
-    const anchorTextWidth = 30;
+    // const anchorTextWidth = 30;
 
     return (
       <div className="abs-tabs">
@@ -58,13 +57,11 @@ class App extends React.Component<any, any> {
           initialPage={this.state.index}
           page={this.state.index}
           tabs={this.tabs}
-          tabBarBackgroundColor={'#000000'}
-          tabBarInactiveTextColor={'#ffffff'}
           onChange={this.onChange}
           onTabClick={(tab, index) => {
             this.props.dispatch({ type: 'count/add' });
           }}
-          tabBarUnderlineStyle={{ borderColor: '#ffc446', width: '40px', left: `${this.state.index * 100 + anchorTextWidth}px` }}
+          // tabBarUnderlineStyle={{ left: `${this.state.index * 100 + anchorTextWidth}px` }}
         >
           <Route path="/market" component={Market} />
           <Route path="/product" component={Product} />
@@ -73,12 +70,6 @@ class App extends React.Component<any, any> {
       </div>
     );
   }
-}
-
-function mapStateToProps(state: any) {
-  return {
-    count: state.count,
-  };
-}
-
-export default connect(mapStateToProps)(App);
+} 
+ 
+export default connect()(Home);
