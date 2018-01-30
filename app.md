@@ -1,7 +1,7 @@
 <h1>Technical RoadMap</h1>
 > 
-* Jsx(ReactJs)->TypeScript(Jsx)->ES6->React-Router->React-Redux->React-Saga/Thunk
-* css|less|styling
+- Jsx(ReactJs)->TypeScript(Jsx)->ES6->React-Router->React-Redux->React-Saga/Thunk
+- css|less|styling
     
 Develop Tools: vscode|react-devtools(chrome extenstion)|redux-devtools(chrome extenstion)|Chrome/Safari
 
