@@ -81,11 +81,11 @@ class Trade extends React.Component<any, {}> {
      * @memberof Trade
      */
     componentDidUpdate() {
-        if (this.props.useBodyScroll) {
-            document.body.style.overflow = 'auto';
-        } else {
-            document.body.style.overflow = 'hidden';
-        }
+        // if (this.props.useBodyScroll) {
+        //     document.body.style.overflow = 'auto';
+        // } else {
+        //     document.body.style.overflow = 'hidden';
+        // }
     }
 
     /**

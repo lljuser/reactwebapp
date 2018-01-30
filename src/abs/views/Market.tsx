@@ -1,34 +1,30 @@
-import * as React from 'react'; 
+import * as React from 'react';
 import { connect } from 'dva';
-import ABSPanel from '../components/abs-panel'; 
-import ABSChartMarket from '../components/abs-chart';
+import ABSPanel from '../components/abs-panel';
+import ABSChartMarket from '../components/abs-chart'; 
 import MarketTable from './MarketTable';  
-import { Button } from 'antd-mobile';
+import { Button } from 'antd-mobile'; 
 
-function mapStateToProps(state: any) {
-    return state.market;
-}
- 
 class MarketComponent extends React.Component<any, any> { 
     constructor(props: any) {
         super(props);
         this.onChangTable = this.onChangTable.bind(this);
     }
+
     componentDidMount() {
         if (this.props.marketSummary && this.props.marketSummary.length > 0) {
             return;
         }
 
-        this.props.dispatch({type: 'market/fetch'});
+        this.props.dispatch({ type: 'market/fetch' });
     }
-
+ 
     onChangTable(e: any) {
         e.preventDefault();
         this.props.onChangeTab(1, 'ABN');
     }
 
-    render() { 
-        console.log(this.props);
+    render() {  
         return (
                 <React.Fragment>
                 <ABSPanel title="Demo" >
@@ -42,7 +38,11 @@ class MarketComponent extends React.Component<any, any> {
                 </ABSPanel>
             </React.Fragment>
         );
-    } 
-}
+    }   
+} 
 
+function mapStateToProps(state: any) {
+    return state.market;
+} 
+  
 export default connect(mapStateToProps)(MarketComponent);

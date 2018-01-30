@@ -21,7 +21,7 @@ appDva.use(createLoading());
 // appDva.model(countModel);
 
 // 3. Router
-appDva.router(({history, app}: any) =>  routerConfig({history, app}));
+appDva.router(routerConfig);
 
 // 4. Start
 appDva.start('#root');  

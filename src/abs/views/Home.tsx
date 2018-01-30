@@ -81,10 +81,15 @@ class Home extends React.Component<any, any> {
           initialPage={this.state.index} 
           tabs={this.tabs} 
           renderTabBar={this.renderTabBar}
+<<<<<<< HEAD
           page={this.state.index}
           onChange={(tab, index) => { 
             this.setState({ index: index });
           }}
+=======
+          useOnPan={false}
+          // tabBarUnderlineStyle={{ left: `${this.state.index * 33.333 + this.anchorTextWidth}%` }}
+>>>>>>> 4082257308533257046ad926bc328d0bff85fba1
         >
           {/* <Route path="/market" component={Market} />
           <Route path="/product" component={Product} />

@@ -11,21 +11,16 @@ interface Props {
 }  
 
 export default class ABSPanelComponent extends React.Component<Props, {}> {
-    panelStyles = {
-        minHeight: '200px',
-    };
 
     constructor(props: any) {
         super(props);
-        if (this.props.minHeight) {
-            this.panelStyles.minHeight = this.props.minHeight;
-        }
     } 
 
     render() {
+      const className = 'abs-panel ' + (this.props.className || '');
       if (this.props.title) {
         return (
-            <div className={'abs-panel ' + this.props.className || ''} style={this.panelStyles}>
+            <div className={className}>
                 {/* <WingBlank size="sm"> */}
                     <div className="abs-panel-title">{this.props.title}</div>
                     <div className="abs-panel-content">{this.props.children}</div>
@@ -35,7 +30,7 @@ export default class ABSPanelComponent extends React.Component<Props, {}> {
       }
 
       return (
-        <div className={'abs-panel ' + this.props.className || ''} style={this.panelStyles}>
+        <div className={className}>
             {/* <WingBlank size="sm"> */}
                 <div className="abs-panel-content">{this.props.children}</div>
             {/* </WingBlank> */}

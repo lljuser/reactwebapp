@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import { Link } from 'dva/router';
 import { ListView, PullToRefresh, Picker } from 'antd-mobile';  // WingBlank, SegmentedControl, 
 import '../components/abs-table/index.less';
@@ -48,20 +47,20 @@ class Product extends React.Component<any, {}> {
   }
 
   componentDidUpdate() {
-    if (this.props.useBodyScroll) {
-      document.body.style.overflow = 'auto';
-    } else {
-      document.body.style.overflow = 'hidden';
-    }
+    // if (this.props.useBodyScroll) {
+    //   document.body.style.overflow = 'auto';
+    // } else {
+    //   document.body.style.overflow = 'hidden';
+    // }
   } 
   
   componentDidMount() {
     if (this.props.rData.length === 0) {
-      const hei = document.documentElement.clientHeight - (ReactDOM.findDOMNode(lv as ListView) as any).offsetTop;
+      // const hei = document.documentElement.clientHeight - (ReactDOM.findDOMNode(lv as ListView) as any).offsetTop;
       this.props.dispatch({ 
         type: 'product/firstload', 
         rows: this.props.rows,
-        height: hei,
+        // height: hei,
       });
     }
   }
