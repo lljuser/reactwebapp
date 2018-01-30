@@ -2,12 +2,15 @@ Technical RoadMap
 =================== 
 > 
 - Jsx(ReactJs)
+- css|less|styling
 - TypeScript(Jsx)
 - ES6
+>
+> <h3>advanced [ignore]</h3>
 - React-Router
 - React-Redux
 - React-Saga/Thunk
-- css|less|styling
+
     
 Develop Tools
 =================== 
