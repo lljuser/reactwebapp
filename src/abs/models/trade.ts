@@ -40,47 +40,31 @@ export default {
         returnChangePicker(state: any, action: any) {
             switch (action.picker) {
                 case 'ratingValues': // 评级
-                    console.log(action.val);
                     return {
                         ...state,
                         ratingValues: action.val,
-                        dataSource: action.dataSource,
-                        rData: action.rData,
-                        hasMore: action.hasMore,
-                        pageIndex: action.pageIndex,
-                        refreshing: action.refreshing,
-                        endInfo: action.endInfo,
-                        loading: action.loading
                     };
                 case 'couponValues':
-                    console.log(action.val);
                     return {
                         ...state,
                         couponValues: action.val,
-                        dataSource: action.dataSource,
-                        rData: action.rData,
-                        hasMore: action.hasMore,
-                        pageIndex: action.pageIndex,
-                        refreshing: action.refreshing,
-                        endInfo: action.endInfo,
-                        loading: action.loading
                     };
                 case 'walbuckValues':
                     return {
                         ...state,
                         walbuckValues: action.val,
-                        dataSource: action.dataSource,
-                        rData: action.rData,
-                        hasMore: action.hasMore,
-                        pageIndex: action.pageIndex,
-                        refreshing: action.refreshing,
-                        endInfo: action.endInfo,
-                        isLoading: action.isLoading
                     };
                 default:
                     return { ...state };
             }
         },
+        /**
+         * 初始化Picker选择器参数
+         * 
+         * @param {*} state 
+         * @param {*} action 
+         * @returns 
+         */
         formatPickerData(state: any, action: any) {
             switch (action.cmd) {
                 case 'resRating': return {
@@ -112,13 +96,30 @@ export default {
             return {
                 detailInfo: action.data.tradeDetail[0].detailInfo
             };
+        },
+        updateDataSource(state: any, action: any) {
+            switch (action.cmd) {
+                case 'componentDidMount': return { ...state, dataSource: listviewdata.cloneWithRows(action.rData), rData: action.rData, refreshing: false };
+                default: return { ...state };
+            }
         }
     },
     effects: {
+        /**
+         * Picker选择器选择事件
+         * 
+         * @param {*} action 
+         * @param {*} { call, put } 
+         */
         *onPickerChange(action: any, { call, put }: any) {
-            console.log(action);
-
+            yield put({ type: 'returnChangePicker', picker: action.picker, val: action.val });
         },
+        /**
+         * 客户端组件第一次渲染
+         * 
+         * @param {*} action 
+         * @param {*} { call, put } 
+         */
         *componentDidMount(action: any, { call, put }: any) {
             const resWalbuck = yield call([tradeService, tradeService.getWalbuckList]);
             yield put({ type: 'formatPickerData', cmd: 'resWalbuck', walbuckValues: resWalbuck.walbuckValues, walbuckList: resWalbuck.walbuckList });
@@ -128,6 +129,10 @@ export default {
 
             const resRating = yield call([tradeService, tradeService.getRatingList]);
             yield put({ type: 'formatPickerData', cmd: 'resRating', ratingValues: resRating.ratingValues, ratingList: resRating.ratingList });
+
+            // 第一次请求数据源
+            const resGenData = yield call([tradeService, tradeService.genData], true, 0, 1, [], action.rows);
+            yield put({ type: 'updateDataSource', cmd: 'componentDidMount', rData: resGenData.rData });
         },
         *getDetailData(action: any, { call, put }: any) {
             try {

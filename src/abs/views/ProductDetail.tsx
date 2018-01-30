@@ -20,7 +20,7 @@ export default class MyComponent extends React.Component<Props, {}> {
             <div>
                 <ABSNavBar 
                     title="导航"
-                    path="/product"
+                    path="/home"
                 /> 
         </div>
         );

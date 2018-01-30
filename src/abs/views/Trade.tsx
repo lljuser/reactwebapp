@@ -1,6 +1,7 @@
 import * as React from 'react';
-
-import { Picker } from 'antd-mobile';
+import * as ReactDOM from 'react-dom';
+import { ListView, PullToRefresh, Picker } from 'antd-mobile';
+import TradeItem from './TradeItem';
 import '../components/abs-table/index.less';
 import '../components/abs-picker/index.less';
 import { connect } from 'dva';
@@ -14,31 +15,33 @@ const CustomChildren = props => (
     </div>
 );
 
+var lv: ListView | null;
+
 /**
  * 自定义组件
  * 
  * @param {*} props 
  * @returns 
  */
-// function MyBody(props: any) {
-//     return (
-//         <div className="abs-table abs-table-product">
-//             <table cellSpacing={0} cellPadding={0}>
-//                 <thead>
-//                     <tr>
-//                         <th />
-//                         <th>证券简称</th>
-//                         <th className="text-right">金额(亿)</th>
-//                         <th className="text-right">资产类别</th>
-//                     </tr>
-//                 </thead>
-//                 <tbody>
-//                     {props.children}
-//                 </tbody>
-//             </table>
-//         </div >
-//     );
-// }
+function MyBody(props: any) {
+    return (
+        <div className="abs-table abs-table-product">
+            <table cellSpacing={0} cellPadding={0}>
+                <thead>
+                    <tr>
+                        <th />
+                        <th>证券简称</th>
+                        <th className="text-right">金额(亿)</th>
+                        <th className="text-right">资产类别</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {props.children}
+                </tbody>
+            </table>
+        </div >
+    );
+}
 
 /**
  * 默认返回Trade组件
@@ -62,7 +65,7 @@ class Trade extends React.Component<any, {}> {
         this.props.dispatch({
             type: 'trade/onPickerChange',
             picker: picker,
-            val: val,
+            val: val
         });
     }
 
@@ -89,10 +92,11 @@ class Trade extends React.Component<any, {}> {
     componentDidMount() {
         if (this.props.rData.length === 0) {
             // ListView组件高度
-            const hei = this.props.height;
+            const hei = this.props.height - (ReactDOM.findDOMNode(lv as ListView) as any).offsetTop;
             this.props.dispatch({
                 type: 'trade/componentDidMount',
                 height: hei,
+                rows: this.props.rows
             });
         }
     }
@@ -112,6 +116,9 @@ class Trade extends React.Component<any, {}> {
             type: 'trade/onEndReached',
             pageIndex: this.props.pageIndex + 1,
             rData: this.props.rData,
+            ratingValues: this.props.ratingValues,
+            couponValues: this.props.couponValues,
+            walbuckValues: this.props.walbuckValues,
         });
     }
 
@@ -131,11 +138,11 @@ class Trade extends React.Component<any, {}> {
     }
 
     render() {
-        // const row = (rowData, sectionID, rowID) => {
-        //     return (
-        //         <TradeItem TradeId={rowData.TradeId} SecurityId={rowData.SecurityId} TradeTypeId={rowData.TradeTypeId} SecurityName={rowData.SecurityName} TotalOffering={rowData.TotalOffering} AssetType={rowData.AssetType} />
-        //     );
-        // };
+        const row = (rowData, sectionID, rowID) => {
+            return (
+                <TradeItem TradeId={rowData.TradeId} SecurityId={rowData.SecurityId} TradeTypeId={rowData.TradeTypeId} SecurityName={rowData.SecurityName} TotalOffering={rowData.TotalOffering} AssetType={rowData.AssetType} />
+            );
+        };
         return (
             <div className="abs-table abs-table-product">
                 <table cellSpacing={0} cellPadding={0} >
@@ -159,7 +166,7 @@ class Trade extends React.Component<any, {}> {
                         </tr >
                     </tbody>
                 </table >
-                {/*<ListView
+                <ListView
                     key={this.props.useBodyScroll ? '0' : '1'}
                     ref={el => lv = el}
                     dataSource={this.props.dataSource}
@@ -185,7 +192,7 @@ class Trade extends React.Component<any, {}> {
                     />}
                     onEndReached={this.onEndReached}
                     pageSize={15}
-                />*/}
+                />
             </div >
         );
     }

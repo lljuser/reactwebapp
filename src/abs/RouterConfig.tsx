@@ -28,10 +28,10 @@ function RouterConfig({ history, app }: any) {
   return (
     <Router history={history}>
       <Switch>
-          <Route exact={true} path="/:tab(market|trade|product)" component={Home}/>  
+          <Route exact={true} path="/home" component={Home}/>  
           <Route exact={true} path="/productdetail/:id" component={ProductDetail}/>
           <Route exact={true} path="/tradedetail/:gradeId/:couponId" component={TradeDetail} />
-          <Redirect path="*" to="/market" />
+          <Redirect path="*" to="/home" />
       </Switch>
     </Router>
   ); 

@@ -74,7 +74,7 @@ class TradeDetailComponent extends React.Component<any, any> {
             <div>
                 <ABSNavBar
                     title="导航"
-                    path="/trade"
+                    path="/home"
                 />
                 <div className="appH5_content">
                     <div className="appH5_panel">
