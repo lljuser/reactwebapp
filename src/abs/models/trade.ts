@@ -14,7 +14,7 @@ export default {
         loading: true,
         height: document.documentElement.clientHeight,
         hasMore: true, // 是否有更多内容
-        useBodyScroll: true, // 是否使用html的body作为滚动容器
+        useBodyScroll: false, // 是否使用html的body作为滚动容器
         info: '', // 结尾信息
         refreshing: true,
         initialListSize: 15, // 组件刚挂载的时候渲染数据行数

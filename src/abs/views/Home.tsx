@@ -55,6 +55,7 @@ class Home extends React.Component<any, any> {
         <Tabs
           initialPage={this.state.index} 
           tabs={this.tabs}
+          useOnPan={false}
           // onChange={this.onChange}
           // onTabClick={(tab, index) => {}}
           tabBarUnderlineStyle={{ left: `${this.state.index * 33.333 + anchorTextWidth}%` }}
