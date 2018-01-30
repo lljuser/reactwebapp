@@ -47,20 +47,6 @@ class TradeDetailComponent extends React.Component<any, any> {
             noteId: noteId,
         });
         console.log(this.props);
-        // var url = 'http://10.1.1.35/motrade/gettradedata';
-        // console.log(this.props);
-        // var tradeId = 86;
-        // var noteId = 6714;
-        // if (this.state.match.params != null) {
-        //     var gradeId = this.state.match.params.gradeId;
-        //     if (gradeId != null) {
-        //         tradeId = gradeId;
-        //     }
-        //     var couponId = this.state.match.params.couponId;
-        //     if (couponId != null) {
-        //         noteId = couponId;
-        //     }
-        // }
 
         // url = url.concat(['', tradeId, noteId].join('/'));
         // Request.post(url, {}, (response) => {
@@ -136,18 +122,18 @@ class TradeDetailComponent extends React.Component<any, any> {
                                 </tr>
                                 {
                                     this.props.detailInfo.Description !== undefined && this.props.detailInfo.Description !== null && this.props.detailInfo.Description.length > 0 ?
-                                        <tr v-if="this.props.detailInfo.Description !== undefined &&this.props.detailInfo.Description !== null && this.props.detailInfo.Description.length > 0">
+                                        <tr>
                                             <td colSpan={4} className="txt_justify lineHight introductionCont">
                                                 <span className="appH5_white_space">产品简介</span>
                                                 <div className="appH5_margin_top_td_div" style={{ wordBreak: 'break-all', color: '#ccc' }}>
                                                     {this.props.detailInfo.Description}
                                                 </div>
                                             </td>
-                                        </tr> : ''
+                                        </tr> : null
                                 }
                                 {
                                     this.props.detailInfo.AbsProjectUsers !== undefined && this.props.detailInfo.AbsProjectUsers !== null && this.props.detailInfo.AbsProjectUsers.length > 0 ?
-                                        <tr v-if="this.props.detailInfo.AbsProjectUsers !== undefined &&this.props.detailInfo.AbsProjectUsers !== null && this.props.detailInfo.AbsProjectUsers.length > 0">
+                                        <tr>
                                             <td colSpan={4} className="padtop1">
                                                 <span className="fl mr5 iphone5">参与专家</span>
                                                 <div className="fl" style={{ maxWidth: '6.9rem' }}>
@@ -159,9 +145,10 @@ class TradeDetailComponent extends React.Component<any, any> {
                                                 </div>
                                                 <div className="clearfix" />
                                             </td>
-                                        </tr> : ''
+                                        </tr> : null
                                 }
-                                {(this.props.detailInfo.Contacts !== undefined && this.props.detailInfo.Contacts !== null && this.props.detailInfo.Contacts.length > 0) ?
+                                {
+                                    (this.props.detailInfo.Contacts !== undefined && this.props.detailInfo.Contacts !== null && this.props.detailInfo.Contacts.length > 0) ?
                                     (
                                         <td colSpan={4}>
                                             <div className="fl mr5">联&nbsp;系&nbsp;人&nbsp;</div>
@@ -172,7 +159,7 @@ class TradeDetailComponent extends React.Component<any, any> {
                                             </div>
                                             <div className="clearfix" />
                                         </td>
-                                    ) : ''
+                                    ) : null
                                 }
                                 <tr>
                                     <td colSpan={4} style={{ height: '2rem' }} />
