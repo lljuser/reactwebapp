@@ -14,6 +14,7 @@ class ABSChartComponent extends React.Component<Props> {
     render() {
       return (
           <div className="abs-chart" style={this.props.style}>
+
               <ReactHighcharts config={this.props.data}/>
           </div>
       );

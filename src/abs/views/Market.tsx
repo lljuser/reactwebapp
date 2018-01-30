@@ -18,6 +18,7 @@ class MarketComponent extends React.Component<any, any> {
     }
 
     render() { 
+        console.log(this.props);
         return (
                 <React.Fragment>
                 <ABSPanel title="市场概要" >
