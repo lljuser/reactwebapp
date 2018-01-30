@@ -8,8 +8,7 @@ interface SpinnerProps {
 
 export default class Spinner extends React.Component<SpinnerProps> {
   constructor(props: SpinnerProps) {
-    super(props);
-    console.log(props);
+    super(props); 
   }
 
   render () {
