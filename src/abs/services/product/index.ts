@@ -36,7 +36,7 @@ class ProductService {
         };
 
         let url = ProductApi.list;
-        url = url + '/' + CurrentStatusValue + '/' + DealTypeValue + '/' + ProductTypeValue;
+        url = url + '/' + ProductTypeValue + '/' + DealTypeValue + '/' + CurrentStatusValue;
         url = url + '/' + pageIndex + '/' + (pageIndex + 1) * rows + '/' + rows;
 
         let data: any = await Request.post(url, {});
