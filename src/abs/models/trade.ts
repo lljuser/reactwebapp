@@ -37,6 +37,7 @@ export default {
          * @returns 
          */
         returnChangePicker(state: any, action: any) {
+            console.log(action);
             switch (action.picker) {
                 case 'ratingValues': // 评级
                     return {
@@ -65,6 +66,7 @@ export default {
          * @returns 
          */
         formatPickerData(state: any, action: any) {
+
             switch (action.cmd) {
                 case 'resRating': return {
                     ...state,
@@ -87,7 +89,14 @@ export default {
         },
         updateDataSource(state: any, action: any) {
             switch (action.cmd) {
-                case 'componentDidMount': return { ...state, dataSource: listviewdata.cloneWithRows(action.rData), rData: action.rData, refreshing: false };
+                case 'componentDidMount': return {
+                    ...state, dataSource: listviewdata.cloneWithRows(action.rData), rData: action.rData, refreshing: false, info: action.info,
+                    hasMore: action.hasMore
+                };
+                case 'onPickerChange': return {
+                    ...state, dataSource: listviewdata.cloneWithRows(action.rData), rData: action.rData, refreshing: false, info: action.info,
+                    hasMore: action.hasMore
+                };
                 default: return { ...state };
             }
         }
@@ -100,7 +109,24 @@ export default {
          * @param {*} { call, put } 
          */
         *onPickerChange(action: any, { call, put }: any) {
+            let ratingValue = action.ratingValues;
+            let couponValue = action.couponValues;
+            let walbuckValue = action.walbuckValues;
+
+            if (action.picker === 'ratingValues') {
+                ratingValue = action.val;
+            }
+            if (action.picker === 'couponValues') {
+                couponValue = action.val;
+            }
+            if (action.picker === 'walbuckValues') {
+                walbuckValue = action.val;
+            }
+            const resGenData = yield call([tradeService, tradeService.genData], true, 0, 1, [], action.rows,
+                '', ratingValue[0], couponValue[0], walbuckValue[0]
+            );
             yield put({ type: 'returnChangePicker', picker: action.picker, val: action.val });
+            yield put({ type: 'updateDataSource', cmd: 'onPickerChange', rData: resGenData.rData, info: resGenData.info, hasMore: resGenData.hasMore });
         },
         /**
          * 客户端组件第一次渲染
@@ -120,7 +146,7 @@ export default {
 
             // 第一次请求数据源
             const resGenData = yield call([tradeService, tradeService.genData], true, 0, 1, [], action.rows);
-            yield put({ type: 'updateDataSource', cmd: 'componentDidMount', rData: resGenData.rData });
+            yield put({ type: 'updateDataSource', cmd: 'componentDidMount', rData: resGenData.rData, info: resGenData.info, hasMore: resGenData.hasMore });
         },
     }
 };

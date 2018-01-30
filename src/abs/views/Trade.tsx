@@ -65,7 +65,11 @@ class Trade extends React.Component<any, {}> {
         this.props.dispatch({
             type: 'trade/onPickerChange',
             picker: picker,
-            val: val
+            val: val,
+            rows: this.props.rows,
+            ratingValues: this.props.ratingValues,
+            couponValues: this.props.couponValues,
+            walbuckValues: this.props.walbuckValues
         });
     }
 
@@ -172,7 +176,7 @@ class Trade extends React.Component<any, {}> {
                     dataSource={this.props.dataSource}
                     initialListSize={this.props.initialListSize}
                     renderFooter={() => (<div style={{ textAlign: 'center' }}>
-                        {this.props.endInfo}
+                        {this.props.info}
                     </div>)}
                     renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey} />}
                     renderRow={row}
