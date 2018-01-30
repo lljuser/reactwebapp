@@ -24,7 +24,7 @@ class MarketComponent extends React.Component<any, any> {
                     <MarketTable marketSummary={this.props.marketSummary} />   
                 </ABSPanel> 
                 <ABSPanel title="发行统计">
-                    <ABSChartMarket data={this.props.chart} />
+                    <ABSChartMarket data={this.props.chart} style={{height: '400px'}} />
                 </ABSPanel>
             </React.Fragment>
         );

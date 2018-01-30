@@ -10,9 +10,9 @@ import './public/theme.less';
 // 1. Initialize
 const appDva = dva({
   history: defaultHistory, 
-  // onAction: [
-  //   createLogger(), // logger publish remove 
-  // ]
+  onAction: [
+    // createLogger(), // logger publish remove 
+  ]
 });
 appDva.use(createLoading());
 // appDva.use(createLogger());

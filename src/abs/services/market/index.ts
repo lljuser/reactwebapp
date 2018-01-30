@@ -108,6 +108,10 @@ class MarketService {
     return data;
   }
 
+  async getMarketData() {
+    return Promise.all([this.getMarketSummary(), this.getMarketChartData()]);
+  }
+
   /**
    * 获取市场列表数据
    * 

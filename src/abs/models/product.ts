@@ -167,7 +167,7 @@ export default {
                 productTypeValue,
                 false
             );
-            console.log(res);
+
             yield put({ 
                 type: 'returnChangePicker', 
                 picker: action.picker, 
@@ -182,7 +182,7 @@ export default {
             });
         },
         *getList(action: any , { call, put }: any) {
-            console.log(action);
+
             yield put({type: 'changeListState', info: '正在加载...' , loading: true, refreshing: false});
             const res = yield call([productService, productService.getData],
                 action.pageIndex,
@@ -192,7 +192,7 @@ export default {
                 action.dealTypeValue,
                 action.productTypeValue,
             );
-            console.log(res.info);
+
             yield put({ 
                 type: 'returnList', 
                 dataSource: listviewdata.cloneWithRows(res.rData),
@@ -205,7 +205,6 @@ export default {
             });
         },
         *RefreshListView( action: any , { call, put }: any) {
-            yield put({type: 'changeListState', info: '正在加载...' , loading: true, refreshing: true});
 
             const res = yield call([productService, productService.getData],
                 0,
@@ -226,7 +225,6 @@ export default {
                 loading: false
             });
         },
-
       }
   }; 
   

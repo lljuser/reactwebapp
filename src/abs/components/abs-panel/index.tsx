@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { WingBlank, WhiteSpace } from 'antd-mobile';
-import './index.less'; 
+// import { WingBlank } from 'antd-mobile';
+import './index.less';
+import 'amfe-flexible';
 
 interface Props {
     title?: string;
@@ -24,21 +25,19 @@ export default class ABSPanelComponent extends React.Component<Props, {}> {
       if (this.props.title) {
         return (
             <div className="abs-panel" style={this.panelStyles}>
-                <WhiteSpace size="lg"/>
-                <WingBlank size="sm">
+                {/* <WingBlank size="sm"> */}
                     <div className="abs-panel-title">{this.props.title}</div>
                     <div className="abs-panel-content">{this.props.children}</div>
-                </WingBlank>
+                {/* </WingBlank> */}
             </div>
         );
       }
 
       return (
         <div className="abs-panel" style={this.panelStyles}>
-            <WhiteSpace size="lg"/>
-            <WingBlank size="sm">
+            {/* <WingBlank size="sm"> */}
                 <div className="abs-panel-content">{this.props.children}</div>
-            </WingBlank>
+            {/* </WingBlank> */}
         </div>
     );
     }
