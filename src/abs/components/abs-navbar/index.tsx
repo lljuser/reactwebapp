@@ -10,8 +10,15 @@ interface Props {
 export class ABSNavBar extends React.Component<Props, any> {
     render() {
         return (
-            <NavBar
-                icon={<Link to="/{this.props.path}"><Icon type="left" /></Link>} 
+            <NavBar 
+                icon={<Link 
+                    to={{
+                        pathname: this.props.path,
+                        state: {type: 'product'}
+                    }}
+                >
+                    <Icon type="left" />
+                </Link>} 
                 rightContent={[ 
                     <Icon key="1" type="ellipsis" />,
                 ]}
