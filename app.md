@@ -1,6 +1,12 @@
-es6: promise|array|set|map|...|let/const|import/export|object
+<h1>es6</h1>
 > http://es6.ruanyifeng.com/
+* let/const
 * promise
+* array
+* set/map
+* object ->Object.is|Object.assign|Object.keys|Object.values|for in|getOwerPropertys
+* import/export
+
 
 reactjs: React.Component/ComponentLifecycle|ReactDom|Jsx|Props/State|Event|Styling and CSS
 * http://www.css88.com/react/docs/jsx-in-depth.html
@@ -18,9 +24,8 @@ Code Rule/Format: eslint|tslint|ts
 
 Build Tools: cnabs-cli|webpack|webpack-devserver
 
-Saga: call|put|fork|take
-
-es6: Set|Map|Object.is|Object.assign|Object.keys|Object.values|for in|getOwerPropertys
+Saga: call|put|fork|take 
+ 
 
 reactwebapp:
 1. require
