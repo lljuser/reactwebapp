@@ -127,13 +127,13 @@ class Product extends React.Component<any, {}> {
       <div className="abs-picker">
         <div style={{height: '30px'}}>
           <Picker  
-            title="选择市场" 
+            title="选择状态" 
             data={this.props.currentStatus} 
             cascade={false}
             value={this.props.currentStatusValue}
             onOk={v => this.PickerChange('CurrentStatusValue', v)}
           >
-          <PickerChildren>选择市场</PickerChildren>
+          <PickerChildren>选择状态</PickerChildren>
           </Picker>
           <Picker  
             title="选择产品" 
@@ -145,13 +145,13 @@ class Product extends React.Component<any, {}> {
           <PickerChildren>选择产品</PickerChildren>
           </Picker>
           <Picker 
-            title="选择状态" 
+            title="选择市场" 
             data={this.props.productType} 
             cascade={false}
             value={this.props.productTypeValue} 
             onOk={v => this.PickerChange('ProductTypeValue', v)}
           >
-            <PickerChildren>选择状态</PickerChildren>
+            <PickerChildren>选择市场</PickerChildren>
           </Picker>
         </div>
         <ListView
@@ -165,7 +165,7 @@ class Product extends React.Component<any, {}> {
             renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey}  CurrentStatus={this.props.currentStatus} CurrentStatusValue={this.props.currentStatusValue} DealType={this.props.dealType} DealTypeValue={this.props.dealTypeValue} ProductType={this.props.productType} ProductTypeValue={this.props.productTypeValue} />}
             renderRow={row}
             useBodyScroll={this.props.useBodyScroll}
-            style={this.props.useBodyScroll ? {} : {
+            style={this.props.useBodyScroll ? { minHeight: '500px' } : {
               height: this.props.height,
             }}
             pullToRefresh={<PullToRefresh 
