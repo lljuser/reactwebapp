@@ -10,11 +10,11 @@ export default {
     namespace: 'trade',
     state: {
         dataSource: listviewdata, // ListView组件数据源
-        isLoading: true,
+        loading: true,
         height: document.documentElement.clientHeight,
         hasMore: true, // 是否有更多内容
         useBodyScroll: true, // 是否使用html的body作为滚动容器
-        endInfo: '222', // 结尾信息
+        info: '', // 结尾信息
         refreshing: true,
         initialListSize: 15, // 组件刚挂载的时候渲染数据行数
         rows: 15, // 数据查询条数
@@ -81,10 +81,22 @@ export default {
                 default:
                     return { ...state };
             }
+        },
+        changeListState(state: any, action: any) {
+            return {
+                ...state,
+                info: action.info,
+                loading: action.loading,
+                refreshing: action.refreshing
+            };
         }
     },
     effects: {
         *onPickerChange(action: any, { call, put }: any) {
+            console.log(action);
+            yield call();
+        },
+        *componentDidMount(action: any, { call, put }: any) {
             console.log(action);
         },
     }

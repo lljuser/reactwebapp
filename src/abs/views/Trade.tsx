@@ -5,8 +5,6 @@ import '../components/abs-table/index.less';
 import '../components/abs-picker/index.less';
 import { connect } from 'dva';
 
-// var lv: ListView | null;
-
 // 如果不是使用 List.Item 作为 children
 const CustomChildren = props => (
     <div onClick={props.onClick}>
@@ -68,10 +66,6 @@ class Trade extends React.Component<any, {}> {
             type: 'trade/onPickerChange',
             picker: picker,
             val: val,
-            ratingValues: this.props.ratingValues, // 评级value集合
-            couponValues: this.props.couponValues,   // 利率value集合
-            walbuckValues: this.props.walbuckValues, // 期限value集合
-            rows: this.props.rows,
         });
     }
 
@@ -96,14 +90,14 @@ class Trade extends React.Component<any, {}> {
      * @memberof Trade
      */
     componentDidMount() {
-        console.log(this.props);
-        // // ListView组件高度
-        // const hei = this.props.height - (ReactDOM.findDOMNode(lv as ListView) as any).offsetTop;
-        // this.props.dispatch({
-        //     type: 'trade/componentDidMount',
-        //     rows: this.props.rows,
-        //     height: hei,
-        // });
+        if (this.props.rData.length === 0) {
+            // ListView组件高度
+            const hei = this.props.height;
+            this.props.dispatch({
+                type: 'trade/componentDidMount',
+                height: hei,
+            });
+        }
     }
 
     /**
@@ -119,7 +113,6 @@ class Trade extends React.Component<any, {}> {
 
         this.props.dispatch({
             type: 'trade/onEndReached',
-            rows: this.props.rows,
             pageIndex: this.props.pageIndex + 1,
             rData: this.props.rData,
             ratingValues: this.props.ratingValues,
