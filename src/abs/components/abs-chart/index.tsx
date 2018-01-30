@@ -1,7 +1,6 @@
 import * as React from 'react';
 import ReactHighcharts from 'react-highcharts';
-import './index.less';
-import 'amfe-flexible';
+import './index.less'; 
 import * as chartTheme from '../../../public/js/chartTheme';
 
 ReactHighcharts.Highcharts.setOptions(chartTheme);

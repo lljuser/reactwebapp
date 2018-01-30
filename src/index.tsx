@@ -3,6 +3,7 @@ import createLoading from 'dva-loading';
 import defaultHistory from './common/http/request/listener';
 import registerServiceWorker from './registerServiceWorker'; 
 import routerConfig from './abs/RouterConfig';  
+import 'amfe-flexible';
 import './public/theme.less';
 // import { createLogger } from 'redux-logger';
 

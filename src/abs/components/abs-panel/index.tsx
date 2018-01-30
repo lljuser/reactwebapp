@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { WingBlank, WhiteSpace } from 'antd-mobile';
-import './index.less';
-import 'amfe-flexible';
+import './index.less'; 
 
 interface Props {
     title: string;
