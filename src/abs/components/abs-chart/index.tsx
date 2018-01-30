@@ -12,14 +12,16 @@ interface Props {
 
 class ABSChartComponent extends React.Component<Props> { 
     render() {
+      if (this.props.data == null || this.props.data === undefined) {
+        return null;
+      }
+
       return (
           <div className="abs-chart" style={this.props.style}>
-
               <ReactHighcharts config={this.props.data}/>
           </div>
       );
     }
-
 } 
 
 export default ABSChartComponent;

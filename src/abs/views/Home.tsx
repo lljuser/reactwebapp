@@ -92,6 +92,7 @@ class Home extends React.Component<any, any> {
           initialPage={this.state.index} 
           tabs={this.tabs} 
           renderTabBar={this.renderTabBar}
+          useOnPan={false}
           // tabBarUnderlineStyle={{ left: `${this.state.index * 33.333 + this.anchorTextWidth}%` }}
         >
           {/* <Route path="/market" component={Market} />

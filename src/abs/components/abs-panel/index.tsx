@@ -23,9 +23,10 @@ export default class ABSPanelComponent extends React.Component<Props, {}> {
     } 
 
     render() {
+      const className = 'abs-panel ' + (this.props.className || '');
       if (this.props.title) {
         return (
-            <div className={'abs-panel ' + this.props.className || ''} style={this.panelStyles}>
+            <div className={className} style={this.panelStyles}>
                 {/* <WingBlank size="sm"> */}
                     <div className="abs-panel-title">{this.props.title}</div>
                     <div className="abs-panel-content">{this.props.children}</div>
@@ -35,7 +36,7 @@ export default class ABSPanelComponent extends React.Component<Props, {}> {
       }
 
       return (
-        <div className={'abs-panel ' + this.props.className || ''} style={this.panelStyles}>
+        <div className={className} style={this.panelStyles}>
             {/* <WingBlank size="sm"> */}
                 <div className="abs-panel-content">{this.props.children}</div>
             {/* </WingBlank> */}

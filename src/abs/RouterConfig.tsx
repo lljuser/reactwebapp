@@ -12,7 +12,6 @@ function RouterConfig({ history, app }: any) {
       import('./models/product'), 
       import('./models/trade'), 
       import('./models/productdetail'), 
-
     ],
     component: () => import(/*webpackChunkName:'home'*/'./views/Home'),
   });
