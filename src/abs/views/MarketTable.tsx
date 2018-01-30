@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'dva';
-import '../../components/abs-tabs/index.less'; 
+import '../components/abs-tabs/index.less'; 
 
 class ABSTableMarketComponent extends React.Component<any> {
 
@@ -31,7 +31,7 @@ class ABSTableMarketComponent extends React.Component<any> {
                 <tr key={item.ProductTypeId}>
                   <td><a href="javascript:"> {item.SimpleProductType}</a></td>
                   <td>{item.DealCountCurrentYear}</td>
-                  <td className="highLight">{item.BalanceCurrentYear}</td>
+                  <td className="highLight-red">{item.BalanceCurrentYear}</td>
                   <td>{item.BalanceCumulative}</td>
                 </tr>
               )
