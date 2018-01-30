@@ -81,9 +81,9 @@ reactwebapp:
 
 3. yarn run eject   
   >
-    * //add custom config after checkRequiredFiles 
-    + /scripts/build.js
-    + /scripts/start.js
+    + //add custom config after checkRequiredFiles 
+      /scripts/build.js
+      /scripts/start.js
 
     - // Warn and crash if required files are missing
     - if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
