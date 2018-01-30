@@ -45,7 +45,6 @@ class Product extends React.Component<any, {}> {
 
   constructor(props: any) {
     super(props);
-   
   }
 
   componentDidUpdate() {
@@ -56,16 +55,15 @@ class Product extends React.Component<any, {}> {
     }
   } 
   
-  componentDidMount() { 
+  componentDidMount() {
     if (this.props.rData.length === 0) {
-      const hei = document.documentElement.clientHeight - (ReactDOM.findDOMNode(lv as ListView) as any).offsetTop - 50;
+      const hei = document.documentElement.clientHeight - (ReactDOM.findDOMNode(lv as ListView) as any).offsetTop;
       this.props.dispatch({ 
         type: 'product/firstload', 
         rows: this.props.rows,
         height: hei,
       });
     }
-  
   }
 
   onRefresh = () => {
@@ -126,16 +124,16 @@ class Product extends React.Component<any, {}> {
     };
    
     return (
-      <ABSPanel>
+      <ABSPanel className={'pull-refresh-wrapper'}>
       <div className="abs-picker">
-          <Picker  
-            title="选择状态" 
-            data={this.props.currentStatus} 
+          <Picker 
+            title="选择市场" 
+            data={this.props.productType} 
             cascade={false}
-            value={this.props.currentStatusValue}
-            onOk={v => this.PickerChange('CurrentStatusValue', v)}
+            value={this.props.productTypeValue} 
+            onOk={v => this.PickerChange('ProductTypeValue', v)}
           >
-          <PickerChildren first={true}>选择状态</PickerChildren>
+            <PickerChildren first={true}>选择市场</PickerChildren>
           </Picker>
           <Picker  
             title="选择产品" 
@@ -144,16 +142,16 @@ class Product extends React.Component<any, {}> {
             value={this.props.dealTypeValue}
             onOk={v => this.PickerChange('DealTypeValue', v)}
           >
-          <PickerChildren>选择产品</PickerChildren>
+            <PickerChildren>选择产品</PickerChildren>
           </Picker>
-          <Picker 
-            title="选择市场" 
-            data={this.props.productType} 
+          <Picker  
+            title="选择状态" 
+            data={this.props.currentStatus} 
             cascade={false}
-            value={this.props.productTypeValue} 
-            onOk={v => this.PickerChange('ProductTypeValue', v)}
+            value={this.props.currentStatusValue}
+            onOk={v => this.PickerChange('CurrentStatusValue', v)}
           >
-            <PickerChildren>选择市场</PickerChildren>
+            <PickerChildren>选择状态</PickerChildren>
           </Picker>
         </div>
         <div className="test">
@@ -168,9 +166,9 @@ class Product extends React.Component<any, {}> {
             renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey}  CurrentStatus={this.props.currentStatus} CurrentStatusValue={this.props.currentStatusValue} DealType={this.props.dealType} DealTypeValue={this.props.dealTypeValue} ProductType={this.props.productType} ProductTypeValue={this.props.productTypeValue} />}
             renderRow={row}
             useBodyScroll={this.props.useBodyScroll}
-            style={this.props.useBodyScroll ? { minHeight: '500px' } : {
-              height: this.props.height,
-            }}
+            // style={this.props.useBodyScroll ? { minHeight: '500px' } : {
+            //   height: 'auto',
+            // }}
             pullToRefresh={<PullToRefresh 
               getScrollContainer={() => lv}
               direction={'down'}
