@@ -53,6 +53,8 @@ function MyBody(props: any) {
 class Trade extends React.Component<any, {}> {
     constructor(props: any) {
         super(props);
+        this.onRefresh = this.onRefresh.bind(this);
+        this.onEndReached = this.onEndReached.bind(this);
     }
 
     /**
@@ -131,7 +133,7 @@ class Trade extends React.Component<any, {}> {
      * 
      * @memberof Trade
      */
-    onRefresh = (refresh: boolean = true) => {
+    onRefresh() {
         this.props.dispatch({
             type: 'trade/onRefresh',
             rows: this.props.rows,

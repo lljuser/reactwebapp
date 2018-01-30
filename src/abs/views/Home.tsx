@@ -14,12 +14,14 @@ class Home extends React.Component<any, any> {
     { title: '产品', name: 'product' },
     { title: '交易', name: 'trade' },
   ];
+  private anchorTextWidth = 12; 
 
   constructor(props: any) {
     super(props); 
     this.state = {
        index: this.getIndex()
     };   
+    this.renderTabBar = this.renderTabBar.bind(this);
   }
 
   getIndex(props?: any): number {  
@@ -47,18 +49,50 @@ class Home extends React.Component<any, any> {
     }, 0);
   }
 
-  render() { 
+  renderTabBar(props: any) {
+    console.log(props);
+    return ( 
+        <Tabs.DefaultTabBar 
+          {...props} 
+          renderUnderline={(ulProps) => {
+            const { style, ...otherProps } = ulProps;
+            const ulStyle = {
+              ...style,
+              border: 'none',
+            };
+            return (
+              <div 
+                style={ulStyle} 
+                {...otherProps}
+              >
+                <div 
+                  style={{
+                    width: 50,
+                    height: 2,
+                    backgroundColor: '#ffc446',
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
+                  }}
+                /> 
+              </div>
+            );
+          }}
+        
+        /> 
+     );
+  }
+
+  render() {  
+    console.log('------------------------');
     console.log(this.state);
-    const anchorTextWidth = 12; 
+    console.log(this.anchorTextWidth);
     return (
       <div className="abs-tabs">
         <Tabs
           initialPage={this.state.index} 
-          tabs={this.tabs}
-          useOnPan={false}
-          // onChange={this.onChange}
-          // onTabClick={(tab, index) => {}}
-          tabBarUnderlineStyle={{ left: `${this.state.index * 33.333 + anchorTextWidth}%` }}
+          tabs={this.tabs} 
+          renderTabBar={this.renderTabBar}
+          // tabBarUnderlineStyle={{ left: `${this.state.index * 33.333 + this.anchorTextWidth}%` }}
         >
           {/* <Route path="/market" component={Market} />
           <Route path="/product" component={Product} />
