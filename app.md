@@ -1,4 +1,5 @@
-<h1>Technical RoadMap</h1>
+Technical RoadMap
+=================== 
 > 
 - Jsx(ReactJs)
 - TypeScript(Jsx)
@@ -8,23 +9,28 @@
 - React-Saga/Thunk
 - css|less|styling
     
-<h1>Develop Tools</h1> 
+Develop Tools
+=================== 
 >
 - vscode
 - react-devtools(chrome extenstion)
 - redux-devtools(chrome extenstion)
 - Chrome/Safari
 
-<h1>Code Rule/Format</h1>
+Code Rule/Format
+=================== 
 > eslint|tslint|ts
 
-<h1>Build Tools</h1>
+Build Tools
+=================== 
 > cnabs-cli|webpack|webpack-devserver
 
-<h1>Saga</h1>
+Saga
+=================== 
 > call|put|fork|take 
 
-<h1>es6 point</h1>
+es6 point
+=================== 
 > http://es6.ruanyifeng.com/
 * let/const
 * promise
@@ -34,7 +40,8 @@
 * import/export
 
 
-<h1>reactjs point</h1>
+reactjs point
+=================== 
 > http://www.css88.com/react/docs/jsx-in-depth.html
 >
 > https://reactjs.org/docs/hello-world.html
@@ -46,7 +53,8 @@
 - Event
 - Styling and CSS
 
-<h1>typescript</h1>
+typescript
+=================== 
 >  https://www.tslang.cn/
 - Interface
 - Class
@@ -55,7 +63,8 @@
 - Function
 - Jsx 
 
-<h1>yarn</h1>
+yarn
+=================== 
 > <h3>npm instead of by yarn</h3>
 - yarn install
 - yarn start
