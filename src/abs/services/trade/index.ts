@@ -36,6 +36,12 @@ class TradeService {
         return returnWalbuckList;
     }
 
+    /**
+     * 调用获取利率集合接口
+     * 
+     * @returns 
+     * @memberof TradeService
+     */
     async getCouponList() {
         let returnCouponList: any = {
             couponList: [],
@@ -79,14 +85,13 @@ class TradeService {
      * @param {number} pageIndex 页数
      * @param {any[]} rData 数据源
      * @param {number} rows 每页行数
-     * @param {string} [cmd=''] 如果传入"onRefresh"，则将rData置空
      * @param {number} [ratingValue=0] 评级
      * @param {number} [couponValue=0] 利率
      * @param {number} [walbuckValue=0] 期限
      * @returns 
      * @memberof TradeService
      */
-    async genData(refresh: boolean, direction: number, pageIndex: number, rData: any[], rows: number, cmd: string = '', ratingValue: number = 0, couponValue: number = 0, walbuckValue: number = 0) {
+    async genData(refresh: boolean, direction: number, pageIndex: number, rData: any[], rows: number, ratingValue: number = 0, couponValue: number = 0, walbuckValue: number = 0) {
         let returnGenData: any = {
             rData: [],
             info: '',
@@ -103,15 +108,8 @@ class TradeService {
 
         let res = await Request.post(url, {});
         if (res.length === 0) {
-            if (cmd === 'onRefresh') {
-                rData = [];
-                returnGenData.rData = rData;
-                returnGenData.info = '没有更多了';
-                returnGenData.hasMore = false;
-            } else {
-                returnGenData.info = '没有更多了';
-                returnGenData.hasMore = false;
-            }
+            returnGenData.info = '没有更多了';
+            returnGenData.hasMore = false;
         } else {
             rData = [...rData, ...res];
             returnGenData.rData = rData;
