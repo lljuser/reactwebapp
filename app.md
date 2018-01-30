@@ -79,8 +79,9 @@ reactwebapp:
     
 
 
-3. yarn run eject   //add custom config after checkRequiredFiles
-    
+3. yarn run eject   
+  >
+    * //add custom config after checkRequiredFiles 
     + /scripts/build.js
     + /scripts/start.js
 
