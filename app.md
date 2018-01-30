@@ -22,7 +22,9 @@ Structure [Mvc Area]
 - ----|models               # state model action|redurce|effect
 - ----|services             # api request for data services
 - ----|views                # ui views
-- --|RouterConfig           # router config 
+- ----|RouterConfig           # router config 
+- --|expert
+- --|csf
 
 Technical RoadMap
 =================== 
