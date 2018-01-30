@@ -25,7 +25,7 @@ export default {
           call(service.getMarketSummary),
           call(service.getMarketChartData)
         ];
-
+        console.log(marketSummary);
         yield put({
           type: 'load',
           data: {

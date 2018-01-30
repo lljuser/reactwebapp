@@ -20,12 +20,18 @@ function RouterConfig({ history, app }: any) {
     component: () => import('./views/ProductDetail'),
   });
 
+  const TradeDetail = dynamic({
+    app,
+    component: () => import('./views/TradeDetail')
+  });
+
   return (
     <Router history={history}>
       <Switch>
-          <Route exact={true} path="/:tab(market|trade|product)" component={Home}/>  
+          <Route exact={true} path="/home" component={Home}/>  
           <Route exact={true} path="/productdetail/:id" component={ProductDetail}/>
-          <Redirect path="*" to="/market" />
+          <Route exact={true} path="/tradedetail/:gradeId/:couponId" component={TradeDetail} />
+          <Redirect path="*" to="/home" />
       </Switch>
     </Router>
   ); 

@@ -29,7 +29,7 @@ export default {
         rData: []
         },
       reducers: {
-        returnChangePicker(state: any, action: any) {
+    returnChangePicker(state: any, action: any) {
             
             switch ( action.picker ) {
                 case 'CurrentStatusValue':

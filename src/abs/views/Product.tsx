@@ -122,7 +122,7 @@ class Product extends React.Component<any, {}> {
         </tr >
       );
     };
-    console.log(this.props);
+   
     return (
       <div className="abs-picker">
         <div style={{height: '30px'}}>

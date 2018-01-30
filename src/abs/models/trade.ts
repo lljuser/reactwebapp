@@ -26,7 +26,8 @@ export default {
         couponValues: [], // 利率value集合
         couponList: [], // 利率集合
         walbuckValues: [], // 期限value集合
-        walbuckList: [] // 期限集合
+        walbuckList: [], // 期限集合
+        detailInfo: {}
     },
     reducers: {
         /**
@@ -86,6 +87,17 @@ export default {
                 default:
                     return { ...state };
             }
+        },
+        getDetail(state: any, action: any) {
+            // const tradeDetail = action.data;
+            console.log(action.data.tradeDetail[0].detailInfo);
+            // if (state.loading) {
+            //   return state;
+            // }
+
+            return {
+                detailInfo: action.data.tradeDetail[0].detailInfo
+            };
         },
         updateDataSource(state: any, action: any) {
             switch (action.cmd) {
@@ -148,5 +160,24 @@ export default {
             const resGenData = yield call([tradeService, tradeService.genData], true, 0, 1, [], action.rows);
             yield put({ type: 'updateDataSource', cmd: 'componentDidMount', rData: resGenData.rData, info: resGenData.info, hasMore: resGenData.hasMore });
         },
+        *getDetailData(action: any, { call, put }: any) {
+            try {
+                const tradeDetail = yield [
+                    call(tradeService.getTradeDetail,
+                        action.tradeId,
+                        action.noteId)
+                ];
+
+                yield put({
+                    type: 'getDetail',
+                    data: {
+                        tradeDetail,
+                    }
+                });
+            } catch (e) {
+                alert(e.message);
+                return;
+            }
+        }
     }
 };
