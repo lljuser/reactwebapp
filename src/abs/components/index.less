@@ -3,8 +3,22 @@
  * @version 1.0
  * @date 2018/1/30
  * @description 移动端公用页面样式
- */
-@import './theme-abs.less';
+ */ 
+
+// ABS UI 定制主题变量，提供给各个组件使用
+@import '../../../public/theme.less';
+
+// 标准前缀名
+@abs-prefix: abs;
+@ant-prefix: am;
+
+// ABS-link 中的主色调
+@abs-brand-black: #000000;
+@abs-brand-white: #ffffff;
+@abs-brand-orange: #ff610b;
+@abs-brand-gray: #2B2B2B;
+@abs-brand-gray-table: #444444;
+@abs-brand-yellow: @brand-primary;
 
 *,
 *:before,
