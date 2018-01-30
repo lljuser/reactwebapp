@@ -1,9 +1,14 @@
 <h1>Technical RoadMap</h1>
 > 
-- Jsx(ReactJs)->TypeScript(Jsx)->ES6->React-Router->React-Redux->React-Saga/Thunk
-- css|less|styling
+- <h3>Jsx(ReactJs)->TypeScript(Jsx)->ES6->React-Router->React-Redux->React-Saga/Thunk</h3>
+- <h3>css|less|styling</h3>
     
-Develop Tools: vscode|react-devtools(chrome extenstion)|redux-devtools(chrome extenstion)|Chrome/Safari
+<h1>Develop Tools</h1> 
+>
+- vscode
+- react-devtools(chrome extenstion)
+- redux-devtools(chrome extenstion)
+- Chrome/Safari
 
 Code Rule/Format: eslint|tslint|ts
 
