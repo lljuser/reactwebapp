@@ -5,41 +5,6 @@
  * @description 移动端公用页面样式
  */ 
 
-// ABS UI 定制主题变量，提供给各个组件使用
-@import '../../../public/theme.less';
+// ABS UI 定制主题变量，提供给各个组件使用 only for abs module
+@import '../../public/theme.less';
 
-// 标准前缀名
-@abs-prefix: abs;
-@ant-prefix: am;
-
-// ABS-link 中的主色调
-@abs-brand-black: #000000;
-@abs-brand-white: #ffffff;
-@abs-brand-orange: #ff610b;
-@abs-brand-gray: #2B2B2B;
-@abs-brand-gray-table: #444444;
-@abs-brand-yellow: @brand-primary;
-
-*,
-*:before,
-*:after {
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
-    SimSun, sans-serif;
-}
-
-body {
-  background-color: @fill-body;
-  font-size: @font-size-base;
-}
-
-*:focus {
-  outline: none;
-}
-
-a {
-  background: transparent;
-  text-decoration: none;
-  outline: none;
-}
