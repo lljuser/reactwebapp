@@ -1,3 +1,16 @@
+<h1>Technical RoadMap</h1>
+> 
+* Jsx(ReactJs)->TypeScript(Jsx)->ES6->React-Router->React-Redux->React-Saga/Thunk
+* css|less|styling
+    
+Develop Tools: vscode|react-devtools(chrome extenstion)|redux-devtools(chrome extenstion)|Chrome/Safari
+
+Code Rule/Format: eslint|tslint|ts
+
+Build Tools: cnabs-cli|webpack|webpack-devserver
+
+Saga: call|put|fork|take 
+
 <h1>es6</h1>
 > http://es6.ruanyifeng.com/
 * let/const
@@ -15,16 +28,7 @@ reactjs: React.Component/ComponentLifecycle|ReactDom|Jsx|Props/State|Event|Styli
 typescript: Interface|Class|Generic|Property|Function|Jsx
     books: https://www.tslang.cn/
 
-Technical RoadMap: Jsx(ReactJs)->TypeScript(Jsx)->ES6->React-Router->React-Redux->React-Saga/Thunk
-    css|less|styling
-    
-Develop Tools: vscode|react-devtools(chrome extenstion)|redux-devtools(chrome extenstion)|Chrome/Safari
 
-Code Rule/Format: eslint|tslint|ts
-
-Build Tools: cnabs-cli|webpack|webpack-devserver
-
-Saga: call|put|fork|take 
  
 
 reactwebapp:
