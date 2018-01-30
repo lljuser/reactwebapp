@@ -80,19 +80,19 @@ reactwebapp:
 
 
 3. yarn run eject   //add custom config after checkRequiredFiles
-    <blockquote>
-        * /scripts/build.js
-        * /scripts/start.js
+    <P>
+        /scripts/build.js
+        /scripts/start.js
 
-        * // Warn and crash if required files are missing
-        * if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
-        *    process.exit(1);
-        * }
+        - // Warn and crash if required files are missing
+        - if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
+        -    process.exit(1);
+        - }
 
-        * // design by lj_liu for project with creact-react-app cli extension  
-        * const appConfig = require('../config/webpack.config.app');
-        * appConfig.initWebpackSetting(config); 
-    </blockquote>
+        - // design by lj_liu for project with creact-react-app cli extension  
+        - const appConfig = require('../config/webpack.config.app');
+        - appConfig.initWebpackSetting(config); 
+    </P>
     
   
     
