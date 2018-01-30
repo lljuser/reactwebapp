@@ -1,3 +1,9 @@
+Instructions
+=================== 
+- git clone
+- yarn install
+- yarn start
+
 Technical RoadMap
 =================== 
 > 
