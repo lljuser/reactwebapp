@@ -36,7 +36,8 @@
 
 <h1>reactjs point</h1>
 > http://www.css88.com/react/docs/jsx-in-depth.html
-* https://reactjs.org/docs/hello-world.html
+>
+> https://reactjs.org/docs/hello-world.html
 - React.Component
 - ComponentLifecycle
 - ReactDom
