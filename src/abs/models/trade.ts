@@ -101,15 +101,10 @@ export default {
         },
         updateDataSource(state: any, action: any) {
             switch (action.cmd) {
-                case 'componentDidMount': return {
+                default: return {
                     ...state, dataSource: listviewdata.cloneWithRows(action.rData), rData: action.rData, refreshing: false, info: action.info,
                     hasMore: action.hasMore
                 };
-                case 'onPickerChange': return {
-                    ...state, dataSource: listviewdata.cloneWithRows(action.rData), rData: action.rData, refreshing: false, info: action.info,
-                    hasMore: action.hasMore
-                };
-                default: return { ...state };
             }
         }
     },
@@ -135,8 +130,9 @@ export default {
                 walbuckValue = action.val;
             }
             const resGenData = yield call([tradeService, tradeService.genData], true, 0, 1, [], action.rows,
-                '', ratingValue[0], couponValue[0], walbuckValue[0]
+                ratingValue[0], couponValue[0], walbuckValue[0]
             );
+
             yield put({ type: 'returnChangePicker', picker: action.picker, val: action.val });
             yield put({ type: 'updateDataSource', cmd: 'onPickerChange', rData: resGenData.rData, info: resGenData.info, hasMore: resGenData.hasMore });
         },
@@ -159,6 +155,25 @@ export default {
             // 第一次请求数据源
             const resGenData = yield call([tradeService, tradeService.genData], true, 0, 1, [], action.rows);
             yield put({ type: 'updateDataSource', cmd: 'componentDidMount', rData: resGenData.rData, info: resGenData.info, hasMore: resGenData.hasMore });
+        },
+        /**
+         * 刷新数据源
+         * 
+         * @param {*} action 
+         * @param {*} { call, put } 
+         */
+        *onRefresh(action: any, { call, put }: any) {
+            console.log(action);
+            const resGenData = yield call([tradeService, tradeService.genData], true, 0, 1, [], action.rows,
+                action.ratingValues[0], action.couponValues[0], action.walbuckValues[0]
+            );
+            yield put({ type: 'updateDataSource', cmd: 'onRefresh', rData: resGenData.rData, info: resGenData.info, hasMore: resGenData.hasMore });
+        },
+        *onEndReached(action: any, { call, put }: any) {
+            const resGenData = yield call([tradeService, tradeService.genData], true, 1, action.pageIndex, action.rData, action.rows,
+                action.ratingValues[0], action.couponValues[0], action.walbuckValues[0]
+            );
+            console.log(resGenData);
         },
         *getDetailData(action: any, { call, put }: any) {
             try {
