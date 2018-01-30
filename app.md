@@ -46,29 +46,41 @@
 - Event
 - Styling and CSS
 
-typescript: Interface|Class|Generic|Property|Function|Jsx
-    books: https://www.tslang.cn/
+<h1>typescript</h1>
+>  https://www.tslang.cn/
+- Interface
+- Class
+- Generic
+- Property
+- Function
+- Jsx 
 
+<h1>yarn</h1>
+> <h3>npm instead of by yarn</h3>
+- yarn install
+- yarn start
+- yarn build
+- yarn test
 
- 
-
+-------------------------for admin------------------------------- 
 reactwebapp:
 1. require
-    babel-polyfill    >=ie9
-    raf               >=ie9
-    antd|antd-mobile -> tsconfig.json -> "allowSyntheticDefaultImports": true, 
-    webpack.config.app -> set webpackSetting->antd use antd design ui
+-  babel-polyfill    >=ie9
+-  raf               >=ie9
+-  antd|antd-mobile -> tsconfig.json -> "allowSyntheticDefaultImports": true, 
+-  webpack.config.app -> set webpackSetting->antd use antd design ui
     
 2. dev-require
-    less              for antd
-    less-loader       for antd
-    less-vars-to-js   for antd
-    ts-import-plugin  for antd
-    webpack-bundle-analyzer
+- less              for antd
+- less-loader       for antd
+- less-vars-to-js   for antd
+- ts-import-plugin  for antd
+- webpack-bundle-analyzer
     
 
--------------------------for admin-------------------------------
+
 3. yarn run eject   //add custom config after checkRequiredFiles
+<blockquote>
     /scripts/build.js
     /scripts/start.js
 
@@ -80,6 +92,7 @@ reactwebapp:
     // design by lj_liu for project with creact-react-app cli extension  
     const appConfig = require('../config/webpack.config.app');
     appConfig.initWebpackSetting(config); 
+</blockquote>
     
   
     
