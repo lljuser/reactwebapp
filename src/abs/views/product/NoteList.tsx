@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { connect } from 'dva';
 import '../../components/abs-tabs/index.less'; 
-import '../../../public/css/theme.css';
 
 class NoteList extends React.Component<any, {}> {
 

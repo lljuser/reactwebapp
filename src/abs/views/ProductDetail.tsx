@@ -8,6 +8,7 @@ import NoteList from './product/NoteList';
 import { ABSNavBar } from '../components/abs-navbar';
 import ABSChartMarket from '../components/abs-chart';
 import { connect } from 'dva';
+import '../../public/css/themeCopy.less';
 
 function mapStateToProps(state: any) {
     return {
@@ -30,6 +31,7 @@ class ProductDetail extends React.Component<any, any> {
       }
     
     render() {  
+        console.log(this.props);
         return (
             <div>
             <div>
