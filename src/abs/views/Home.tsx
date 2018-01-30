@@ -21,6 +21,7 @@ class Home extends React.Component<any, any> {
        index: this.getIndex()
     };   
     this.renderTabBar = this.renderTabBar.bind(this);
+    this.goToTab = this.goToTab.bind(this);
   }
 
   getIndex(props?: any): number {  
@@ -32,24 +33,9 @@ class Home extends React.Component<any, any> {
       return idx >= 0 ? idx : 0;
     } 
     return 0;
-  }
+  } 
 
-  componentWillReceiveProps(next: any) {
-    let nextIndex = this.getIndex(next);
-    this.setState({
-      index: nextIndex
-    });
-  }
-
-  onChange = (p, index) => {
-    const { history } = this.props;
-    setTimeout(() => {
-      history.push(`/${p.name}`);
-    }, 0);
-  }
-
-  renderTabBar(props: any) {
-    console.log(props);
+  renderTabBar(props: any) { 
     return ( 
         <Tabs.DefaultTabBar 
           {...props} 
@@ -81,6 +67,13 @@ class Home extends React.Component<any, any> {
      );
   }
 
+  goToTab(index: number, producType?: string) {
+    this.setState({ 
+      index: index, 
+      productType: producType
+    });
+  }
+
   render() {   
     return (
       <div className="abs-tabs">
@@ -88,12 +81,16 @@ class Home extends React.Component<any, any> {
           initialPage={this.state.index} 
           tabs={this.tabs} 
           renderTabBar={this.renderTabBar}
+          page={this.state.index}
+          onChange={(tab, index) => { 
+            this.setState({ index: index });
+          }}
         >
           {/* <Route path="/market" component={Market} />
           <Route path="/product" component={Product} />
           <Route path="/trade" component={Trade} /> */}
-          <Market/>
-          <Product/>
+          <Market onChangeTab={this.goToTab}/>
+          <Product productType={this.state.productType}/>
           <Trade/>
         </Tabs>
       </div>
