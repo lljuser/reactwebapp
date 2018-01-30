@@ -1,9 +1,11 @@
 import * as React from 'react';
 // import Request from '../components/http/request/index';
-import { NavBar, Icon } from 'antd-mobile';
-import { Link } from 'dva/router';
+// import { NavBar, Icon } from 'antd-mobile';
+// import { Link } from 'dva/router';
 import { connect } from 'dva';
-import '../../public/css/tradeDetail.css';
+import { ABSNavBar } from '../components/abs-navbar';
+import '../../public/css/themeCopy.less';
+import '../../public/css/tradeDetail.less';
 
 function tradeDetailStateToProps(state: any) {
     return { ...state.trade };
@@ -28,11 +30,21 @@ class TradeDetailComponent extends React.Component<any, any> {
     }
 
     fetchData() {
-        alert('fetchData');
+        var tradeId, noteId;
+        if (this.props.match.params != null) {
+            var gradeId = this.props.match.params.gradeId;
+            if (gradeId != null) {
+                tradeId = gradeId;
+            }
+            var couponId = this.props.match.params.couponId;
+            if (couponId != null) {
+                noteId = couponId;
+            }
+        }
         this.props.dispatch({
             type: 'trade/getDetailData',
-            tradeId: 86,
-            noteId: 6714
+            tradeId: tradeId,
+            noteId: noteId,
         });
         console.log(this.props);
         // var url = 'http://10.1.1.35/motrade/gettradedata';
@@ -59,29 +71,11 @@ class TradeDetailComponent extends React.Component<any, any> {
 
     render() {
         return (
-            // <div>
-            //     <NavBar
-            //         mode="light"
-            //         icon={<Link to="/Trade"><Icon type="left" /></Link>}
-            //         rightContent={[
-            //             <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
-            //             <Icon key="1" type="ellipsis" />,
-            //         ]}
-            //     >
-            //         NavBar
-            //     </NavBar>
-            // </div>
             <div>
-                <NavBar
-                    mode="light"
-                    icon={<Link to="/Trade"><Icon type="left" /></Link>}
-                    rightContent={[
-                        <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
-                        <Icon key="1" type="ellipsis" />,
-                    ]}
-                >
-                    NavBar
-                </NavBar>
+                <ABSNavBar
+                    title="导航"
+                    path="/trade"
+                />
                 <div className="appH5_content">
                     <div className="appH5_panel">
                         <table className="appH5_list_four" cellSpacing="0" cellPadding="0">
@@ -108,7 +102,7 @@ class TradeDetailComponent extends React.Component<any, any> {
                                             </td>
                                         )
                                         : (
-                                            <td className="appH5_color_skyblue">-</td>
+                                            <td className={'appH5_color_skyblue'}>-</td>
                                         )
                                     }
                                     <td className="appH5_color_skyblue appH5_vertical_bottom appH5_font_larger appH5_white_spac">{this.props.detailInfo.WAL}年</td>
