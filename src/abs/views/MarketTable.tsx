@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'dva';
-import '../../components/abs-tabs/index.less'; 
+import '../components/abs-tabs/index.less'; 
 
 class ABSTableMarketComponent extends React.Component<any> {
 
@@ -20,9 +20,9 @@ class ABSTableMarketComponent extends React.Component<any> {
           <thead>
             <tr>
                 <th>分类</th>
-                <th className="text-right">今年(单)</th>
-                <th className="text-right">今年(亿)</th>
-                <th className="text-right">累计(亿)</th>
+                <th>今年(单)</th>
+                <th>今年(亿)</th>
+                <th>累计(亿)</th>
             </tr>
           </thead>
           <tbody>
@@ -30,9 +30,9 @@ class ABSTableMarketComponent extends React.Component<any> {
               this.props.marketSummary.map((item) =>
                 <tr key={item.ProductTypeId}>
                   <td><a href="javascript:"> {item.SimpleProductType}</a></td>
-                  <td className="text-right">{item.DealCountCurrentYear}</td>
-                  <td className="text-right appH5_color_red">{item.BalanceCurrentYear}</td>
-                  <td className="text-right">{item.BalanceCumulative}</td>
+                  <td>{item.DealCountCurrentYear}</td>
+                  <td className="highLight">{item.BalanceCurrentYear}</td>
+                  <td>{item.BalanceCumulative}</td>
                 </tr>
               )
             }
@@ -44,6 +44,7 @@ class ABSTableMarketComponent extends React.Component<any> {
 }
 
 function mapStateToProps(state: any) {
+  
   return {
     ...state.market
   };

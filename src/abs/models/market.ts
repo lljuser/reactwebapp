@@ -33,7 +33,7 @@ export default {
           }
         });
       } catch (e) {
-        alert(e.message);
+        // alert(e.message);
         return;
       }
     }
