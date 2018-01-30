@@ -7,6 +7,7 @@ import Market from './Market';
 import Product from './Product';
 import Trade from './Trade';
 import '../components/abs-tabs/index.less';
+import '../components/index.less';
 
 class Home extends React.Component<any, any> {
   private tabs = [
