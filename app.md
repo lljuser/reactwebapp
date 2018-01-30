@@ -5,6 +5,27 @@ Instructions
 - yarn install
 - yarn start
 
+Structure [Mvc Area]
+=================== 
+>
+- -build                   # publish code [for deploy]
+- -config                  # webpack and abs config[for admin]
+- -doc                     # document
+- -node_modules            # install lib
+- -public                  # html tmpl and theme
+- -scripts                 # yarn/npm start webapck script [for admin]
+- -src                     # code source
+- --|index.tsx              # portal app init
+- --|abs                    # project module
+- ----|components           # control
+- ----|config               # config
+- ----|models               # state model action|redurce|effect
+- ----|services             # api request for data services
+- ----|views                # ui views
+- ----|RouterConfig           # router config 
+- --|expert
+- --|csf
+
 Technical RoadMap
 =================== 
 > 
@@ -29,15 +50,16 @@ Develop Tools
 
 Code Rule/Format
 =================== 
-> eslint|tslint|ts
+> 
+- eslint
+- tslint
 
 Build Tools
 =================== 
-> cnabs-cli|webpack|webpack-devserver
-
-Saga
-=================== 
-> call|put|fork|take 
+> 
+- cnabs-cli
+- webpack/plugin
+- webpack-devserver  
 
 es6 point
 =================== 
@@ -46,7 +68,7 @@ es6 point
 * promise
 * array
 * set/map
-* object ->Object.is|Object.assign|Object.keys|Object.values|for in|getOwerPropertys
+* object ->Object.is | Object.assign | Object.keys | Object.values | for in | getOwerPropertys
 * import/export
 
 
@@ -63,7 +85,7 @@ reactjs point
 - Event
 - Styling and CSS
 
-typescript
+typescript point
 =================== 
 >  https://www.tslang.cn/
 - Interface
@@ -73,7 +95,15 @@ typescript
 - Function
 - Jsx 
 
-yarn
+React-Saga point
+=================== 
+> 
+- call
+- put
+- fork
+- take 
+
+yarn point
 =================== 
 > <h3>npm instead of by yarn</h3>
 - yarn install
