@@ -4,12 +4,14 @@ import { Link } from 'dva/router';
 import { ListView, PullToRefresh, Picker } from 'antd-mobile';  // WingBlank, SegmentedControl, 
 import '../components/abs-table/index.less';
 import '../components/abs-picker/index.less';
+import '../components/theme-common.less';
 import { connect } from 'dva';
+import ABSPanel from '../components/abs-panel'; 
 
 // 真实产品选择piker点
 const PickerChildren = props => (
-  <div onClick={props.onClick}>
-    <div style={{ width: '30%', float: 'left', fontSize: '15px' }}>{props.extra}</div>
+  <div onClick={props.onClick} className={props.first ? 'picker-trigger first' : 'picker-trigger'}>
+    <div className="selector">{props.extra}</div>
   </div>
 );
 
@@ -20,7 +22,7 @@ function MyBody(props: any) {
           <table>
             <thead>
               <tr>
-                <th>产品名称</th>
+                <th className="text-left">产品名称</th>
                 <th>总额(亿)</th>
                 <th>产品分类</th>
               </tr>
@@ -117,15 +119,15 @@ class Product extends React.Component<any, {}> {
           <td className={'text-left'}>
             <Link to={`/productdetail/${rowData.DealId}`}><div className={'td_elips1'}>{rowData.DealName}</div></Link>
           </td>
-          <td className={'text-right appH5_color_red'} style={{ fontSize: '17px' }}>{rowData.TotalOffering}</td>
+          <td className={'text-right highLight-red'} style={{ fontSize: '17px' }}>{rowData.TotalOffering}</td>
           <td style={{ color: 'white' }} className={'text-right td_elips2'}><div style={{ width: '100%', float: 'right' }}><div>{rowData.DealType}</div></div></td>
         </tr >
       );
     };
    
     return (
+      <ABSPanel>
       <div className="abs-picker">
-        <div style={{height: '30px'}}>
           <Picker  
             title="选择状态" 
             data={this.props.currentStatus} 
@@ -133,7 +135,7 @@ class Product extends React.Component<any, {}> {
             value={this.props.currentStatusValue}
             onOk={v => this.PickerChange('CurrentStatusValue', v)}
           >
-          <PickerChildren>选择状态</PickerChildren>
+          <PickerChildren first={true}>选择状态</PickerChildren>
           </Picker>
           <Picker  
             title="选择产品" 
@@ -154,6 +156,7 @@ class Product extends React.Component<any, {}> {
             <PickerChildren>选择市场</PickerChildren>
           </Picker>
         </div>
+        <div className="test">
         <ListView
             key={this.props.useBodyScroll ? '0' : '1'}
             ref={el => lv = el}
@@ -175,13 +178,17 @@ class Product extends React.Component<any, {}> {
               onRefresh={this.onRefresh}
               distanceToRefresh={25}
               indicator={{
-                activate: <div>下拉刷新数据</div>
+                activate: <div>松开立即更新</div>,
+                deactivate: <div>下拉刷新</div>,
+                // release: <div>正在刷新</div>,
+                finish: <div />
               }}
             />}
             onEndReached={this.onEndReached}
             pageSize={15}
-        />    
-      </div >  
+        />
+        </div>
+      </ABSPanel>
     );
   }
 }

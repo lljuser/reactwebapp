@@ -31,9 +31,24 @@ class Home extends React.Component<any, any> {
       return idx >= 0 ? idx : 0;
     } 
     return 0;
-  }  
+  }
+
+  componentWillReceiveProps(next: any) {
+    let nextIndex = this.getIndex(next);
+    this.setState({
+      index: nextIndex
+    });
+  }
+
+  onChange = (p, index) => {
+    const { history } = this.props;
+    setTimeout(() => {
+      history.push(`/${p.name}`);
+    }, 0);
+  }
 
   render() { 
+    console.log(this.state);
     const anchorTextWidth = 12; 
     return (
       <div className="abs-tabs">

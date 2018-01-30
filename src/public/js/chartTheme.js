@@ -15,7 +15,7 @@ module.exports = {
     },
     style: {
       fontFamily: '"Microsoft YaHei", 微软雅黑, 宋体, Verdana, Arial, Helvetica, sans-serif',
-      height: '300px',
+      height: '400px',
     },
     plotBorderColor: '#606063',
   },

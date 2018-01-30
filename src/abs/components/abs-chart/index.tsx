@@ -7,12 +7,13 @@ ReactHighcharts.Highcharts.setOptions(chartTheme);
 
 interface Props {
   data: any;
+  style?: any;
 }
 
 class ABSChartComponent extends React.Component<Props> { 
     render() {
       return (
-          <div className="abs-chart">
+          <div className="abs-chart" style={this.props.style}>
               <ReactHighcharts config={this.props.data}/>
           </div>
       );
