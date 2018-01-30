@@ -13,8 +13,7 @@ class Home extends React.Component<any, any> {
     { title: '市场', name: 'market' },
     { title: '产品', name: 'product' },
     { title: '交易', name: 'trade' },
-  ];
-  private anchorTextWidth = 12; 
+  ]; 
 
   constructor(props: any) {
     super(props); 
@@ -82,17 +81,13 @@ class Home extends React.Component<any, any> {
      );
   }
 
-  render() {  
-    console.log('------------------------');
-    console.log(this.state);
-    console.log(this.anchorTextWidth);
+  render() {   
     return (
       <div className="abs-tabs">
         <Tabs
           initialPage={this.state.index} 
           tabs={this.tabs} 
           renderTabBar={this.renderTabBar}
-          // tabBarUnderlineStyle={{ left: `${this.state.index * 33.333 + this.anchorTextWidth}%` }}
         >
           {/* <Route path="/market" component={Market} />
           <Route path="/product" component={Product} />
