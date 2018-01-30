@@ -62,7 +62,8 @@
 - yarn build
 - yarn test
 
--------------------------for admin------------------------------- 
+for admin:
+=================== 
 reactwebapp:
 1. require
   -  babel-polyfill    >=ie9
