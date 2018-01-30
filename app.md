@@ -1,12 +1,12 @@
 <h1>Technical RoadMap</h1>
 > 
-- <h3>Jsx(ReactJs)
+- Jsx(ReactJs)
 - TypeScript(Jsx)
 - ES6
 - React-Router
 - React-Redux
-- React-Saga/Thunk</h3>
-- <h3>css|less|styling</h3>
+- React-Saga/Thunk
+- css|less|styling
     
 <h1>Develop Tools</h1> 
 >
@@ -34,9 +34,16 @@
 * import/export
 
 
-reactjs: React.Component/ComponentLifecycle|ReactDom|Jsx|Props/State|Event|Styling and CSS
-* http://www.css88.com/react/docs/jsx-in-depth.html
+<h1>reactjs point</h1>
+> http://www.css88.com/react/docs/jsx-in-depth.html
 * https://reactjs.org/docs/hello-world.html
+- React.Component
+- ComponentLifecycle
+- ReactDom
+- Jsx
+- Props/State
+- Event
+- Styling and CSS
 
 typescript: Interface|Class|Generic|Property|Function|Jsx
     books: https://www.tslang.cn/
