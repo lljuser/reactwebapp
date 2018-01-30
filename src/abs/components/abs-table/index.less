@@ -5,7 +5,7 @@
  * @description 移动端通用表格组件
  */
 
-@import "../theme-abs.less";
+ @import "../index.less";
 
 @table-prefix-cls: ~"@{abs-prefix}-table";
 
@@ -26,11 +26,15 @@
             tr{
                 td{
                     .fn-table('td');
+                    
                 }
                 &:last-child{
                     td{
                         font-weight: bolder;
                     }
+                }
+                .highLight{
+                    color: @abs-brand-red;
                 }
             }
         }

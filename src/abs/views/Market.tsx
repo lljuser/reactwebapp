@@ -1,6 +1,4 @@
-import * as React from 'react';
-// import { Link } from 'react-router-dom';
-import 'amfe-flexible';
+import * as React from 'react'; 
 import { connect } from 'dva';
 import ABSPanel from '../components/abs-panel'; 
 import ABSChartMarket from '../components/abs-chart';
