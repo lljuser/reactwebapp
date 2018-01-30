@@ -1,5 +1,6 @@
 es6: promise|array|set|map|...|let/const|import/export|object
-    books: http://es6.ruanyifeng.com/
+>
+* http://es6.ruanyifeng.com/
 
 reactjs: React.Component/ComponentLifecycle|ReactDom|Jsx|Props/State|Event|Styling and CSS
 * http://www.css88.com/react/docs/jsx-in-depth.html
