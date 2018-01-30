@@ -1,6 +1,7 @@
 // import { routerRedux } from 'dva/router'; 
 // const delay = (timeout) => new Promise(resolve => setTimeout(resolve, timeout));
 import { ListView } from 'antd-mobile';
+import tradeService from '../services/trade';
 
 const listviewdata = new ListView.DataSource({
     rowHasChanged: (row1, row2) => row1 !== row2,
@@ -21,14 +22,11 @@ export default {
         pageIndex: 1, // 数据查询页数
         rData: [], // table数据
         ratingValues: [], // 评级value集合
-        ratingList: [{
-            label: '2013',
-            value: '2013',
-        },
-        {
-            label: '2014',
-            value: '2014',
-        }]
+        ratingList: [], // 评级集合
+        couponValues: [], // 利率value集合
+        couponList: [], // 利率集合
+        walbuckValues: [], // 期限value集合
+        walbuckList: [] // 期限集合
     },
     reducers: {
         /**
@@ -51,7 +49,7 @@ export default {
                         pageIndex: action.pageIndex,
                         refreshing: action.refreshing,
                         endInfo: action.endInfo,
-                        isLoading: action.isLoading
+                        loading: action.loading
                     };
                 case 'couponValues':
                     console.log(action.val);
@@ -64,7 +62,7 @@ export default {
                         pageIndex: action.pageIndex,
                         refreshing: action.refreshing,
                         endInfo: action.endInfo,
-                        isLoading: action.isLoading
+                        loading: action.loading
                     };
                 case 'walbuckValues':
                     return {
@@ -82,22 +80,42 @@ export default {
                     return { ...state };
             }
         },
-        changeListState(state: any, action: any) {
-            return {
-                ...state,
-                info: action.info,
-                loading: action.loading,
-                refreshing: action.refreshing
-            };
+        formatPickerData(state: any, action: any) {
+            switch (action.cmd) {
+                case 'resRating': return {
+                    ...state,
+                    ratingValues: action.ratingValues,
+                    ratingList: action.ratingList
+                };
+                case 'resWalbuck': return {
+                    ...state,
+                    walbuckValues: action.walbuckValues,
+                    walbuckList: action.walbuckList
+                };
+                case 'resCoupon': return {
+                    ...state,
+                    couponValues: action.couponValues,
+                    couponList: action.couponList
+                };
+                default:
+                    return { ...state };
+            }
         }
     },
     effects: {
         *onPickerChange(action: any, { call, put }: any) {
             console.log(action);
-            yield call();
+
         },
         *componentDidMount(action: any, { call, put }: any) {
-            console.log(action);
+            const resWalbuck = yield call([tradeService, tradeService.getWalbuckList]);
+            yield put({ type: 'formatPickerData', cmd: 'resWalbuck', walbuckValues: resWalbuck.walbuckValues, walbuckList: resWalbuck.walbuckList });
+           
+            const resCoupon = yield call([tradeService, tradeService.getCouponList]);
+            yield put({ type: 'formatPickerData', cmd: 'resCoupon', couponValues: resCoupon.couponValues, couponList: resCoupon.couponList });
+           
+            const resRating = yield call([tradeService, tradeService.getRatingList]);
+            yield put({ type: 'formatPickerData', cmd: 'resRating', ratingValues: resRating.ratingValues, ratingList: resRating.ratingList });
         },
     }
 };

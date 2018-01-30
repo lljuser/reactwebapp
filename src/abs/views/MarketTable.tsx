@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'dva';
-import '../../components/abs-tabs/index.less'; 
+import '../components/abs-tabs/index.less'; 
 
 class ABSTableMarketComponent extends React.Component<any> {
 

@@ -48,9 +48,6 @@ const CustomChildren = props => (
  * @extends {React.Component<any, {}>}
  */
 class Trade extends React.Component<any, {}> {
-    ratingValues: string[] = []; // 评级value集合
-    couponValues: string[] = [];   // 利率value集合
-    walbuckValues: string[] = []; // 期限value集合
     constructor(props: any) {
         super(props);
     }
@@ -115,9 +112,6 @@ class Trade extends React.Component<any, {}> {
             type: 'trade/onEndReached',
             pageIndex: this.props.pageIndex + 1,
             rData: this.props.rData,
-            ratingValues: this.props.ratingValues,
-            couponValues: this.props.couponValues,
-            walbuckValues: this.props.walbuckValues,
         });
     }
 
@@ -148,17 +142,17 @@ class Trade extends React.Component<any, {}> {
                     <tbody>
                         <tr>
                             <td>
-                                <Picker data={this.props.ratingList} title="选择评级" cols={1} value={this.ratingValues} onOk={v => this.onPickerChange('ratingValues', v)}>
+                                <Picker data={this.props.ratingList} title="选择评级" cols={1} value={this.props.ratingValues} onOk={v => this.onPickerChange('ratingValues', v)}>
                                     <CustomChildren />
                                 </Picker>
                             </td>
                             <td>
-                                <Picker data={this.props.couponList} title="选择利率" cols={1} value={this.couponValues} onOk={v => this.onPickerChange('couponValues', v)}>
+                                <Picker data={this.props.couponList} title="选择利率" cols={1} value={this.props.couponValues} onOk={v => this.onPickerChange('couponValues', v)}>
                                     <CustomChildren />
                                 </Picker>
                             </td>
                             <td>
-                                <Picker data={this.props.walbuckList} title="选择期限" cols={1} value={this.walbuckValues} onOk={v => this.onPickerChange('walbuckValues', v)}>
+                                <Picker data={this.props.walbuckList} title="选择期限" cols={1} value={this.props.walbuckValues} onOk={v => this.onPickerChange('walbuckValues', v)}>
                                     <CustomChildren />
                                 </Picker>
                             </td>
