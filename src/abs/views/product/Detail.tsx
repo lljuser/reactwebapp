@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'dva';
 import { Link } from 'dva/router';
 import '../../components/abs-tabs/index.less'; 
-import '../../../public/css/theme.css';
+// import '../../../public/css/theme.css';
 import moment from 'moment';
 
 class Detail extends React.Component<any, {}> {
