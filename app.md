@@ -1,6 +1,11 @@
 <h1>Technical RoadMap</h1>
 > 
-- <h3>Jsx(ReactJs)->TypeScript(Jsx)->ES6->React-Router->React-Redux->React-Saga/Thunk</h3>
+- <h3>Jsx(ReactJs)
+- TypeScript(Jsx)
+- ES6
+- React-Router
+- React-Redux
+- React-Saga/Thunk</h3>
 - <h3>css|less|styling</h3>
     
 <h1>Develop Tools</h1> 
@@ -10,13 +15,16 @@
 - redux-devtools(chrome extenstion)
 - Chrome/Safari
 
-Code Rule/Format: eslint|tslint|ts
+<h1>Code Rule/Format</h1>
+> eslint|tslint|ts
 
-Build Tools: cnabs-cli|webpack|webpack-devserver
+<h1>Build Tools</h1>
+> cnabs-cli|webpack|webpack-devserver
 
-Saga: call|put|fork|take 
+<h1>Saga</h1>
+> call|put|fork|take 
 
-<h1>es6</h1>
+<h1>es6 point</h1>
 > http://es6.ruanyifeng.com/
 * let/const
 * promise
