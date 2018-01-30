@@ -10,11 +10,15 @@ typescript: Interface|Class|Generic|Property|Function|Jsx
 
 Technical RoadMap: Jsx(ReactJs)->TypeScript(Jsx)->ES6->React-Router->React-Redux->React-Saga/Thunk
     css|less|styling
+    
 Develop Tools: vscode|react-devtools(chrome extenstion)|redux-devtools(chrome extenstion)|Chrome/Safari
+
 Code Rule/Format: eslint|tslint|ts
+
 Build Tools: cnabs-cli|webpack|webpack-devserver
 
 Saga: call|put|fork|take
+
 es6: Set|Map|Object.is|Object.assign|Object.keys|Object.values|for in|getOwerPropertys
 
 reactwebapp:
