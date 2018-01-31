@@ -53,8 +53,7 @@ class Home extends React.Component<any, any> {
                 <div 
                   style={{
                     width: 50,
-                    height: 2,
-                    backgroundColor: '#ffc446',
+                    height: 2, 
                     marginLeft: 'auto',
                     marginRight: 'auto',
                   }}

@@ -24,7 +24,7 @@ var lv: ListView | null;
  */
 function MyBody(props: any) {
     return (
-        <div className="abs-table abs-table-trade">
+        <div className="abs-table">
             <table cellSpacing={0} cellPadding={0}>
                 <thead>
                     <tr>
@@ -75,19 +75,6 @@ class Trade extends React.Component<any, {}> {
     }
 
     /**
-     * 在组件完成更新后立即调用。在初始化时不会被调用。
-     * 
-     * @memberof Trade
-     */
-    componentDidUpdate() {
-        // if (this.props.useBodyScroll) {
-        //     document.body.style.overflow = 'auto';
-        // } else {
-        //     document.body.style.overflow = 'hidden';
-        // }
-    }
-
-    /**
      * 在第一次渲染后调用，只在客户端。之后组件已经生成了对应的DOM结构，可以通过this.getDOMNode()来进行访问。
      *  如果你想和其他JavaScript框架一起使用，可以在这个方法中调用setTimeout, setInterval或者发送AJAX请求等
      * 操作(防止异部操作阻塞UI)。
@@ -113,6 +100,7 @@ class Trade extends React.Component<any, {}> {
      * @memberof Trade
      */
     onEndReached = (event) => {
+        console.log(event);
         if (this.props.loading && !this.props.hasMore) {
             return;
         }
@@ -124,6 +112,7 @@ class Trade extends React.Component<any, {}> {
             ratingValues: this.props.ratingValues,
             couponValues: this.props.couponValues,
             walbuckValues: this.props.walbuckValues,
+            rows: this.props.rows,
         });
     }
 
@@ -151,7 +140,7 @@ class Trade extends React.Component<any, {}> {
         return (
             <ABSPanel className={'pull-refresh-wrapper'}>
                 <div className="abs-picker">
-                    <Picker  data={this.props.ratingList} title="选择评级" cols={1} value={this.props.ratingValues} onOk={v => this.onPickerChange('ratingValues', v)}>
+                    <Picker data={this.props.ratingList} title="选择评级" cols={1} value={this.props.ratingValues} onOk={v => this.onPickerChange('ratingValues', v)}>
                         <CustomChildren first={true} />
                     </Picker>
                     <Picker data={this.props.couponList} title="选择利率" cols={1} value={this.props.couponValues} onOk={v => this.onPickerChange('couponValues', v)}>
@@ -162,7 +151,7 @@ class Trade extends React.Component<any, {}> {
                         <CustomChildren />
                     </Picker>
                 </div>
-                <div>
+                <div className="test">
                     <ListView
                         key={this.props.useBodyScroll ? '0' : '1'}
                         ref={el => lv = el}
@@ -174,9 +163,6 @@ class Trade extends React.Component<any, {}> {
                         renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey} />}
                         renderRow={row}
                         useBodyScroll={this.props.useBodyScroll}
-                        style={this.props.useBodyScroll ? {} : {
-                            height: this.props.height,
-                        }}
                         pullToRefresh={<PullToRefresh
                             getScrollContainer={() => lv}
                             direction={'down'}
@@ -184,7 +170,9 @@ class Trade extends React.Component<any, {}> {
                             onRefresh={this.onRefresh}
                             distanceToRefresh={25}
                             indicator={{
-                                activate: <div>下拉刷新数据</div>
+                                activate: <div>松开立即更新</div>,
+                                deactivate: <div>下拉刷新</div>,
+                                finish: <div />
                             }}
                         />}
                         onEndReached={this.onEndReached}
