@@ -19,7 +19,7 @@ class MarketComponent extends React.Component<any, any> {
   
     render() {  
         return (
-                <React.Fragment> 
+            <React.Fragment> 
                 <ABSPanel title="市场概要" >
                     <MarketTable marketSummary={this.props.marketSummary} onChangeTab={this.props.onChangeTab} />   
                 </ABSPanel> 
