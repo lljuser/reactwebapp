@@ -8,11 +8,11 @@ import dynamic from 'dva/dynamic';
 const ApiRoutePath =  process.env.REACT_APP_PUBLISH_PATH;
 // Route Page Config List 
 const RoutePageList = {
-    HomePage: `${ApiRoutePath}/home`,
-    ProductDetailPage: `${ApiRoutePath}/productdetail/`,
-    TradeDetailPage: `${ApiRoutePath}/tradedetail/`, 
+    HomePage: `${ApiRoutePath}home`,
+    ProductDetailPage: `${ApiRoutePath}productdetail`,
+    TradeDetailPage: `${ApiRoutePath}tradedetail/`, 
 };
-
+alert(JSON.stringify(RoutePageList));
 export default RoutePageList;
 
 export function RouterConfig({ history, app }: any) {  
