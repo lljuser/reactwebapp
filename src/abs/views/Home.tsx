@@ -66,14 +66,14 @@ class Home extends React.Component<any, any> {
      );
   }
 
-  goToTab(index: number, product: any) {
+  goToTab(index: number, productQuery: any) { 
     this.setState({ 
       index: index, 
-      product: product
+      productQuery: productQuery
     });
   }
 
-  render() {   
+  render() {
     return (
       <div className="abs-tabs">
         <Tabs
@@ -90,12 +90,12 @@ class Home extends React.Component<any, any> {
           <Route path="/product" component={Product} />
           <Route path="/trade" component={Trade} /> */}
           <Market onChangeTab={this.goToTab}/>
-          <Product productType={this.state.productType}/>
+          <Product productQuery={this.state.productQuery}/>
           <Trade/>
         </Tabs>
       </div>
     );
   }
-} 
+}
  
 export default connect()(Home);

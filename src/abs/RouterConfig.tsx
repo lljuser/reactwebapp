@@ -10,20 +10,24 @@ function RouterConfig({ history, app }: any) {
     models: () => [ 
       import('./models/market'), 
       import('./models/product'), 
-      import('./models/trade'), 
-      import('./models/productdetail'), 
-      import('./models/tradedetail'),
+      import('./models/trade')
     ],
     component: () => import(/*webpackChunkName:'home'*/'./views/Home'),
   });
 
   const ProductDetail = dynamic({
     app, 
+    models: () => [
+      import('./models/productdetail')
+    ],
     component: () => import('./views/ProductDetail'),
   });
 
   const TradeDetail = dynamic({
     app,
+    models: () => [
+      import('./models/tradedetail')
+    ],
     component: () => import('./views/TradeDetail')
   });
 
