@@ -24,7 +24,7 @@ var lv: ListView | null;
  */
 function MyBody(props: any) {
     return (
-        <div className="abs-table abs-table-trade">
+        <div className="abs-table">
             <table cellSpacing={0} cellPadding={0}>
                 <thead>
                     <tr>
@@ -72,19 +72,6 @@ class Trade extends React.Component<any, {}> {
             couponValues: this.props.couponValues,
             walbuckValues: this.props.walbuckValues
         });
-    }
-
-    /**
-     * 在组件完成更新后立即调用。在初始化时不会被调用。
-     * 
-     * @memberof Trade
-     */
-    componentDidUpdate() {
-        // if (this.props.useBodyScroll) {
-        //     document.body.style.overflow = 'auto';
-        // } else {
-        //     document.body.style.overflow = 'hidden';
-        // }
     }
 
     /**
