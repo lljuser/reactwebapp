@@ -4611,7 +4611,7 @@ qs@~6.4.0:
   version "6.4.0"
   resolved "http://registry.npm.taobao.org/qs/download/qs-6.4.0.tgz#13e26d28ad6b0ffaa91312cd3bf708ed351e7233"
 
-query-string@^4.1.0, query-string@^4.2.2:
+query-string@^4.1.0:
   version "4.3.4"
   resolved "http://registry.npm.taobao.org/query-string/download/query-string-4.3.4.tgz#bbb693b9ca915c232515b228b1a02b609043dbeb"
   dependencies:
@@ -4825,14 +4825,6 @@ react-highcharts@^16.0.1:
   resolved "http://registry.npm.taobao.org/react-highcharts/download/react-highcharts-16.0.1.tgz#38d015d8ba5f562a7589679bc48441d6b1ad1c49"
   dependencies:
     highcharts "^6.0.4"
-
-react-keeper@^2.1.7:
-  version "2.1.7"
-  resolved "http://registry.npm.taobao.org/react-keeper/download/react-keeper-2.1.7.tgz#e926f9bc4728bda7268402f79bb1d388bcd1aab0"
-  dependencies:
-    create-react-class "^15.6.0"
-    prop-types "^15.5.10"
-    vhistory "^1.0.0"
 
 react-loadable@^5.3.1:
   version "5.3.1"
@@ -6261,15 +6253,6 @@ verror@1.10.0:
     assert-plus "^1.0.0"
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
-
-vhistory@^1.0.0:
-  version "1.0.1"
-  resolved "http://registry.npm.taobao.org/vhistory/download/vhistory-1.0.1.tgz#73f189245cbdad8669dda323fb9ae2bce4f23e3d"
-  dependencies:
-    invariant "^2.2.1"
-    loose-envify "^1.2.0"
-    query-string "^4.2.2"
-    warning "^3.0.0"
 
 vm-browserify@0.0.4:
   version "0.0.4"

@@ -34,7 +34,6 @@
     "react-dev-utils": "4.2.1",
     "react-dom": "^16.2.0",
     "react-highcharts": "^16.0.1",
-    "react-keeper": "^2.1.7",
     "react-loadable": "^5.3.1",
     "react-sticky": "^6.0.1",
     "source-map-loader": "^0.2.1",
