@@ -22,6 +22,7 @@ class ProductDetail extends React.Component<any, any> {
     // if (this.props.detail && this.props.detail.length > 0) {
     //   return;
     // }
+    
     const id = this.props.match.params.id;
     this.props.dispatch({ type: 'productdetail/getData', id: id });
   }
@@ -39,20 +40,26 @@ class ProductDetail extends React.Component<any, any> {
           />
         </div>
         <div className="appH5_body">
+        <div className="appH5_content">
           <React.Fragment>
             <ABSPanel title="产品要素" >
               <Detail detail={this.props.detail} />
             </ABSPanel>
             <ABSPanel title="证券结构" >
-              <Structure detail={this.props.noteConsTable} />
+              <Structure noteConsTable={this.props.noteConsTable} />
             </ABSPanel>
             <ABSPanel title="证券列表" >
               <NoteList detail={this.props.detail} />
             </ABSPanel>
-            <ABSPanel title="证券偿付">
-              <ABSChartMarket data={this.props.chart} />
-            </ABSPanel>
+            {
+              (!this.props.chart) ? null :
+                <ABSPanel title="证券偿付">
+                    <ABSChartMarket data={this.props.chart} />
+                </ABSPanel>
+            }
+            
           </React.Fragment>
+          </div>
         </div>
       </div>
     );

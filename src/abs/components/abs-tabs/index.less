@@ -13,28 +13,26 @@
 // 根据node_module中tabs,对蚂蚁UI部分重写和覆盖
 
 .@{tabs-prefix-cls}{
-    background: @abs-brand-gray; 
-    color: @abs-brand-white;
+    background: @absLink-tabs-bgColor; 
     .am-tabs-default-bar-top{
-        background: @abs-brand-black !important;
+        background: @absLink-tabs-bar-bgColor !important;
         .am-tabs-default-bar-content{
             position: relative;
             width: 300px;
             margin: auto;
             .am-tabs-default-bar-tab {
-                color: @abs-brand-white;
+                color: @absLink-tabs-bar-color;
                 font-size: 19px;
-                // .hairline('bottom');
                 &:after{
                   height: 0px;
                 }
             }
             .am-tabs-default-bar-tab-active{
-              color: @abs-brand-yellow;
+              color: @absLink-tabs-bar-color-active;
             }
             .am-tabs-default-bar-underline{
                 div{
-                    background-color: @abs-brand-yellow;
+                    background-color: @absLink-tabs-bar-color-active;
                     width: 50;
                     height: 2;
                     margin-left: 'auto';
