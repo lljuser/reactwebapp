@@ -53,8 +53,7 @@ class Home extends React.Component<any, any> {
                 <div 
                   style={{
                     width: 50,
-                    height: 2,
-                    backgroundColor: '#ffc446',
+                    height: 2, 
                     marginLeft: 'auto',
                     marginRight: 'auto',
                   }}
@@ -67,10 +66,10 @@ class Home extends React.Component<any, any> {
      );
   }
 
-  goToTab(index: number, producType?: string) {
+  goToTab(index: number, product: any) {
     this.setState({ 
       index: index, 
-      productType: producType
+      product: product
     });
   }
 

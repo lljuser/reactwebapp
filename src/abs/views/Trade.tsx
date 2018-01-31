@@ -1,17 +1,16 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+// import * as ReactDOM from 'react-dom';
 import { ListView, PullToRefresh, Picker } from 'antd-mobile';
 import TradeItem from './TradeItem';
 import '../components/abs-table/index.less';
 import '../components/abs-picker/index.less';
 import { connect } from 'dva';
+import ABSPanel from '../components/abs-panel';
 
 // 如果不是使用 List.Item 作为 children
 const CustomChildren = props => (
-    <div onClick={props.onClick}>
-        <div style={{ display: 'table-cell', lineHeight: '30px' }}>
-            <div style={{ fontSize: 15 }}>{props.extra}</div>
-        </div>
+    <div onClick={props.onClick} className={props.first ? 'picker-trigger first' : 'picker-trigger'}>
+        <div className="selector">{props.extra}</div>
     </div>
 );
 
@@ -25,14 +24,14 @@ var lv: ListView | null;
  */
 function MyBody(props: any) {
     return (
-        <div className="abs-table abs-table-product">
+        <div className="abs-table">
             <table cellSpacing={0} cellPadding={0}>
                 <thead>
                     <tr>
                         <th />
-                        <th>证券简称</th>
-                        <th className="text-right">金额(亿)</th>
-                        <th className="text-right">资产类别</th>
+                        <th className="text-left">证券简称</th>
+                        <th>金额(亿)</th>
+                        <th>资产类别</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,8 +52,6 @@ function MyBody(props: any) {
 class Trade extends React.Component<any, {}> {
     constructor(props: any) {
         super(props);
-        this.onRefresh = this.onRefresh.bind(this);
-        this.onEndReached = this.onEndReached.bind(this);
     }
 
     /**
@@ -75,18 +72,13 @@ class Trade extends React.Component<any, {}> {
         });
     }
 
-    /**
-     * 在组件完成更新后立即调用。在初始化时不会被调用。
-     * 
-     * @memberof Trade
-     */
-    componentDidUpdate() {
-        // if (this.props.useBodyScroll) {
-        //     document.body.style.overflow = 'auto';
-        // } else {
-        //     document.body.style.overflow = 'hidden';
-        // }
-    }
+    // componentDidUpdate() {
+    //     if (this.props.useBodyScroll) {
+    //         document.body.style.overflow = 'auto';
+    //     } else {
+    //         document.body.style.overflow = 'hidden';
+    //     }
+    // }
 
     /**
      * 在第一次渲染后调用，只在客户端。之后组件已经生成了对应的DOM结构，可以通过this.getDOMNode()来进行访问。
@@ -98,10 +90,10 @@ class Trade extends React.Component<any, {}> {
     componentDidMount() {
         if (this.props.rData.length === 0) {
             // ListView组件高度
-            const hei = this.props.height - (ReactDOM.findDOMNode(lv as ListView) as any).offsetTop;
+            // const hei = this.props.height - (ReactDOM.findDOMNode(lv as ListView) as any).offsetTop;
             this.props.dispatch({
                 type: 'trade/componentDidMount',
-                height: hei,
+                // height: hei,
                 rows: this.props.rows
             });
         }
@@ -114,6 +106,7 @@ class Trade extends React.Component<any, {}> {
      * @memberof Trade
      */
     onEndReached = (event) => {
+
         if (this.props.loading && !this.props.hasMore) {
             return;
         }
@@ -125,6 +118,7 @@ class Trade extends React.Component<any, {}> {
             ratingValues: this.props.ratingValues,
             couponValues: this.props.couponValues,
             walbuckValues: this.props.walbuckValues,
+            rows: this.props.rows,
         });
     }
 
@@ -133,7 +127,7 @@ class Trade extends React.Component<any, {}> {
      * 
      * @memberof Trade
      */
-    onRefresh() {
+    onRefresh = (refresh: boolean = true) => {
         this.props.dispatch({
             type: 'trade/onRefresh',
             rows: this.props.rows,
@@ -150,56 +144,69 @@ class Trade extends React.Component<any, {}> {
             );
         };
         return (
-            <div className="abs-table abs-table-product">
-                <table cellSpacing={0} cellPadding={0} >
-                    <tbody>
-                        <tr>
-                            <td>
-                                <Picker data={this.props.ratingList} title="选择评级" cols={1} value={this.props.ratingValues} onOk={v => this.onPickerChange('ratingValues', v)}>
-                                    <CustomChildren />
-                                </Picker>
-                            </td>
-                            <td>
-                                <Picker data={this.props.couponList} title="选择利率" cols={1} value={this.props.couponValues} onOk={v => this.onPickerChange('couponValues', v)}>
-                                    <CustomChildren />
-                                </Picker>
-                            </td>
-                            <td>
-                                <Picker data={this.props.walbuckList} title="选择期限" cols={1} value={this.props.walbuckValues} onOk={v => this.onPickerChange('walbuckValues', v)}>
-                                    <CustomChildren />
-                                </Picker>
-                            </td>
-                        </tr >
-                    </tbody>
-                </table >
-                <ListView
-                    key={this.props.useBodyScroll ? '0' : '1'}
-                    ref={el => lv = el}
-                    dataSource={this.props.dataSource}
-                    initialListSize={this.props.initialListSize}
-                    renderFooter={() => (<div style={{ textAlign: 'center' }}>
-                        {this.props.info}
-                    </div>)}
-                    renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey} />}
-                    renderRow={row}
-                    useBodyScroll={this.props.useBodyScroll}
-                    style={this.props.useBodyScroll ? {} : {
-                        height: this.props.height,
-                    }}
-                    pullToRefresh={<PullToRefresh
-                        getScrollContainer={() => lv}
-                        direction={'down'}
-                        refreshing={this.props.refreshing}
-                        onRefresh={this.onRefresh}
-                        distanceToRefresh={25}
-                        indicator={{
-                            activate: <div>下拉刷新数据</div>
-                        }}
-                    />}
-                    onEndReached={this.onEndReached}
-                    pageSize={15}
-                />
-            </div >
+          <ABSPanel className={'pull-refresh-wrapper'}>
+            <div className="abs-picker">
+              <Picker 
+                data={this.props.ratingList} 
+                title="选择评级" 
+                cols={1} 
+                value={this.props.ratingValues} 
+                onOk={v => this.onPickerChange('ratingValues', v)}
+              >
+                  <CustomChildren first={true}/>
+              </Picker>
+              <Picker 
+                data={this.props.couponList} 
+                title="选择利率" 
+                cols={1} 
+                value={this.props.couponValues} 
+                onOk={v => this.onPickerChange('couponValues', v)}
+              >
+                  <CustomChildren />
+              </Picker>
+              <Picker 
+                data={this.props.walbuckList} 
+                title="选择期限" 
+                cols={1} 
+                value={this.props.walbuckValues} 
+                onOk={v => this.onPickerChange('walbuckValues', v)}
+              >
+                  <CustomChildren />
+              </Picker>
+            </div>
+            <div className="abs-scrollview-container">
+              <ListView
+                  key={this.props.useBodyScroll ? '0' : '1'}
+                  ref={el => lv = el}
+                  dataSource={this.props.dataSource}
+                  initialListSize={this.props.initialListSize}
+                  renderFooter={() => (<div style={{ textAlign: 'center' }}>
+                      {this.props.info}
+                  </div>)}
+                  renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey} />}
+                  renderRow={row}
+                  useBodyScroll={this.props.useBodyScroll}
+                  // style={this.props.useBodyScroll ? {} : {
+                  //     height: this.props.height,
+                  // }}
+                  pullToRefresh={<PullToRefresh
+                      getScrollContainer={() => lv}
+                      direction={'down'}
+                      refreshing={this.props.refreshing}
+                      onRefresh={this.onRefresh}
+                      distanceToRefresh={25}
+                      indicator={{
+                        activate: <div>释放更新</div>,
+                        deactivate: <div>下拉刷新</div>,
+                        // release: <div>正在刷新</div>,
+                        finish: <div />
+                      }}
+                  />}
+                  onEndReached={this.onEndReached}
+                  pageSize={15}
+              />
+            </div>
+          </ABSPanel>
         );
     }
 }

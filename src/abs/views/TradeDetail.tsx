@@ -14,15 +14,6 @@ function tradeDetailStateToProps(state: any) {
 class TradeDetailComponent extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
-        // this.state = {
-        //     title: props.title,
-        //     lastPath: props.title,
-        //     match: props.match,
-        //     detailInfo: {
-        //         AbsProjectUsers: [],
-        //         Contacts: []
-        //     }
-        // };
     }
 
     componentDidMount() {
@@ -46,7 +37,6 @@ class TradeDetailComponent extends React.Component<any, any> {
             tradeId: tradeId,
             noteId: noteId,
         });
-        console.log(this.props);
 
         // url = url.concat(['', tradeId, noteId].join('/'));
         // Request.post(url, {}, (response) => {
@@ -56,11 +46,20 @@ class TradeDetailComponent extends React.Component<any, any> {
     }
 
     render() {
+        function TdLabel(props: any) {
+            return <td className="appH5_white_space">{props.name}</td>;
+        }
+        function ShortLine(props: any) {
+            return  <td className="appH5_color_skyblue">-</td>;
+        }
         return (
             <div>
-                <ABSNavBar
-                    title="导航"
-                    path="/home"
+                <ABSNavBar  
+                    title="交易详情"  
+                    linkTo={{ 
+                        pathname: '/home',
+                        state: {type: 'trade'} 
+                    }} 
                 />
                 <div className="appH5_content">
                     <div className="appH5_panel">
@@ -88,24 +87,24 @@ class TradeDetailComponent extends React.Component<any, any> {
                                             </td>
                                         )
                                         : (
-                                            <td className={'appH5_color_skyblue'}>-</td>
+                                            <ShortLine />
                                         )
                                     }
-                                    <td className="appH5_color_skyblue appH5_vertical_bottom appH5_font_larger appH5_white_spac">{this.props.detailInfo.WAL}年</td>
+                                    <td className="appH5_color_skyblue appH5_vertical_bottom appH5_font_larger appH5_white_space">{this.props.detailInfo.WAL}年</td>
                                 </tr>
                                 <tr>
                                     {
                                         this.props.detailInfo.Rating != null && this.props.detailInfo.Rating !== '-' ?
                                             <td className="appH5_color_skyblue appH5_font_larger appH5_white_space appH5_vertical_middle">
                                                 {this.props.detailInfo.Rating}</td> :
-                                            <td className="appH5_color_skyblue">-</td>
+                                                <ShortLine />
                                     }
                                     <td className="appH5_color_skyblue appH5_font_larger appH5_white_space">{this.props.detailInfo.AssetType}</td>
                                 </tr>
                                 <tr>
-                                    <td className="appH5_white_space">证券类型</td>
+                                    <TdLabel name="证券类型" />
                                     <td className="appH5_vertical_top">{this.props.detailInfo.SecurityType}</td>
-                                    <td className="appH5_white_space">交易类型</td>
+                                    <TdLabel name="交易类型" />
                                     <td className="appH5_white_space">
                                         {
                                             this.props.detailInfo.TradeType === '转让' ?
@@ -115,9 +114,9 @@ class TradeDetailComponent extends React.Component<any, any> {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td className="appH5_white_space">分层占比</td>
+                                    <TdLabel name="分层占比" />
                                     <td>{this.props.detailInfo.NotionalPct}%</td>
-                                    <td className="appH5_white_space">交易场所</td>
+                                    <TdLabel name="交易场所" />
                                     <td>{this.props.detailInfo.Exchange}</td>
                                 </tr>
                                 {
@@ -149,17 +148,17 @@ class TradeDetailComponent extends React.Component<any, any> {
                                 }
                                 {
                                     (this.props.detailInfo.Contacts !== undefined && this.props.detailInfo.Contacts !== null && this.props.detailInfo.Contacts.length > 0) ?
-                                    (
-                                        <td colSpan={4}>
-                                            <div className="fl mr5">联&nbsp;系&nbsp;人&nbsp;</div>
-                                            <div className="fl" style={{ paddingTop: '.12rem' }}>
-                                                {this.props.detailInfo.Contacts.map((contactItem) =>
-                                                    <div key="contactItem.id" className="mb08 appH5_color_white">{contactItem.Name}&nbsp;&nbsp;{contactItem.Telephone}</div>
-                                                )}
-                                            </div>
-                                            <div className="clearfix" />
-                                        </td>
-                                    ) : null
+                                        (
+                                            <td colSpan={4}>
+                                                <div className="fl mr5">联&nbsp;系&nbsp;人&nbsp;</div>
+                                                <div className="fl" style={{ paddingTop: '.12rem' }}>
+                                                    {this.props.detailInfo.Contacts.map((contactItem) =>
+                                                        <div key="contactItem.id" className="mb08 appH5_color_white">{contactItem.Name}&nbsp;&nbsp;{contactItem.Telephone}</div>
+                                                    )}
+                                                </div>
+                                                <div className="clearfix" />
+                                            </td>
+                                        ) : null
                                 }
                                 <tr>
                                     <td colSpan={4} style={{ height: '2rem' }} />
