@@ -8,7 +8,7 @@ import '../../public/css/themeCopy.less';
 import '../../public/css/tradeDetail.less';
 
 function tradeDetailStateToProps(state: any) {
-    return { ...state.trade };
+    return { ...state.tradedetail };
 }
 
 class TradeDetailComponent extends React.Component<any, any> {
@@ -33,7 +33,7 @@ class TradeDetailComponent extends React.Component<any, any> {
             }
         }
         this.props.dispatch({
-            type: 'trade/getDetailData',
+            type: 'tradedetail/getDetailData',
             tradeId: tradeId,
             noteId: noteId,
         });
@@ -50,16 +50,16 @@ class TradeDetailComponent extends React.Component<any, any> {
             return <td className="appH5_white_space">{props.name}</td>;
         }
         function ShortLine(props: any) {
-            return  <td className="appH5_color_skyblue">-</td>;
+            return <td className="appH5_color_skyblue">-</td>;
         }
         return (
             <div>
-                <ABSNavBar  
-                    title="交易详情"  
-                    linkTo={{ 
+                <ABSNavBar
+                    title="交易详情"
+                    linkTo={{
                         pathname: '/home',
-                        state: {type: 'trade'} 
-                    }} 
+                        state: { type: 'trade' }
+                    }}
                 />
                 <div className="appH5_content">
                     <div className="appH5_panel">
@@ -97,7 +97,7 @@ class TradeDetailComponent extends React.Component<any, any> {
                                         this.props.detailInfo.Rating != null && this.props.detailInfo.Rating !== '-' ?
                                             <td className="appH5_color_skyblue appH5_font_larger appH5_white_space appH5_vertical_middle">
                                                 {this.props.detailInfo.Rating}</td> :
-                                                <ShortLine />
+                                            <ShortLine />
                                     }
                                     <td className="appH5_color_skyblue appH5_font_larger appH5_white_space">{this.props.detailInfo.AssetType}</td>
                                 </tr>

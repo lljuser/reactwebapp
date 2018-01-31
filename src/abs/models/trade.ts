@@ -203,30 +203,5 @@ export default {
             );
             yield put({ type: 'updateDataSource', rData: resGenData.rData, info: resGenData.info, hasMore: resGenData.hasMore, pageIndex: action.pageIndex, loading: false });
         },
-        /**
-         * 获取详情数据
-         * 
-         * @param {*} action 
-         * @param {*} { call, put } 
-         * @returns 
-         */
-        *getDetailData(action: any, { call, put }: any) {
-            try {
-                const tradeDetail = yield [
-                    call(tradeService.getTradeDetail,
-                        action.tradeId,
-                        action.noteId)
-                ];
-                yield put({
-                    type: 'getDetail',
-                    data: {
-                        tradeDetail,
-                    }
-                });
-            } catch (e) {
-                alert(e.message);
-                return;
-            }
-        }
     }
 };

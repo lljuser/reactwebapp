@@ -88,12 +88,10 @@ class Trade extends React.Component<any, {}> {
      * @memberof Trade
      */
     componentDidMount() {
+        console.log('Did');
         if (this.props.rData.length === 0) {
-            // ListView组件高度
-            // const hei = this.props.height - (ReactDOM.findDOMNode(lv as ListView) as any).offsetTop;
             this.props.dispatch({
                 type: 'trade/componentDidMount',
-                // height: hei,
                 rows: this.props.rows
             });
         }
