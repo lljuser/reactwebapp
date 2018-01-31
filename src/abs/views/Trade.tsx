@@ -147,29 +147,35 @@ class Trade extends React.Component<any, {}> {
             );
         };
         return (
-          <ABSPanel>
-            <div className="abs-table abs-table-trade">
-              <table cellSpacing={0} cellPadding={0} >
-                  <tbody>
-                      <tr>
-                          <td>
-                              <Picker data={this.props.ratingList} title="选择评级" cols={1} value={this.props.ratingValues} onOk={v => this.onPickerChange('ratingValues', v)}>
-                                  <CustomChildren />
-                              </Picker>
-                          </td>
-                          <td>
-                              <Picker data={this.props.couponList} title="选择利率" cols={1} value={this.props.couponValues} onOk={v => this.onPickerChange('couponValues', v)}>
-                                  <CustomChildren />
-                              </Picker>
-                          </td>
-                          <td>
-                              <Picker data={this.props.walbuckList} title="选择期限" cols={1} value={this.props.walbuckValues} onOk={v => this.onPickerChange('walbuckValues', v)}>
-                                  <CustomChildren />
-                              </Picker>
-                          </td>
-                      </tr >
-                  </tbody>
-              </table >
+          <ABSPanel className={'pull-refresh-wrapper'}>
+            <div className="abs-picker">
+              <Picker 
+                data={this.props.ratingList} 
+                title="选择评级" 
+                cols={1} 
+                value={this.props.ratingValues} 
+                onOk={v => this.onPickerChange('ratingValues', v)}
+              >
+                  <CustomChildren first={true}/>
+              </Picker>
+              <Picker 
+                data={this.props.couponList} 
+                title="选择利率" 
+                cols={1} 
+                value={this.props.couponValues} 
+                onOk={v => this.onPickerChange('couponValues', v)}
+              >
+                  <CustomChildren />
+              </Picker>
+              <Picker 
+                data={this.props.walbuckList} 
+                title="选择期限" 
+                cols={1} 
+                value={this.props.walbuckValues} 
+                onOk={v => this.onPickerChange('walbuckValues', v)}
+              >
+                  <CustomChildren />
+              </Picker>
             </div>
             <div className="abs-scrollview-container">
               <ListView
