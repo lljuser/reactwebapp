@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+// import * as ReactDOM from 'react-dom';
 import { ListView, PullToRefresh, Picker } from 'antd-mobile';
 import TradeItem from './TradeItem';
 import '../components/abs-table/index.less';
@@ -24,7 +24,7 @@ var lv: ListView | null;
  */
 function MyBody(props: any) {
     return (
-        <div className="abs-table abs-table-trade">
+        <div className="abs-table">
             <table cellSpacing={0} cellPadding={0}>
                 <thead>
                     <tr>
@@ -72,18 +72,13 @@ class Trade extends React.Component<any, {}> {
         });
     }
 
-    /**
-     * 在组件完成更新后立即调用。在初始化时不会被调用。
-     * 
-     * @memberof Trade
-     */
-    componentDidUpdate() {
-        if (this.props.useBodyScroll) {
-            document.body.style.overflow = 'auto';
-        } else {
-            document.body.style.overflow = 'hidden';
-        }
-    }
+    // componentDidUpdate() {
+    //     if (this.props.useBodyScroll) {
+    //         document.body.style.overflow = 'auto';
+    //     } else {
+    //         document.body.style.overflow = 'hidden';
+    //     }
+    // }
 
     /**
      * 在第一次渲染后调用，只在客户端。之后组件已经生成了对应的DOM结构，可以通过this.getDOMNode()来进行访问。
@@ -95,10 +90,10 @@ class Trade extends React.Component<any, {}> {
     componentDidMount() {
         if (this.props.rData.length === 0) {
             // ListView组件高度
-            const hei = this.props.height - (ReactDOM.findDOMNode(lv as ListView) as any).offsetTop;
+            // const hei = this.props.height - (ReactDOM.findDOMNode(lv as ListView) as any).offsetTop;
             this.props.dispatch({
                 type: 'trade/componentDidMount',
-                height: hei,
+                // height: hei,
                 rows: this.props.rows
             });
         }
@@ -111,6 +106,7 @@ class Trade extends React.Component<any, {}> {
      * @memberof Trade
      */
     onEndReached = (event) => {
+        console.log(event);
         if (this.props.loading && !this.props.hasMore) {
             return;
         }
@@ -122,6 +118,7 @@ class Trade extends React.Component<any, {}> {
             ratingValues: this.props.ratingValues,
             couponValues: this.props.couponValues,
             walbuckValues: this.props.walbuckValues,
+            rows: this.props.rows,
         });
     }
 
