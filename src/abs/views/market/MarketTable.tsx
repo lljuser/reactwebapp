@@ -13,7 +13,7 @@ class ABSTableMarketComponent extends React.Component<any> {
     this.props.onChangeTab(1, 'ABN');
   }
 
-  render() {
+  render() { 
     return (
       <div className="abs-table abs-table-market" >
         <table>
