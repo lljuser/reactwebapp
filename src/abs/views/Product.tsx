@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from 'dva/router';
+import { Link, withRouter } from 'dva/router';
 import { ListView, PullToRefresh, Picker } from 'antd-mobile';  // WingBlank, SegmentedControl, 
 import '../components/abs-table/index.less';
 import '../components/abs-picker/index.less';
@@ -43,16 +43,8 @@ class Product extends React.Component<any, {}> {
   ProductTypeValue: string[] = [];
 
   constructor(props: any) {
-    super(props);
-  }
-
-  componentDidUpdate() {
-    // if (this.props.useBodyScroll) {
-    //   document.body.style.overflow = 'auto';
-    // } else {
-    //   document.body.style.overflow = 'hidden';
-    // }
-  }  
+    super(props); 
+  } 
    
   componentDidMount() {
     if (this.props.rData.length === 0) {
@@ -63,6 +55,19 @@ class Product extends React.Component<any, {}> {
         // height: hei,
       });
     }
+
+    let {location} = this.props;
+    console.log(this.props);
+    if (location && location.state && location.state.productQuery) {  
+      this.props.dispatch({ 
+        type: 'product/changePicker', 
+        picker: location.state.productQuery.picker , 
+        val: [1],
+        currentStatusValue: this.props.currentStatusValue,
+        dealTypeValue: 0,
+        productTypeValue: 0,  
+      });
+    } 
   }
 
   onRefresh = () => {
@@ -195,4 +200,4 @@ function mapStateToProps(state: any) {
     ...state.product,
   };
 }
-export default connect(mapStateToProps)(Product);
+export default withRouter(connect(mapStateToProps)(Product));

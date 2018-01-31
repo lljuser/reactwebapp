@@ -78,7 +78,7 @@ class Trade extends React.Component<any, {}> {
      * 
      * @memberof Trade
      */
-    componentDidMount() {
+    componentDidMount() { 
         if (this.props.rData.length === 0) {
             this.props.dispatch({
                 type: 'trade/componentDidMount',

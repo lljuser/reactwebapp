@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { connect } from 'dva';
+import { connect } from 'dva'; 
 import ABSPanel from '../components/abs-panel';
 import ABSChartMarket from '../components/abs-chart'; 
 import MarketTable from './market/MarketTable';   
