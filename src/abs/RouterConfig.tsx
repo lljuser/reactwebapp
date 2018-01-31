@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Router, Switch, Route , Redirect } from 'dva/router';  
 import dynamic from 'dva/dynamic'; 
-// import asyncLoader from '../components/ayncLoader';
+import ApiRoutePath from './config/api';
+// import asyncLoader from '../components/ayncLoader'; 
 // const AsyncHome = asyncLoader(import(/*webpackChunkName:'home'*/'./Home'));  
 
 function RouterConfig({ history, app }: any) {  
@@ -34,10 +35,10 @@ function RouterConfig({ history, app }: any) {
   return (
     <Router history={history}>
       <Switch>
-          <Route exact={true} path="/home" component={Home}/>  
-          <Route exact={true} path="/productdetail/:id" component={ProductDetail}/>
-          <Route exact={true} path="/tradedetail/:gradeId/:couponId" component={TradeDetail} />
-          <Redirect path="*" to="/home" />
+          <Route exact={true} path={`${ApiRoutePath}/home`} component={Home}/>  
+          <Route exact={true} path={`${ApiRoutePath}/productdetail/:id`} component={ProductDetail}/>
+          <Route exact={true} path={`${ApiRoutePath}/tradedetail/:gradeId/:couponId`} component={TradeDetail} />
+          <Redirect path="*" to={`${ApiRoutePath}/home`} />
       </Switch>
     </Router>
   ); 
