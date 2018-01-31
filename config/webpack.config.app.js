@@ -24,7 +24,7 @@ const webpackSetting = {
     // process env environment variables for production|development or jscode|index.html
     env: {
         production: {
-            API_ADDRESS: 'http://10.1.1.35',
+            API_ADDRESS: 'https://www.cn-abs.com',
             PUBLISH_PATH: '/reactwebapp/'
         },
         development: {
