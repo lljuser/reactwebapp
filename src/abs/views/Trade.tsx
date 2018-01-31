@@ -113,6 +113,7 @@ class Trade extends React.Component<any, {}> {
      * @memberof Trade
      */
     onEndReached = (event) => {
+        console.log(event);
         if (this.props.loading && !this.props.hasMore) {
             return;
         }
@@ -124,6 +125,7 @@ class Trade extends React.Component<any, {}> {
             ratingValues: this.props.ratingValues,
             couponValues: this.props.couponValues,
             walbuckValues: this.props.walbuckValues,
+            rows: this.props.rows,
         });
     }
 
@@ -151,7 +153,7 @@ class Trade extends React.Component<any, {}> {
         return (
             <ABSPanel className={'pull-refresh-wrapper'}>
                 <div className="abs-picker">
-                    <Picker  data={this.props.ratingList} title="选择评级" cols={1} value={this.props.ratingValues} onOk={v => this.onPickerChange('ratingValues', v)}>
+                    <Picker data={this.props.ratingList} title="选择评级" cols={1} value={this.props.ratingValues} onOk={v => this.onPickerChange('ratingValues', v)}>
                         <CustomChildren first={true} />
                     </Picker>
                     <Picker data={this.props.couponList} title="选择利率" cols={1} value={this.props.couponValues} onOk={v => this.onPickerChange('couponValues', v)}>
@@ -162,7 +164,7 @@ class Trade extends React.Component<any, {}> {
                         <CustomChildren />
                     </Picker>
                 </div>
-                <div>
+                <div className="test">
                     <ListView
                         key={this.props.useBodyScroll ? '0' : '1'}
                         ref={el => lv = el}
@@ -174,9 +176,6 @@ class Trade extends React.Component<any, {}> {
                         renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey} />}
                         renderRow={row}
                         useBodyScroll={this.props.useBodyScroll}
-                        style={this.props.useBodyScroll ? {} : {
-                            height: this.props.height,
-                        }}
                         pullToRefresh={<PullToRefresh
                             getScrollContainer={() => lv}
                             direction={'down'}
@@ -184,7 +183,9 @@ class Trade extends React.Component<any, {}> {
                             onRefresh={this.onRefresh}
                             distanceToRefresh={25}
                             indicator={{
-                                activate: <div>下拉刷新数据</div>
+                                activate: <div>松开立即更新</div>,
+                                deactivate: <div>下拉刷新</div>,
+                                finish: <div />
                             }}
                         />}
                         onEndReached={this.onEndReached}
