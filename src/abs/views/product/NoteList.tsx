@@ -3,15 +3,6 @@ import '../../components/abs-tabs/index.less';
 
 class NoteList extends React.Component<any, {}> {
 
-  componentDidMount() {
-
-    // 阻止其再次请求数据，如果state中已经有数据了
-    // if (this.props.structure && this.props.structure.length > 0) {
-    //   return;
-    // }
-    // this.props.dispatch({type: 'productdetail/getDetail', id: id});
-  }
-
   render() {
     const detail = this.props.detail;
     if (detail == null || detail === undefined) {
