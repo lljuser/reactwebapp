@@ -35,7 +35,9 @@ class ProductDetail extends React.Component<any, any> {
             title="产品详情" 
             linkTo={{ 
                 pathname: '/home',
-                state: {type: 'product'} 
+                state: {
+                  type: 'product'
+                } 
             }} 
           />
         </div>

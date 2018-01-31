@@ -21,7 +21,7 @@ class Home extends React.Component<any, any> {
        index: this.getIndex()
     };   
     this.renderTabBar = this.renderTabBar.bind(this);
-    this.goToTab = this.goToTab.bind(this);
+    this.goToTab = this.goToTab.bind(this); 
   }
 
   getIndex(props?: any): number {   
@@ -90,7 +90,7 @@ class Home extends React.Component<any, any> {
           <Route path="/product" component={Product} />
           <Route path="/trade" component={Trade} /> */}
           <Market onChangeTab={this.goToTab}/>
-          <Product productQuery={this.state.productQuery}/>
+          <Product/>
           <Trade/>
         </Tabs>
       </div>

@@ -30,7 +30,21 @@ class Detail extends React.Component<any, {}> {
           <tr>
               <td>产品分类</td>
               <td>
-                  <div><Link to={`/product/${detail.Basic.ProductTypeId}`}>{detail.Basic.ProductType}</Link></div>
+                  <div>
+                    <Link 
+                      to={{ 
+                        pathname: '/home',
+                        state: {
+                          type: 'product',
+                          productQuery: {
+                            picker: 'ProductTypeValue' , 
+                            // val: [], 
+                          }
+                        } 
+                      }}
+                    > 
+                    {detail.Basic.ProductType}
+                    </Link></div>
                   <div>&nbsp;└&nbsp;<Link to={{pathname: `/product/${detail.Basic.ProductTypeId}/${detail.Basic.DealTypeId}}`, state: { type: 'product' }}}>{detail.Basic.DealType}</Link></div>
                   {detail.Basic.AssetSubCategoryId != null ?  <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└&nbsp;{detail.Basic.AssetSubCategory}</div> : ''} 
               </td>
