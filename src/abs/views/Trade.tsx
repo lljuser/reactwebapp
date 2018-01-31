@@ -5,13 +5,12 @@ import TradeItem from './TradeItem';
 import '../components/abs-table/index.less';
 import '../components/abs-picker/index.less';
 import { connect } from 'dva';
+import ABSPanel from '../components/abs-panel';
 
 // 如果不是使用 List.Item 作为 children
 const CustomChildren = props => (
-    <div onClick={props.onClick}>
-        <div style={{ display: 'table-cell', lineHeight: '30px' }}>
-            <div style={{ fontSize: 15 }}>{props.extra}</div>
-        </div>
+    <div onClick={props.onClick} className={props.first ? 'picker-trigger first' : 'picker-trigger'}>
+        <div className="selector">{props.extra}</div>
     </div>
 );
 
@@ -25,14 +24,14 @@ var lv: ListView | null;
  */
 function MyBody(props: any) {
     return (
-        <div className="abs-table abs-table-product">
+        <div className="abs-table abs-table-trade">
             <table cellSpacing={0} cellPadding={0}>
                 <thead>
                     <tr>
                         <th />
-                        <th>证券简称</th>
-                        <th className="text-right">金额(亿)</th>
-                        <th className="text-right">资产类别</th>
+                        <th className="text-left">证券简称</th>
+                        <th>金额(亿)</th>
+                        <th>资产类别</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -150,56 +149,49 @@ class Trade extends React.Component<any, {}> {
             );
         };
         return (
-            <div className="abs-table abs-table-product">
-                <table cellSpacing={0} cellPadding={0} >
-                    <tbody>
-                        <tr>
-                            <td>
-                                <Picker data={this.props.ratingList} title="选择评级" cols={1} value={this.props.ratingValues} onOk={v => this.onPickerChange('ratingValues', v)}>
-                                    <CustomChildren />
-                                </Picker>
-                            </td>
-                            <td>
-                                <Picker data={this.props.couponList} title="选择利率" cols={1} value={this.props.couponValues} onOk={v => this.onPickerChange('couponValues', v)}>
-                                    <CustomChildren />
-                                </Picker>
-                            </td>
-                            <td>
-                                <Picker data={this.props.walbuckList} title="选择期限" cols={1} value={this.props.walbuckValues} onOk={v => this.onPickerChange('walbuckValues', v)}>
-                                    <CustomChildren />
-                                </Picker>
-                            </td>
-                        </tr >
-                    </tbody>
-                </table >
-                <ListView
-                    key={this.props.useBodyScroll ? '0' : '1'}
-                    ref={el => lv = el}
-                    dataSource={this.props.dataSource}
-                    initialListSize={this.props.initialListSize}
-                    renderFooter={() => (<div style={{ textAlign: 'center' }}>
-                        {this.props.info}
-                    </div>)}
-                    renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey} />}
-                    renderRow={row}
-                    useBodyScroll={this.props.useBodyScroll}
-                    style={this.props.useBodyScroll ? {} : {
-                        height: this.props.height,
-                    }}
-                    pullToRefresh={<PullToRefresh
-                        getScrollContainer={() => lv}
-                        direction={'down'}
-                        refreshing={this.props.refreshing}
-                        onRefresh={this.onRefresh}
-                        distanceToRefresh={25}
-                        indicator={{
-                            activate: <div>下拉刷新数据</div>
+            <ABSPanel className={'pull-refresh-wrapper'}>
+                <div className="abs-picker">
+                    <Picker  data={this.props.ratingList} title="选择评级" cols={1} value={this.props.ratingValues} onOk={v => this.onPickerChange('ratingValues', v)}>
+                        <CustomChildren first={true} />
+                    </Picker>
+                    <Picker data={this.props.couponList} title="选择利率" cols={1} value={this.props.couponValues} onOk={v => this.onPickerChange('couponValues', v)}>
+                        <CustomChildren />
+                    </Picker>
+
+                    <Picker data={this.props.walbuckList} title="选择期限" cols={1} value={this.props.walbuckValues} onOk={v => this.onPickerChange('walbuckValues', v)}>
+                        <CustomChildren />
+                    </Picker>
+                </div>
+                <div>
+                    <ListView
+                        key={this.props.useBodyScroll ? '0' : '1'}
+                        ref={el => lv = el}
+                        dataSource={this.props.dataSource}
+                        initialListSize={this.props.initialListSize}
+                        renderFooter={() => (<div style={{ textAlign: 'center' }}>
+                            {this.props.info}
+                        </div>)}
+                        renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey} />}
+                        renderRow={row}
+                        useBodyScroll={this.props.useBodyScroll}
+                        style={this.props.useBodyScroll ? {} : {
+                            height: this.props.height,
                         }}
-                    />}
-                    onEndReached={this.onEndReached}
-                    pageSize={15}
-                />
-            </div >
+                        pullToRefresh={<PullToRefresh
+                            getScrollContainer={() => lv}
+                            direction={'down'}
+                            refreshing={this.props.refreshing}
+                            onRefresh={this.onRefresh}
+                            distanceToRefresh={25}
+                            indicator={{
+                                activate: <div>下拉刷新数据</div>
+                            }}
+                        />}
+                        onEndReached={this.onEndReached}
+                        pageSize={15}
+                    />
+                </div >
+            </ABSPanel>
         );
     }
 }
