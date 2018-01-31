@@ -57,15 +57,16 @@ class Product extends React.Component<any, {}> {
     }
 
     let {location} = this.props;
-    console.log(this.props);
-    if (location && location.state && location.state.productQuery) {  
+    if (location && location.state && location.state.productQuery) {
+      const productTypeValue = location.state.productQuery.productTypeValue;
+      const dealTypeValue = location.state.productQuery.dealTypeValue;
       this.props.dispatch({ 
         type: 'product/changePicker', 
-        picker: location.state.productQuery.picker , 
-        val: [1],
-        currentStatusValue: this.props.currentStatusValue,
-        dealTypeValue: 0,
-        productTypeValue: 0,  
+        picker: 'Multi' , 
+        val: '',
+        dealTypeValue: dealTypeValue === undefined ? [0] : dealTypeValue,
+        productTypeValue: productTypeValue === undefined ? [0] : productTypeValue,
+        rows: this.props.rows,
       });
     } 
   }

@@ -29,11 +29,9 @@ export default {
         rData: []
         },
       reducers: {
-    returnChangePicker(state: any, action: any) {
-            
+        returnChangePicker(state: any, action: any) {
             switch ( action.picker ) {
                 case 'CurrentStatusValue':
-                    console.log(action.val);
                     return { 
                         ...state, 
                         currentStatusValue: action.val,
@@ -46,7 +44,6 @@ export default {
                         loading: action.loading
                     };
                 case 'DealTypeValue':
-                    console.log(action.val);
                     return { 
                         ...state, 
                         dealTypeValue: action.val,
@@ -62,6 +59,19 @@ export default {
                     return { 
                         ...state, 
                         productTypeValue: action.val,
+                        dataSource: action.dataSource,
+                        rData: action.rData,
+                        hasMore: action.hasMore,
+                        pageIndex: action.pageIndex,
+                        refreshing: action.refreshing,
+                        info: action.info,
+                        loading: action.loading
+                    };
+                case 'Multi':
+                    return {
+                        ...state, 
+                        productTypeValue: action.productTypeValue,
+                        dealTypeValue: action.dealTypeValue,
                         dataSource: action.dataSource,
                         rData: action.rData,
                         hasMore: action.hasMore,
@@ -146,9 +156,10 @@ export default {
         *changePicker(action: any , { call, put }: any) {
             yield put({type: 'changeListState', info: '正在加载...' , loading: true, refreshing: false});
 
-            let currentStatusValue = action.currentStatusValue[0] === undefined ? 0 : action.currentStatusValue[0];
-            let dealTypeValue = action.dealTypeValue[0] === undefined ? 0 : action.dealTypeValue[0];
-            let productTypeValue = action.productTypeValue[0] === undefined ? 0 : action.productTypeValue[0];
+            let currentStatusValue = action.currentStatusValue === undefined ? 0 : action.currentStatusValue[0];
+            let dealTypeValue = action.dealTypeValue === undefined ? 0 : action.dealTypeValue[0];
+            let productTypeValue = action.productTypeValue === undefined ? 0 : action.productTypeValue[0];
+
             if (action.picker === 'CurrentStatusValue') {
                 currentStatusValue = action.val;
             }
@@ -178,11 +189,12 @@ export default {
                 pageIndex: 0,
                 refreshing: false,
                 info: res.info,
-                loading: false
+                loading: false,
+                productTypeValue: [productTypeValue],
+                dealTypeValue: [dealTypeValue]
             });
         },
         *getList(action: any , { call, put }: any) {
-
             yield put({type: 'changeListState', info: '正在加载...' , loading: true, refreshing: false});
             const res = yield call([productService, productService.getData],
                 action.pageIndex,
