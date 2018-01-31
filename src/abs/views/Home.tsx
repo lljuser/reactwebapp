@@ -66,10 +66,10 @@ class Home extends React.Component<any, any> {
      );
   }
 
-  goToTab(index: number, producType?: string) {
+  goToTab(index: number, product: any) {
     this.setState({ 
       index: index, 
-      productType: producType
+      product: product
     });
   }
 

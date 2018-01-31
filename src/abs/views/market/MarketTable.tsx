@@ -10,7 +10,10 @@ class ABSTableMarketComponent extends React.Component<any> {
   
   onChangTable(e: any) {
     e.preventDefault();
-    this.props.onChangeTab(1, 'ABN');
+    this.props.onChangeTab(1, {
+      id: 1,
+      type: 'ABN'
+    });
   }
 
   render() { 
