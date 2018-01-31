@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'dva';
 import ABSPanel from '../components/abs-panel';
 import ABSChartMarket from '../components/abs-chart'; 
-import MarketTable from './MarketTable';  
+import MarketTable from './market/MarketTable';  
 import { Button } from 'antd-mobile'; 
 
 class MarketComponent extends React.Component<any, any> { 
