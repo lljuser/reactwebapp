@@ -66,9 +66,7 @@ class Home extends React.Component<any, any> {
      );
   }
 
-  goToTab(index: number, productQuery: any) {
-    console.log('home-------------------------');
-    console.log(productQuery);
+  goToTab(index: number, productQuery: any) { 
     this.setState({ 
       index: index, 
       productQuery: productQuery
