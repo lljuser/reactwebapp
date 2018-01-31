@@ -14,7 +14,7 @@ export const ProductApi = {
   // /{dealId?}
   detail: `${ApiAddress}/modeal/getdealfactory`,
   // /{dealId}/{resultId}
-  chart: `${ApiAddress}/modeal/getnotecashflowchartdata`,
+  chart: `${ApiAddress}/modeal/NoteCashFlowSeries`,
   // 
   structure: `${ApiAddress}/modeal/getnotestructure`,
 }; 

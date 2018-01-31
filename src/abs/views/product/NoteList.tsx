@@ -8,7 +8,9 @@ class NoteList extends React.Component<any, {}> {
     if (detail == null || detail === undefined) {
       return <div className="appH5_color_details appH5_font_smaller" style={{textAlign: 'center'}}> <span>暂无数据</span> </div>;
     }
-
+    if (detail.NoteList.length === 0) {
+      return <div className="appH5_color_details appH5_font_smaller" style={{textAlign: 'center'}}> <span>暂无数据</span> </div>;
+    }
     return (
       <table className="appH5_table">
           <thead>

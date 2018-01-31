@@ -15,10 +15,7 @@ class ABSTableMarketComponent extends React.Component<any> {
       type: 'product/changePicker', 
       picker: 'ProductTypeValue' , 
       val: [projectType.ProductTypeId],
-      currentStatusValue: 0,
-      dealTypeValue: 0,
-      productTypeValue: 0,
-      // rows: this.props.rows,
+      rows: this.props.rows,
     });
     this.props.onChangeTab(1); 
   }

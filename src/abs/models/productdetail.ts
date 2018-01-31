@@ -66,9 +66,12 @@ export default {
             noteConsTable = null;
           }
         }
-       
-        if (detail.ResultSetId != null && detail.ResultSetId > 0) {
-          chart = yield call(productDetailService.getChart, detail.DealId, detail.ResultSetId);
+        try {
+          if (detail.DealId != null && detail.DealId > 0) {
+            chart = yield call(productDetailService.getChart, detail.DealId);
+          }
+        } catch (e) {
+          chart = null;
         }
 
         yield put({

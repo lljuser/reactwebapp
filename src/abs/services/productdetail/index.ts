@@ -1,5 +1,6 @@
 import { ProductApi } from '../../config/api';
 import Request from '../../../common/http/request/index';
+import * as chartTheme from '../../../public/js/chartTheme';
 
 // 默认图表数据
 const defaultChart = {
@@ -28,132 +29,135 @@ class ProductDetailService {
     }
     
     async getChart(dealId: string, resultId: string) {
-        const api = ProductApi.chart.concat(['', dealId, resultId].join('/'));
+        const api = ProductApi.chart.concat(['', dealId].join('/'));
         const chartData = await Request.post(api);
 
         if (!chartData) {
             return defaultChart;
         }
-        var o: any = [];
-        var hasLegal = chartData.HasLegalLine;
-        var colors = ['#2b908f', '#D8C46C', '#f45b5b', '#7798BF', '#FF1495', '#37FF14', '#eeaaee', '#55BF3B', '#DF5353', '#7798BF', '#aaeeee', '#00FFFF', '#8B008B'];
-        var seriesLength = chartData.ListLineSeries.length / 2;
-        for (var j = 0; j < Math.floor((hasLegal ? seriesLength : 2 * seriesLength) / colors.length); j++) {
-                colors = colors.concat(colors);
+        let allSeries: any = [];
+        let lineValue;
+        let i = 0;
+        let colors = chartTheme.colors;
+        if (chartData && chartData.length > 0) {
+            // let allSeriesLth = chartData.length;
+            let colorSeries = chartData.filter(function (item: any) { return item.Order > 100; }).length > 0 ?
+                        Math.ceil(chartData.length / colors.length) : chartData.length;
+            for (let j = 0; j < colorSeries; j++) { // get max color series
+                        colors = colors.concat(colors);
             }
-
-        var i = 0;
-        chartData.ListLineSeries.forEach(
-                function (e: any) {
-                    var a: any = [];
-                    e.Data.Data.forEach(
-                        function (ef: any) {
-                            a.push([ef.X, ef.Y]);
+            let pSeries = chartData.filter(function (item: any) { return item.Order < 100; });
+            let lSeries = chartData.filter(function (item: any) { return item.Order > 100 && item.Order !== 1000; });
+            var plotLine = chartData.filter(function (item: any) { return item.Order === 1000; });
+            let minDate = new Date(1970, 1, 1).valueOf();
+            pSeries.forEach(function (item: any, index: any) {
+                        let point: any = [];
+                        item.Points.forEach(function (e: any) {
+                            point.push([new Date(e.X).valueOf() - minDate, e.Y * 1]);
                         });
-                    if (hasLegal === true) {
-                        if (i < seriesLength) {
-                            o.push({
-                                name: e.Name,
-                                data: a,
-                                type: 'line',
-                                step: true,
-                                color: colors[i]
-                            });
-                        } else {
-                            o.push({
-                                name: e.Name,
-                                data: a,
-                                dashStyle: 'Dot',
-                                step: true,
-                                color: colors[i - seriesLength]
-                            });
-                        }
+                        allSeries.push({
+                            name: item.SeriesName,
+                            data: point,
+                            dashStyle: item.Type,
+                            step: true,
+                            color: colors[i]
+                        });
                         i++;
-                    } else {
-                        o.push({
-                            name: e.Name,
-                            data: a,
-                            type: 'spline',
+                    });
+            if (lSeries.length > 0) {
+                        i = 0;
+                        lSeries.forEach(function (item: any, index: any) {
+                           let point: any = [];
+                           item.Points.forEach(function (e: any) {
+                              point.push([new Date(e.X).valueOf() - minDate, e.Y * 1]);
+                           });
+                           allSeries.push({
+                               name: item.SeriesName,
+                               data: point,
+                               dashStyle: item.Type,
+                               step: true,
+                               color: colors[i]
+                           });
+                           i++;                           
                         });
                     }
-
-                });
-
-        i = chartData.PlotValue;
-        var s = chartData.PlotLabel;
-        var l = {
-                        title: {
-                            text: ''
-                        },
-                        xAxis: {
-                            type: 'datetime',
-                            dateTimeLabelFormats: {
-                                second: '%Y-%m-%d %H:%M:%S',
-                                minute: '%Y-%m-%d %H:%M',
-                                hour: '%Y-%m-%d %H:%M',
-                                day: '%Y-%m-%d',
-                                week: '%Y年%m月',
-                                month: '%Y年',
-                                year: '%Y年'
-                            },
-                            plotLines: [{
-                                color: 'white',
-                                width: .8,
-                                value: i,
-                                dashStyle: 'dash',
-                                label: {
-                                    text: s,
-                                    verticalAlign: 'middle',
-                                    textAlign: 'left',
-                                    style: {
-                                        color: '#E0E0E3'
-                                    }
-                                }
-                            }],
-                            plotBands: [{
-                                color: '#333',
-                                from: Date.UTC(2e3, 1, 1),
-                                to: i
-                            }]
-                        },
-                        yAxis: {
+            if (plotLine.length === 1) {
+                        lineValue = new Date(plotLine[0].Points).valueOf() - minDate;
+                    }
+                }
+        let option = {
                             title: {
-                                enabled: !0,
                                 text: ''
                             },
-                            labels: {
-                                format: '{value:.0f}%'
+                            xAxis: {
+                                type: 'datetime',
+                                dateTimeLabelFormats: {
+                                    second: '%Y-%m-%d %H:%M:%S',
+                                    minute: '%Y-%m-%d %H:%M',
+                                    hour: '%Y-%m-%d %H:%M',
+                                    day: '%Y-%m-%d',
+                                    week: '%Y.%m',
+                                    month: '%Y.%m',
+                                    year: '%Y.%m'
+                                },
+                                plotLines: [{
+                                    color: 'white',
+                                    width: .8,
+                                    value: lineValue,
+                                    dashStyle: 'dash',
+                                    label: {
+                                        text: plotLine.Points,
+                                        verticalAlign: 'middle',
+                                        textAlign: 'left',
+                                        style: {
+                                            color: '#E0E0E3'
+                                        }
+                                    }
+                                }],
+                                plotBands: [{
+                                    color: '#333',
+                                    from: Date.UTC(2e3, 1, 1),
+                                    to: lineValue
+                                }]
                             },
-                            max: 100
-                        },
-                        plotOptions: {
-                            series: {
-                                marker: {
-                                    enabled: !1
+                            yAxis: {
+                                title: {
+                                    enabled: !0,
+                                    text: ''
+                                },
+                                labels: {
+                                    format: '{value:.0f}%'
+                                },
+                                max: 100
+                            },
+                            plotOptions: {
+                                series: {
+                                    marker: {
+                                        enabled: !1
+                                    }
                                 }
-                            }
-                        },
-                        tooltip: {
-                            formatter: function () {
-                                var cont = (this as any);
-                                var t,
-                                    e = new Date(cont.x);
-                                return t = e.getFullYear() + '-' + (e.getMonth() + 1) + '-' + e.getDate() + '<br/>' + cont.series.name + '剩余本金:<br/>' + Math.round(100 * cont.y) / 100 + '%';
-                            }
-                        },
-                        legend : {
-                            style: {
-                                fontSize: '10px'
-                            }
-                        },
-                        credits: {
-                        href: '',
-                        text: 'CNABS'
-                        },
-                        series: o
-                    };
-
-        return l;
+                            },
+                            tooltip: {
+                                formatter: function () {
+                                    var cont = (this as any);
+                                    let t,
+                                        e = new Date(cont.x);
+                                    return t = e.getFullYear() + '-' + (e.getMonth() + 1) + '-' + e.getDate() + '<br/>' + cont.series.name + '剩余本金:<br/>' + Math.round(100 * cont.y) / 100 + '%';
+                                }
+                            },
+                            legend : {
+                                style: {
+                                    fontSize: '10px'
+                                }
+                            },
+                            credits: {
+                            href: '',
+                            text: 'CNABS'
+                            },
+                            series: allSeries
+                        };
+               
+        return option;
         
     }
 }
