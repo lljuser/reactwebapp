@@ -121,7 +121,7 @@ class Product extends React.Component<any, {}> {
       return (
         <tr key={rowData.DealId} className={rowData.DealId} >
           <td className={'text-left'}>
-            <Link to={`${RoutePageList.ProductDetailPage}${rowData.DealId}`}><div className={'td_elips1'}>{rowData.DealName}</div></Link>
+            <Link to={`${RoutePageList.ProductDetailPage}/${rowData.DealId}`}><div className={'td_elips1'}>{rowData.DealName}</div></Link>
           </td>
           <td className={'text-right highLight-red'} style={{ fontSize: '17px' }}>{rowData.TotalOffering}</td>
           <td style={{ color: 'white' }} className={'text-right td_elips2'}><div style={{ width: '100%', float: 'right' }}><div>{rowData.DealType}</div></div></td>

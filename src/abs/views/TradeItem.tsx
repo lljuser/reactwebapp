@@ -36,7 +36,7 @@ export default class MyComponent extends React.Component<AppProps, {}> {
                     <div className={this.props.TradeTypeId === 1 ? 'tradingMarketDiv appH5_bg_blue' : 'tradingMarketDiv appH5_bg_purple'}>{this.props.TradeTypeId === 1 ? 'P' : 'S'}</div>
                 </td>
                 <td className={'text-left'}>
-                    <Link to={`${RoutePageList.TradeDetailPage}${this.props.TradeId}/${this.props.SecurityId}`} className="appH5_color_link">
+                    <Link to={`${RoutePageList.TradeDetailPage}/${this.props.TradeId}/${this.props.SecurityId}`} className="appH5_color_link">
                         <div className={'td_elips1'}>{this.props.SecurityName}</div>
                     </Link>
                 </td>

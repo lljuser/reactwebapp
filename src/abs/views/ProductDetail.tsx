@@ -9,7 +9,7 @@ import { ABSNavBar } from '../components/abs-navbar';
 import ABSChartMarket from '../components/abs-chart';
 import { connect } from 'dva';
 import '../../public/css/themeCopy.less';
-import ApiRoutePath from '../config/api';
+import RoutePageList from '../RouterConfig';
 
 function mapStateToProps(state: any) {
   return {
@@ -31,7 +31,7 @@ class ProductDetail extends React.Component<any, any> {
           <ABSNavBar 
             title="产品详情" 
             linkTo={{ 
-                pathname: `${ApiRoutePath}/home`, 
+                pathname: `${RoutePageList.HomePage}`, 
                 state: {
                   type: 'product'
                 } 

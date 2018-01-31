@@ -27,7 +27,7 @@ class Home extends React.Component<any, any> {
   getIndex(props?: any): number {   
     props = props || this.props;
     const { location } = props;
-    
+    console.log(location);
     if (location && location.state && location.state.type) { 
       const idx = this.tabs.findIndex((current) => current.name === location.state.type);
       return idx >= 0 ? idx : 0;

@@ -10,9 +10,9 @@ const ApiRoutePath =  process.env.REACT_APP_PUBLISH_PATH;
 const RoutePageList = {
     HomePage: `${ApiRoutePath}home`,
     ProductDetailPage: `${ApiRoutePath}productdetail`,
-    TradeDetailPage: `${ApiRoutePath}tradedetail/`, 
+    TradeDetailPage: `${ApiRoutePath}tradedetail`, 
 };
-alert(JSON.stringify(RoutePageList));
+ 
 export default RoutePageList;
 
 export function RouterConfig({ history, app }: any) {  
@@ -46,8 +46,8 @@ export function RouterConfig({ history, app }: any) {
     <Router history={history}>
       <Switch>
           <Route exact={true} path={RoutePageList.HomePage} component={Home}/>  
-          <Route exact={true} path={`${RoutePageList.ProductDetailPage}:id`} component={ProductDetail}/>
-          <Route exact={true} path={`${RoutePageList.TradeDetailPage}:gradeId/:couponId`} component={TradeDetail} />
+          <Route exact={true} path={`${RoutePageList.ProductDetailPage}/:id`} component={ProductDetail}/>
+          <Route exact={true} path={`${RoutePageList.TradeDetailPage}/:gradeId/:couponId`} component={TradeDetail} />
           <Redirect path="*" to={RoutePageList.HomePage} />
       </Switch>
     </Router>
