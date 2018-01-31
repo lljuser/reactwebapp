@@ -153,37 +153,37 @@ class Product extends React.Component<any, {}> {
             <PickerChildren>选择状态</PickerChildren>
           </Picker>
         </div>
-        <div className="test">
-        <ListView
-            key={this.props.useBodyScroll ? '0' : '1'}
-            ref={el => lv = el}
-            dataSource={this.props.dataSource}
-            initialListSize={this.props.initialListSize}
-            renderFooter={() => (<div style={{ textAlign: 'center' }}>
-              {this.props.info}
-            </div>)}
-            renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey}  CurrentStatus={this.props.currentStatus} CurrentStatusValue={this.props.currentStatusValue} DealType={this.props.dealType} DealTypeValue={this.props.dealTypeValue} ProductType={this.props.productType} ProductTypeValue={this.props.productTypeValue} />}
-            renderRow={row}
-            useBodyScroll={this.props.useBodyScroll}
-            // style={this.props.useBodyScroll ? { minHeight: '500px' } : {
-            //   height: 'auto',
-            // }}
-            pullToRefresh={<PullToRefresh 
-              getScrollContainer={() => lv}
-              direction={'down'}
-              refreshing={this.props.refreshing}
-              onRefresh={this.onRefresh}
-              distanceToRefresh={25}
-              indicator={{
-                activate: <div>松开立即更新</div>,
-                deactivate: <div>下拉刷新</div>,
-                // release: <div>正在刷新</div>,
-                finish: <div />
-              }}
-            />}
-            onEndReached={this.onEndReached}
-            pageSize={15}
-        />
+        <div className="abs-scrollview-container">
+          <ListView
+              key={this.props.useBodyScroll ? '0' : '1'}
+              ref={el => lv = el}
+              dataSource={this.props.dataSource}
+              initialListSize={this.props.initialListSize}
+              renderFooter={() => (<div style={{ textAlign: 'center' }}>
+                {this.props.info}
+              </div>)}
+              renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey}  CurrentStatus={this.props.currentStatus} CurrentStatusValue={this.props.currentStatusValue} DealType={this.props.dealType} DealTypeValue={this.props.dealTypeValue} ProductType={this.props.productType} ProductTypeValue={this.props.productTypeValue} />}
+              renderRow={row}
+              useBodyScroll={this.props.useBodyScroll}
+              // style={this.props.useBodyScroll ? { minHeight: '500px' } : {
+              //   height: 'auto',
+              // }}
+              pullToRefresh={<PullToRefresh 
+                getScrollContainer={() => lv}
+                direction={'down'}
+                refreshing={this.props.refreshing}
+                onRefresh={this.onRefresh}
+                distanceToRefresh={25}
+                indicator={{
+                  activate: <div>释放更新</div>,
+                  deactivate: <div>下拉刷新</div>,
+                  // release: <div>正在刷新</div>,
+                  finish: <div />
+                }}
+              />}
+              onEndReached={this.onEndReached}
+              pageSize={15}
+          />
         </div>
       </ABSPanel>
     );

@@ -53,8 +53,6 @@ function MyBody(props: any) {
 class Trade extends React.Component<any, {}> {
     constructor(props: any) {
         super(props);
-        this.onRefresh = this.onRefresh.bind(this);
-        this.onEndReached = this.onEndReached.bind(this);
     }
 
     /**
@@ -81,11 +79,11 @@ class Trade extends React.Component<any, {}> {
      * @memberof Trade
      */
     componentDidUpdate() {
-        // if (this.props.useBodyScroll) {
-        //     document.body.style.overflow = 'auto';
-        // } else {
-        //     document.body.style.overflow = 'hidden';
-        // }
+        if (this.props.useBodyScroll) {
+            document.body.style.overflow = 'auto';
+        } else {
+            document.body.style.overflow = 'hidden';
+        }
     }
 
     /**
@@ -133,7 +131,7 @@ class Trade extends React.Component<any, {}> {
      * 
      * @memberof Trade
      */
-    onRefresh() {
+    onRefresh = (refresh: boolean = true) => {
         this.props.dispatch({
             type: 'trade/onRefresh',
             rows: this.props.rows,
@@ -193,7 +191,10 @@ class Trade extends React.Component<any, {}> {
                         onRefresh={this.onRefresh}
                         distanceToRefresh={25}
                         indicator={{
-                            activate: <div>下拉刷新数据</div>
+                          activate: <div>释放更新</div>,
+                          deactivate: <div>下拉刷新</div>,
+                          // release: <div>正在刷新</div>,
+                          finish: <div />
                         }}
                     />}
                     onEndReached={this.onEndReached}
