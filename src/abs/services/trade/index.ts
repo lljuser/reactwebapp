@@ -107,12 +107,12 @@ class TradeService {
         url = url + '/' + direction + '/' + pageIndex * rows + '/' + rows;
 
         let res = await Request.post(url, {});
+        rData = [...rData, ...res];
+        returnGenData.rData = rData;
         if (res.length === 0) {
             returnGenData.info = '没有更多了';
             returnGenData.hasMore = false;
         } else {
-            rData = [...rData, ...res];
-            returnGenData.rData = rData;
             returnGenData.info = '加载完成';
         }
         return returnGenData;

@@ -19,7 +19,7 @@ export default {
         refreshing: true,
         initialListSize: 15, // 组件刚挂载的时候渲染数据行数
         rows: 15, // 数据查询条数
-        pageIndex: 1, // 数据查询页数
+        pageIndex: 0, // 数据查询页数
         rData: [], // table数据
         ratingValues: [], // 评级value集合
         ratingList: [], // 评级集合
@@ -67,7 +67,6 @@ export default {
          * @returns 
          */
         formatPickerData(state: any, action: any) {
-
             switch (action.cmd) {
                 case 'resRating': return {
                     ...state,
@@ -88,24 +87,45 @@ export default {
                     return { ...state };
             }
         },
+        /**
+         * 获取详情数据
+         * 
+         * @param {*} state 
+         * @param {*} action 
+         * @returns 
+         */
         getDetail(state: any, action: any) {
-            // const tradeDetail = action.data;
-            console.log(action.data.tradeDetail[0].detailInfo);
-            // if (state.loading) {
-            //   return state;
-            // }
-
             return {
                 detailInfo: action.data.tradeDetail[0].detailInfo
             };
         },
+        /**
+         * 修改数据源内容
+         * 
+         * @param {*} state 
+         * @param {*} action 
+         * @returns 
+         */
         updateDataSource(state: any, action: any) {
-            switch (action.cmd) {
-                default: return {
-                    ...state, dataSource: listviewdata.cloneWithRows(action.rData), rData: action.rData, refreshing: false, info: action.info,
-                    hasMore: action.hasMore
-                };
-            }
+            return {
+                ...state, dataSource: listviewdata.cloneWithRows(action.rData), rData: action.rData, refreshing: false, info: action.info,
+                hasMore: action.hasMore, pageIndex: action.pageIndex, loading: action.loading
+            };
+        },
+        /**
+         * 修改底部信息显示内容
+         * 
+         * @param {*} state 
+         * @param {*} action 
+         * @returns 
+         */
+        updateLoadingState(state: any, action: any) {
+            return {
+                ...state,
+                info: action.info,
+                loading: action.loading,
+                refreshing: action.refreshing
+            };
         }
     },
     effects: {
@@ -134,7 +154,7 @@ export default {
             );
 
             yield put({ type: 'returnChangePicker', picker: action.picker, val: action.val });
-            yield put({ type: 'updateDataSource', cmd: 'onPickerChange', rData: resGenData.rData, info: resGenData.info, hasMore: resGenData.hasMore });
+            yield put({ type: 'updateDataSource', rData: resGenData.rData, info: resGenData.info, hasMore: resGenData.hasMore, pageIndex: 0, loading: false });
         },
         /**
          * 客户端组件第一次渲染
@@ -143,6 +163,7 @@ export default {
          * @param {*} { call, put } 
          */
         *componentDidMount(action: any, { call, put }: any) {
+            yield put({ type: 'updateLoadingState', info: '正在加载...', loading: true, refreshing: false });
             const resWalbuck = yield call([tradeService, tradeService.getWalbuckList]);
             yield put({ type: 'formatPickerData', cmd: 'resWalbuck', walbuckValues: resWalbuck.walbuckValues, walbuckList: resWalbuck.walbuckList });
 
@@ -154,7 +175,7 @@ export default {
 
             // 第一次请求数据源
             const resGenData = yield call([tradeService, tradeService.genData], true, 0, 1, [], action.rows);
-            yield put({ type: 'updateDataSource', cmd: 'componentDidMount', rData: resGenData.rData, info: resGenData.info, hasMore: resGenData.hasMore });
+            yield put({ type: 'updateDataSource', rData: resGenData.rData, info: resGenData.info, hasMore: resGenData.hasMore, pageIndex: 0, loading: false });
         },
         /**
          * 刷新数据源
@@ -163,18 +184,32 @@ export default {
          * @param {*} { call, put } 
          */
         *onRefresh(action: any, { call, put }: any) {
-            console.log(action);
+            yield put({ type: 'updateLoadingState', info: '正在加载...', loading: true, refreshing: false });
             const resGenData = yield call([tradeService, tradeService.genData], true, 0, 1, [], action.rows,
                 action.ratingValues[0], action.couponValues[0], action.walbuckValues[0]
             );
-            yield put({ type: 'updateDataSource', cmd: 'onRefresh', rData: resGenData.rData, info: resGenData.info, hasMore: resGenData.hasMore });
+            yield put({ type: 'updateDataSource', rData: resGenData.rData, info: resGenData.info, hasMore: resGenData.hasMore, pageIndex: 0, loading: false });
         },
+        /**
+         * 下滑到底部加载数据
+         * 
+         * @param {*} action 
+         * @param {*} { call, put } 
+         */
         *onEndReached(action: any, { call, put }: any) {
-            const resGenData = yield call([tradeService, tradeService.genData], true, 1, action.pageIndex, action.rData, action.rows,
+            yield put({ type: 'updateLoadingState', info: '正在加载...', loading: true, refreshing: false });
+            const resGenData = yield call([tradeService, tradeService.genData], false, 1, action.pageIndex, action.rData, action.rows,
                 action.ratingValues[0], action.couponValues[0], action.walbuckValues[0]
             );
-            console.log(resGenData);
+            yield put({ type: 'updateDataSource', rData: resGenData.rData, info: resGenData.info, hasMore: resGenData.hasMore, pageIndex: action.pageIndex, loading: false });
         },
+        /**
+         * 获取详情数据
+         * 
+         * @param {*} action 
+         * @param {*} { call, put } 
+         * @returns 
+         */
         *getDetailData(action: any, { call, put }: any) {
             try {
                 const tradeDetail = yield [
@@ -182,7 +217,6 @@ export default {
                         action.tradeId,
                         action.noteId)
                 ];
-
                 yield put({
                     type: 'getDetail',
                     data: {
