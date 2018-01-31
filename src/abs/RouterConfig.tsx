@@ -19,11 +19,17 @@ function RouterConfig({ history, app }: any) {
 
   const ProductDetail = dynamic({
     app, 
+    models: () => [  
+      import('./models/productdetail'),  
+    ],
     component: () => import('./views/ProductDetail'),
   });
 
   const TradeDetail = dynamic({
-    app,
+    app, 
+    models: () => [  
+      import('./models/tradedetail'),  
+    ],
     component: () => import('./views/TradeDetail')
   });
 

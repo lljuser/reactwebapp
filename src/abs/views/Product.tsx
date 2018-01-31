@@ -52,13 +52,8 @@ class Product extends React.Component<any, {}> {
     // } else {
     //   document.body.style.overflow = 'hidden';
     // }
-  } 
-
-  componentWillReceiveProps(nextProps: any) {
-    console.log('--------------------------------');
-    console.log(nextProps);
-  }
-  
+  }  
+   
   componentDidMount() {
     if (this.props.rData.length === 0) {
       // const hei = document.documentElement.clientHeight - (ReactDOM.findDOMNode(lv as ListView) as any).offsetTop;
