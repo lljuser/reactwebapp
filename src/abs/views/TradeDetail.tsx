@@ -54,9 +54,12 @@ class TradeDetailComponent extends React.Component<any, any> {
         }
         return (
             <div>
-                <ABSNavBar
-                    title="导航"
-                    path="/trade"
+                <ABSNavBar  
+                    title="交易详情"  
+                    linkTo={{ 
+                        pathname: '/home',
+                        state: {type: 'trade'} 
+                    }} 
                 />
                 <div className="appH5_content">
                     <div className="appH5_panel">

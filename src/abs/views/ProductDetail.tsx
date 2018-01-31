@@ -30,9 +30,12 @@ class ProductDetail extends React.Component<any, any> {
     return (
       <div>
         <div>
-          <ABSNavBar
-            title="导航"
-            path="/product"
+          <ABSNavBar 
+            title="产品详情" 
+            linkTo={{ 
+                pathname: '/home',
+                state: {type: 'product'} 
+            }} 
           />
         </div>
         <div className="appH5_body">

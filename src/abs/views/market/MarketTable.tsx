@@ -3,6 +3,15 @@ import { connect } from 'dva';
 import '../../components/abs-tabs/index.less'; 
 
 class ABSTableMarketComponent extends React.Component<any> {
+  constructor(props: any) {
+    super(props);
+    this.onChangTable = this.onChangTable.bind(this);
+  }
+  
+  onChangTable(e: any) {
+    e.preventDefault();
+    this.props.onChangeTab(1, 'ABN');
+  }
 
   render() {
     return (
