@@ -15,7 +15,7 @@ export default {
          */
         getDetail(state: any, action: any) {
             return {
-                detailInfo: action.data.tradeDetail[0].detailInfo
+                detailInfo: action.data.tradeDetail.detailInfo
             };
         },
     },
@@ -28,21 +28,22 @@ export default {
          * @returns 
          */
         *getDetailData(action: any, { call, put }: any) {
-            console.log(action);
+
             try {
-                const tradeDetail = yield [
-                    call(tradeDetailService.getTradeDetail,
-                        action.tradeId,
-                        action.noteId)
-                ];
-                yield put({
-                    type: 'getDetail',
-                    data: {
-                        tradeDetail,
-                    }
-                });
+              
+              // don't use yield [] , or you may got some warning , use Promise.all[] instead in service...
+              const tradeDetail = yield call(tradeDetailService.getTradeDetail,
+                                        action.tradeId,
+                                        action.noteId);
+              yield put({
+                  type: 'getDetail',
+                  data: {
+                      tradeDetail,
+                  }
+              });
+
             } catch (e) {
-                alert(e.message);
+                // alert(e.message);
                 return;
             }
         }
