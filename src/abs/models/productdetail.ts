@@ -1,4 +1,4 @@
-import productDetailService, { defaultChart } from '../services/productdetail';
+import productDetailService from '../services/productdetail';
 
 export default {
   namespace: 'productdetail',
@@ -6,7 +6,7 @@ export default {
     detail: null,
     noteConsTable: null,
     chartWidthPx: 0,
-    chart: defaultChart,
+    chart: null,
     loading: false
   },
   reducers: {
@@ -46,24 +46,27 @@ export default {
     *getData(action: any, { call, put }: any) {
       try {
         const detail = yield call(productDetailService.getDetail, action.id);
-        let chartWidthPx = 0;
+        let chartWidthPx = 280;
         let noteConsTable = null;
-        let chart = defaultChart;
-
+        let chart = null;
+        
         if (detail.DealId != null && detail.DealId > 0) {
-          if (detail.NoteList != null && detail.NoteList.length > 0) {
-            if (detail.NoteList.length > 6) {
-              chartWidthPx = 280;
-            } else if (detail.NoteList.length > 4) {
-              chartWidthPx = 200;
-            } else {
-              chartWidthPx = 150;
-            }
+          // if (detail.NoteList != null && detail.NoteList.length > 0) {
+          //   // if (detail.NoteList.length > 6) {
+          //   //   chartWidthPx = 280;
+          //   // } else if (detail.NoteList.length > 4) {
+          //   //   chartWidthPx = 200;
+          //   // } else {
+          //   //   chartWidthPx = 150;
+          //   // }
+          // }
+          try {
+            noteConsTable = yield call(productDetailService.getNoteConsTable, action.id, chartWidthPx, 200);
+          } catch (e) {
+            noteConsTable = null;
           }
-
-          noteConsTable = yield call(productDetailService.getNoteConsTable, action.id, chartWidthPx, 200);
         }
-
+       
         if (detail.ResultSetId != null && detail.ResultSetId > 0) {
           chart = yield call(productDetailService.getChart, detail.DealId, detail.ResultSetId);
         }
