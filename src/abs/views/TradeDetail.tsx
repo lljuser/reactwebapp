@@ -6,6 +6,7 @@ import { connect } from 'dva';
 import { ABSNavBar } from '../components/abs-navbar';
 import '../../public/css/themeCopy.less';
 import '../../public/css/tradeDetail.less';
+import ApiRoutePath from '../config/api';
 
 function tradeDetailStateToProps(state: any) {
     return { ...state.tradedetail };
@@ -57,7 +58,7 @@ class TradeDetailComponent extends React.Component<any, any> {
                 <ABSNavBar
                     title="交易详情"
                     linkTo={{
-                        pathname: '/home',
+                        pathname: `${ApiRoutePath}/home`,
                         state: { type: 'trade' }
                     }}
                 />

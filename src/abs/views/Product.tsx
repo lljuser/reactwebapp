@@ -6,6 +6,7 @@ import '../components/abs-picker/index.less';
 import '../components/theme-common.less';
 import { connect } from 'dva';
 import ABSPanel from '../components/abs-panel'; 
+import ApiRoutePath from '../config/api';
 
 // 真实产品选择piker点
 const PickerChildren = props => (
@@ -120,7 +121,7 @@ class Product extends React.Component<any, {}> {
       return (
         <tr key={rowData.DealId} className={rowData.DealId} >
           <td className={'text-left'}>
-            <Link to={`/productdetail/${rowData.DealId}`}><div className={'td_elips1'}>{rowData.DealName}</div></Link>
+            <Link to={`${ApiRoutePath}/productdetail/${rowData.DealId}`}><div className={'td_elips1'}>{rowData.DealName}</div></Link>
           </td>
           <td className={'text-right highLight-red'} style={{ fontSize: '17px' }}>{rowData.TotalOffering}</td>
           <td style={{ color: 'white' }} className={'text-right td_elips2'}><div style={{ width: '100%', float: 'right' }}><div>{rowData.DealType}</div></div></td>

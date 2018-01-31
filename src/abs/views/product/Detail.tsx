@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Link } from 'dva/router';
 import '../../components/abs-tabs/index.less'; 
 import moment from 'moment';
+import ApiRoutePath from '../../config/api';
 
 class Detail extends React.Component<any, {}> {
 
@@ -24,7 +25,7 @@ class Detail extends React.Component<any, {}> {
                   <div>
                     <Link 
                       to={{ 
-                        pathname: '/home',
+                        pathname: `${ApiRoutePath}/home`,
                         state: {
                           type: 'product',
                           productQuery: {
@@ -38,7 +39,7 @@ class Detail extends React.Component<any, {}> {
                   <div>&nbsp;└&nbsp;
                     <Link 
                         to={{ 
-                          pathname: '/home',
+                          pathname: `${ApiRoutePath}/home`,
                           state: {
                             type: 'product',
                             productQuery: {
