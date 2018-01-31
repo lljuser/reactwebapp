@@ -1,7 +1,6 @@
  
-export const ApiAddress = process.env.REACT_APP_API_ADDRESS;
-const ApiRoutePath = process.env.REACT_APP_PUBLISH_PATH;
-export default ApiRoutePath; 
+const ApiAddress = process.env.REACT_APP_API_ADDRESS; 
+export default ApiAddress; 
 
 export const MarketApi = {
   list: `${ApiAddress}/momarket/productsummary`,

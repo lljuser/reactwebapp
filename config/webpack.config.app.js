@@ -29,7 +29,7 @@ const webpackSetting = {
         },
         development: {
             API_ADDRESS: 'http://10.1.1.35',
-            PUBLISH_PATH: '/'
+            PUBLISH_PATH: ''
         }
     },  
     // output setting

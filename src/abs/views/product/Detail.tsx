@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Link } from 'dva/router';
 import '../../components/abs-tabs/index.less'; 
 import moment from 'moment';
-import ApiRoutePath from '../../config/api';
+import RoutePageList from '../../RouterConfig';
 
 class Detail extends React.Component<any, {}> {
 
@@ -25,7 +25,7 @@ class Detail extends React.Component<any, {}> {
                   <div>
                     <Link 
                       to={{ 
-                        pathname: `${ApiRoutePath}/home`,
+                        pathname: `${RoutePageList.HomePage}`,
                         state: {
                           type: 'product',
                           productQuery: {
@@ -39,7 +39,7 @@ class Detail extends React.Component<any, {}> {
                   <div>&nbsp;└&nbsp;
                     <Link 
                         to={{ 
-                          pathname: `${ApiRoutePath}/home`,
+                          pathname: `${RoutePageList.HomePage}`,
                           state: {
                             type: 'product',
                             productQuery: {
