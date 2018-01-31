@@ -9,6 +9,10 @@ paths.styleTheme = resolveApp('public/theme.less');
 paths.envKeyPrefix= 'REACT_APP_'; 
 
 const webpackSetting = { 
+    app: {
+        name: 'ABS Link',
+        version: '1.0.0'
+    }, 
     antd: {
         // use antd design ui antd|antd-mobile
         libraryName: 'antd-mobile',
@@ -284,6 +288,7 @@ function createHtmlWebpackPlugin() {
 
             let item = new HtmlWebpackPlugin({
                 inject: true,
+                title: webpackSetting.app.name,
                 template: entryPath.tmpl,  
                 filename: entryPath.output,  
                 chunks:[ 'common', entryPath.name ],
