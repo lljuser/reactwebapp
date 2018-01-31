@@ -106,7 +106,7 @@ class Trade extends React.Component<any, {}> {
      * @memberof Trade
      */
     onEndReached = (event) => {
-        console.log(event);
+
         if (this.props.loading && !this.props.hasMore) {
             return;
         }
@@ -186,9 +186,9 @@ class Trade extends React.Component<any, {}> {
                   renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey} />}
                   renderRow={row}
                   useBodyScroll={this.props.useBodyScroll}
-                  style={this.props.useBodyScroll ? {} : {
-                      height: this.props.height,
-                  }}
+                  // style={this.props.useBodyScroll ? {} : {
+                  //     height: this.props.height,
+                  // }}
                   pullToRefresh={<PullToRefresh
                       getScrollContainer={() => lv}
                       direction={'down'}
