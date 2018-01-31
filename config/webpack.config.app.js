@@ -10,7 +10,7 @@ paths.envKeyPrefix= 'REACT_APP_';
 
 const webpackSetting = { 
     app: {
-        name: 'ABS-Link',
+        name: 'ABS Link',
         version: '1.0.0'
     }, 
     antd: {
