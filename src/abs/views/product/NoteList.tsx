@@ -22,22 +22,24 @@ class NoteList extends React.Component<any, {}> {
       <table className="appH5_table">
           <thead>
               <tr>
-                  <th>证券简称</th>
-                  <th className="text-right">初始(亿)<br/>剩余(亿)</th>
-                  <th className="text-right">利率<br/>估值</th>
-                  <th className="text-right">期限<br/>类型</th>
-                  <th className="text-right">公开评级<br/>量化评级</th>
+                  <th>简称</th>
+                  <th className="text-right">初始(亿)</th>
+                  <th className="text-right">利率</th>
+                  <th className="text-right">期限(年)</th>
+                  <th className="text-right">量化评级</th>
+                  <th className="text-right">类型</th>
               </tr>
           </thead>
           <tbody>
               {
                 detail.NoteList.map((item) =>
                     <tr key={item.NoteId}>
-                      <td><div className="appH5_ellipsis appH5_font_normal" style={{width: '2.1rem'}}>{item.Description}</div></td>
-                      <td className="text-right"><span className="appH5_color_red">{item.Notional}</span><br/><span className="appH5_color_details appH5_font_smaller">{item.Principal}</span></td>
-                      <td className="text-right"><span>{item.CurrentCoupon}</span><br/><span className="appH5_color_green appH5_font_smaller">{item.CurrentSuggestYield}</span></td>
-                      <td className="text-right"><span>{item.CurrentWal}</span><br/><span className="appH5_color_details appH5_font_smaller">{item.RepaymentOfPrincipal}</span></td>
-                      <td className="text-right"><span>{item.CurrentRatingCombineString == null || item.CurrentRatingCombineString === '' ? '-' : item.CurrentRatingCombineString}</span><br/><span className="appH5_color_green appH5_font_smaller">{item.CurrentSuggestRatingCombineString == null || item.CurrentSuggestRatingCombineString === '' ? '-' : item.CurrentSuggestRatingCombineString}</span></td>
+                      <td><div className="appH5_white_space appH5_font_normal" style={{width: '0.8rem'}}>{item.Name}</div></td>
+                      <td className="text-right"><span className="appH5_color_red">{item.Notional}</span></td>
+                      <td className="text-right"><span className="appH5_color_skyblue">{item.CurrentCoupon}</span></td>
+                      <td className="text-right"><span className="appH5_color_skyblue">{item.CurrentWal}</span></td>
+                      <td className="text-center"><span className="appH5_color_skyblue">{item.CurrentSuggestRatingCombineString == null || item.CurrentSuggestRatingCombineString === '' ? '-' : item.CurrentSuggestRatingCombineString}</span></td>
+                      <td className="text-right"><span>{item.RepaymentOfPrincipal.replace('型', '')}</span></td>
                     </tr>
                 )
               }
