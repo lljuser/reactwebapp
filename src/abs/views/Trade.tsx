@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+// import * as ReactDOM from 'react-dom';
 import { ListView, PullToRefresh, Picker } from 'antd-mobile';
 import TradeItem from './TradeItem';
 import '../components/abs-table/index.less';
@@ -52,8 +52,6 @@ function MyBody(props: any) {
 class Trade extends React.Component<any, {}> {
     constructor(props: any) {
         super(props);
-        this.onRefresh = this.onRefresh.bind(this);
-        this.onEndReached = this.onEndReached.bind(this);
     }
 
     /**
@@ -74,6 +72,14 @@ class Trade extends React.Component<any, {}> {
         });
     }
 
+    // componentDidUpdate() {
+    //     if (this.props.useBodyScroll) {
+    //         document.body.style.overflow = 'auto';
+    //     } else {
+    //         document.body.style.overflow = 'hidden';
+    //     }
+    // }
+
     /**
      * 在第一次渲染后调用，只在客户端。之后组件已经生成了对应的DOM结构，可以通过this.getDOMNode()来进行访问。
      *  如果你想和其他JavaScript框架一起使用，可以在这个方法中调用setTimeout, setInterval或者发送AJAX请求等
@@ -84,10 +90,10 @@ class Trade extends React.Component<any, {}> {
     componentDidMount() {
         if (this.props.rData.length === 0) {
             // ListView组件高度
-            const hei = this.props.height - (ReactDOM.findDOMNode(lv as ListView) as any).offsetTop;
+            // const hei = this.props.height - (ReactDOM.findDOMNode(lv as ListView) as any).offsetTop;
             this.props.dispatch({
                 type: 'trade/componentDidMount',
-                height: hei,
+                // height: hei,
                 rows: this.props.rows
             });
         }
@@ -121,7 +127,7 @@ class Trade extends React.Component<any, {}> {
      * 
      * @memberof Trade
      */
-    onRefresh() {
+    onRefresh = (refresh: boolean = true) => {
         this.props.dispatch({
             type: 'trade/onRefresh',
             rows: this.props.rows,
@@ -138,48 +144,69 @@ class Trade extends React.Component<any, {}> {
             );
         };
         return (
-            <ABSPanel className={'pull-refresh-wrapper'}>
-                <div className="abs-picker">
-                    <Picker data={this.props.ratingList} title="选择评级" cols={1} value={this.props.ratingValues} onOk={v => this.onPickerChange('ratingValues', v)}>
-                        <CustomChildren first={true} />
-                    </Picker>
-                    <Picker data={this.props.couponList} title="选择利率" cols={1} value={this.props.couponValues} onOk={v => this.onPickerChange('couponValues', v)}>
-                        <CustomChildren />
-                    </Picker>
-
-                    <Picker data={this.props.walbuckList} title="选择期限" cols={1} value={this.props.walbuckValues} onOk={v => this.onPickerChange('walbuckValues', v)}>
-                        <CustomChildren />
-                    </Picker>
-                </div>
-                <div className="test">
-                    <ListView
-                        key={this.props.useBodyScroll ? '0' : '1'}
-                        ref={el => lv = el}
-                        dataSource={this.props.dataSource}
-                        initialListSize={this.props.initialListSize}
-                        renderFooter={() => (<div style={{ textAlign: 'center' }}>
-                            {this.props.info}
-                        </div>)}
-                        renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey} />}
-                        renderRow={row}
-                        useBodyScroll={this.props.useBodyScroll}
-                        pullToRefresh={<PullToRefresh
-                            getScrollContainer={() => lv}
-                            direction={'down'}
-                            refreshing={this.props.refreshing}
-                            onRefresh={this.onRefresh}
-                            distanceToRefresh={25}
-                            indicator={{
-                                activate: <div>松开立即更新</div>,
-                                deactivate: <div>下拉刷新</div>,
-                                finish: <div />
-                            }}
-                        />}
-                        onEndReached={this.onEndReached}
-                        pageSize={15}
-                    />
-                </div >
-            </ABSPanel>
+          <ABSPanel className={'pull-refresh-wrapper'}>
+            <div className="abs-picker">
+              <Picker 
+                data={this.props.ratingList} 
+                title="选择评级" 
+                cols={1} 
+                value={this.props.ratingValues} 
+                onOk={v => this.onPickerChange('ratingValues', v)}
+              >
+                  <CustomChildren first={true}/>
+              </Picker>
+              <Picker 
+                data={this.props.couponList} 
+                title="选择利率" 
+                cols={1} 
+                value={this.props.couponValues} 
+                onOk={v => this.onPickerChange('couponValues', v)}
+              >
+                  <CustomChildren />
+              </Picker>
+              <Picker 
+                data={this.props.walbuckList} 
+                title="选择期限" 
+                cols={1} 
+                value={this.props.walbuckValues} 
+                onOk={v => this.onPickerChange('walbuckValues', v)}
+              >
+                  <CustomChildren />
+              </Picker>
+            </div>
+            <div className="abs-scrollview-container">
+              <ListView
+                  key={this.props.useBodyScroll ? '0' : '1'}
+                  ref={el => lv = el}
+                  dataSource={this.props.dataSource}
+                  initialListSize={this.props.initialListSize}
+                  renderFooter={() => (<div style={{ textAlign: 'center' }}>
+                      {this.props.info}
+                  </div>)}
+                  renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey} />}
+                  renderRow={row}
+                  useBodyScroll={this.props.useBodyScroll}
+                  style={this.props.useBodyScroll ? {} : {
+                      height: this.props.height,
+                  }}
+                  pullToRefresh={<PullToRefresh
+                      getScrollContainer={() => lv}
+                      direction={'down'}
+                      refreshing={this.props.refreshing}
+                      onRefresh={this.onRefresh}
+                      distanceToRefresh={25}
+                      indicator={{
+                        activate: <div>释放更新</div>,
+                        deactivate: <div>下拉刷新</div>,
+                        // release: <div>正在刷新</div>,
+                        finish: <div />
+                      }}
+                  />}
+                  onEndReached={this.onEndReached}
+                  pageSize={15}
+              />
+            </div>
+          </ABSPanel>
         );
     }
 }
