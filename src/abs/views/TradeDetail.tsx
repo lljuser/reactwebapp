@@ -149,15 +149,18 @@ class TradeDetailComponent extends React.Component<any, any> {
                                 {
                                     (this.props.detailInfo.Contacts !== undefined && this.props.detailInfo.Contacts !== null && this.props.detailInfo.Contacts.length > 0) ?
                                         (
-                                            <td colSpan={4}>
-                                                <div className="fl mr5">联&nbsp;系&nbsp;人&nbsp;</div>
-                                                <div className="fl" style={{ paddingTop: '.12rem' }}>
-                                                    {this.props.detailInfo.Contacts.map((contactItem) =>
-                                                        <div key="contactItem.id" className="mb08 appH5_color_white">{contactItem.Name}&nbsp;&nbsp;{contactItem.Telephone}</div>
-                                                    )}
-                                                </div>
-                                                <div className="clearfix" />
-                                            </td>
+                                            <tr>
+                                                <td colSpan={4}>
+                                                    <div className="fl mr5">联&nbsp;系&nbsp;人&nbsp;</div>
+                                                    <div className="fl" style={{ paddingTop: '.12rem' }}>
+                                                        {this.props.detailInfo.Contacts.map((contactItem) =>
+                                                            <div key="contactItem.id" className="mb08 appH5_color_white">{contactItem.Name}&nbsp;&nbsp;{contactItem.Telephone}</div>
+                                                        )}
+                                                    </div>
+                                                    <div className="clearfix" />
+                                                </td>
+                                            </tr>
+
                                         ) : null
                                 }
                                 <tr>
