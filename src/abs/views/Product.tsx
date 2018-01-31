@@ -53,6 +53,11 @@ class Product extends React.Component<any, {}> {
     //   document.body.style.overflow = 'hidden';
     // }
   } 
+
+  componentWillReceiveProps(nextProps: any) {
+    console.log('--------------------------------');
+    console.log(nextProps);
+  }
   
   componentDidMount() {
     if (this.props.rData.length === 0) {
