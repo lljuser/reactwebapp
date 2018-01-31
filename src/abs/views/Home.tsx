@@ -73,7 +73,7 @@ class Home extends React.Component<any, any> {
     });
   }
 
-  render() {   
+  render() {
     return (
       <div className="abs-tabs">
         <Tabs
@@ -96,6 +96,6 @@ class Home extends React.Component<any, any> {
       </div>
     );
   }
-} 
+}
  
 export default connect()(Home);

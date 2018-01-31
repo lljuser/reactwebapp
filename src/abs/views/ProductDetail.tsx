@@ -19,12 +19,8 @@ function mapStateToProps(state: any) {
 class ProductDetail extends React.Component<any, any> {
 
   componentDidMount() {
-    // if (this.props.detail && this.props.detail.length > 0) {
-    //   return;
-    // }
-    
     const id = this.props.match.params.id;
-    this.props.dispatch({ type: 'productdetail/getData', id: id });
+    this.props.getData(id);
   }
 
   render() {
@@ -34,11 +30,11 @@ class ProductDetail extends React.Component<any, any> {
           <ABSNavBar 
             title="产品详情" 
             linkTo={{ 
-                pathname: '/home',
+                pathname: '/home', 
                 state: {
                   type: 'product'
                 } 
-            }} 
+            }}  
           />
         </div>
         <div className="appH5_body">
@@ -68,4 +64,12 @@ class ProductDetail extends React.Component<any, any> {
   }
 }
 
-export default connect(mapStateToProps)(ProductDetail);
+function mapDispatchToProps(dispatch: any) {
+  return {
+    getData: (id) => {
+      dispatch({ type: 'productdetail/getData', id: id });
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDetail);
