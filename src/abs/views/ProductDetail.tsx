@@ -21,7 +21,9 @@ class ProductDetail extends React.Component<any, any> {
 
   componentDidMount() {
     const id = this.props.match.params.id;
-    this.props.getData(id);
+    if ( this.props.id !== id ) {
+      this.props.getData(id);
+    }
   }
 
   render() {

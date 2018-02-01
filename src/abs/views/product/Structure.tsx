@@ -4,15 +4,13 @@ import '../../components/abs-tabs/index.less';
 class Structure extends React.Component<any, {}> {
 
   componentDidMount() {
-
-    // 阻止其再次请求数据，如果state中已经有数据了
-    // if (this.props.structure && this.props.structure.length > 0) {
-    //   return;
-    // }
-    // this.props.dispatch({type: 'productdetail/getDetail', id: id});
+    this.componentDidUpdate();
   }
 
   componentDidUpdate() {
+    /**
+     * 修改获得的数据样式
+     */
     let paidList: any = document.getElementsByClassName('divHasPaid');
     for (let i = 0; i < paidList.length; i++) {
                 paidList[i].style.backgroundImage = 'url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAGCAYAAAD37n+BAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAABPSURBVChTY1y3esV/BiDYtX09iGJw8wwE0zAAE/f39QPTTGCSBMCYkRQOtgFmMifLXzC9cfMmMI1uI+k2wPwAA+hu/v6HGUzDxEm0gYEBALKKGjTje4yiAAAAAElFTkSuQmCC)';

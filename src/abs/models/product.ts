@@ -10,6 +10,7 @@ const listviewdata = new ListView.DataSource({
 export default {
     namespace: 'product',
       state: {
+        scrollTop: 0,
         dataSource: listviewdata,
         currentStatus: [],
         currentStatusValue: [],
@@ -29,6 +30,9 @@ export default {
         rData: []
         },
       reducers: {
+        /**
+         * 返回picker改变后获取到的数据
+         */
         returnChangePicker(state: any, action: any) {
             switch ( action.picker ) {
                 case 'CurrentStatusValue':
@@ -47,6 +51,7 @@ export default {
                         currentStatus: action.currentStatus,
                         dealType: action.dealType,
                         productType: action.productType,
+                        scrollTop: action.scrollTop
                     };
                 case 'DealTypeValue':
                     return { 
@@ -64,6 +69,7 @@ export default {
                         currentStatus: action.currentStatus,
                         dealType: action.dealType,
                         productType: action.productType,
+                        scrollTop: action.scrollTop
                     };
                 case 'ProductTypeValue':
                     return { 
@@ -81,6 +87,7 @@ export default {
                         currentStatus: action.currentStatus,
                         dealType: action.dealType,
                         productType: action.productType,
+                        scrollTop: action.scrollTop
                     };
                 case 'Multi':
                     return {
@@ -98,11 +105,15 @@ export default {
                         currentStatus: action.currentStatus,
                         dealType: action.dealType,
                         productType: action.productType,
+                        scrollTop: action.scrollTop
                     };
                 default:
                     return {...state}; 
             }
         },
+        /**
+         * 返回第一次加载后的数据
+         */
         returnFirstLoad(state: any, action: any) {
             return {
                 ...state,
@@ -121,6 +132,9 @@ export default {
                 loading: action.loading
             }; 
         },
+        /**
+         * 返回ListView中内容
+         */
         returnList(state: any, action: any) {
             return {
                 ...state,
@@ -133,6 +147,9 @@ export default {
                 loading: action.loading
             }; 
         },
+        /**
+         * 返回ListView底部状态
+         */
         changeListState(state: any, action: any) {
             return {
                 ...state,
@@ -140,9 +157,22 @@ export default {
                 loading: action.loading,
                 refreshing: action.refreshing
             }; 
+        },
+        /**
+         * 返回ScrollTop和第一次挂载组件渲染行数initialListSize
+         */
+        updateScrollTop(state: any, action: any) {
+            return {
+                ...state,
+                scrollTop: action.scrollTop,
+                initialListSize: action.initialListSize
+            };
         }
       },
       effects: {
+        /**
+         * 第一次加载数据
+         */
         *firstload(action: any, { call, put }: any) {
             yield put({type: 'changeListState', info: '正在加载...' , loading: true, refreshing: false});
             const res = yield call([productService, productService.getData],
@@ -172,6 +202,9 @@ export default {
                 loading: false
             });
         },
+        /**
+         * 改变picker的值
+         */
         *changePicker(action: any , { call, put }: any) {
             yield put({type: 'changeListState', info: '正在加载...' , loading: true, refreshing: false});
 
@@ -234,8 +267,12 @@ export default {
                 currentStatus: res.CurrentStatus,
                 dealType: res.DealType,
                 productType: res.ProductType,
+                scrollTop: 0
             });
         },
+        /**
+         * 获取列表数据
+         */
         *getList(action: any , { call, put }: any) {
             yield put({type: 'changeListState', info: '正在加载...' , loading: true, refreshing: false});
             const res = yield call([productService, productService.getData],
@@ -258,6 +295,9 @@ export default {
                 loading: false
             });
         },
+        /**
+         * 刷新列表
+         */
         *RefreshListView( action: any , { call, put }: any) {
 
             const res = yield call([productService, productService.getData],
@@ -278,6 +318,12 @@ export default {
                 info: res.info,
                 loading: false
             });
+        },
+        /**
+         * 保存滚轮滚动位置
+         */
+        *onScroll(action: any, { call, put }: any) {
+            yield put({ type: 'updateScrollTop', scrollTop: action.scrollTop, initialListSize: action.initialListSize });
         },
       }
   }; 

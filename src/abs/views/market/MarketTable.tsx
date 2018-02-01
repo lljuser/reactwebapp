@@ -10,12 +10,12 @@ class ABSTableMarketComponent extends React.Component<any> {
 
   onChangTable(e: any, projectType: any) {
     e.preventDefault();
-
+    console.log(this.props);
     this.props.dispatch({
       type: 'product/changePicker',
       picker: 'ProductTypeValue',
       val: [projectType.ProductTypeId],
-      rows: this.props.rows,
+      rows: 15,
     });
     this.props.onChangeTab(1);
   }

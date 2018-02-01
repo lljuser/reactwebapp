@@ -7,6 +7,7 @@ import '../components/theme-common.less';
 import { connect } from 'dva';
 import ABSPanel from '../components/abs-panel';
 import RoutePageList from '../RouterConfig';
+import ReactDOM from 'react-dom';
 
 // 真实产品选择piker点
 const PickerChildren = props => (
@@ -50,15 +51,15 @@ class Product extends React.Component<any, {}> {
   }
 
   componentDidMount() {
+    // 阻止其再次请求数据，如果state中已经有数据了
     if (this.props.rData.length === 0) {
-      // const hei = document.documentElement.clientHeight - (ReactDOM.findDOMNode(lv as ListView) as any).offsetTop;
       this.props.dispatch({
         type: 'product/firstload',
         rows: this.props.rows,
-        // height: hei,
       });
     }
 
+    // 若有productQuery则触发picker改变
     let { location } = this.props;
     if (location && location.state && location.state.productQuery) {
       const productTypeValue = location.state.productQuery.productTypeValue;
@@ -71,9 +72,19 @@ class Product extends React.Component<any, {}> {
         productTypeValue: productTypeValue === undefined ? [0] : productTypeValue,
         rows: this.props.rows,
       });
+    } else {
+      this.scrollTo(this.props.scrollTop);
     }
   }
 
+  // 若scrollTop为0则滚动条返回顶部
+  componentDidUpdate() {
+    if ( this.props.scrollTop === 0) {
+      this.scrollTo(this.props.scrollTop);
+    }
+  }
+
+  // 刷新数据
   onRefresh = () => {
     this.props.dispatch({
       type: 'product/RefreshListView',
@@ -85,14 +96,22 @@ class Product extends React.Component<any, {}> {
     });
   }
 
-  onScroll = (e) => {
-       console.log(this.props.rData.length);
+  // 滚动条滚动至指定距离
+  scrollTo(scrollTop: number) {
+    (ReactDOM.findDOMNode(lv as ListView)).scrollTo(0, scrollTop);
   }
 
-  onEndReached = (event) => {
-    // load new data
-    // hasMore: from backend data, indicates whether it is the last page, here is false
+  onScroll = (e) => {
+    // 保存滚动条位置
+    this.props.dispatch({
+        type: 'product/onScroll',
+        scrollTop: (ReactDOM.findDOMNode(lv as ListView)).scrollTop,
+        initialListSize: this.props.rData.length
+    });
+  }
 
+  // 加载更多数据
+  onEndReached = (event) => {
     if (this.props.loading && !this.props.hasMore) {
       return;
     }
@@ -109,6 +128,7 @@ class Product extends React.Component<any, {}> {
 
   }
 
+  // picker改变时获取数据
   PickerChange(picker: string, val: string[]) {
     this.props.dispatch({
       type: 'product/changePicker',
@@ -119,7 +139,7 @@ class Product extends React.Component<any, {}> {
       productTypeValue: this.props.productTypeValue,
       rows: this.props.rows,
     });
-
+    this.scrollTo(0);
   }
 
   render() {
@@ -134,6 +154,7 @@ class Product extends React.Component<any, {}> {
         </tr >
       );
     };
+
     return (
       <ABSPanel className={'pull-refresh-wrapper'}>
         <div className="abs-picker">
