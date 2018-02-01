@@ -1,4 +1,13 @@
+/*
+ * @Author: ljliu 
+ * @Date: 2018-02-01 14:45:51 
+ * @Last Modified by: ljliu
+ * @Last Modified time: 2018-02-01 14:47:06
+ */
  
+/**
+ * this setting from the webpack and evn ,we can set in the webpack.config.app 
+ */
 const ApiAddress = process.env.REACT_APP_API_ADDRESS; 
 export default ApiAddress; 
 
