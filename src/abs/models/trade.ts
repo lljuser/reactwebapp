@@ -10,6 +10,7 @@ const listviewdata = new ListView.DataSource({
 export default {
     namespace: 'trade',
     state: {
+        scrollTop: 0,
         dataSource: listviewdata, // ListView组件数据源
         loading: true,
         height: document.documentElement.clientHeight,
@@ -38,22 +39,24 @@ export default {
          * @returns 
          */
         returnChangePicker(state: any, action: any) {
-            console.log(action);
             switch (action.picker) {
                 case 'ratingValues': // 评级
                     return {
                         ...state,
                         ratingValues: action.val,
+                        initialListSize: 15
                     };
                 case 'couponValues':
                     return {
                         ...state,
                         couponValues: action.val,
+                        initialListSize: 15
                     };
                 case 'walbuckValues':
                     return {
                         ...state,
                         walbuckValues: action.val,
+                        initialListSize: 15
                     };
                 default:
                     return { ...state };
@@ -126,9 +129,34 @@ export default {
                 loading: action.loading,
                 refreshing: action.refreshing
             };
+        },
+
+        /**
+         * 修改ScrollTop和第一次挂载组件渲染行数initialListSize
+         * 
+         * @param {*} state 
+         * @param {*} action 
+         * @returns 
+         */
+        updateScrollTop(state: any, action: any) {
+            return {
+                ...state,
+                scrollTop: action.scrollTop,
+                initialListSize: action.initialListSize
+            };
         }
     },
     effects: {
+        /**
+         * 监听ListView Scroll滚动事件
+         * 
+         * @param {*} action 
+         * @param {*} { call, put } 
+         */
+        *onScroll(action: any, { call, put }: any) {
+            yield put({ type: 'updateScrollTop', scrollTop: action.scrollTop, initialListSize: action.initialListSize });
+        },
+
         /**
          * Picker选择器选择事件
          * 

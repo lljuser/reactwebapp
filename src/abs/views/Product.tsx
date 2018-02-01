@@ -6,7 +6,7 @@ import '../components/abs-picker/index.less';
 import '../components/theme-common.less';
 import { connect } from 'dva';
 import ABSPanel from '../components/abs-panel';
-import RoutePageList from '../RouterConfig'; 
+import RoutePageList from '../RouterConfig';
 
 // 真实产品选择piker点
 const PickerChildren = props => (
@@ -18,24 +18,24 @@ const PickerChildren = props => (
 // 列表组件
 function MyBody(props: any) {
   return (
-      <div className="abs-table abs-table-product">
-          <table>
-            <thead>
-              <tr>
-                <th className="text-left">产品名称</th>
-                <th>总额(亿)</th>
-                <th>产品分类</th>
-              </tr>
-            </thead>
-            <tbody>
-                {props.children}
-            </tbody>
-          </table>
-      </div>
+    <div className="abs-table abs-table-product">
+      <table>
+        <thead>
+          <tr>
+            <th className="text-left">产品名称</th>
+            <th>总额(亿)</th>
+            <th>产品分类</th>
+          </tr>
+        </thead>
+        <tbody>
+          {props.children}
+        </tbody>
+      </table>
+    </div>
   );
 }
 
-let lv: ListView|null;
+let lv: ListView | null;
 
 class Product extends React.Component<any, {}> {
 
@@ -44,43 +44,47 @@ class Product extends React.Component<any, {}> {
   ProductTypeValue: string[] = [];
 
   constructor(props: any) {
-    super(props); 
-  } 
-   
+    super(props);
+  }
+
   componentDidMount() {
     if (this.props.rData.length === 0) {
       // const hei = document.documentElement.clientHeight - (ReactDOM.findDOMNode(lv as ListView) as any).offsetTop;
-      this.props.dispatch({ 
-        type: 'product/firstload', 
+      this.props.dispatch({
+        type: 'product/firstload',
         rows: this.props.rows,
         // height: hei,
       });
     }
 
-    let {location} = this.props;
+    let { location } = this.props;
     if (location && location.state && location.state.productQuery) {
       const productTypeValue = location.state.productQuery.productTypeValue;
       const dealTypeValue = location.state.productQuery.dealTypeValue;
-      this.props.dispatch({ 
-        type: 'product/changePicker', 
-        picker: 'Multi' , 
+      this.props.dispatch({
+        type: 'product/changePicker',
+        picker: 'Multi',
         val: '',
         dealTypeValue: dealTypeValue === undefined ? [0] : dealTypeValue,
         productTypeValue: productTypeValue === undefined ? [0] : productTypeValue,
         rows: this.props.rows,
       });
-    } 
+    }
   }
 
   onRefresh = () => {
-    this.props.dispatch({ 
-      type: 'product/RefreshListView', 
+    this.props.dispatch({
+      type: 'product/RefreshListView',
       rows: this.props.rows,
       currentStatusValue: this.props.currentStatusValue,
       dealTypeValue: this.props.dealTypeValue,
       productTypeValue: this.props.productTypeValue,
 
     });
+  }
+
+  onScroll = (e) => {
+       console.log(this.props.rData.length);
   }
 
   onEndReached = (event) => {
@@ -91,8 +95,8 @@ class Product extends React.Component<any, {}> {
       return;
     }
 
-    this.props.dispatch({ 
-      type: 'product/getList', 
+    this.props.dispatch({
+      type: 'product/getList',
       rows: this.props.rows,
       pageIndex: this.props.pageIndex + 1,
       rData: this.props.rData,
@@ -100,13 +104,13 @@ class Product extends React.Component<any, {}> {
       dealTypeValue: this.props.dealTypeValue,
       productTypeValue: this.props.productTypeValue,
     });
-  
+
   }
 
   PickerChange(picker: string, val: string[]) {
-    this.props.dispatch({ 
-      type: 'product/changePicker', 
-      picker: picker , 
+    this.props.dispatch({
+      type: 'product/changePicker',
+      picker: picker,
       val: val,
       currentStatusValue: this.props.currentStatusValue,
       dealTypeValue: this.props.dealTypeValue,
@@ -128,31 +132,31 @@ class Product extends React.Component<any, {}> {
         </tr >
       );
     };
-   
+
     return (
       <ABSPanel className={'pull-refresh-wrapper'}>
-      <div className="abs-picker">
-          <Picker 
-            title="选择市场" 
-            data={this.props.productType} 
+        <div className="abs-picker">
+          <Picker
+            title="选择市场"
+            data={this.props.productType}
             cascade={false}
-            value={this.props.productTypeValue} 
+            value={this.props.productTypeValue}
             onOk={v => this.PickerChange('ProductTypeValue', v)}
           >
             <PickerChildren first={true}>选择市场</PickerChildren>
           </Picker>
-          <Picker  
-            title="选择产品" 
-            data={this.props.dealType} 
+          <Picker
+            title="选择产品"
+            data={this.props.dealType}
             cascade={false}
             value={this.props.dealTypeValue}
             onOk={v => this.PickerChange('DealTypeValue', v)}
           >
             <PickerChildren>选择产品</PickerChildren>
           </Picker>
-          <Picker  
-            title="选择状态" 
-            data={this.props.currentStatus} 
+          <Picker
+            title="选择状态"
+            data={this.props.currentStatus}
             cascade={false}
             value={this.props.currentStatusValue}
             onOk={v => this.PickerChange('CurrentStatusValue', v)}
@@ -162,34 +166,35 @@ class Product extends React.Component<any, {}> {
         </div>
         <div className="abs-scrollview-container">
           <ListView
-              key={this.props.useBodyScroll ? '0' : '1'}
-              ref={el => lv = el}
-              dataSource={this.props.dataSource}
-              initialListSize={this.props.initialListSize}
-              renderFooter={() => (<div style={{ textAlign: 'center' }}>
-                {this.props.info}
-              </div>)}
-              renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey}  CurrentStatus={this.props.currentStatus} CurrentStatusValue={this.props.currentStatusValue} DealType={this.props.dealType} DealTypeValue={this.props.dealTypeValue} ProductType={this.props.productType} ProductTypeValue={this.props.productTypeValue} />}
-              renderRow={row}
-              useBodyScroll={this.props.useBodyScroll}
-              // style={this.props.useBodyScroll ? { minHeight: '500px' } : {
-              //   height: 'auto',
-              // }}
-              pullToRefresh={<PullToRefresh 
-                getScrollContainer={() => lv}
-                direction={'down'}
-                refreshing={this.props.refreshing}
-                onRefresh={this.onRefresh}
-                distanceToRefresh={25}
-                indicator={{
-                  activate: <div>释放更新</div>,
-                  deactivate: <div>下拉刷新</div>,
-                  // release: <div>正在刷新</div>,
-                  finish: <div />
-                }}
-              />}
-              onEndReached={this.onEndReached}
-              pageSize={15}
+            key={this.props.useBodyScroll ? '0' : '1'}
+            ref={el => lv = el}
+            dataSource={this.props.dataSource}
+            initialListSize={this.props.initialListSize}
+            renderFooter={() => (<div style={{ textAlign: 'center' }}>
+              {this.props.info}
+            </div>)}
+            renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey} CurrentStatus={this.props.currentStatus} CurrentStatusValue={this.props.currentStatusValue} DealType={this.props.dealType} DealTypeValue={this.props.dealTypeValue} ProductType={this.props.productType} ProductTypeValue={this.props.productTypeValue} />}
+            renderRow={row}
+            useBodyScroll={this.props.useBodyScroll}
+            // style={this.props.useBodyScroll ? { minHeight: '500px' } : {
+            //   height: 'auto',
+            // }}
+            pullToRefresh={<PullToRefresh
+              getScrollContainer={() => lv}
+              direction={'down'}
+              refreshing={this.props.refreshing}
+              onRefresh={this.onRefresh}
+              distanceToRefresh={25}
+              indicator={{
+                activate: <div>释放更新</div>,
+                deactivate: <div>下拉刷新</div>,
+                // release: <div>正在刷新</div>,
+                finish: <div />
+              }}
+            />}
+            onEndReached={this.onEndReached}
+            onScroll={this.onScroll}
+            pageSize={15}
           />
         </div>
       </ABSPanel>

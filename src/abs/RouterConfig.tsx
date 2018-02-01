@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Router, Switch, Route , Redirect } from 'dva/router';  
 import dynamic from 'dva/dynamic'; 
-import ScrollMemory from 'react-router-scroll-memory';
 // import asyncLoader from '../components/ayncLoader';
 // const AsyncHome = asyncLoader(import(/*webpackChunkName:'home'*/'./Home'));  
 
@@ -47,15 +46,12 @@ export function RouterConfig({ history, app }: any) {
  
   return ( 
     <Router history={history}>
-      <div>
-         <ScrollMemory />
            <Switch>
           <Route exact={true} path={RoutePageList.HomePage} component={Home}/>  
           <Route exact={true} path={`${RoutePageList.ProductDetailPage}/:id`} component={ProductDetail}/>
           <Route exact={true} path={`${RoutePageList.TradeDetailPage}/:gradeId/:couponId`} component={TradeDetail} />
           <Redirect path="*" to={RoutePageList.HomePage} />
       </Switch>
-      </div>
     </Router>
   ); 
 }  

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import ReactDOM from 'react-dom';
 import { ListView, PullToRefresh, Picker } from 'antd-mobile';
 import TradeItem from './TradeItem';
 import '../components/abs-table/index.less';
@@ -80,7 +81,8 @@ class Trade extends React.Component<any, {}> {
      * 
      * @memberof Trade
      */
-    componentDidMount() { 
+    componentDidMount() {
+        (ReactDOM.findDOMNode(lv as ListView)).scrollTo(0, this.props.scrollTop);
         if (this.props.rData.length === 0) {
             this.props.dispatch({
                 type: 'trade/componentDidMount',
@@ -96,11 +98,9 @@ class Trade extends React.Component<any, {}> {
      * @memberof Trade
      */
     onEndReached = (event) => {
-
         if (this.props.loading && !this.props.hasMore) {
             return;
         }
-
         this.props.dispatch({
             type: 'trade/onEndReached',
             pageIndex: this.props.pageIndex + 1,
@@ -109,6 +109,14 @@ class Trade extends React.Component<any, {}> {
             couponValues: this.props.couponValues,
             walbuckValues: this.props.walbuckValues,
             rows: this.props.rows,
+        });
+    }
+
+    onScroll = (e) => {
+        this.props.dispatch({
+            type: 'trade/onScroll',
+            scrollTop: (ReactDOM.findDOMNode(lv as ListView)).scrollTop,
+            initialListSize: this.props.rData.length
         });
     }
 
@@ -190,6 +198,7 @@ class Trade extends React.Component<any, {}> {
                             }}
                         />}
                         onEndReached={this.onEndReached}
+                        onScroll={this.onScroll}
                         pageSize={15}
                     />
                 </div>
