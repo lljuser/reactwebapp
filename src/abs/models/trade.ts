@@ -44,19 +44,22 @@ export default {
                     return {
                         ...state,
                         ratingValues: action.val,
-                        initialListSize: 15
+                        initialListSize: 15,
+                        scrollTop: 0
                     };
                 case 'couponValues':
                     return {
                         ...state,
                         couponValues: action.val,
-                        initialListSize: 15
+                        initialListSize: 15,
+                        scrollTop: 0
                     };
                 case 'walbuckValues':
                     return {
                         ...state,
                         walbuckValues: action.val,
-                        initialListSize: 15
+                        initialListSize: 15,
+                        scrollTop: 0
                     };
                 default:
                     return { ...state };

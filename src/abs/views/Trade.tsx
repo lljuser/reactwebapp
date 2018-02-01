@@ -63,6 +63,7 @@ class Trade extends React.Component<any, {}> {
      * @memberof Trade
      */
     onPickerChange(picker: string, val: string[]) {
+        (ReactDOM.findDOMNode(lv as ListView)).scrollTo(0, 0);
         this.props.dispatch({
             type: 'trade/onPickerChange',
             picker: picker,
@@ -193,7 +194,6 @@ class Trade extends React.Component<any, {}> {
                             indicator={{
                                 activate: <div>释放更新</div>,
                                 deactivate: <div>下拉刷新</div>,
-                                // release: <div>正在刷新</div>,
                                 finish: <div />
                             }}
                         />}
