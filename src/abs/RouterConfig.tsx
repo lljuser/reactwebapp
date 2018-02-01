@@ -5,7 +5,20 @@ import ScrollMemory from 'react-router-scroll-memory';
 // import asyncLoader from '../components/ayncLoader';
 // const AsyncHome = asyncLoader(import(/*webpackChunkName:'home'*/'./Home'));  
 
-function RouterConfig({ history, app }: any) {  
+// import asyncLoader from '../components/ayncLoader'; 
+// const AsyncHome = asyncLoader(import(/*webpackChunkName:'home'*/'./Home')); 
+
+const ApiRoutePath =  process.env.REACT_APP_PUBLISH_PATH;
+// Route Page Config List 
+const RoutePageList = {
+    HomePage: `${ApiRoutePath}home`,
+    ProductDetailPage: `${ApiRoutePath}productdetail`,
+    TradeDetailPage: `${ApiRoutePath}tradedetail`, 
+};
+ 
+export default RoutePageList;
+
+export function RouterConfig({ history, app }: any) {  
   const Home = dynamic({
     app,
     models: () => [ 
@@ -31,20 +44,18 @@ function RouterConfig({ history, app }: any) {
     ],
     component: () => import('./views/TradeDetail')
   });
-
-  return (
-       <Router history={history}>
-         <div>
-            <ScrollMemory />
-              <Switch>
-          <Route exact={true} path="/home" component={Home}/>  
-          <Route exact={true} path="/productdetail/:id" component={ProductDetail}/>
-          <Route exact={true} path="/tradedetail/:gradeId/:couponId" component={TradeDetail} />
-          <Redirect path="*" to="/home" />
-        </Switch>
-         </div>
-      </Router>
+ 
+  return ( 
+    <Router history={history}>
+      <div>
+         <ScrollMemory />
+           <Switch>
+          <Route exact={true} path={RoutePageList.HomePage} component={Home}/>  
+          <Route exact={true} path={`${RoutePageList.ProductDetailPage}/:id`} component={ProductDetail}/>
+          <Route exact={true} path={`${RoutePageList.TradeDetailPage}/:gradeId/:couponId`} component={TradeDetail} />
+          <Redirect path="*" to={RoutePageList.HomePage} />
+      </Switch>
+      </div>
+    </Router>
   ); 
-}
-
-export default RouterConfig;
+}  

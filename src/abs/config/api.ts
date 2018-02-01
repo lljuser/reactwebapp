@@ -1,6 +1,6 @@
  
-const ApiAddress = process.env.REACT_APP_API_ADDRESS;
-export default ApiAddress;
+const ApiAddress = process.env.REACT_APP_API_ADDRESS; 
+export default ApiAddress; 
 
 export const MarketApi = {
   list: `${ApiAddress}/momarket/productsummary`,

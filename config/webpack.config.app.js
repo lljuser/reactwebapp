@@ -25,9 +25,11 @@ const webpackSetting = {
     env: {
         production: {
             API_ADDRESS: 'https://www.cn-abs.com',
+            PUBLISH_PATH: '/reactwebapp/'
         },
         development: {
-            API_ADDRESS: 'http://10.1.1.35'
+            API_ADDRESS: 'http://10.1.1.35',
+            PUBLISH_PATH: '/'
         }
     },  
     // output setting
@@ -111,8 +113,11 @@ function initWebpackSetting(webpackConfig) {
     }); 
 
     // #######step 2
-    // reset output filename
+    // reset output filename and repleact publish path
     webpackConfig.output = webpackSetting.output;  
+    webpackConfig.output.publicPath = 
+        isProduction() ? webpackSetting.env.production.PUBLISH_PATH 
+                       : webpackSetting.env.development.PUBLISH_PATH, 
 
     // #######step 3
     // add ts-import-plugin load antd only use module/css  
