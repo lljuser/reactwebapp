@@ -61,8 +61,8 @@ class Home extends React.Component<any, any> {
               </div>
             );
           }}
-        
         /> 
+       
      );
   }
 
