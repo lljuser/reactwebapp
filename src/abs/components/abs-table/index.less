@@ -9,13 +9,18 @@
 
 @table-prefix-cls: ~"@{abs-prefix}-table";
 
+// 颜色
+@abs_bg_blue:#0066cc;
+@abs_bg_purple:#9966ff;
+
 .@{table-prefix-cls}{
     table{
         color: @absLink-table-color;
         border-collapse: collapse;
         width:100%;
         background: @absLink-table-bgColor;
-        font-size: 14px;
+        font-size: 17px;
+        font-family: "Microsoft YaHei","\5FAE\8F6F\96C5\9ED1","SimSun","\5B8B\4F53","arial", "serif";
         thead{
             tr{
                 th{
@@ -32,15 +37,28 @@
                     .fn-table('td');
                     .abs-tradeIcon-div{
                         float: left;
+                        width: 15px;
+                        height: 15px;
+                        text-align: center;
+                        font-size: 13px;
                     } 
+                    .abs_bg_blue{
+                        background:@abs_bg_blue;
+                    }
+                    .abs_bg_purple{
+                        background:@abs_bg_purple;
+                    }
+
                 }
-                &:last-child{
+                &:last-child[title='总计']{
                     td{
                         font-weight: bolder;
                     }
                 }
                 .highLight-red{
                     color: @absLink-table-color-red;
+                    // color: #FF3333;
+                    letter-spacing: -0.36px;
                 }
             }
         }
@@ -74,7 +92,7 @@
 .fn-table(@type) when (@type = 'td') {
     text-align: right;
     padding: 0.26rem 0.146667rem;
-    font-size: 16px;
+    font-size: 17px;
     border-bottom:1px solid @abs-brand-gray-table;
     &:first-child {
         text-align: center;

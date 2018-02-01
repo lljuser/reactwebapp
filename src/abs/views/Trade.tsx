@@ -29,8 +29,8 @@ function MyBody(props: any) {
             <table cellSpacing={0} cellPadding={0}>
                 <thead>
                     <tr>
-                        {/* <th /> */}
-                        <th className="text-left">证券简称</th>
+                        <th style={{ width: '20px' }} />
+                        <th className="text-left" >证券简称</th>
                         <th>金额(亿)</th>
                         <th>资产类别</th>
                     </tr>
@@ -80,7 +80,7 @@ class Trade extends React.Component<any, {}> {
      * 
      * @memberof Trade
      */
-    componentDidMount() { 
+    componentDidMount() {
         if (this.props.rData.length === 0) {
             this.props.dispatch({
                 type: 'trade/componentDidMount',
