@@ -9,17 +9,25 @@
 
 @table-prefix-cls: ~"@{abs-prefix}-table";
 
+// 颜色
+@abs_bg_blue:#0066cc;
+@abs_bg_purple:#9966ff;
+
 .@{table-prefix-cls}{
     table{
         color: @absLink-table-color;
         border-collapse: collapse;
         width:100%;
         background: @absLink-table-bgColor;
-        font-size: 14px;
+        font-size: 17px;
+        font-family: "Microsoft YaHei","\5FAE\8F6F\96C5\9ED1","SimSun","\5B8B\4F53","arial", "serif";
         thead{
             tr{
                 th{
                     .fn-table('th');
+                    &:last-child{
+                        padding-right: @abs-table-padding-left-right;
+                    }
                 }
             }
         }
@@ -27,20 +35,40 @@
             tr{
                 td{
                     .fn-table('td');
-                    
+                    .abs-tradeIcon-div{
+                        float: left;
+                        width: 15px;
+                        height: 15px;
+                        text-align: center;
+                        font-size: 13px;
+                    } 
+                    .abs_bg_blue{
+                        background:@abs_bg_blue;
+                    }
+                    .abs_bg_purple{
+                        background:@abs_bg_purple;
+                    }
+
                 }
-                &:last-child{
+                &:last-child[title='总计']{
                     td{
                         font-weight: bolder;
                     }
                 }
                 .highLight-red{
                     color: @absLink-table-color-red;
+                    // color: #FF3333;
+                    letter-spacing: -0.36px;
                 }
             }
         }
     }
 }
+
+
+
+ 
+// letter-spacing: -0.36px;
 
 // 表格less配置函树
 
@@ -49,27 +77,29 @@
     padding: 0.28rem 0.146667rem;
     font-size: 13px;
     font-weight: 400;
-    background-color: @abs-brand-gray-table;
+    background-color: @abs-brand-black;
+    border-bottom: 1px solid #222222;
+    color: #999999;
     &:first-child{
         text-align: center;
-        padding-left: 0.32rem;
+        padding-left: @abs-table-padding-left-right;
     }
     &:last-child{
-        padding-left: 0.32rem;
+        padding-left: @abs-table-padding-left-right;
     }
 }
 
 .fn-table(@type) when (@type = 'td') {
     text-align: right;
     padding: 0.26rem 0.146667rem;
-    font-size: 16px;
+    font-size: 17px;
     border-bottom:1px solid @abs-brand-gray-table;
     &:first-child {
         text-align: center;
-        padding-left: 0.32rem;
+        padding-left: @abs-table-padding-left-right;
     }
     &:last-child {
-        padding-right: 0.32rem;
+        padding-right: @abs-table-padding-left-right;
     }
     a {
         color: @abs-brand-yellow;

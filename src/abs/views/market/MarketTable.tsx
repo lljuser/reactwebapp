@@ -9,15 +9,15 @@ class ABSTableMarketComponent extends React.Component<any> {
   }
 
   onChangTable(e: any, projectType: any) {
-    e.preventDefault(); 
+    e.preventDefault();
 
-    this.props.dispatch({ 
-      type: 'product/changePicker', 
-      picker: 'ProductTypeValue' , 
+    this.props.dispatch({
+      type: 'product/changePicker',
+      picker: 'ProductTypeValue',
       val: [projectType.ProductTypeId],
       rows: this.props.rows,
     });
-    this.props.onChangeTab(1); 
+    this.props.onChangeTab(1);
   }
 
   render() {
@@ -35,7 +35,7 @@ class ABSTableMarketComponent extends React.Component<any> {
           <tbody>
             {
               this.props.marketSummary.map((item) =>
-                <tr key={item.ProductTypeId}>
+                <tr key={item.ProductTypeId} title={item.ProductTypeId === 0 ? '总计' : ''}>
                   <td className="text-left">
                     <a href="javascript:" onClick={(e) => this.onChangTable(e, item)}> {item.SimpleProductType}</a>
                   </td>
