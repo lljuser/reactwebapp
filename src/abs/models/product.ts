@@ -11,23 +11,23 @@ export default {
     namespace: 'product',
       state: {
         scrollTop: 0,
-        dataSource: listviewdata,
-        currentStatus: [],
-        currentStatusValue: [],
-        dealType: [],
-        dealTypeValue: [],
-        productType: [],
-        productTypeValue: [],
-        refreshing: true,
+        dataSource: listviewdata,   // ListView组件数据源
+        currentStatus: [],          // 状态的picker数据
+        currentStatusValue: [],     // 状态的picker选中值
+        dealType: [],               // 产品的picker数据
+        dealTypeValue: [],          // 产品的picker选中值
+        productType: [],            // 市场的picker数据
+        productTypeValue: [],       // 市场的picker选中值
+        refreshing: true,           
         loading: true,
         height: document.documentElement.clientHeight,
-        useBodyScroll: false,
-        hasMore: true,
-        initialListSize: 15,
-        info: '',
-        rows: 15,
-        pageIndex: 0,
-        rData: []
+        useBodyScroll: false,       // 是否使用html的body作为滚动容器
+        hasMore: true,              // 是否有更多内容
+        initialListSize: 15,        // 组件刚挂载的时候渲染数据行数
+        info: '',                   // 结尾信息
+        rows: 15,                   // 数据查询条数
+        pageIndex: 0,               // 数据查询页数
+        rData: []                   // 查询所得所有数据
         },
       reducers: {
         /**
