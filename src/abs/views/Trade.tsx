@@ -9,7 +9,9 @@ import ABSPanel from '../components/abs-panel';
 // 如果不是使用 List.Item 作为 children
 const CustomChildren = props => (
     <div onClick={props.onClick} className={props.first ? 'picker-trigger first' : 'picker-trigger'}>
-        <div className="selector">{props.extra}</div>
+        <div className="selector">{props.extra}
+            <i className="iconfont">&#xe692;</i>
+        </div>
     </div>
 );
 

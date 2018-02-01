@@ -2,11 +2,11 @@ import dva from 'dva';
 import createLoading from 'dva-loading';
 import defaultHistory from './common/http/request/listener';
 import registerServiceWorker from './registerServiceWorker'; 
-import routerConfig from './abs/RouterConfig';  
+import { RouterConfig } from './abs/RouterConfig';  
 import 'amfe-flexible';
 import './public/theme.less';
 // import { createLogger } from 'redux-logger';
-
+ 
 // 1. Initialize
 const appDva = dva({
   history: defaultHistory, 
@@ -21,7 +21,7 @@ appDva.use(createLoading());
 // appDva.model(countModel);
 
 // 3. Router
-appDva.router(routerConfig);
+appDva.router(RouterConfig);
 
 // 4. Start
 appDva.start('#root');  
