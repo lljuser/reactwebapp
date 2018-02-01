@@ -123,12 +123,22 @@ export default {
          * @returns 
          */
         updateLoadingState(state: any, action: any) {
-            return {
-                ...state,
-                info: action.info,
-                loading: action.loading,
-                refreshing: action.refreshing
-            };
+            if (action.initialListSize !== undefined) {
+                return {
+                    ...state,
+                    info: action.info,
+                    loading: action.loading,
+                    refreshing: action.refreshing,
+                    initialListSize: action.initialListSize
+                };
+            } else {
+                return {
+                    ...state,
+                    info: action.info,
+                    loading: action.loading,
+                    refreshing: action.refreshing
+                };
+            }
         },
 
         /**
@@ -212,7 +222,7 @@ export default {
          * @param {*} { call, put } 
          */
         *onRefresh(action: any, { call, put }: any) {
-            yield put({ type: 'updateLoadingState', info: '正在加载...', loading: true, refreshing: false });
+            yield put({ type: 'updateLoadingState', initialListSize: 15, info: '正在加载...', loading: true, refreshing: false });
             const resGenData = yield call([tradeService, tradeService.genData], true, 0, 1, [], action.rows,
                 action.ratingValues[0], action.couponValues[0], action.walbuckValues[0]
             );
