@@ -8,6 +8,7 @@ import { connect } from 'dva';
 import ABSPanel from '../components/abs-panel';
 import RoutePageList from '../RouterConfig';
 import ReactDOM from 'react-dom';
+import SpinnerLoader from 'react-loader-spinner';
 
 // 真实产品选择piker点
 const PickerChildren = props => (
@@ -208,10 +209,10 @@ class Product extends React.Component<any, {}> {
               onRefresh={this.onRefresh}
               distanceToRefresh={25}
               indicator={{
-                activate: <div>释放更新</div>,
-                deactivate: <div>下拉刷新</div>,
-                // release: <div>正在刷新</div>,
-                finish: <div />
+                activate:  <SpinnerLoader type="Oval" color="#00BFFF" height={40} width={40}/>, // <div>释放更新</div>,
+                deactivate:  <SpinnerLoader type="Grid" color="#00BFFF" height={40} width={40}/>,  // <div>下拉刷新</div>,
+                release:  <SpinnerLoader type="Rings" color="#00BFFF" height={40} width={40}/>,
+                finish:  <SpinnerLoader type="ThreeDots" color="#00BFFF" height={40} width={40}/>,
               }}
             />}
             onEndReached={this.onEndReached}

@@ -111,6 +111,16 @@ yarn point
 - yarn build
 - yarn test
 
+plugin
+=====================
+-get-query-param
+-react-loader-spinner
+-react-redux-loading-bar
+-react-content-loader
+-react-lazy-load
+-react-topbar-progress-indicator
+-react-center
+
 for admin:
 =================== 
 ### reactwebapp: 
