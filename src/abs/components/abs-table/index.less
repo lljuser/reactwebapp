@@ -20,6 +20,9 @@
             tr{
                 th{
                     .fn-table('th');
+                    &:last-child{
+                        padding-right: @abs-table-padding-left-right;
+                    }
                 }
             }
         }
@@ -27,7 +30,9 @@
             tr{
                 td{
                     .fn-table('td');
-                    
+                    .abs-tradeIcon-div{
+                        float: left;
+                    } 
                 }
                 &:last-child{
                     td{
@@ -42,6 +47,11 @@
     }
 }
 
+
+
+ 
+// letter-spacing: -0.36px;
+
 // 表格less配置函树
 
 .fn-table(@type) when (@type = 'th') {
@@ -49,13 +59,15 @@
     padding: 0.28rem 0.146667rem;
     font-size: 13px;
     font-weight: 400;
-    background-color: @abs-brand-gray-table;
+    background-color: @abs-brand-black;
+    border-bottom: 1px solid #222222;
+    color: #999999;
     &:first-child{
         text-align: center;
-        padding-left: 0.32rem;
+        padding-left: @abs-table-padding-left-right;
     }
     &:last-child{
-        padding-left: 0.32rem;
+        padding-left: @abs-table-padding-left-right;
     }
 }
 
@@ -66,10 +78,10 @@
     border-bottom:1px solid @abs-brand-gray-table;
     &:first-child {
         text-align: center;
-        padding-left: 0.32rem;
+        padding-left: @abs-table-padding-left-right;
     }
     &:last-child {
-        padding-right: 0.32rem;
+        padding-right: @abs-table-padding-left-right;
     }
     a {
         color: @abs-brand-yellow;

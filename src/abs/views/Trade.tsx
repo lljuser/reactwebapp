@@ -10,7 +10,7 @@ import ABSPanel from '../components/abs-panel';
 const CustomChildren = props => (
     <div onClick={props.onClick} className={props.first ? 'picker-trigger first' : 'picker-trigger'}>
         <div className="selector">{props.extra}
-            <i className="iconfont">&#xe692;</i>
+            <i className="iconfont arrow-down">&#xe692;</i>
         </div>
     </div>
 );
@@ -29,7 +29,7 @@ function MyBody(props: any) {
             <table cellSpacing={0} cellPadding={0}>
                 <thead>
                     <tr>
-                        <th />
+                        {/* <th /> */}
                         <th className="text-left">证券简称</th>
                         <th>金额(亿)</th>
                         <th>资产类别</th>
