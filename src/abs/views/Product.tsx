@@ -11,7 +11,9 @@ import RoutePageList from '../RouterConfig';
 // 真实产品选择piker点
 const PickerChildren = props => (
   <div onClick={props.onClick} className={props.first ? 'picker-trigger first' : 'picker-trigger'}>
-    <div className="selector">{props.extra}</div>
+    <div className="selector">{props.extra}
+      <i className="iconfont">&#xe692;</i>
+    </div>
   </div>
 );
 
@@ -128,7 +130,6 @@ class Product extends React.Component<any, {}> {
         </tr >
       );
     };
-   
     return (
       <ABSPanel className={'pull-refresh-wrapper'}>
       <div className="abs-picker">

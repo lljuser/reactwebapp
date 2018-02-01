@@ -34,6 +34,8 @@ export default {
                 case 'CurrentStatusValue':
                     return { 
                         ...state, 
+                        productTypeValue: action.productTypeValue,
+                        dealTypeValue: action.dealTypeValue,
                         currentStatusValue: action.val,
                         dataSource: action.dataSource,
                         rData: action.rData,
@@ -41,44 +43,61 @@ export default {
                         pageIndex: action.pageIndex,
                         refreshing: action.refreshing,
                         info: action.info,
-                        loading: action.loading
+                        loading: action.loading,
+                        currentStatus: action.currentStatus,
+                        dealType: action.dealType,
+                        productType: action.productType,
                     };
                 case 'DealTypeValue':
                     return { 
                         ...state, 
+                        productTypeValue: action.productTypeValue,
                         dealTypeValue: action.val,
+                        currentStatusValue: action.currentStatusValue,
                         dataSource: action.dataSource,
                         rData: action.rData,
                         hasMore: action.hasMore,
                         pageIndex: action.pageIndex,
                         refreshing: action.refreshing,
                         info: action.info,
-                        loading: action.loading
+                        loading: action.loading,
+                        currentStatus: action.currentStatus,
+                        dealType: action.dealType,
+                        productType: action.productType,
                     };
                 case 'ProductTypeValue':
                     return { 
                         ...state, 
                         productTypeValue: action.val,
+                        dealTypeValue: action.dealTypeValue,
+                        currentStatusValue: action.currentStatusValue,
                         dataSource: action.dataSource,
                         rData: action.rData,
                         hasMore: action.hasMore,
                         pageIndex: action.pageIndex,
                         refreshing: action.refreshing,
                         info: action.info,
-                        loading: action.loading
+                        loading: action.loading,
+                        currentStatus: action.currentStatus,
+                        dealType: action.dealType,
+                        productType: action.productType,
                     };
                 case 'Multi':
                     return {
                         ...state, 
                         productTypeValue: action.productTypeValue,
                         dealTypeValue: action.dealTypeValue,
+                        currentStatusValue: action.currentStatusValue,
                         dataSource: action.dataSource,
                         rData: action.rData,
                         hasMore: action.hasMore,
                         pageIndex: action.pageIndex,
                         refreshing: action.refreshing,
                         info: action.info,
-                        loading: action.loading
+                        loading: action.loading,
+                        currentStatus: action.currentStatus,
+                        dealType: action.dealType,
+                        productType: action.productType,
                     };
                 default:
                     return {...state}; 
@@ -161,23 +180,42 @@ export default {
             let productTypeValue = action.productTypeValue === undefined ? 0 : action.productTypeValue[0];
 
             if (action.picker === 'CurrentStatusValue') {
-                currentStatusValue = action.val;
+                currentStatusValue = action.val[0];
             }
             if (action.picker === 'DealTypeValue') {
-                dealTypeValue = action.val;
+                dealTypeValue = action.val[0];
             }
             if (action.picker === 'ProductTypeValue') {
-                productTypeValue = action.val;
+                productTypeValue = action.val[0];
             }
-            const res = yield call(productService.getData,
+            
+            const res = yield call([productService, productService.getData],
                 0,
                 action.rows,
                 [],
                 currentStatusValue,
                 dealTypeValue,
                 productTypeValue,
-                false
+                true
             );
+            let ishavedealTypeValue = false;
+            let ishaveproductTypeValue = false;
+            let ishavecurrentStatusValue = false;
+            res.DealType[0].forEach(item => {
+                if ( item.value === dealTypeValue ) {
+                    ishavedealTypeValue = true;
+                }
+            });
+            res.ProductType[0].forEach(item => {
+                if ( item.value === productTypeValue ) {
+                    ishaveproductTypeValue = true;
+                }
+            });
+            res.CurrentStatus[0].forEach(item => {
+                if ( item.value === currentStatusValue ) {
+                    ishavecurrentStatusValue = true;
+                }
+            });
 
             yield put({ 
                 type: 'returnChangePicker', 
@@ -190,8 +228,12 @@ export default {
                 refreshing: false,
                 info: res.info,
                 loading: false,
-                productTypeValue: [productTypeValue],
-                dealTypeValue: [dealTypeValue]
+                productTypeValue: ishaveproductTypeValue ? [productTypeValue] : [0],
+                dealTypeValue: ishavedealTypeValue ? [dealTypeValue] : [0],
+                currentStatusValue: ishavecurrentStatusValue ? [currentStatusValue] : [0],
+                currentStatus: res.CurrentStatus,
+                dealType: res.DealType,
+                productType: res.ProductType,
             });
         },
         *getList(action: any , { call, put }: any) {

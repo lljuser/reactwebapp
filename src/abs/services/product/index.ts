@@ -21,7 +21,7 @@ interface ReturnItem {
 class ProductService {
     
     async getData(pageIndex: number, rows: number, rData: Object[], CurrentStatusValue: number,
-                  DealTypeValue: number, ProductTypeValue: number, isFirstLoad: boolean) {
+                  DealTypeValue: number, ProductTypeValue: number, isFormatPickerData: boolean) {
         
         let returnItem: ReturnItem = {
             rData: [],
@@ -48,7 +48,7 @@ class ProductService {
                 
         } else {
             rData = [...rData, ...data.Deal];
-            if (isFirstLoad === true) {
+            if (isFormatPickerData === true) {
                 returnItem = this.formatPickerData(data, returnItem);
             }
            
