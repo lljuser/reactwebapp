@@ -8,61 +8,61 @@ export default class SpinnerLoader extends React.Component<any, any> {
             <React.Fragment>
                 <Flex>
                     <Flex.Item> 
-                        <Spinner  name="cube-grid" color="coral"/>
+                        <Spinner  name="cube-grid" color="#FFC446"/>
                     </Flex.Item>
                     <Flex.Item>
-                        <Spinner  name="three-bounce" color="purple"/>
+                        <Spinner name="three-bounce" color="#FFC446"/>
                     </Flex.Item>
                     <Flex.Item>
-                        <Spinner  name="ball-clip-rotate-pulse" color="olive"/>
+                        <Spinner name="ball-clip-rotate-pulse" color="#FFC446"/>
                     </Flex.Item>
                     <Flex.Item>
-                        <Spinner  name="ball-clip-rotate" color="blue"/>
+                        <Spinner name="ball-clip-rotate" color="#FFC446"/>
                     </Flex.Item>
                 </Flex> 
                 <WhiteSpace size="lg" /> 
                 <Flex>
                     <Flex.Item> 
-                        <Spinner  name="ball-scale-ripple" color="olive"/>
+                        <Spinner name="ball-scale-ripple" color="#FFC446"/>
                     </Flex.Item>
                     <Flex.Item>
-                        <Spinner  name="ball-beat" color="aqua"/>
+                        <Spinner name="ball-beat" color="#FFC446"/>
                     </Flex.Item>
                     <Flex.Item>
-                       <Spinner  name="ball-scale-multiple" color="fuchsia"/>
+                        <Spinner name="ball-scale-multiple" color="#FFC446"/>
                     </Flex.Item>
                     <Flex.Item>
-                        <Spinner  name="line-scale-pulse-out-rapid" color="blue"/>
+                        <Spinner name="line-scale-pulse-out-rapid" color="#FFC446"/>
                     </Flex.Item>
                 </Flex> 
                 <WhiteSpace size="lg" /> 
                 <Flex>
                     <Flex.Item> 
-                        <Spinner  name="ball-triangle-path" color="aqua"/>
+                        <Spinner name="ball-triangle-path" color="#FFC446"/>
                     </Flex.Item>
                     <Flex.Item>
-                        <Spinner  name="ball-scale-ripple-multiple" color="steelblue"/>
+                        <Spinner name="ball-scale-ripple-multiple" color="#FFC446"/>
                     </Flex.Item>
                     <Flex.Item>
-                         <Spinner  name="ball-spin-fade-loader" color="aqua"/>
+                        <Spinner name="ball-spin-fade-loader" color="#FFC446"/>
                     </Flex.Item>
                     <Flex.Item>
-                        <Spinner  name="pulse" color="steelblue"/>
+                        <Spinner name="pulse" color="#FFC446"/>
                     </Flex.Item>
                 </Flex> 
                 <WhiteSpace size="lg" /> 
                 <Flex>
                     <Flex.Item> 
-                        <Spinner  name="ball-triangle-path" color="aqua"/>
+                        <Spinner name="ball-triangle-path" color="#FFC446"/>
                     </Flex.Item>
                     <Flex.Item>
-                        <Spinner  name="folding-cube" color="red"/>
+                        <Spinner name="folding-cube" color="#FFC446"/>
                     </Flex.Item>
                     <Flex.Item>
-                         <Spinner  name="double-bounce" color="goldenrod"/> 
+                        <Spinner name="double-bounce" color="#FFC446"/> 
                     </Flex.Item>
                     <Flex.Item>
-                        <Spinner  name="ball-grid-beat" color="blue"/>
+                        <Spinner name="ball-grid-beat" color="#FFC446"/>
                     </Flex.Item>
                 </Flex>  
             </React.Fragment> 
