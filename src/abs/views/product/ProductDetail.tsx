@@ -40,7 +40,7 @@ class ProductDetail extends React.Component<any, any> {
                   type: 'product'
                 } 
             }}
-          /> 
+          />  
           <ABSContentLoader />
         </div>
         <div className="appH5_body">
