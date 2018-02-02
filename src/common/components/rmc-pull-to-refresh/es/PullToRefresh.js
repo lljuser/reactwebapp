@@ -47,6 +47,7 @@ function setTransform(nodeStyle, value) {
     nodeStyle.webkitTransform = value;
     nodeStyle.MozTransform = value;
 }
+
 var isWebView = typeof navigator !== 'undefined' && /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(navigator.userAgent);
 var DOWN = 'down';
 var UP = 'up';
@@ -169,13 +170,13 @@ var PullToRefresh = function (_React$Component2) {
                 // ref https://github.com/ant-design/ant-design-mobile/issues/2141
                 // e.stopPropagation();
                 var _diff = Math.round(_screenY - _this2._ScreenY);
-          
+
                 if (_diff > 0) {
                     if (_this2._lastScreenY > (this.props.maxscreeny / 2)) {
                         _diff = 1 / (_this2._lastScreenY / this.props.maxscreeny);
                     }
                 }
-             
+
                 _this2._ScreenY = _screenY;
                 _this2._lastScreenY += _diff;
                 _this2.setContentStyle(_this2._lastScreenY);
@@ -325,7 +326,7 @@ var PullToRefresh = function (_React$Component2) {
 export default PullToRefresh;
 
 PullToRefresh.defaultProps = {
-    prefixCls: 'rmc-pull-to-refresh',
+    prefixCls: 'am-pull-to-refresh',
     getScrollContainer: function getScrollContainer() {
         return undefined;
     },
