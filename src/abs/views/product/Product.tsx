@@ -3,7 +3,7 @@ import { Link, withRouter } from 'dva/router';
 import { ListView, Picker } from 'antd-mobile';  // WingBlank, SegmentedControl, 
 import PullToRefresh from '../../../common/components/rmc-pull-to-refresh';
 import '../components/control.less';
-import '../components/theme-common.less'; 
+import '../components/theme-common.less';
 import { connect } from 'dva';
 import ABSPanel from '../components/abs-panel';
 import RoutePageList from '../../RouterConfig';
@@ -209,7 +209,7 @@ class Product extends React.Component<any, {}> {
               refreshing={this.props.refreshing}
               onRefresh={this.onRefresh}
               distanceToRefresh={25}
-              indicator={{
+              indicator={{ 
                 activate:  <div><SpinnerLoader type="Audio" color="#FFC446" height={40} width={40}/></div>,              
                 deactivate: <div/>,  // <div>下拉刷新</div>,
                 release: <div><SpinnerLoader type="ThreeDots" color="#FFC446" height={40} width={40}/></div>,
