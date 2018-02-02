@@ -7,12 +7,11 @@ import Detail from './Detail';
 // import NoteList from './product/NoteList';
 import { ABSNavBar } from '../components/abs-navbar';
 import ABSChartMarket from '../components/abs-chart';
-import { ABSContentLoader } from '../components/abs-loader';
 import { connect } from 'dva';
 // import '../../../public/css/themeCopy.less';
 import RoutePageList from '../../RouterConfig';
 // import { Facebook } from 'react-content-loader';
-
+import { ProductDetailLoader } from './ProductDetailLoader';
 function mapStateToProps(state: any) {
   return {
     ...state.productdetail
@@ -41,7 +40,7 @@ class ProductDetail extends React.Component<any, any> {
                 } 
             }}
           />  
-          <ABSContentLoader />
+          <ProductDetailLoader>产品预加载</ProductDetailLoader>
         </div>
         <div className="appH5_body">
           <div className="appH5_content">
