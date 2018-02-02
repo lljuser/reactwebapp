@@ -210,9 +210,9 @@ class Product extends React.Component<any, {}> {
               onRefresh={this.onRefresh}
               distanceToRefresh={25}
               indicator={{ 
-                activate:  <div><SpinnerLoader type="Audio" color="#FFC446" height={40} width={40}/></div>,              
+                activate:  <div><SpinnerLoader type="Puff" color="#535353" height={40} width={40}/></div>,              
                 deactivate: <div/>,  // <div>下拉刷新</div>,
-                release: <div><SpinnerLoader type="ThreeDots" color="#FFC446" height={40} width={40}/></div>,
+                release: <div><SpinnerLoader type="Oval" color="#535353" height={40} width={40}/></div>,
                 finish: <div />,
               }}
             />}
