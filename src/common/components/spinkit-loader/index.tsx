@@ -2,22 +2,23 @@ import * as React from 'react';
 import { Flex, WhiteSpace } from 'antd-mobile';  
 import Spinner from 'react-spinkit'; 
  
+// 'full' | 'half' | 'quarter' | 'none';
 export default class SpinnerLoader extends React.Component<any, any> {
     render() {
         return (  
             <React.Fragment>
                 <Flex>
                     <Flex.Item> 
-                        <Spinner  name="cube-grid" color="#FFC446"/>
+                        <Spinner  name="cube-grid" color="#FFC446" fadeIn="none" />
                     </Flex.Item>
                     <Flex.Item>
-                        <Spinner name="three-bounce" color="#FFC446"/>
+                        <Spinner name="three-bounce" color="#FFC446" fadeIn="quarter"/>
                     </Flex.Item>
                     <Flex.Item>
-                        <Spinner name="ball-clip-rotate-pulse" color="#FFC446"/>
+                        <Spinner name="ball-clip-rotate-pulse" color="#FFC446" fadeIn="quarter"/>
                     </Flex.Item>
                     <Flex.Item>
-                        <Spinner name="ball-clip-rotate" color="#FFC446"/>
+                        <Spinner name="ball-clip-rotate" color="#FFC446" fadeIn="none"/>
                     </Flex.Item>
                 </Flex> 
                 <WhiteSpace size="lg" /> 
