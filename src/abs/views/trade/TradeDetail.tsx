@@ -4,6 +4,7 @@ import * as React from 'react';
 // import { Link } from 'dva/router';
 import { connect } from 'dva';
 import { ABSNavBar } from '../components/abs-navbar';
+import '../components/theme_old.less';
 import './tradeDetail.less';
 import RoutePageList from '../../RouterConfig';
 
@@ -123,7 +124,7 @@ class TradeDetailComponent extends React.Component<any, any> {
                                     this.props.detailInfo.Description !== undefined && this.props.detailInfo.Description !== null && this.props.detailInfo.Description.length > 0 ?
                                         <tr>
                                             <td colSpan={4} className="txt_justify lineHight introductionCont">
-                                                <span className="appH5_white_space">产品简介</span>
+                                                <span className="appH5_white_space">产品简ddd介</span>
                                                 <div className="appH5_margin_top_td_div" style={{ wordBreak: 'break-all', color: '#ccc' }}>
                                                     {this.props.detailInfo.Description}
                                                 </div>
