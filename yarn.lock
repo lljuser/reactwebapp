@@ -4820,7 +4820,7 @@ react-async-component@^1.0.0-beta.3:
 
 react-content-loader@^3.1.0:
   version "3.1.0"
-  resolved "http://registry.npm.taobao.org/react-content-loader/download/react-content-loader-3.1.0.tgz#0e9281397873c1c3ea211ac279de524886fd37de"
+  resolved "https://registry.yarnpkg.com/react-content-loader/-/react-content-loader-3.1.0.tgz#0e9281397873c1c3ea211ac279de524886fd37de"
 
 react-dev-utils@4.2.1:
   version "4.2.1"

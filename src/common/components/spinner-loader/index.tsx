@@ -6,46 +6,48 @@ export default class SpinnerLoader extends React.Component<any, any> {
     render() {
         return (  
             <React.Fragment>
+                <span style={{color: '#fff'}}>尺寸：40px</span>
                 <Flex>
                     <Flex.Item>
-                        <Loader type="Audio" color="#00BFFF" height={80} width={80}/>
+                        <Loader type="Audio" color="#FFC446" height={40} width={40}/>
                     </Flex.Item>
                     <Flex.Item>
-                        <Loader type="Ball-Triangle" color="#00BFFF" height={80} width={80}/>
+                        <Loader type="Ball-Triangle" color="#FFC446" height={40} width={40}/>
                     </Flex.Item>
                     <Flex.Item>
-                        <Loader type="Bars" color="#00BFFF" height={80} width={80}/>
+                        <Loader type="Bars" color="#FFC446" height={40} width={40}/>
                     </Flex.Item>
                     <Flex.Item>
-                        <Loader type="Circles" color="#00BFFF" height={80} width={80}/>
+                        <Loader type="Circles" color="#FFC446" height={40} width={40}/>
+                    </Flex.Item>
+                    <Flex.Item>
+                        <Loader type="Grid" color="#FFC446" height={40} width={40} />
+                    </Flex.Item>
+                    <Flex.Item>
+                        <Loader type="TailSpin" color="#FFC446" height={40} width={40} />
                     </Flex.Item>
                 </Flex> 
-                <WhiteSpace size="lg" />
+                <WhiteSpace size="xl" />
                 <Flex>
                     <Flex.Item>
-                        <Loader type="Grid" color="#00BFFF" height={80} width={80}/>
+                        <Loader type="TailSpin" color="#FFC446" height={40} width={40} />
                     </Flex.Item>
                     <Flex.Item>
-                        <Loader type="Hearts" color="#00BFFF" height={80} width={80}/>
+                        <Loader type="Hearts" color="#FFC446" height={40} width={40} />
                     </Flex.Item>
                     <Flex.Item>
-                        <Loader type="Oval" color="#00BFFF" height={80} width={80}/>
+                        <Loader type="Oval" color="#FFC446" height={40} width={40}/>
                     </Flex.Item>
                     <Flex.Item>
-                        <Loader type="Puff" color="#00BFFF" height={80} width={80}/>
-                    </Flex.Item>
-                </Flex> 
-                <Flex>
-                    <Flex.Item>
-                        <Loader type="Rings" color="#00BFFF" height={80} width={80}/>
+                        <Loader type="Puff" color="#FFC446" height={40} width={40}/>
                     </Flex.Item>
                     <Flex.Item>
-                        <Loader type="TailSpin" color="#00BFFF" height={80} width={80}/>
+                        <Loader type="Rings" color="#FFC446" height={40} width={40} />
                     </Flex.Item>
                     <Flex.Item>
-                        <Loader type="ThreeDots" color="#00BFFF" height={80} width={80}/>
-                    </Flex.Item> 
-                </Flex> 
+                        <Loader type="ThreeDots" color="#FFC446" height={40} width={40} />
+                    </Flex.Item>
+                </Flex>
             </React.Fragment> 
         );
     }
