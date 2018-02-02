@@ -2,7 +2,7 @@
  * @Author: ljliu kuizhang
  * @Date: 2018-02-01 14:40:22 
  * @Last Modified by: ljliu
- * @Last Modified time: 2018-02-02 11:51:27
+ * @Last Modified time: 2018-02-02 13:30:46
  */
 
 import * as React from 'react';
@@ -50,7 +50,7 @@ export function RouterConfig({ history, app }: any) {
     models: () => [
       import('./models/productdetail')
     ],
-    component: () => import(/*webpackChunkName:'productdetail'*/'./views/ProductDetail'),
+    component: () => import(/*webpackChunkName:'productdetail'*/'./views/product/ProductDetail'),
   });
 
   const TradeDetail = dynamic({
@@ -58,7 +58,7 @@ export function RouterConfig({ history, app }: any) {
     models: () => [
       import('./models/tradedetail')
     ],
-    component: () => import(/*webpackChunkName:'tradedetail'*/'./views/TradeDetail')
+    component: () => import(/*webpackChunkName:'tradedetail'*/'./views/trade/TradeDetail')
   });
  
   return ( 

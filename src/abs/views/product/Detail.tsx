@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link } from 'dva/router';
-import '../../components/abs-tabs/index.less'; 
+import '../components/index.less'; 
 import moment from 'moment';
 import RoutePageList from '../../RouterConfig';
 
