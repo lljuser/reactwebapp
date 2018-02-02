@@ -19,16 +19,8 @@ export class ABSSpinnerLoader extends React.Component<Props, {}> {
 
     render() {
         return (
-            <div className="abs-loader abs-loader-spinner">
-                <SpinnerLoader
-                    type="Grid"
-                    color="orange"
-                    height="100"
-                    width="100"
-                />
-                <SpinnerLoader type="Oval" color="#00BFFF" height={80} width={80} />
-                <Facebook speed={2} primaryColor="#ffc446" secondaryColor="#444444" />
-                
+            <div className="abs-loader abs-loader-spinner"> 
+                <SpinnerLoader type="Oval" color="#00BFFF" height={80} width={80} /> 
             </div>
         );
     }
@@ -43,7 +35,11 @@ export class ABSContentLoader extends React.Component<Props, {}> {
     render() {
         return (
             <div className="abs-loader abs-loader-content">
-                <ContentLoader speed={10} primaryColor="#ffc446" secondaryColor="#444444">
+                <Facebook speed={2} primaryColor="#535353" secondaryColor="gray" />
+                <Facebook speed={2} primaryColor="#535353" secondaryColor="gray" />
+                <Facebook speed={2} primaryColor="#535353" secondaryColor="gray" />
+                <Facebook speed={2} primaryColor="#535353" secondaryColor="gray" />
+                <ContentLoader speed={2} primaryColor="#535353" secondaryColor="gray">
                     {/* Pure SVG */}
                     <rect x="0" y="0" rx="5" ry="5" width="70" height="70" />
                     <rect x="80" y="17" rx="4" ry="4" width="300" height="13" />
