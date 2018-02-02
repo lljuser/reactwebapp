@@ -7,6 +7,7 @@ import '../components/abs-table/index.less';
 import '../components/abs-picker/index.less';
 import { connect } from 'dva';
 import ABSPanel from '../components/abs-panel';
+import Spinner from 'react-spinkit';
 
 // 如果不是使用 List.Item 作为 children
 const CustomChildren = props => (
@@ -191,18 +192,17 @@ class Trade extends React.Component<any, {}> {
                         useBodyScroll={this.props.useBodyScroll}
                         pullToRefresh={
                             <PullToRefresh
-                                maxscreeny={50}
+                                maxscreeny={100}
                                 getScrollContainer={() => lv}
                                 direction={'down'}
                                 refreshing={this.props.refreshing}
                                 onRefresh={this.onRefresh}
                                 distanceToRefresh={25}
                                 indicator={{
-                                    finish: <div />,
-                                    activate: <div>释放更新</div>,
-                                    deactivate: <div>下拉刷新</div>,
-                                    // 下拉刷新等待中的动画效果，更换src,设置style
-                                    release: <img src="http://demo.htmleaf.com/1501/201501071637/svg-loaders/three-dots.svg" width="60" />
+                                    activate: <Spinner name="double-bounce" color="goldenrod" />, // <div>释放更新</div>,
+                                    deactivate: <Spinner name="three-bounce" color="purple" />,  // <div>下拉刷新</div>,
+                                    release: <Spinner name="cube-grid" color="coral" />,
+                                    finish: <Spinner name="ball-scale-ripple"  color="olive" />,
                                 }}
                             />}
                         onEndReached={this.onEndReached}
