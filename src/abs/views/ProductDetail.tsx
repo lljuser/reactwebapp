@@ -11,7 +11,6 @@ import { connect } from 'dva';
 import '../../public/css/themeCopy.less';
 import RoutePageList from '../RouterConfig';
 import { Facebook } from 'react-content-loader';
-import SpinnerLoader from 'react-loader-spinner';
 
 function mapStateToProps(state: any) {
   return {
@@ -40,17 +39,11 @@ class ProductDetail extends React.Component<any, any> {
                   type: 'product'
                 } 
             }}  
-          />
-          <SpinnerLoader 
-            type="Grid"
-            color="orange"
-            height="100"	
-            width="100"
-          /> #535353', 'gray', '#535353
-          <SpinnerLoader type="Oval" color="#00BFFF" height={80} width={80}/>  
+          /> 
           <Facebook speed={2} primaryColor="#535353" secondaryColor="gray" /> 
-        </div>
-        
+          <Facebook speed={2} primaryColor="#535353" secondaryColor="gray" />
+          <Facebook speed={2} primaryColor="#535353" secondaryColor="gray" />
+        </div> 
         <ABSPanel title="产品要素" >
           <Detail detail={this.props.detail} />
         </ABSPanel>
