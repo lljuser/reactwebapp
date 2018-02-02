@@ -1,6 +1,7 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { ListView, PullToRefresh, Picker } from 'antd-mobile';
+import { ListView, Picker } from 'antd-mobile';
+import PullToRefresh from '../../common/components/rmc-pull-to-refresh';
 import TradeItem from './TradeItem';
 import '../components/abs-table/index.less';
 import '../components/abs-picker/index.less';
@@ -83,6 +84,9 @@ class Trade extends React.Component<any, {}> {
      * @memberof Trade
      */
     componentDidMount() {
+        // (ReactDOM.findDOMNode(lv as ListView)).addEventListener('touchmove', (e) => {
+        //     console.log(e.touches[0].pageY);
+        // });
         (ReactDOM.findDOMNode(lv as ListView)).scrollTo(0, this.props.scrollTop);
         if (this.props.rData.length === 0) {
             this.props.dispatch({
@@ -185,18 +189,22 @@ class Trade extends React.Component<any, {}> {
                         renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey} />}
                         renderRow={row}
                         useBodyScroll={this.props.useBodyScroll}
-                        pullToRefresh={<PullToRefresh
-                            getScrollContainer={() => lv}
-                            direction={'down'}
-                            refreshing={this.props.refreshing}
-                            onRefresh={this.onRefresh}
-                            distanceToRefresh={25}
-                            indicator={{
-                                activate: <div>释放更新</div>,
-                                deactivate: <div>下拉刷新</div>,
-                                finish: <div />
-                            }}
-                        />}
+                        pullToRefresh={
+                            <PullToRefresh
+                                maxscreeny={50}
+                                getScrollContainer={() => lv}
+                                direction={'down'}
+                                refreshing={this.props.refreshing}
+                                onRefresh={this.onRefresh}
+                                distanceToRefresh={25}
+                                indicator={{
+                                    finish: <div />,
+                                    activate: <div>释放更新</div>,
+                                    deactivate: <div>下拉刷新</div>,
+                                    // 下拉刷新等待中的动画效果，更换src,设置style
+                                    release: <img src="http://demo.htmleaf.com/1501/201501071637/svg-loaders/three-dots.svg" width="60" />
+                                }}
+                            />}
                         onEndReached={this.onEndReached}
                         onScroll={this.onScroll}
                         pageSize={15}
