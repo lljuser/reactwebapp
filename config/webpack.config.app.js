@@ -20,7 +20,7 @@ const webpackSetting = {
         style: true,
     },
     // setting multi enty
-    entry: ['index','expert'],
+    entry: ['index','csf'],
     // process env environment variables for production|development or jscode|index.html
     env: {
         production: {

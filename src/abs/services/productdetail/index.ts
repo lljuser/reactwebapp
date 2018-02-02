@@ -1,6 +1,6 @@
 import { ProductApi } from '../../config/api';
 import Request from '../../../common/http/request/index';
-import * as chartTheme from '../../../public/js/chartTheme';
+import ChartTheme from '../../config/chartTheme';
 
 // 默认图表数据
 const defaultChart = {
@@ -38,7 +38,7 @@ class ProductDetailService {
         let allSeries: any = [];
         let lineValue;
         let i = 0;
-        let colors = chartTheme.colors;
+        let colors = ChartTheme.colors;
         if (chartData && chartData.length > 0) {
             // let allSeriesLth = chartData.length;
             let colorSeries = chartData.filter(function (item: any) { return item.Order > 100; }).length > 0 ?

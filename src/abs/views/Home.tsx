@@ -3,10 +3,10 @@ import * as React from 'react';
 import { connect } from 'dva';
 import { Tabs } from 'antd-mobile';
 
-import Market from './Market';
-import Product from './Product';
-import Trade from './Trade';
-import '../components/abs-tabs/index.less';
+import Market from './market/Market';
+import Product from './product/Product';
+import Trade from './trade/Trade';
+import './components/index.less';
 
 class Home extends React.Component<any, any> {
   private tabs = [
@@ -27,7 +27,7 @@ class Home extends React.Component<any, any> {
   getIndex(props?: any): number {   
     props = props || this.props;
     const { location } = props;
-    console.log(location);
+  
     if (location && location.state && location.state.type) { 
       const idx = this.tabs.findIndex((current) => current.name === location.state.type);
       return idx >= 0 ? idx : 0;
