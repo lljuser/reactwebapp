@@ -145,7 +145,7 @@ export default {
                 pageIndex: action.pageIndex,
                 info: action.info,
                 loading: action.loading
-            }; 
+            };  
         },
         /**
          * 返回ListView底部状态

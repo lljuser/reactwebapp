@@ -198,10 +198,16 @@ class Trade extends React.Component<any, {}> {
                                 onRefresh={this.onRefresh}
                                 distanceToRefresh={25}
                                 indicator={{
-                                    activate: <Spinner name="double-bounce" color="goldenrod" fadeIn="none" />, // <div>释放更新</div>,
-                                    deactivate: <div />,
-                                    release: <Spinner name="cube-grid" color="coral" fadeIn="none"/>,
-                                    finish: <div />,
+                                    activate: <div style={{ width: '40px', margin: '0px auto' }}>
+                                        <Spinner name="double-bounce" color="goldenrod" fadeIn="none" />
+                                    </div>,
+                                    deactivate: <div style={{ width: '40px', margin: '0px auto' }}>
+                                        <Spinner name="double-bounce" color="goldenrod" fadeIn="none" />
+                                    </div>,
+                                    release: <div style={{ width: '40px', margin: '0px auto' }}><Spinner name="double-bounce" color="blue" fadeIn="none" /></div>,
+                                    finish: <div style={{ width: '40px', margin: '0px auto' }}>
+                                        <Spinner name="double-bounce" color="goldenrod" fadeIn="none" />
+                                    </div>,
                                 }}
                             />}
                         onEndReached={this.onEndReached}

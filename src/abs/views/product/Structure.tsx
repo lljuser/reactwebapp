@@ -1,5 +1,4 @@
 import * as React from 'react';
-import '../../components/abs-tabs/index.less'; 
 
 class Structure extends React.Component<any, {}> {
 
