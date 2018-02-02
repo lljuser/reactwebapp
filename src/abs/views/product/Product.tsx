@@ -207,14 +207,15 @@ class Product extends React.Component<any, {}> {
               distanceToRefresh={25}
               indicator={{
                 activate: <div style={{ width: '40px', margin: '0px auto' }}>
-                  <Spinner name="double-bounce" color="goldenrod" fadeIn="none" />
+                  <Spinner name="double-bounce" color="orange" fadeIn="none" />
                 </div>,
                 deactivate: <div style={{ width: '40px', margin: '0px auto' }}>
-                  <Spinner name="double-bounce" color="goldenrod" fadeIn="none" />
+                  <Spinner name="double-bounce" color="orange" fadeIn="none" />
                 </div>,
-                release: <div style={{ width: '40px', margin: '0px auto' }}><Spinner name="double-bounce" color="blue" fadeIn="none" /></div>,
+                release: <div style={{ width: '40px', margin: '0px auto' }}>
+                  <Spinner name="double-bounce" color="orange" fadeIn="none" /></div>,
                 finish: <div style={{ width: '40px', margin: '0px auto' }}>
-                  <Spinner name="double-bounce" color="goldenrod" fadeIn="none" />
+                  <Spinner name="double-bounce" color="orange" fadeIn="none" />
                 </div>,
               }}
             />}
