@@ -40,7 +40,7 @@ class ProductDetail extends React.Component<any, any> {
                 } 
             }}
           />  
-          <ProductDetailLoader>产品预加载</ProductDetailLoader>
+          <ProductDetailLoader/>
         </div>
         <div className="appH5_body">
           <div className="appH5_content">
