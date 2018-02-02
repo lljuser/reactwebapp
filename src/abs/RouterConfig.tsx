@@ -2,15 +2,17 @@
  * @Author: ljliu kuizhang
  * @Date: 2018-02-01 14:40:22 
  * @Last Modified by: ljliu
- * @Last Modified time: 2018-02-01 14:45:23
+ * @Last Modified time: 2018-02-02 11:51:27
  */
 
 import * as React from 'react';
 import { Router, Switch, Route , Redirect } from 'dva/router';  
-import dynamic from 'dva/dynamic'; 
-// import asyncLoader from '../components/ayncLoader';
+import dynamic from 'dva/dynamic';  
+// import asyncLoader from '../common/ayncLoader';  
 // const AsyncHome = asyncLoader(import(/*webpackChunkName:'home'*/'./Home'));    
-
+import SpinnerLoader from '../common/components/spinner-loader';
+import ContentLoader from '../common/components/content-loader';
+import SpinkitLoader from '../common/components/spinkit-loader';
 /**
  * RoutePageList 
  */
@@ -20,6 +22,7 @@ const RoutePageList = {
     HomePage: `${ApiRoutePath}home`,
     ProductDetailPage: `${ApiRoutePath}productdetail`,
     TradeDetailPage: `${ApiRoutePath}tradedetail`, 
+    DemoPage: `${ApiRoutePath}demo`,
 };
  
 export default RoutePageList;
@@ -60,10 +63,13 @@ export function RouterConfig({ history, app }: any) {
  
   return ( 
     <Router history={history}>
-           <Switch>
+        <Switch>
           <Route exact={true} path={RoutePageList.HomePage} component={Home}/>  
           <Route exact={true} path={`${RoutePageList.ProductDetailPage}/:id`} component={ProductDetail}/>
-          <Route exact={true} path={`${RoutePageList.TradeDetailPage}/:gradeId/:couponId`} component={TradeDetail} />
+          <Route exact={true} path={`${RoutePageList.TradeDetailPage}/:gradeId/:couponId`} component={TradeDetail} /> 
+          <Route exact={true} path="/demo/spinnerloader" component={SpinnerLoader}/>
+          <Route exact={true} path="/demo/contentloader" component={ContentLoader}/>
+          <Route exact={true} path="/demo/spinkitloader" component={SpinkitLoader}/>
           <Redirect path="*" to={RoutePageList.HomePage} />
       </Switch>
     </Router>
