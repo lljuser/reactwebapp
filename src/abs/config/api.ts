@@ -1,6 +1,15 @@
+/*
+ * @Author: ljliu 
+ * @Date: 2018-02-01 14:45:51 
+ * @Last Modified by: ljliu
+ * @Last Modified time: 2018-02-01 14:47:06
+ */
  
-const ApiAddress = process.env.REACT_APP_API_ADDRESS;
-export default ApiAddress;
+/**
+ * this setting from the webpack and evn ,we can set in the webpack.config.app 
+ */
+const ApiAddress = process.env.REACT_APP_API_ADDRESS; 
+export default ApiAddress; 
 
 export const MarketApi = {
   list: `${ApiAddress}/momarket/productsummary`,
@@ -13,7 +22,7 @@ export const ProductApi = {
   // /{dealId?}
   detail: `${ApiAddress}/modeal/getdealfactory`,
   // /{dealId}/{resultId}
-  chart: `${ApiAddress}/modeal/getnotecashflowchartdata`,
+  chart: `${ApiAddress}/modeal/NoteCashFlowSeries`,
   // 
   structure: `${ApiAddress}/modeal/getnotestructure`,
 }; 

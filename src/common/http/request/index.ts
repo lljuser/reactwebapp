@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import helper from './helper';
-// import AbortBus from './abort';
+import AbortBus from './abort';
 
 export default class Request {
 
@@ -64,7 +64,7 @@ export default class Request {
         'Content-Type': 'application/json',
       },
       withCredentials: true,
-      // cancelToken: AbortBus.cancelToken
+      cancelToken: AbortBus.cancelToken
     }, config) as AxiosRequestConfig;
 
     const timeout = defaultConfig.timeout || Request.defaultTimeout;

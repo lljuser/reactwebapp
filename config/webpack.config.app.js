@@ -9,6 +9,10 @@ paths.styleTheme = resolveApp('public/theme.less');
 paths.envKeyPrefix= 'REACT_APP_'; 
 
 const webpackSetting = { 
+    app: {
+        name: 'ABS Link',
+        version: '1.0.0'
+    }, 
     antd: {
         // use antd design ui antd|antd-mobile
         libraryName: 'antd-mobile',
@@ -16,14 +20,16 @@ const webpackSetting = {
         style: true,
     },
     // setting multi enty
-    entry: ['index','expert'],
+    entry: ['index','csf'],
     // process env environment variables for production|development or jscode|index.html
     env: {
         production: {
             API_ADDRESS: 'https://www.cn-abs.com',
+            PUBLISH_PATH: '/reactwebapp/'
         },
         development: {
-            API_ADDRESS: 'http://10.1.1.35'
+            API_ADDRESS: 'http://10.1.1.35',
+            PUBLISH_PATH: '/'
         }
     },  
     // output setting
@@ -107,8 +113,11 @@ function initWebpackSetting(webpackConfig) {
     }); 
 
     // #######step 2
-    // reset output filename
+    // reset output filename and repleact publish path
     webpackConfig.output = webpackSetting.output;  
+    webpackConfig.output.publicPath = 
+        isProduction() ? webpackSetting.env.production.PUBLISH_PATH 
+                       : webpackSetting.env.development.PUBLISH_PATH, 
 
     // #######step 3
     // add ts-import-plugin load antd only use module/css  
@@ -284,6 +293,7 @@ function createHtmlWebpackPlugin() {
 
             let item = new HtmlWebpackPlugin({
                 inject: true,
+                title: webpackSetting.app.name,
                 template: entryPath.tmpl,  
                 filename: entryPath.output,  
                 chunks:[ 'common', entryPath.name ],

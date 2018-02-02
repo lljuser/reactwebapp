@@ -1,0 +1,94 @@
+/*临时文件*/
+
+@media (-webkit-min-device-pixel-ratio: 2), not all, (min-resolution: 2dppx) {
+  html:not([data-scale]) .am-list-body::before {
+      content: '';
+      height: 0;
+  }
+}
+
+.am-list-body {
+  background-color: transparent;
+}
+
+/*下拉*/
+.am-pull-to-refresh-down .am-pull-to-refresh-indicator {
+  margin-top: -50px;
+}
+
+.am-pull-to-refresh-indicator {
+  height: 50px;
+  color: #fff;
+  line-height: 50px;
+  font-size: 12px;
+}
+
+.am-list-footer {
+  color: #fff;
+  font-size: 12px;
+}
+
+/*picker*/
+.picker-trigger {
+  font-size: 15px;
+  color: #444;
+  float: left;
+  width: 30%;
+  margin-left: 5%;
+}
+
+.picker-trigger:after {
+  clear: both;
+}
+
+.picker-trigger.first {
+  margin-left: 0%;
+}
+
+.picker-trigger > .selector {
+  padding-left: .206667rem;
+  padding-right: .206667rem;
+  height: .746667rem;
+  line-height: .746667rem;
+  font-size: 15px;
+  color: #444;
+  outline: none;
+  border: none;
+  border-radius: .053333rem;
+  background-color: #fff;
+  text-align: center;
+  overflow: hidden;
+}
+
+
+.abs-tabs {
+  height: 100vh;
+}
+
+.abs-tabs .am-tabs-pane-wrap {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.pull-refresh-wrapper.abs-panel {
+  padding-bottom: 0 !important;
+}
+
+.pull-refresh-wrapper, .pull-refresh-wrapper .abs-panel-content {
+  height: 100%;
+}
+
+.pull-refresh-wrapper .abs-panel-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.pull-refresh-wrapper .abs-panel-content > .abs-scrollview-container {
+  flex: 1;
+}
+
+.pull-refresh-wrapper .am-list-view-scrollview {
+  height: 100%;
+}

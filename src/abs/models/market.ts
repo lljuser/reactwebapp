@@ -20,12 +20,7 @@ export default {
   effects: { 
     *fetch(action: any, { call, put }: any) {
       try {
-
-        const [marketSummary, chart] = yield [
-          call(service.getMarketSummary),
-          call(service.getMarketChartData)
-        ];
-
+        const [marketSummary, chart] = yield call([service, service.getMarketData]);
         yield put({
           type: 'load',
           data: {
@@ -36,6 +31,6 @@ export default {
         // alert(e.message);
         return;
       }
-    }
+    },
   }
 };
