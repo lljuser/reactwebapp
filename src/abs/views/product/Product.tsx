@@ -2,8 +2,8 @@ import * as React from 'react';
 import { Link, withRouter } from 'dva/router';
 import { ListView, Picker } from 'antd-mobile';  // WingBlank, SegmentedControl, 
 import PullToRefresh from '../../../common/components/rmc-pull-to-refresh';
-import '../components/index.less';
-import '../components/theme-common.less';
+import '../components/control.less';
+import '../components/theme-common.less'; 
 import { connect } from 'dva';
 import ABSPanel from '../components/abs-panel';
 import RoutePageList from '../../RouterConfig';

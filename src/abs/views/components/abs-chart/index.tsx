@@ -1,7 +1,7 @@
 import * as React from 'react';
 import ReactHighcharts from 'react-highcharts';
 import '../index.less'; 
-import * as ChartTheme from '../../../config/chartTheme';
+import ChartTheme from '../../../config/chartTheme';
 
 console.log(ChartTheme);
 ReactHighcharts.Highcharts.setOptions(ChartTheme);
