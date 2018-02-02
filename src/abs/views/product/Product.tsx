@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link, withRouter } from 'dva/router';
-import { ListView, Picker } from 'antd-mobile';  // WingBlank, SegmentedControl, 
+import { ListView, Picker } from 'antd-mobile';  // WingBlank, SegmentedControl,
 import PullToRefresh from '../../../common/components/rmc-pull-to-refresh';
 import '../components/control.less';
 import '../components/theme-common.less';
@@ -8,7 +8,7 @@ import { connect } from 'dva';
 import ABSPanel from '../components/abs-panel';
 import RoutePageList from '../../RouterConfig';
 import ReactDOM from 'react-dom';
-import SpinnerLoader from 'react-loader-spinner';
+import Spinner from 'react-spinkit';
 
 // 真实产品选择piker点
 const PickerChildren = props => (
@@ -199,21 +199,23 @@ class Product extends React.Component<any, {}> {
             renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey} CurrentStatus={this.props.currentStatus} CurrentStatusValue={this.props.currentStatusValue} DealType={this.props.dealType} DealTypeValue={this.props.dealTypeValue} ProductType={this.props.productType} ProductTypeValue={this.props.productTypeValue} />}
             renderRow={row}
             useBodyScroll={this.props.useBodyScroll}
-            // style={this.props.useBodyScroll ? { minHeight: '500px' } : {
-            //   height: 'auto',
-            // }}
             pullToRefresh={<PullToRefresh
-              maxscreeny={100}
               getScrollContainer={() => lv}
               direction={'down'}
               refreshing={this.props.refreshing}
               onRefresh={this.onRefresh}
               distanceToRefresh={25}
-              indicator={{ 
-                activate:  <div><SpinnerLoader type="Audio" color="#FFC446" height={40} width={40}/></div>,              
-                deactivate: <div/>,  // <div>下拉刷新</div>,
-                release: <div><SpinnerLoader type="ThreeDots" color="#FFC446" height={40} width={40}/></div>,
-                finish: <div />,
+              indicator={{
+                activate: <div style={{ width: '40px', margin: '0px auto' }}>
+                  <Spinner name="double-bounce" color="goldenrod" fadeIn="none" />
+                </div>,
+                deactivate: <div style={{ width: '40px', margin: '0px auto' }}>
+                  <Spinner name="double-bounce" color="goldenrod" fadeIn="none" />
+                </div>,
+                release: <div style={{ width: '40px', margin: '0px auto' }}><Spinner name="double-bounce" color="blue" fadeIn="none" /></div>,
+                finish: <div style={{ width: '40px', margin: '0px auto' }}>
+                  <Spinner name="double-bounce" color="goldenrod" fadeIn="none" />
+                </div>,
               }}
             />}
             onEndReached={this.onEndReached}

@@ -2,7 +2,7 @@
  * @Author: ljliu kuizhang
  * @Date: 2018-02-01 14:40:22 
  * @Last Modified by: ljliu
- * @Last Modified time: 2018-02-02 13:30:46
+ * @Last Modified time: 2018-02-02 18:10:12
  */
 
 import * as React from 'react';
@@ -12,7 +12,7 @@ import dynamic from 'dva/dynamic';
 // const AsyncHome = asyncLoader(import(/*webpackChunkName:'home'*/'./Home'));    
 import SpinnerLoader from '../common/components/spinner-loader';
 import ContentLoader from '../common/components/content-loader';
-import SpinkitLoader from '../common/components/spinkit-loader';
+import SpinkitLoader from '../common/components/spinkit-loader'; 
 /**
  * RoutePageList 
  */
