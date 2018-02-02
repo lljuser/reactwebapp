@@ -119,7 +119,6 @@ plugin
 -react-content-loader
 -react-lazy-load
 -react-topbar-progress-indicator
--react-center
 
 for admin:
 =================== 
