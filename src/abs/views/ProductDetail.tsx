@@ -60,8 +60,7 @@ class ProductDetail extends React.Component<any, any> {
                   <ABSPanel title="证券偿付">
                       <ABSChartMarket data={this.props.chart} />
                   </ABSPanel>
-              }
-              
+              } 
             </React.Fragment>
           </div>
         </div>
