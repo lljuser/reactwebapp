@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Link, withRouter } from 'dva/router';
-import { ListView, PullToRefresh, Picker } from 'antd-mobile';  // WingBlank, SegmentedControl, 
+import { ListView, Picker } from 'antd-mobile';  // WingBlank, SegmentedControl, 
+import PullToRefresh from '../../common/components/rmc-pull-to-refresh';
 import '../components/abs-table/index.less';
 import '../components/abs-picker/index.less';
 import '../components/theme-common.less';
@@ -8,7 +9,7 @@ import { connect } from 'dva';
 import ABSPanel from '../components/abs-panel';
 import RoutePageList from '../RouterConfig';
 import ReactDOM from 'react-dom';
-import Spinner from 'react-spinkit'; 
+import Spinner from 'react-spinkit';
 
 // 真实产品选择piker点
 const PickerChildren = props => (
@@ -80,7 +81,7 @@ class Product extends React.Component<any, {}> {
 
   // 若scrollTop为0则滚动条返回顶部
   componentDidUpdate() {
-    if ( this.props.scrollTop === 0) {
+    if (this.props.scrollTop === 0) {
       this.scrollTo(this.props.scrollTop);
     }
   }
@@ -105,9 +106,9 @@ class Product extends React.Component<any, {}> {
   onScroll = (e) => {
     // 保存滚动条位置
     this.props.dispatch({
-        type: 'product/onScroll',
-        scrollTop: (ReactDOM.findDOMNode(lv as ListView)).scrollTop,
-        initialListSize: this.props.rData.length
+      type: 'product/onScroll',
+      scrollTop: (ReactDOM.findDOMNode(lv as ListView)).scrollTop,
+      initialListSize: this.props.rData.length
     });
   }
 
@@ -203,16 +204,17 @@ class Product extends React.Component<any, {}> {
             //   height: 'auto',
             // }}
             pullToRefresh={<PullToRefresh
+              maxscreeny={100}
               getScrollContainer={() => lv}
               direction={'down'}
               refreshing={this.props.refreshing}
               onRefresh={this.onRefresh}
               distanceToRefresh={25}
               indicator={{
-                activate:  <Spinner name="double-bounce" color="goldenrod"/>, // <div>释放更新</div>,
-                deactivate: <Spinner name="three-bounce" color="purple"/>,  // <div>下拉刷新</div>,
-                release:  <Spinner name="cube-grid" color="coral"/>,
-                finish:  <Spinner name="ball-scale-ripple" color="olive"/>,
+                activate: <Spinner name="double-bounce" color="goldenrod" />, // <div>释放更新</div>,
+                deactivate: <Spinner name="three-bounce" color="purple" />,  // <div>下拉刷新</div>,
+                release: <Spinner name="cube-grid" color="coral" />,
+                finish: <Spinner name="ball-scale-ripple" color="olive" />,
               }}
             />}
             onEndReached={this.onEndReached}

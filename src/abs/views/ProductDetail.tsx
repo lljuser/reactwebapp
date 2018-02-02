@@ -7,7 +7,7 @@ import Detail from './product/Detail';
 // import NoteList from './product/NoteList';
 import { ABSNavBar } from '../components/abs-navbar';
 import ABSChartMarket from '../components/abs-chart';
-import { ABSSpinnerLoader, ABSContentLoader } from '../components/abs-loader';
+import { ABSContentLoader } from '../components/abs-loader';
 import { connect } from 'dva';
 import '../../public/css/themeCopy.less';
 import RoutePageList from '../RouterConfig';
@@ -40,9 +40,8 @@ class ProductDetail extends React.Component<any, any> {
                   type: 'product'
                 } 
             }}
-          />
-          <ABSSpinnerLoader>加载动画-圆圈</ABSSpinnerLoader>
-          <ABSContentLoader>加载动画-内容</ABSContentLoader>
+          /> 
+          <ABSContentLoader />
         </div>
         <div className="appH5_body">
           <div className="appH5_content">
@@ -61,8 +60,7 @@ class ProductDetail extends React.Component<any, any> {
                   <ABSPanel title="证券偿付">
                       <ABSChartMarket data={this.props.chart} />
                   </ABSPanel>
-              }
-              
+              } 
             </React.Fragment>
           </div>
         </div>

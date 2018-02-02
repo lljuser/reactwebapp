@@ -170,7 +170,7 @@ var PullToRefresh = function (_React$Component2) {
                 // e.stopPropagation();
                 var _diff = Math.round(_screenY - _this2._ScreenY);
 
-                if (_this2._lastScreenY > (this.props.maxscreeny / 2) ){
+                if (_this2._lastScreenY > (this.props.maxscreeny / 2)) {
                     _diff = 1 / (_this2._lastScreenY / this.props.maxscreeny);
                 }
 
@@ -282,6 +282,7 @@ var PullToRefresh = function (_React$Component2) {
             });
             var renderRefresh = function renderRefresh(cls) {
                 var cla = classNames(cls, !_this4.state.dragOnEdge && prefixCls + '-transition');
+                console.log(indicator)
                 return React.createElement(
                     'div',
                     { className: prefixCls + '-content-wrapper' },
