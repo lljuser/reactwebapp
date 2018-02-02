@@ -1,10 +1,10 @@
 import * as React from 'react';
 import ReactHighcharts from 'react-highcharts';
-import './index.less'; 
-import * as chartTheme from '../../../config/chartTheme';
+import '../index.less'; 
+import * as ChartTheme from '../../../config/chartTheme';
 
-console.log(chartTheme);
-ReactHighcharts.Highcharts.setOptions(chartTheme);
+console.log(ChartTheme);
+ReactHighcharts.Highcharts.setOptions(ChartTheme);
 
 interface Props {
   data: any;

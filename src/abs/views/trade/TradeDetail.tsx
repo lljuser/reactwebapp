@@ -4,7 +4,7 @@ import * as React from 'react';
 // import { Link } from 'dva/router';
 import { connect } from 'dva';
 import { ABSNavBar } from '../components/abs-navbar';
-import '../components/tradeDetail.less';
+import './tradeDetail.less';
 import RoutePageList from '../../RouterConfig';
 
 function tradeDetailStateToProps(state: any) {
