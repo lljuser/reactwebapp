@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link, withRouter } from 'dva/router';
-import { ListView, Picker } from 'antd-mobile';  // WingBlank, SegmentedControl, 
+import { ListView, Picker } from 'antd-mobile';
 import PullToRefresh from '../../common/components/rmc-pull-to-refresh';
 import '../components/abs-table/index.less';
 import '../components/abs-picker/index.less';
@@ -204,17 +204,16 @@ class Product extends React.Component<any, {}> {
             //   height: 'auto',
             // }}
             pullToRefresh={<PullToRefresh
-              maxscreeny={100}
               getScrollContainer={() => lv}
               direction={'down'}
               refreshing={this.props.refreshing}
               onRefresh={this.onRefresh}
               distanceToRefresh={25}
               indicator={{
-                activate: <Spinner name="double-bounce" color="goldenrod" />, // <div>释放更新</div>,
-                deactivate: <Spinner name="three-bounce" color="purple" />,  // <div>下拉刷新</div>,
-                release: <Spinner name="cube-grid" color="coral" />,
-                finish: <Spinner name="ball-scale-ripple" color="olive" />,
+                activate: <div><Spinner name="double-bounce" color="goldenrod" /></div>,
+                deactivate: <div />,
+                release: <div><Spinner name="cube-grid" color="coral" /></div>,
+                finish: <div />,
               }}
             />}
             onEndReached={this.onEndReached}

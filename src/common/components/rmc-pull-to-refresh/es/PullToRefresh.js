@@ -169,11 +169,13 @@ var PullToRefresh = function (_React$Component2) {
                 // ref https://github.com/ant-design/ant-design-mobile/issues/2141
                 // e.stopPropagation();
                 var _diff = Math.round(_screenY - _this2._ScreenY);
-
-                if (_this2._lastScreenY > (this.props.maxscreeny / 2)) {
-                    _diff = 1 / (_this2._lastScreenY / this.props.maxscreeny);
+          
+                if (_diff > 0) {
+                    if (_this2._lastScreenY > (this.props.maxscreeny / 2)) {
+                        _diff = 1 / (_this2._lastScreenY / this.props.maxscreeny);
+                    }
                 }
-
+             
                 _this2._ScreenY = _screenY;
                 _this2._lastScreenY += _diff;
                 _this2.setContentStyle(_this2._lastScreenY);
@@ -282,7 +284,6 @@ var PullToRefresh = function (_React$Component2) {
             });
             var renderRefresh = function renderRefresh(cls) {
                 var cla = classNames(cls, !_this4.state.dragOnEdge && prefixCls + '-transition');
-                console.log(indicator)
                 return React.createElement(
                     'div',
                     { className: prefixCls + '-content-wrapper' },
@@ -330,5 +331,6 @@ PullToRefresh.defaultProps = {
     },
     direction: DOWN,
     distanceToRefresh: 25,
-    indicator: INDICATOR
+    indicator: INDICATOR,
+    maxscreeny: 100
 };

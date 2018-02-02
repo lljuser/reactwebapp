@@ -192,17 +192,16 @@ class Trade extends React.Component<any, {}> {
                         useBodyScroll={this.props.useBodyScroll}
                         pullToRefresh={
                             <PullToRefresh
-                                maxscreeny={100}
                                 getScrollContainer={() => lv}
                                 direction={'down'}
                                 refreshing={this.props.refreshing}
                                 onRefresh={this.onRefresh}
                                 distanceToRefresh={25}
                                 indicator={{
-                                    activate: <Spinner name="double-bounce" color="goldenrod" />, // <div>释放更新</div>,
-                                    deactivate: <Spinner name="three-bounce" color="purple" />,  // <div>下拉刷新</div>,
-                                    release: <Spinner name="cube-grid" color="coral" />,
-                                    finish: <Spinner name="ball-scale-ripple"  color="olive" />,
+                                    activate: <div><Spinner name="double-bounce" color="goldenrod" /></div>, 
+                                    deactivate: <div />,
+                                    release: <div><Spinner name="cube-grid" color="coral" /></div>,
+                                    finish: <div />,
                                 }}
                             />}
                         onEndReached={this.onEndReached}
