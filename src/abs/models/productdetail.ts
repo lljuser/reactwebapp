@@ -8,17 +8,13 @@ export default {
     noteConsTable: null,
     chartWidthPx: 0,
     chart: null,
-    loading: false
+    loading: true
   },
   reducers: {
     /**
      * 返回详细信息
      */
     returnData(state: any, action: any) {
-
-      if (state.loading) {
-        return state;
-      }
       return {
         ...state,
         detail: action.detail,
@@ -27,14 +23,24 @@ export default {
         chart: action.chart,
         id: action.id
       };
+    },
+    /**
+     * 显示loading动画
+     */
+    showLoading(state: any, action: any) {
+      return {
+        ...state,
+        loading: action.loading
+      };
     }
   },
   effects: {
     /**
      * 获取详细信息
      */
-    *getData(action: any, { call, put }: any) {
+    *getData(action: any, { call, put , take}: any) {
       try {
+        yield put({type: 'showLoading', loading: true});
         const detail = yield call(productDetailService.getDetail, action.id);
         let chartWidthPx = 280;
         let noteConsTable = null;
@@ -63,6 +69,7 @@ export default {
           chart: chart,
           id: action.id
         });
+        yield put({type: 'showLoading', loading: false});
       } catch (e) {
         return;
       }
