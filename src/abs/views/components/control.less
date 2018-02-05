@@ -6,6 +6,7 @@
 
 .@{tabs-prefix-cls}{
     background: @absLink-tabs-bgColor; 
+    height: 100vh;
     .am-tabs-default-bar-top{
         background: @absLink-tabBar-bgColor !important;
         .am-tabs-default-bar-content{
@@ -40,6 +41,11 @@
     }
     .am-tabs-content-wrap {
         padding-top: 43.5 * @hd;
+        .am-tabs-pane-wrap{
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+        }
     }
 }
 /*****************abs-tabs*************************/ 

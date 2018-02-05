@@ -1,14 +1,16 @@
 /*临时文件*/
-
-@media (-webkit-min-device-pixel-ratio: 2), not all, (min-resolution: 2dppx) {
-  html:not([data-scale]) .am-list-body::before {
-      content: '';
-      height: 0;
+/*
+* 无限滚动内容
+*/
+.abs-scrollview-container {
+  .am-list-view-scrollview {
+    .am-list-body{
+      background-color: transparent;
+      &:before{
+        height: 0;
+      }
+    }
   }
-}
-
-.am-list-body {
-  background-color: transparent;
 }
 
 /*下拉*/
@@ -58,17 +60,6 @@
   background-color: #fff;
   text-align: center;
   overflow: hidden;
-}
-
-
-.abs-tabs {
-  height: 100vh;
-}
-
-.abs-tabs .am-tabs-pane-wrap {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
 }
 
 .pull-refresh-wrapper.abs-panel {
