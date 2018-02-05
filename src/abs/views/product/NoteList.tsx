@@ -1,5 +1,5 @@
 import * as React from 'react';
-import '../../components/abs-tabs/index.less'; 
+import '../components/index.less';
 
 class NoteList extends React.Component<any, {}> {
 

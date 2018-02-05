@@ -9,7 +9,7 @@ interface Props {
     className?: string;
 }
 // 动画-内容型
-export class ProductDetailLoader extends React.Component<Props, {}> {
+export class PageLoader extends React.Component<Props, {}> {
 
     constructor(props: any) {
         super(props);
