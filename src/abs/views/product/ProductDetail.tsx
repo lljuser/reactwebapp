@@ -12,7 +12,7 @@ import { connect } from 'dva';
 import RoutePageList from '../../RouterConfig';
 import '../components/theme_old.less';
 // import { Facebook } from 'react-content-loader';
-import { ProductDetailLoader } from './ProductDetailLoader';
+import { PageLoader } from '../PageLoader';
 function mapStateToProps(state: any) {
   return {
     ...state.productdetail
@@ -22,6 +22,7 @@ function mapStateToProps(state: any) {
 class ProductDetail extends React.Component<any, any> {
 
   componentDidMount() {
+    // 进入同一id，只查询一次
     const id = this.props.match.params.id;
     if ( this.props.id !== id ) {
       this.props.getData(id);
@@ -42,7 +43,7 @@ class ProductDetail extends React.Component<any, any> {
               } 
           }}
         />  
-          <ProductDetailLoader/>
+          <PageLoader/>
       </div>
       );
     } else {
