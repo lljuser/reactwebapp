@@ -147,7 +147,7 @@ class Trade extends React.Component<any, {}> {
             );
         };
         return (
-            <ABSPanel className={'pull-refresh-wrapper'}>
+            <ABSPanel className={'abs-pull-refresh-wrapper'}>
                 <div className="abs-picker">
                     <Picker
                         data={this.props.ratingList}

@@ -157,7 +157,7 @@ class Product extends React.Component<any, {}> {
     };
 
     return (
-      <ABSPanel className={'pull-refresh-wrapper'}>
+      <ABSPanel className={'abs-pull-refresh-wrapper'}>
         <div className="abs-picker">
           <Picker
             title="选择市场"

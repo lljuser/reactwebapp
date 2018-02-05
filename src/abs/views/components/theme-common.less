@@ -16,37 +16,23 @@
     }
   }
 }
-
-/*下拉*/
-.am-pull-to-refresh-down .am-pull-to-refresh-indicator {
-  margin-top: -50px;
-}
-
-.am-pull-to-refresh-indicator {
-  height: 50px;
-  color: #fff;
-  line-height: 50px;
-  font-size: 12px;
-}
-
-.pull-refresh-wrapper.abs-panel {
+/*
+* 下拉加载
+*/
+.abs-pull-refresh-wrapper{
+  height: 100%;
   padding-bottom: 0 !important;
-}
-
-.pull-refresh-wrapper, .pull-refresh-wrapper .abs-panel-content {
-  height: 100%;
-}
-
-.pull-refresh-wrapper .abs-panel-content {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-.pull-refresh-wrapper .abs-panel-content > .abs-scrollview-container {
-  flex: 1;
-}
-
-.pull-refresh-wrapper .am-list-view-scrollview {
-  height: 100%;
+  .abs-panel-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex: 1;
+    .abs-scrollview-container{
+      flex: 1;
+    }
+  }
+  .am-list-view-scrollview {
+    height: 100%;
+  }
 }
