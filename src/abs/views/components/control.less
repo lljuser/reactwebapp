@@ -2,8 +2,6 @@
 
 /*****************abs-tabs*************************/ 
 @tabs-prefix-cls: ~"@{abs-prefix}-tabs";
-// 根据node_module中tabs,对蚂蚁UI部分重写和覆盖
-
 .@{tabs-prefix-cls}{
     background: @absLink-tabs-bgColor; 
     height: 100vh;
@@ -48,15 +46,8 @@
         }
     }
 }
-/*****************abs-tabs*************************/ 
-
 /******************abs-table**********************************/ 
 @table-prefix-cls: ~"@{abs-prefix}-table";
-
-// 颜色
-@abs_bg_blue:#0066cc;
-@abs_bg_purple:#9966ff;
-
 .@{table-prefix-cls}{
     table{
         color: @absLink-table-color;
@@ -87,10 +78,10 @@
                         font-size: 13px;
                     } 
                     .abs_bg_blue{
-                        background:@abs_bg_blue;
+                        background:#0066cc;
                     }
                     .abs_bg_purple{
-                        background:@abs_bg_purple;
+                        background:#9966ff;
                     }
 
                 }
@@ -108,9 +99,6 @@
         }
     }
 } 
- 
-// letter-spacing: -0.36px;
-
 // 表格less配置函树
 
 .fn-table(@type) when (@type = 'th') {
@@ -158,15 +146,12 @@
     text-align: center;
   }
 }
-/********************abs-table****************************/   
-
-
 /*********************abs-picker**************************/
 @picker-prefix-cls: ~"@{ant-prefix}-picker";
 @picker-prefix-cls-abs:~"@{abs-prefix}-picker";
-
 // 时间拾取滚动轴
 .@{picker-prefix-cls}{
+    
     &-col{
         &-item {
             color: @abs-brand-yellow;
@@ -192,7 +177,6 @@
     }
 
 }
-
 // 时间拾取外边框
 .@{picker-prefix-cls}-popup {
     background-color: @abs-brand-black;
@@ -212,19 +196,23 @@
         color: @abs-brand-white;
     }
 }
-
-
-@selector_height:40px;
+// 时间拾取控件
 .@{picker-prefix-cls-abs}{
+    height: .746667rem;
+    margin: 0 0 .32rem;
     .picker-trigger{
         .selector{
             border-radius: 0;
-            height: @selector_height;
-            line-height: @selector_height;
+            height: 40px;
+            line-height: 40px;
             background-color: @abs-brand-gray-table;
             color: @abs-brand-white;
         }
-        
+        font-size: 15px;
+        color: #444;
+        float: left;
+        width: 30%;
+        margin-left: 5%;
         margin-left: 0;
         width: 33.333333%;
     }
@@ -234,20 +222,18 @@
     }
     &>div:nth-child(2) .selector{
         text-align :right;
-     }
+    }
     &>div:last-child .selector{
         text-align :right;
         padding-right: @abs-table-padding-left-right;
-     }
+    }
+    &:after{
+        clear: both;
+    }
+    .first {
+        margin-left: 0%;
+    }
 }
-
-
-
-.abs-picker {
-  height: .746667rem;
-  margin: 0 0 .32rem;
-}
-/*********************abs-picker**************************/
 
 
 
@@ -255,3 +241,5 @@
     text-align:center; 
     color: red;
   }
+
+
