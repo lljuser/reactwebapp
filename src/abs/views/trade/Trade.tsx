@@ -9,7 +9,7 @@ import ABSPanel from '../components/abs-panel';
 import Spinner from 'react-spinkit';
 
 // 如果不是使用 List.Item 作为 children
-const CustomChildren = props => (
+const PickerChildren = props => (
     <div onClick={props.onClick} className={props.first ? 'picker-trigger first' : 'picker-trigger'}>
         <div className="selector">{props.extra}
             <i className="iconfont arrow-down">&#xe692;</i>
@@ -156,7 +156,7 @@ class Trade extends React.Component<any, {}> {
                         value={this.props.ratingValues}
                         onOk={v => this.onPickerChange('ratingValues', v)}
                     >
-                        <CustomChildren first={true} />
+                        <PickerChildren first={true} />
                     </Picker>
                     <Picker
                         data={this.props.couponList}
@@ -165,7 +165,7 @@ class Trade extends React.Component<any, {}> {
                         value={this.props.couponValues}
                         onOk={v => this.onPickerChange('couponValues', v)}
                     >
-                        <CustomChildren />
+                        <PickerChildren />
                     </Picker>
                     <Picker
                         data={this.props.walbuckList}
@@ -174,7 +174,7 @@ class Trade extends React.Component<any, {}> {
                         value={this.props.walbuckValues}
                         onOk={v => this.onPickerChange('walbuckValues', v)}
                     >
-                        <CustomChildren />
+                        <PickerChildren />
                     </Picker>
                 </div>
                 <div className="abs-scrollview-container">

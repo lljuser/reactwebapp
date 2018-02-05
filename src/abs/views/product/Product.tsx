@@ -165,7 +165,7 @@ class Product extends React.Component<any, {}> {
             value={this.props.productTypeValue}
             onOk={v => this.PickerChange('ProductTypeValue', v)}
           >
-            <PickerChildren first={true}>选择市场</PickerChildren>
+            <PickerChildren first={true}/>
           </Picker>
           <Picker
             title="选择产品"
@@ -174,7 +174,7 @@ class Product extends React.Component<any, {}> {
             value={this.props.dealTypeValue}
             onOk={v => this.PickerChange('DealTypeValue', v)}
           >
-            <PickerChildren>选择产品</PickerChildren>
+            <PickerChildren />
           </Picker>
           <Picker
             title="选择状态"
@@ -183,7 +183,7 @@ class Product extends React.Component<any, {}> {
             value={this.props.currentStatusValue}
             onOk={v => this.PickerChange('CurrentStatusValue', v)}
           >
-            <PickerChildren>选择状态</PickerChildren>
+            <PickerChildren />
           </Picker>
         </div>
         <div className="abs-scrollview-container">
@@ -199,6 +199,7 @@ class Product extends React.Component<any, {}> {
             renderRow={row}
             useBodyScroll={this.props.useBodyScroll}
             pullToRefresh={<PullToRefresh
+              maxscreeny={100}
               getScrollContainer={() => lv}
               direction={'down'}
               refreshing={this.props.refreshing}
