@@ -1,3 +1,9 @@
+/*
+ * @Author: zhipeng.he 
+ * @Date: 2018-02-06 17:19:44 
+ * @Last Modified by:   zhipeng.he 
+ * @Last Modified time: 2018-02-06 17:19:44 
+ */
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { ListView, Picker } from 'antd-mobile';
@@ -108,6 +114,11 @@ class Trade extends React.Component<any, {}> {
         });
     }
 
+    /**
+     * 在滚动的过程中，每帧最多调用一次此回调函数。调用的频率可以用scrollEventThrottle属性来控制。
+     * 
+     * @memberof Trade
+     */
     onScroll = (e) => {
         this.props.dispatch({
             type: 'trade/onScroll',

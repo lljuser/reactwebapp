@@ -92,6 +92,11 @@ class Product extends React.Component<any, {}> {
     (ReactDOM.findDOMNode(lv as ListView)).scrollTo(0, scrollTop);
   }
 
+  /**
+   * 在滚动的过程中，每帧最多调用一次此回调函数。调用的频率可以用scrollEventThrottle属性来控制。
+   * 
+   * @memberof Trade
+   */
   onScroll = (e) => {
     // 保存滚动条位置
     this.props.dispatch({
