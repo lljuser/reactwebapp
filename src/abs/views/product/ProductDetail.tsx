@@ -1,6 +1,4 @@
-import * as React from 'react';
-// import { NavBar, Icon } from 'antd-mobile'; 
-// import { Link } from 'dva/router';
+import * as React from 'react'; 
 import ABSPanel from '../components/abs-panel';
 import Detail from './Detail';
 import Structure from './Structure';
@@ -8,11 +6,9 @@ import NoteList from './NoteList';
 import { ABSNavBar } from '../components/abs-navbar';
 import ABSChartMarket from '../components/abs-chart';
 import { connect } from 'dva';
-// import '../../../public/css/themeCopy.less';
 import RoutePageList from '../../RouterConfig';
-import '../components/theme_old.less';
-// import { Facebook } from 'react-content-loader';
 import { PageLoader } from '../PageLoader';
+
 function mapStateToProps(state: any) {
   return {
     ...state.productdetail
@@ -48,9 +44,8 @@ class ProductDetail extends React.Component<any, any> {
       );
     } else {
       // 显示详情页面
-      return (
-        <div>
-          <div>
+      return ( 
+          <React.Fragment>
             <ABSNavBar 
               title="产品详情" 
               linkTo={{ 
@@ -59,30 +54,23 @@ class ProductDetail extends React.Component<any, any> {
                     type: 'product'
                   } 
               }}
-            />  
-          </div>
-          <div className="appH5_body" style={{paddingTop: '0'}}>
-            <div className="appH5_content">
-              <React.Fragment>
-                <ABSPanel title="产品要素" >
-                  <Detail detail={this.props.detail} />
+            />   
+            <ABSPanel title="产品要素" >
+              <Detail detail={this.props.detail} />
+            </ABSPanel>
+            <ABSPanel title="证券结构" >
+              <Structure noteConsTable={this.props.noteConsTable} />
+            </ABSPanel>
+            <ABSPanel title="证券列表" >
+              <NoteList detail={this.props.detail} />
+            </ABSPanel>
+            {
+              (!this.props.chart) ? null :
+                <ABSPanel title="证券偿付">
+                    <ABSChartMarket data={this.props.chart} />
                 </ABSPanel>
-                <ABSPanel title="证券结构" >
-                  <Structure noteConsTable={this.props.noteConsTable} />
-                </ABSPanel>
-                <ABSPanel title="证券列表" >
-                  <NoteList detail={this.props.detail} />
-                </ABSPanel>
-                {
-                  (!this.props.chart) ? null :
-                    <ABSPanel title="证券偿付">
-                        <ABSChartMarket data={this.props.chart} />
-                    </ABSPanel>
-                } 
-              </React.Fragment>
-            </div>
-          </div>
-        </div>
+            } 
+          </React.Fragment> 
       );
     }
     

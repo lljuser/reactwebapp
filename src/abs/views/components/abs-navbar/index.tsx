@@ -14,9 +14,9 @@ export class ABSNavBar extends React.Component<Props, any> {
                 icon={<Link to={this.props.linkTo}>
                     <Icon type="left" />
                 </Link>} 
-                rightContent={[ 
-                    <Icon key="1" type="ellipsis" />,
-                ]}
+                // rightContent={[ 
+                //     <Icon key="1" type="ellipsis" />,
+                // ]}
             >
                 {this.props.title}
             </NavBar> 
