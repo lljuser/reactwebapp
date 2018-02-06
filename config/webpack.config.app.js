@@ -20,8 +20,15 @@ const webpackSetting = {
         style: true,
     }, {
         // use antd design ui antd|antd-mobile
-        libraryName: '@fortawesome',
-        libraryDirectory: 'fontawesome-free-solid',
+        libraryName: '@fortawesome/fontawesome-free-solid',
+        libraryDirectory: '',
+        camel2DashComponentName: false,
+        camel2Underline:false
+    },
+    {
+        // use antd design ui antd|antd-mobile
+        libraryName: '@fortawesome/fontawesome-free-regular',
+        libraryDirectory: '',
         camel2DashComponentName: false,
         camel2Underline:false
     }],
