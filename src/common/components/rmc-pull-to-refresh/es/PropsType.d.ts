@@ -16,5 +16,6 @@ export interface PropsType {
     prefixCls?: string;
     className?: string;
     style?: React.CSSProperties;
-    maxscreeny?: number
+    maxscreeny?: number;
+    springbackheight?: number;
 }

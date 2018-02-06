@@ -6,7 +6,6 @@ import TradeItem from './TradeItem';
 import '../components/index.less';
 import { connect } from 'dva';
 import ABSPanel from '../components/abs-panel';
-import Spinner from 'react-spinkit';
 
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/fontawesome-free-solid';
@@ -195,25 +194,9 @@ class Trade extends React.Component<any, {}> {
                         useBodyScroll={this.props.useBodyScroll}
                         pullToRefresh={
                             <PullToRefresh
-                                maxscreeny={100}
                                 getScrollContainer={() => lv}
-                                direction={'down'}
                                 refreshing={this.props.refreshing}
                                 onRefresh={this.onRefresh}
-                                distanceToRefresh={25}
-                                indicator={{
-                                    activate: <div style={{ width: '40px', margin: '0px auto' }}>
-                                        <Spinner name="double-bounce" color="orange" fadeIn="none" />
-                                    </div>,
-                                    deactivate: <div style={{ width: '40px', margin: '0px auto' }}>
-                                        <Spinner name="double-bounce" color="orange" fadeIn="none" />
-                                    </div>,
-                                    release: <div style={{ width: '40px', margin: '0px auto' }}>
-                                        <Spinner name="double-bounce" color="orange" fadeIn="none" /></div>,
-                                    finish: <div style={{ width: '40px', margin: '0px auto' }}>
-                                        <Spinner name="double-bounce" color="orange" fadeIn="none" />
-                                    </div>,
-                                }}
                             />}
                         onEndReached={this.onEndReached}
                         onScroll={this.onScroll}

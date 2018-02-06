@@ -3,10 +3,10 @@ const fs = require('fs-extra');
 const chalk =require('chalk');
 
 const appDirectory = fs.realpathSync(process.cwd());
-const sourceDir = path.resolve(appDirectory, 'dist');
-const publishDir = 'd:\\release\\chineseabs\\webapp'; 
+const sourceDir = path.resolve(appDirectory, 'dist'); 
 
 function testDeploy() { 
+    const publishDir = 'd:\\release\\chineseabs\\reactwebapp'; 
     if (fs.existsSync(publishDir)) {
         console.log(chalk.yellow('\n\n-----------------testdeploy-----------------'));
         console.log(chalk.cyan('clear deploy project.................'));

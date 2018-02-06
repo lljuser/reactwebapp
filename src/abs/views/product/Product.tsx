@@ -7,7 +7,6 @@ import { connect } from 'dva';
 import ABSPanel from '../components/abs-panel';
 import RoutePageList from '../../RouterConfig';
 import ReactDOM from 'react-dom';
-import Spinner from 'react-spinkit';
 
 // 真实产品选择piker点
 const PickerChildren = props => (
@@ -199,25 +198,9 @@ class Product extends React.Component<any, {}> {
             renderRow={row}
             useBodyScroll={this.props.useBodyScroll}
             pullToRefresh={<PullToRefresh
-              maxscreeny={100}
               getScrollContainer={() => lv}
-              direction={'down'}
               refreshing={this.props.refreshing}
               onRefresh={this.onRefresh}
-              distanceToRefresh={25}
-              indicator={{
-                activate: <div style={{ width: '40px', margin: '0px auto' }}>
-                  <Spinner name="double-bounce" color="orange" fadeIn="none" />
-                </div>,
-                deactivate: <div style={{ width: '40px', margin: '0px auto' }}>
-                  <Spinner name="double-bounce" color="orange" fadeIn="none" />
-                </div>,
-                release: <div style={{ width: '40px', margin: '0px auto' }}>
-                  <Spinner name="double-bounce" color="orange" fadeIn="none" /></div>,
-                finish: <div style={{ width: '40px', margin: '0px auto' }}>
-                  <Spinner name="double-bounce" color="orange" fadeIn="none" />
-                </div>,
-              }}
             />}
             onEndReached={this.onEndReached}
             onScroll={this.onScroll}

@@ -1,6 +1,4 @@
-import * as React from 'react';
-// import { NavBar, Icon } from 'antd-mobile'; 
-// import { Link } from 'dva/router';
+import * as React from 'react'; 
 import ABSPanel from '../components/abs-panel';
 import Detail from './Detail';
 import Structure from './Structure';
@@ -8,11 +6,9 @@ import NoteList from './NoteList';
 import { ABSNavBar } from '../components/abs-navbar';
 import ABSChartMarket from '../components/abs-chart';
 import { connect } from 'dva';
-// import '../../../public/css/themeCopy.less';
 import RoutePageList from '../../RouterConfig';
-import '../components/theme_old.less';
-// import { Facebook } from 'react-content-loader';
 import { PageLoader } from '../PageLoader';
+
 function mapStateToProps(state: any) {
   return {
     ...state.productdetail
@@ -33,7 +29,7 @@ class ProductDetail extends React.Component<any, any> {
     // 显示loading动画
     if ( this.props.loading === true ) {
       return (
-        <div>
+        <React.Fragment>
         <ABSNavBar 
           title="产品详情" 
           linkTo={{ 
@@ -44,7 +40,7 @@ class ProductDetail extends React.Component<any, any> {
           }}
         />  
           <PageLoader/>
-      </div>
+      </React.Fragment>
       );
     } else {
       // 显示详情页面
