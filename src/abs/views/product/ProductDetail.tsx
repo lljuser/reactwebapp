@@ -48,9 +48,8 @@ class ProductDetail extends React.Component<any, any> {
       );
     } else {
       // 显示详情页面
-      return (
-        <div>
-          <div>
+      return ( 
+          <React.Fragment>
             <ABSNavBar 
               title="产品详情" 
               linkTo={{ 
@@ -59,30 +58,23 @@ class ProductDetail extends React.Component<any, any> {
                     type: 'product'
                   } 
               }}
-            />  
-          </div>
-          <div className="appH5_body" style={{paddingTop: '0'}}>
-            <div className="appH5_content">
-              <React.Fragment>
-                <ABSPanel title="产品要素" >
-                  <Detail detail={this.props.detail} />
+            />   
+            <ABSPanel title="产品要素" >
+              <Detail detail={this.props.detail} />
+            </ABSPanel>
+            <ABSPanel title="证券结构" >
+              <Structure noteConsTable={this.props.noteConsTable} />
+            </ABSPanel>
+            <ABSPanel title="证券列表" >
+              <NoteList detail={this.props.detail} />
+            </ABSPanel>
+            {
+              (!this.props.chart) ? null :
+                <ABSPanel title="证券偿付">
+                    <ABSChartMarket data={this.props.chart} />
                 </ABSPanel>
-                <ABSPanel title="证券结构" >
-                  <Structure noteConsTable={this.props.noteConsTable} />
-                </ABSPanel>
-                <ABSPanel title="证券列表" >
-                  <NoteList detail={this.props.detail} />
-                </ABSPanel>
-                {
-                  (!this.props.chart) ? null :
-                    <ABSPanel title="证券偿付">
-                        <ABSChartMarket data={this.props.chart} />
-                    </ABSPanel>
-                } 
-              </React.Fragment>
-            </div>
-          </div>
-        </div>
+            } 
+          </React.Fragment> 
       );
     }
     
