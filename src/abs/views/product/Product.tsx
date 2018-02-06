@@ -7,12 +7,14 @@ import { connect } from 'dva';
 import ABSPanel from '../components/abs-panel';
 import RoutePageList from '../../RouterConfig';
 import ReactDOM from 'react-dom';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faCaretDown } from '@fortawesome/fontawesome-free-solid';
 
 // 真实产品选择piker点
 const PickerChildren = props => (
   <div onClick={props.onClick} className={props.first ? 'picker-trigger first' : 'picker-trigger'}>
     <div className="selector">{props.extra}
-      <i className="iconfont">&#xe692;</i>
+      <FontAwesomeIcon icon={faCaretDown} />
     </div>
   </div>
 );
@@ -164,7 +166,7 @@ class Product extends React.Component<any, {}> {
             value={this.props.productTypeValue}
             onOk={v => this.PickerChange('ProductTypeValue', v)}
           >
-            <PickerChildren first={true}/>
+            <PickerChildren first={true} />
           </Picker>
           <Picker
             title="选择产品"
