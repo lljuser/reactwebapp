@@ -1,6 +1,4 @@
-import * as React from 'react';
-// import { NavBar, Icon } from 'antd-mobile'; 
-// import { Link } from 'dva/router';
+import * as React from 'react'; 
 import ABSPanel from '../components/abs-panel';
 import Detail from './Detail';
 import Structure from './Structure';

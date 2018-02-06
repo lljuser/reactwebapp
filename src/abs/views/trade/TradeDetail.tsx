@@ -1,10 +1,7 @@
-import * as React from 'react';
-// import Request from '../components/http/request/index';
-// import { NavBar, Icon } from 'antd-mobile';
-// import { Link } from 'dva/router';
+import * as React from 'react';  
 import { connect } from 'dva';
 import { ABSNavBar } from '../components/abs-navbar';
-import '../components/theme_old.less';
+import './theme_old.less';
 import './tradeDetail.less';
 import RoutePageList from '../../RouterConfig';
 import { PageLoader } from '../PageLoader';
@@ -60,7 +57,7 @@ class TradeDetailComponent extends React.Component<any, any> {
         }
         if (this.props.loading === true) {
             return (
-                <div>
+                <React.Fragment>
                     <ABSNavBar
                         title="交易详情"
                         linkTo={{
@@ -69,7 +66,7 @@ class TradeDetailComponent extends React.Component<any, any> {
                         }}
                     />
                     <PageLoader />
-                </div>
+                </React.Fragment>
             );
         } else {
             return (
