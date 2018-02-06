@@ -33,7 +33,7 @@ class ProductDetail extends React.Component<any, any> {
       return (
         <React.Fragment>
           <ABSNavBar
-            title="产品信息"
+            title=""
             linkTo={{
               pathname: `${RoutePageList.HomePage}`,
               state: {
