@@ -29,7 +29,7 @@ class ProductDetail extends React.Component<any, any> {
     // 显示loading动画
     if ( this.props.loading === true ) {
       return (
-        <div>
+        <React.Fragment>
         <ABSNavBar 
           title="产品详情" 
           linkTo={{ 
@@ -40,7 +40,7 @@ class ProductDetail extends React.Component<any, any> {
           }}
         />  
           <PageLoader/>
-      </div>
+      </React.Fragment>
       );
     } else {
       // 显示详情页面

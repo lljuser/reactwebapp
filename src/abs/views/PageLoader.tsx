@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Facebook } from 'react-content-loader'; // ContentLoader, 
 import 'amfe-flexible';
+import ABSPanelComponent from './components/abs-panel/index';
 
 interface Props {
     title?: string;
@@ -17,7 +18,7 @@ export class PageLoader extends React.Component<Props, {}> {
     render() {
         // const y = 70;
         return (
-            <React.Fragment>
+            <ABSPanelComponent>
                 <Facebook   speed={2} primaryColor={'#535353'}  secondaryColor={'gray'} />
                 <Facebook   speed={2} primaryColor={'#535353'}  secondaryColor={'gray'} />
                 <Facebook   speed={2} primaryColor={'#535353'}  secondaryColor={'gray'} />
@@ -47,7 +48,7 @@ export class PageLoader extends React.Component<Props, {}> {
                         <rect x="20" y="250" rx="2" ry="2" width="340" height="20" />
                     </ContentLoader>
                 </div> */}
-            </React.Fragment> 
+            </ABSPanelComponent> 
         );
     }
 } 
