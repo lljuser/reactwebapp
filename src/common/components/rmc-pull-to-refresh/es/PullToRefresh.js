@@ -59,14 +59,14 @@ var UP = 'up';
 var activateSpinner = React.createElement(Loader, { type: 'Ball-Triangle', color:'#FFC446', height:40, width:40 })
 var activateHtml = React.createElement('div', { style: { width: '40px', margin: '0px auto' } }, activateSpinner)
 
-var deactivateSpinner = React.createElement(Loader, { type: 'Ball-Triangle', color:'#FFC446', height:40, width:40 })
+var deactivateSpinner = React.createElement(Loader, { type: 'Ball-Triangle', color:'#FFC446', height:25, width:25 })
 var deactivateHtml = React.createElement('div', { style: { width: '40px', margin: '0px auto' } }, deactivateSpinner)
 
 var releaseSpinner = React.createElement(Loader, { type: 'ThreeDots', color:'#FFC446', height:40, width:40 })
 var releaseHtml = React.createElement('div', { style: { width: '40px', margin: '0px auto' } }, releaseSpinner)
 
-// var finishSpinner = React.createElement(Loader, { type: 'Rings', color:'#FFC446', height:40, width:40 })
-var finishHtml = React.createElement('div', { style: { width: '40px', margin: '0px auto' , height: '27px' } })
+var finishSpinner = React.createElement(Loader, { type: 'Rings', color:'#FFC446', height:20, width:20 })
+var finishHtml = React.createElement('div', { style: { width: '40px', margin: '0px auto' , height: '27px' } },finishSpinner)
 var INDICATOR = {
     activate: activateHtml, deactivate: deactivateHtml, release: releaseHtml, finish: finishHtml
 };
