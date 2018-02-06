@@ -3,6 +3,8 @@ import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _createClass from 'babel-runtime/helpers/createClass';
 import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
 import _inherits from 'babel-runtime/helpers/inherits';
+import Spinner from 'react-spinkit';
+
 var __rest = this && this.__rest || function (s, e) {
     var t = {};
     for (var p in s) {
@@ -51,7 +53,21 @@ function setTransform(nodeStyle, value) {
 var isWebView = typeof navigator !== 'undefined' && /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(navigator.userAgent);
 var DOWN = 'down';
 var UP = 'up';
-var INDICATOR = { activate: 'release', deactivate: 'pull', release: 'loading', finish: 'finish' };
+
+var activateSpinner = React.createElement(Spinner, { name: 'double-bounce', color: 'orange', fadeIn: 'none' })
+var activateHtml = React.createElement('div', { style: { width: '40px', margin: '0px auto' } }, activateSpinner)
+
+var deactivateSpinner = React.createElement(Spinner, { name: 'double-bounce', color: 'orange', fadeIn: 'none' })
+var deactivateHtml = React.createElement('div', { style: { width: '40px', margin: '0px auto' } }, deactivateSpinner)
+
+var releaseSpinner = React.createElement(Spinner, { name: 'double-bounce', color: 'orange', fadeIn: 'none' })
+var releaseHtml = React.createElement('div', { style: { width: '40px', margin: '0px auto' } }, releaseSpinner)
+
+var finishSpinner = React.createElement(Spinner, { name: 'double-bounce', color: 'orange', fadeIn: 'none' })
+var finishHtml = React.createElement('div', { style: { width: '40px', margin: '0px auto' } }, finishSpinner)
+var INDICATOR = {
+    activate: activateHtml, deactivate: deactivateHtml, release: releaseHtml, finish: finishHtml
+};
 var supportsPassive = false;
 try {
     var opts = Object.defineProperty({}, 'passive', {
@@ -155,7 +171,7 @@ var PullToRefresh = function (_React$Component2) {
             // 使用 pageY 对比有问题
             var _screenY = e.touches[0].screenY;
             var direction = _this2.props.direction;
-
+            var maxscreeny = _this2.props.maxscreeny;
             // 拖动方向不符合的不处理
 
             if (direction === UP && _this2._startScreenY < _screenY || direction === DOWN && _this2._startScreenY > _screenY) {
@@ -172,8 +188,8 @@ var PullToRefresh = function (_React$Component2) {
                 var _diff = Math.round(_screenY - _this2._ScreenY);
 
                 if (_diff > 0) {
-                    if (_this2._lastScreenY > (this.props.maxscreeny / 2)) {
-                        _diff = 1 / (_this2._lastScreenY / this.props.maxscreeny);
+                    if (_this2._lastScreenY > (maxscreeny / 2)) {
+                        _diff = 1 / (_this2._lastScreenY / maxscreeny);
                     }
                 }
 
@@ -212,6 +228,7 @@ var PullToRefresh = function (_React$Component2) {
                     }
                     _this2._timer = undefined;
                 }, 1000);
+                setTransform(_this2.contentRef.style, 'translate3d(0px,' + _this2.props.springbackheight + 'px,0)');
                 _this2.props.onRefresh();
             } else {
                 _this2.reset();
@@ -276,8 +293,10 @@ var PullToRefresh = function (_React$Component2) {
                 onRefresh = _a.onRefresh,
                 refreshing = _a.refreshing,
                 indicator = _a.indicator,
+                maxscreeny = _a.maxscreeny,
+                springbackheight = _a.springbackheight,
                 distanceToRefresh = _a.distanceToRefresh,
-                restProps = __rest(_a, ["className", "prefixCls", "children", "getScrollContainer", "direction", "onRefresh", "refreshing", "indicator", "distanceToRefresh"]);
+                restProps = __rest(_a, ["className", "prefixCls", "children", "getScrollContainer", "direction", "onRefresh", "refreshing", "indicator","maxscreeny","springbackheight", "distanceToRefresh"]);
             var renderChildren = React.createElement(StaticRenderer, {
                 shouldUpdate: this.shouldUpdateChildren, render: function render() {
                     return children;
@@ -333,5 +352,6 @@ PullToRefresh.defaultProps = {
     direction: DOWN,
     distanceToRefresh: 25,
     indicator: INDICATOR,
-    maxscreeny: 100
+    maxscreeny: 100,
+    springbackheight: 30
 };
