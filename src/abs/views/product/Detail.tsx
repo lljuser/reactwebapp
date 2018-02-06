@@ -3,6 +3,7 @@ import { Link } from 'dva/router';
 import '../components/index.less'; 
 import moment from 'moment';
 import RoutePageList from '../../RouterConfig';
+import '../components/theme_old.less';
 
 class Detail extends React.Component<any, {}> {
 

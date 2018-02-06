@@ -1,4 +1,5 @@
 import * as React from 'react';
+import '../components/theme_old.less';
 
 class Structure extends React.Component<any, {}> {
 

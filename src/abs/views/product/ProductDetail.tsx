@@ -8,11 +8,9 @@ import NoteList from './NoteList';
 import { ABSNavBar } from '../components/abs-navbar';
 import ABSChartMarket from '../components/abs-chart';
 import { connect } from 'dva';
-// import '../../../public/css/themeCopy.less';
 import RoutePageList from '../../RouterConfig';
-import '../components/theme_old.less';
-// import { Facebook } from 'react-content-loader';
 import { PageLoader } from '../PageLoader';
+
 function mapStateToProps(state: any) {
   return {
     ...state.productdetail

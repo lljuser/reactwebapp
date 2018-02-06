@@ -1,5 +1,6 @@
 import * as React from 'react';
 import '../components/index.less';
+import '../components/theme_old.less';
 
 class NoteList extends React.Component<any, {}> {
 
