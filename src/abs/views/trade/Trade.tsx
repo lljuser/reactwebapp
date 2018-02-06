@@ -6,18 +6,7 @@ import TradeItem from './TradeItem';
 import '../components/index.less';
 import { connect } from 'dva';
 import ABSPanel from '../components/abs-panel';
-
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faCaretDown } from '@fortawesome/fontawesome-free-solid';
-
-// 如果不是使用 List.Item 作为 children
-const PickerChildren = props => (
-    <div onClick={props.onClick} className={props.first ? 'picker-trigger first' : 'picker-trigger'}>
-        <div className="selector">{props.extra}
-            <FontAwesomeIcon icon={faCaretDown} />
-        </div>
-    </div>
-);
+import PickerChildren from '../components/abs-pickerchildren';
 
 var lv: ListView | null;
 
@@ -158,7 +147,7 @@ class Trade extends React.Component<any, {}> {
                         value={this.props.ratingValues}
                         onOk={v => this.onPickerChange('ratingValues', v)}
                     >
-                        <PickerChildren first={true} />
+                        <PickerChildren />
                     </Picker>
                     <Picker
                         data={this.props.couponList}
