@@ -54,20 +54,22 @@ var isWebView = typeof navigator !== 'undefined' && /(iPhone|iPod|iPad).*AppleWe
 var DOWN = 'down';
 var UP = 'up';
 
+//此处修改下拉内容
 var activateSpinner = React.createElement(Spinner, { name: 'double-bounce', color: 'orange', fadeIn: 'none' })
 var activateHtml = React.createElement('div', { style: { width: '40px', margin: '0px auto' } }, activateSpinner)
 
-var deactivateSpinner = React.createElement(Spinner, { name: 'double-bounce', color: 'orange', fadeIn: 'none' })
+var deactivateSpinner = React.createElement(Spinner, { name: 'double-bounce', color: 'red', fadeIn: 'none' })
 var deactivateHtml = React.createElement('div', { style: { width: '40px', margin: '0px auto' } }, deactivateSpinner)
 
-var releaseSpinner = React.createElement(Spinner, { name: 'double-bounce', color: 'orange', fadeIn: 'none' })
+var releaseSpinner = React.createElement(Spinner, { name: 'double-bounce', color: 'blue', fadeIn: 'none' })
 var releaseHtml = React.createElement('div', { style: { width: '40px', margin: '0px auto' } }, releaseSpinner)
 
-var finishSpinner = React.createElement(Spinner, { name: 'double-bounce', color: 'orange', fadeIn: 'none' })
+var finishSpinner = React.createElement(Spinner, { name: 'double-bounce', color: 'purple', fadeIn: 'none' })
 var finishHtml = React.createElement('div', { style: { width: '40px', margin: '0px auto' } }, finishSpinner)
 var INDICATOR = {
     activate: activateHtml, deactivate: deactivateHtml, release: releaseHtml, finish: finishHtml
 };
+
 var supportsPassive = false;
 try {
     var opts = Object.defineProperty({}, 'passive', {
@@ -352,6 +354,6 @@ PullToRefresh.defaultProps = {
     direction: DOWN,
     distanceToRefresh: 25,
     indicator: INDICATOR,
-    maxscreeny: 100,
-    springbackheight: 30
+    maxscreeny: 100,//下拉阻力
+    springbackheight: 30,//回弹距顶部高度
 };
