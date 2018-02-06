@@ -32,7 +32,7 @@ export default class MyComponent extends React.Component<AppProps, {}> {
     render() {
         return (
             <tr>
-                <td  className={'text-left'}>
+                <td className={'text-left'}>
                     <div className={this.props.TradeTypeId === 1 ? 'abs-tradeIcon-div abs_bg_blue' : 'abs-tradeIcon-div abs_bg_purple'}>{this.props.TradeTypeId === 1 ? 'P' : 'S'}</div>
                 </td>
                 <td className={'text-left'}>

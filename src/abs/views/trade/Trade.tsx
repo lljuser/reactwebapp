@@ -6,19 +6,7 @@ import TradeItem from './TradeItem';
 import '../components/index.less';
 import { connect } from 'dva';
 import ABSPanel from '../components/abs-panel';
-
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/fontawesome-free-solid';
-
-// 如果不是使用 List.Item 作为 children
-const PickerChildren = props => (
-    <div onClick={props.onClick} className={props.first ? 'picker-trigger first' : 'picker-trigger'}>
-        <div className="selector">{props.extra}
-            <FontAwesomeIcon icon={faChevronDown} />
-            {/* <i className="iconfont arrow-down">&#xe692;</i> */}
-        </div>
-    </div>
-);
+import PickerChildren from '../components/abs-pickerchildren';
 
 var lv: ListView | null;
 
@@ -34,8 +22,8 @@ function MyBody(props: any) {
             <table cellSpacing={0} cellPadding={0}>
                 <thead>
                     <tr>
-                        <th style={{ width: '20px' }} />
-                        <th className="text-left" >证券简称</th>
+                        {/* <th style={{ width: '20px' }} /> */}
+                        <th className="text-left" colSpan={2}>证券简称</th>
                         <th>金额(亿)</th>
                         <th>资产类别</th>
                     </tr>
@@ -159,7 +147,7 @@ class Trade extends React.Component<any, {}> {
                         value={this.props.ratingValues}
                         onOk={v => this.onPickerChange('ratingValues', v)}
                     >
-                        <PickerChildren first={true} />
+                        <PickerChildren />
                     </Picker>
                     <Picker
                         data={this.props.couponList}

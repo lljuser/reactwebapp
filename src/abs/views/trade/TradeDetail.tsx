@@ -5,6 +5,7 @@ import './theme_old.less';
 import './tradeDetail.less';
 import RoutePageList from '../../RouterConfig';
 import { PageLoader } from '../PageLoader';
+import ABSPanel from '../components/abs-panel';
 
 function tradeDetailStateToProps(state: any) {
     return { ...state.tradedetail };
@@ -78,8 +79,8 @@ class TradeDetailComponent extends React.Component<any, any> {
                             state: { type: 'trade' }
                         }}
                     />
-                    <div className="appH5_content">
-                        <div className="appH5_panel">
+                    <ABSPanel>
+                    
                             <table className="appH5_list_four" cellSpacing="0" cellPadding="0">
                                 <tbody>
                                     <tr>
@@ -140,7 +141,7 @@ class TradeDetailComponent extends React.Component<any, any> {
                                         this.props.detailInfo.Description !== undefined && this.props.detailInfo.Description !== null && this.props.detailInfo.Description.length > 0 ?
                                             <tr>
                                                 <td colSpan={4} className="txt_justify lineHight introductionCont">
-                                                    <span className="appH5_white_space">产品简ddd介</span>
+                                                    <span className="appH5_white_space">产品简介</span>
                                                     <div className="appH5_margin_top_td_div" style={{ wordBreak: 'break-all', color: '#ccc' }}>
                                                         {this.props.detailInfo.Description}
                                                     </div>
@@ -185,9 +186,9 @@ class TradeDetailComponent extends React.Component<any, any> {
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                </div >
+                      </ABSPanel>
+                      </div>
+ 
             );
         }
     }

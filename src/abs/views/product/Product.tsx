@@ -7,15 +7,7 @@ import { connect } from 'dva';
 import ABSPanel from '../components/abs-panel';
 import RoutePageList from '../../RouterConfig';
 import ReactDOM from 'react-dom';
-
-// 真实产品选择piker点
-const PickerChildren = props => (
-  <div onClick={props.onClick} className={props.first ? 'picker-trigger first' : 'picker-trigger'}>
-    <div className="selector">{props.extra}
-      <i className="iconfont">&#xe692;</i>
-    </div>
-  </div>
-);
+import PickerChildren from '../components/abs-pickerchildren';
 
 // 列表组件
 function MyBody(props: any) {
@@ -164,7 +156,7 @@ class Product extends React.Component<any, {}> {
             value={this.props.productTypeValue}
             onOk={v => this.PickerChange('ProductTypeValue', v)}
           >
-            <PickerChildren first={true}/>
+            <PickerChildren />
           </Picker>
           <Picker
             title="选择产品"
