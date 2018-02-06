@@ -56,17 +56,17 @@ var DOWN = 'down';
 var UP = 'up';
 
 //此处修改下拉内容<Loader type="Audio" color="#FFC446" height={40} width={40}/>
-var activateSpinner = React.createElement(Loader, { type: 'ThreeDots', color:'#FFC446', height:40, width:40 })
+var activateSpinner = React.createElement(Loader, { type: 'Ball-Triangle', color:'#FFC446', height:40, width:40 })
 var activateHtml = React.createElement('div', { style: { width: '40px', margin: '0px auto' } }, activateSpinner)
 
 var deactivateSpinner = React.createElement(Loader, { type: 'ThreeDots', color:'#FFC446', height:40, width:40 })
-var deactivateHtml = React.createElement('div', { style: { width: '40px', margin: '0px auto' } }, deactivateSpinner)
+var deactivateHtml = React.createElement('div', { style: { width: '40px', margin: '0px auto',height: '27px' } })
 
 var releaseSpinner = React.createElement(Loader, { type: 'ThreeDots', color:'#FFC446', height:40, width:40 })
 var releaseHtml = React.createElement('div', { style: { width: '40px', margin: '0px auto' } }, releaseSpinner)
 
 // var finishSpinner = React.createElement(Loader, { type: 'TailSpin', color:'#FFC446', height:40, width:40 })
-var finishHtml = React.createElement('div', { style: { width: '40px', margin: '0px auto' , height: '30px' } })
+var finishHtml = React.createElement('div', { style: { width: '40px', margin: '0px auto' , height: '27px' } })
 var INDICATOR = {
     activate: activateHtml, deactivate: deactivateHtml, release: releaseHtml, finish: finishHtml
 };
@@ -353,8 +353,8 @@ PullToRefresh.defaultProps = {
         return undefined;
     },
     direction: DOWN,
-    distanceToRefresh: 25,
+    distanceToRefresh: 50,
     indicator: INDICATOR,
-    maxscreeny: 100,//下拉阻力
+    maxscreeny: 120,//下拉阻力
     springbackheight: 30,//回弹距顶部高度
 };
