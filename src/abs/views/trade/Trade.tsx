@@ -8,11 +8,15 @@ import { connect } from 'dva';
 import ABSPanel from '../components/abs-panel';
 import Spinner from 'react-spinkit';
 
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/fontawesome-free-solid';
+
 // 如果不是使用 List.Item 作为 children
 const PickerChildren = props => (
     <div onClick={props.onClick} className={props.first ? 'picker-trigger first' : 'picker-trigger'}>
         <div className="selector">{props.extra}
-            <i className="iconfont arrow-down">&#xe692;</i>
+            <FontAwesomeIcon icon={faChevronDown} />
+            {/* <i className="iconfont arrow-down">&#xe692;</i> */}
         </div>
     </div>
 );
