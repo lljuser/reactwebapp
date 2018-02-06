@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { Link } from 'dva/router';
-import '../components/index.less'; 
 import moment from 'moment';
 import RoutePageList from '../../RouterConfig';
-import './theme_old.less';
 
 class Detail extends React.Component<any, {}> {
 

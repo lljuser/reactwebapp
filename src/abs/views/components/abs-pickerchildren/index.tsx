@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/fontawesome-free-solid';
+import { faCaretDown } from '@fortawesome/fontawesome-free-solid';
 
 // 如果不是使用 List.Item 作为 children
 interface Props {
@@ -19,8 +19,7 @@ export default class PickerChildren extends React.Component<Props, {}> {
         return (
             <div onClick={this.props.onClick} className={this.props.first ? 'picker-trigger first' : 'picker-trigger'}>
                 <div className="selector">{this.props.extra}
-                    <FontAwesomeIcon icon={faChevronDown} />
-                    {/* <i className="iconfont arrow-down">&#xe692;</i> */}
+                    <FontAwesomeIcon icon={faCaretDown} />
                 </div>
             </div>
         );

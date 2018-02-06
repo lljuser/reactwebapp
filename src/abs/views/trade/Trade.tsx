@@ -28,8 +28,8 @@ function MyBody(props: any) {
             <table cellSpacing={0} cellPadding={0}>
                 <thead>
                     <tr>
-                        <th style={{ width: '20px' }} />
-                        <th className="text-left" >证券简称</th>
+                        {/* <th style={{ width: '20px' }} /> */}
+                        <th className="text-left" colSpan={2}>证券简称</th>
                         <th>金额(亿)</th>
                         <th>资产类别</th>
                     </tr>
