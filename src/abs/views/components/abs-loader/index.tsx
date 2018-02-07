@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Facebook, BulletList } from 'react-content-loader';
 import './index.less';
-import 'amfe-flexible';
 import ABSPanelComponent from '../abs-panel/index'; 
  
 // 动画-内容型
