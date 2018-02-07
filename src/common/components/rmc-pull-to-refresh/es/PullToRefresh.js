@@ -3,7 +3,6 @@ import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _createClass from 'babel-runtime/helpers/createClass';
 import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
 import _inherits from 'babel-runtime/helpers/inherits';
-import Spinner from 'react-spinkit';
 import Loader from 'react-loader-spinner';
 
 var __rest = this && this.__rest || function (s, e) {
@@ -358,6 +357,6 @@ PullToRefresh.defaultProps = {
     direction: DOWN,
     distanceToRefresh: 45,
     indicator: INDICATOR,
-    maxscreeny: 60,//下拉阻力
+    maxscreeny: 70,//下拉阻力
     springbackheight: 30,//回弹距顶部高度
 };

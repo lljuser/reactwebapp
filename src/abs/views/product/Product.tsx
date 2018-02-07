@@ -27,12 +27,10 @@ function MyBody(props: any) {
       </table>
     </div>
   );
-}
-
-let lv: ListView | null;
+} 
 
 class Product extends React.Component<any, {}> {
-
+  lv: ListView | null;
   CurrentStatusValue: string[] = [];
   DealTypeValue: string[] = [];
   ProductTypeValue: string[] = [];
@@ -88,8 +86,11 @@ class Product extends React.Component<any, {}> {
   }
 
   // 滚动条滚动至指定距离
-  scrollTo(scrollTop: number) {
-    (ReactDOM.findDOMNode(lv as ListView)).scrollTo(0, scrollTop);
+  scrollTo(scrollTop: number) { 
+    if (this.lv) {
+      this.lv.scrollTo(0, scrollTop);
+    }
+   
   }
 
   /**
@@ -101,7 +102,7 @@ class Product extends React.Component<any, {}> {
     // 保存滚动条位置
     this.props.dispatch({
       type: 'product/onScroll',
-      scrollTop: (ReactDOM.findDOMNode(lv as ListView)).scrollTop,
+      scrollTop: (ReactDOM.findDOMNode(this.lv as ListView)).scrollTop,
       initialListSize: this.props.rData.length
     });
   }
@@ -185,7 +186,7 @@ class Product extends React.Component<any, {}> {
         <div className="abs-scrollview-container">
           <ListView
             key={this.props.useBodyScroll ? '0' : '1'}
-            ref={el => lv = el}
+            ref={el => this.lv = el}
             dataSource={this.props.dataSource}
             initialListSize={this.props.initialListSize}
             renderFooter={() => (<div style={{ textAlign: 'center' }}>
@@ -195,7 +196,7 @@ class Product extends React.Component<any, {}> {
             renderRow={row}
             useBodyScroll={this.props.useBodyScroll}
             pullToRefresh={<PullToRefresh
-              getScrollContainer={() => lv}
+              getScrollContainer={() => this.lv}
               refreshing={this.props.refreshing}
               onRefresh={this.onRefresh}
             />}

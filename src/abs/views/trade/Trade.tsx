@@ -1,8 +1,8 @@
 /*
  * @Author: zhipeng.he 
  * @Date: 2018-02-06 17:19:44 
- * @Last Modified by:   zhipeng.he 
- * @Last Modified time: 2018-02-06 17:19:44 
+ * @Last Modified by: ljliu
+ * @Last Modified time: 2018-02-07 13:56:36
  */
 import * as React from 'react';
 import ReactDOM from 'react-dom';
@@ -12,9 +12,7 @@ import TradeItem from './TradeItem';
 import '../components/index.less';
 import { connect } from 'dva';
 import ABSPanel from '../components/abs-panel';
-import PickerChildren from '../components/abs-pickerchildren';
-
-var lv: ListView | null;
+import PickerChildren from '../components/abs-pickerchildren'; 
 
 /**
  * 自定义组件
@@ -50,6 +48,7 @@ function MyBody(props: any) {
  * @extends {React.Component<any, {}>}
  */
 class Trade extends React.Component<any, {}> {
+    lv: ListView | null;
     constructor(props: any) {
         super(props);
     }
@@ -61,7 +60,7 @@ class Trade extends React.Component<any, {}> {
      * @memberof Trade
      */
     onPickerChange(picker: string, val: string[]) {
-        (ReactDOM.findDOMNode(lv as ListView)).scrollTo(0, 0);
+        this.scrollTo(0);
         this.props.dispatch({
             type: 'trade/onPickerChange',
             picker: picker,
@@ -73,6 +72,13 @@ class Trade extends React.Component<any, {}> {
         });
     }
 
+    // 滚动条滚动至指定距离
+    scrollTo(scrollTop: number) {       
+        if (this.lv) {
+            this.lv.scrollTo(0, scrollTop);
+        } 
+    }
+
     /**
      * 在第一次渲染后调用，只在客户端。之后组件已经生成了对应的DOM结构，可以通过this.getDOMNode()来进行访问。
      *  如果你想和其他JavaScript框架一起使用，可以在这个方法中调用setTimeout, setInterval或者发送AJAX请求等
@@ -80,11 +86,8 @@ class Trade extends React.Component<any, {}> {
      * 
      * @memberof Trade
      */
-    componentDidMount() {
-        // (ReactDOM.findDOMNode(lv as ListView)).addEventListener('touchmove', (e) => {
-        //     console.log(e.touches[0].pageY);
-        // });
-        (ReactDOM.findDOMNode(lv as ListView)).scrollTo(0, this.props.scrollTop);
+    componentDidMount() { 
+        this.scrollTo(this.props.scrollTop);
         if (this.props.rData.length === 0) {
             this.props.dispatch({
                 type: 'trade/componentDidMount',
@@ -122,7 +125,7 @@ class Trade extends React.Component<any, {}> {
     onScroll = (e) => {
         this.props.dispatch({
             type: 'trade/onScroll',
-            scrollTop: (ReactDOM.findDOMNode(lv as ListView)).scrollTop,
+            scrollTop: (ReactDOM.findDOMNode(this.lv as ListView)).scrollTop,
             initialListSize: this.props.rData.length
         });
     }
@@ -182,7 +185,7 @@ class Trade extends React.Component<any, {}> {
                 <div className="abs-scrollview-container">
                     <ListView
                         key={this.props.useBodyScroll ? '0' : '1'}
-                        ref={el => lv = el}
+                        ref={el => this.lv = el}
                         dataSource={this.props.dataSource}
                         initialListSize={this.props.initialListSize}
                         renderFooter={() => (<div style={{ textAlign: 'center' }}>
@@ -193,7 +196,7 @@ class Trade extends React.Component<any, {}> {
                         useBodyScroll={this.props.useBodyScroll}
                         pullToRefresh={
                             <PullToRefresh
-                                getScrollContainer={() => lv}
+                                getScrollContainer={() => this.lv}
                                 refreshing={this.props.refreshing}
                                 onRefresh={this.onRefresh}
                             />}
