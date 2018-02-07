@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Facebook } from 'react-content-loader'; // ContentLoader, 
 import 'amfe-flexible';
-import ABSPanelComponent from './components/abs-panel/index';
+import ABSPanelComponent from '../abs-panel/index';
 
 interface Props {
     title?: string;
