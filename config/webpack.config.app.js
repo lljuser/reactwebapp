@@ -19,11 +19,11 @@ const webpackSetting = {
         libraryDirectory: 'es',
         style: true,
     }, {
-        // use antd design ui antd|antd-mobile
+        // 字体库按需加载设置
         libraryName: '@fortawesome/fontawesome-free-solid',
         libraryDirectory: '',
-        camel2DashComponentName: false,
-        camel2Underline:false
+        camel2DashComponentName: false,//是否使用引用名称遇大写字符加短横杠转小写
+        camel2Underline:false //是否使用引用名称遇大写字符加下划线转小写
     },
     {
         // use antd design ui antd|antd-mobile

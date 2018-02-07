@@ -4,7 +4,7 @@ import _createClass from 'babel-runtime/helpers/createClass';
 import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
 import _inherits from 'babel-runtime/helpers/inherits';
 import Spinner from 'react-spinkit';
-import Loader  from 'react-loader-spinner';
+import Loader from 'react-loader-spinner';
 
 var __rest = this && this.__rest || function (s, e) {
     var t = {};
@@ -56,17 +56,17 @@ var DOWN = 'down';
 var UP = 'up';
 
 //此处修改下拉内容<Loader type="Audio" color="#FFC446" height={40} width={40}/>
-var activateSpinner = React.createElement(Loader, { type: 'ThreeDots', color:'gray', height:30, width:30 })
+var activateSpinner = React.createElement(Loader, { type: 'ThreeDots', color: 'gray', height: 30, width: 30 })
 var activateHtml = React.createElement('div', { style: { width: '40px', margin: '0px auto' } }, activateSpinner)
 
-var deactivateSpinner = React.createElement(Loader, { type: 'Ball-Triangle', color:'gray', height:27, width:27 })
+var deactivateSpinner = React.createElement(Loader, { type: 'Ball-Triangle', color: 'gray', height: 27, width: 27 })
 var deactivateHtml = React.createElement('div', { style: { width: '40px', margin: '0px auto' } }, deactivateSpinner)
 
-var releaseSpinner = React.createElement(Loader, { type: 'ThreeDots', color:'gray', height:40, width:40 })
+var releaseSpinner = React.createElement(Loader, { type: 'ThreeDots', color: 'gray', height: 40, width: 40 })
 var releaseHtml = React.createElement('div', { style: { width: '40px', margin: '0px auto' } }, releaseSpinner)
 
-var finishSpinner = React.createElement(Loader, { type: 'ThreeDots', color:'gray', height:25, width:25 })
-var finishHtml = React.createElement('div', { style: { width: '40px', margin: '0px auto' } },finishSpinner)
+var finishSpinner = React.createElement(Loader, { type: 'ThreeDots', color: 'gray', height: 25, width: 25 })
+var finishHtml = React.createElement('div', { style: { width: '40px', margin: '0px auto' } }, finishSpinner)
 var INDICATOR = {
     activate: activateHtml, deactivate: deactivateHtml, release: releaseHtml, finish: finishHtml
 };
@@ -190,7 +190,10 @@ var PullToRefresh = function (_React$Component2) {
                 // e.stopPropagation();
                 var _diff = Math.round(_screenY - _this2._ScreenY);
 
-                if (_diff > 0) {
+                if (_diff > 0&&_this2._lastScreenY<2) {
+                    _diff = 0.1
+                }
+                else if (_diff > 0&&_this2._lastScreenY>=10) {
                     if (_this2._lastScreenY > (maxscreeny / 2)) {
                         _diff = 1 / (_this2._lastScreenY / maxscreeny);
                     }
@@ -299,7 +302,7 @@ var PullToRefresh = function (_React$Component2) {
                 maxscreeny = _a.maxscreeny,
                 springbackheight = _a.springbackheight,
                 distanceToRefresh = _a.distanceToRefresh,
-                restProps = __rest(_a, ["className", "prefixCls", "children", "getScrollContainer", "direction", "onRefresh", "refreshing", "indicator","maxscreeny","springbackheight", "distanceToRefresh"]);
+                restProps = __rest(_a, ["className", "prefixCls", "children", "getScrollContainer", "direction", "onRefresh", "refreshing", "indicator", "maxscreeny", "springbackheight", "distanceToRefresh"]);
             var renderChildren = React.createElement(StaticRenderer, {
                 shouldUpdate: this.shouldUpdateChildren, render: function render() {
                     return children;
