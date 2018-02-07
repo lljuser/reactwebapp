@@ -25,8 +25,7 @@ const webpackSetting = {
         camel2DashComponentName: false,//是否使用引用名称遇大写字符加短横杠转小写
         camel2Underline:false //是否使用引用名称遇大写字符加下划线转小写
     },
-    {
-        // use antd design ui antd|antd-mobile
+    {       
         libraryName: '@fortawesome/fontawesome-free-regular',
         libraryDirectory: '',
         camel2DashComponentName: false,
