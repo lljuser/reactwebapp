@@ -356,8 +356,8 @@ PullToRefresh.defaultProps = {
         return undefined;
     },
     direction: DOWN,
-    distanceToRefresh: 50,
+    distanceToRefresh: 45,
     indicator: INDICATOR,
-    maxscreeny: 50,//下拉阻力
+    maxscreeny: 60,//下拉阻力
     springbackheight: 30,//回弹距顶部高度
 };
