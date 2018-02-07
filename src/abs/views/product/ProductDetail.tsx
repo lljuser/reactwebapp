@@ -7,7 +7,7 @@ import { ABSNavBar } from '../components/abs-navbar';
 import ABSChartMarket from '../components/abs-chart';
 import { connect } from 'dva';
 import RoutePageList from '../../RouterConfig';
-import { PageLoader } from '../components/abs-pageloader/index';
+import { AbsContentLoader } from '../components/abs-loader/index';
 import './theme_old.less';
 import '../components/index.less';
 
@@ -41,7 +41,7 @@ class ProductDetail extends React.Component<any, any> {
               }
             }}
           />
-          <PageLoader />
+          <AbsContentLoader />
         </React.Fragment>
       );
     } else {
