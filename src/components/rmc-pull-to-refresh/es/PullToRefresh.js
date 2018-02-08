@@ -357,6 +357,6 @@ PullToRefresh.defaultProps = {
     direction: DOWN,
     distanceToRefresh: 45,
     indicator: INDICATOR,
-    maxscreeny: 70,//下拉阻力
+    maxscreeny: 100,//下拉阻力
     springbackheight: 30,//回弹距顶部高度
 };

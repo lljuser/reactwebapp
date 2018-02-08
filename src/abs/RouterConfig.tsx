@@ -2,7 +2,7 @@
  * @Author: ljliu kuizhang
  * @Date: 2018-02-01 14:40:22 
  * @Last Modified by: ljliu
- * @Last Modified time: 2018-02-08 20:56:41
+ * @Last Modified time: 2018-02-08 22:51:26
  */
 
 import * as React from 'react';
@@ -15,7 +15,7 @@ import SpinnerLoader from '../components/spinner-loader';
 import SpinkitLoader from '../components/spinkit-loader'; 
 import { CSSTransitionGroup } from 'react-transition-group';
 import { StyleSheet, css } from 'aphrodite'; 
-import { slideLeft, slideRightReturn } from 'react-magic';
+import { spaceOutLeft, slideRightReturn } from 'react-magic';
 
 const styles = StyleSheet.create({
   spaceInRight: {
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     animationDuration: '0.4s'
   },
   spaceOutLeft: {
-    animationName: slideLeft,
+    animationName: spaceOutLeft,
     animationDuration: '0.4s'
   }
 });
