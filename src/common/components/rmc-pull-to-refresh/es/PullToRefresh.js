@@ -3,7 +3,7 @@ import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _createClass from 'babel-runtime/helpers/createClass';
 import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
 import _inherits from 'babel-runtime/helpers/inherits';
-import Loader from 'react-loader-spinner';
+import Loader from '../../react-loader-spinner';
 
 var __rest = this && this.__rest || function (s, e) {
     var t = {};

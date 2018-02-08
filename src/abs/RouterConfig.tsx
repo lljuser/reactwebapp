@@ -2,11 +2,11 @@
  * @Author: ljliu kuizhang
  * @Date: 2018-02-01 14:40:22 
  * @Last Modified by: ljliu
- * @Last Modified time: 2018-02-08 14:02:39
+ * @Last Modified time: 2018-02-08 14:24:00
  */
 
 import * as React from 'react';
-import { Router, Route, Redirect } from 'dva/router';  
+import { Router, Route, Switch } from 'dva/router';  
 import dynamic from 'dva/dynamic';  
 // import asyncLoader from '../common/ayncLoader';  
 // const AsyncHome = asyncLoader(import(/*webpackChunkName:'home'*/'./Home'));    
@@ -20,7 +20,7 @@ import { CSSTransitionGroup } from 'react-transition-group';
 const ApiRoutePath =  process.env.REACT_APP_PUBLISH_PATH;
 // Route Page Config List 
 const RoutePageList = {
-    HomePage: `${ApiRoutePath}home`,
+    HomePage: `${ApiRoutePath}`,
     ProductDetailPage: `${ApiRoutePath}productdetail`,
     TradeDetailPage: `${ApiRoutePath}tradedetail`, 
     DemoPage: `${ApiRoutePath}demo`,
@@ -64,26 +64,28 @@ export function RouterConfig({ history, app }: any) {
  
   return ( 
     <Router history={history}>
-      <Route
-        render={({location}) => (
-          <>
-            <CSSTransitionGroup
-              transitionName="abstransition"
-              transitionEnter={true}
-              transitionLeave={true}
-              transitionEnterTimeout={300}
-              transitionLeaveTimeout={300}
-            >
-              <div key={location.pathname}>
-                <Route location={location} exact={true} path={RoutePageList.HomePage} component={Home}/>  
-                <Route location={location} exact={true} path={`${RoutePageList.ProductDetailPage}/:id`} component={ProductDetail}/>
-                <Route location={location} exact={true} path={`${RoutePageList.TradeDetailPage}/:gradeId/:couponId`} component={TradeDetail} />             
-              </div> 
-            </CSSTransitionGroup> 
-            <Redirect path="*" to={RoutePageList.HomePage} />
-          </>
-        )} 
-      />
+      <Switch>
+        <Route
+          render={({location}) => (
+            <>
+              <CSSTransitionGroup
+                transitionName="abstransition"
+                transitionEnter={true}
+                transitionLeave={true}
+                transitionEnterTimeout={300}
+                transitionLeaveTimeout={300}
+              >
+                <div key={location.pathname}>
+                  <Route location={location} exact={true} path={RoutePageList.HomePage} component={Home}/>  
+                  <Route location={location} exact={true} path={`${RoutePageList.ProductDetailPage}/:id`} component={ProductDetail}/>
+                  <Route location={location} exact={true} path={`${RoutePageList.TradeDetailPage}/:gradeId/:couponId`} component={TradeDetail} />             
+                </div> 
+              </CSSTransitionGroup> 
+             
+            </>
+          )} 
+        />
+      </Switch> 
     </Router>
   ); 
 }  
