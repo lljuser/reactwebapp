@@ -2,7 +2,7 @@
  * @Author: ljliu
  * @Date: 2018-02-01 14:39:36 
  * @Last Modified by: ljliu
- * @Last Modified time: 2018-02-02 14:25:07
+ * @Last Modified time: 2018-02-08 11:10:10
  */
 
 import dva from 'dva';
@@ -17,7 +17,7 @@ import './common/components/theme.less';
 /**
  *  1. Initialize
  */
-const appDva = dva({
+const app = dva({
   // use default history
   history: defaultHistory, 
   // register middleware
@@ -29,7 +29,7 @@ const appDva = dva({
 /**
  * 2. Register middleware
  */
-appDva.use(createLoading());
+app.use(createLoading());
 // appDva.use(createLogger());
 
 /**
@@ -40,12 +40,12 @@ appDva.use(createLoading());
 /**
  * 4. Router Setting
  */
-appDva.router(RouterConfig);
+app.router(RouterConfig);
 
 /**
  *  5. App Start
  */ 
-appDva.start('#root');  
+app.start('#root');  
 
 // developer mode | local cache
 registerServiceWorker();

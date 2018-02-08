@@ -2,7 +2,7 @@
  * @Author: ljliu kuizhang
  * @Date: 2018-02-01 14:40:22 
  * @Last Modified by: ljliu
- * @Last Modified time: 2018-02-08 10:41:39
+ * @Last Modified time: 2018-02-08 14:02:39
  */
 
 import * as React from 'react';
@@ -66,20 +66,22 @@ export function RouterConfig({ history, app }: any) {
     <Router history={history}>
       <Route
         render={({location}) => (
-          <CSSTransitionGroup
-            transitionName="example"
-            transitionEnter={true}
-            transitionLeave={true}
-            transitionEnterTimeout={300}
-            transitionLeaveTimeout={300}
-          >
-            <div key={location.pathname}>
-              <Route location={location} exact={true} path={RoutePageList.HomePage} component={Home}/>  
-              <Route location={location} exact={true} path={`${RoutePageList.ProductDetailPage}/:id`} component={ProductDetail}/>
-              <Route location={location} exact={true} path={`${RoutePageList.TradeDetailPage}/:gradeId/:couponId`} component={TradeDetail} />             
-            </div>
+          <>
+            <CSSTransitionGroup
+              transitionName="abstransition"
+              transitionEnter={true}
+              transitionLeave={true}
+              transitionEnterTimeout={300}
+              transitionLeaveTimeout={300}
+            >
+              <div key={location.pathname}>
+                <Route location={location} exact={true} path={RoutePageList.HomePage} component={Home}/>  
+                <Route location={location} exact={true} path={`${RoutePageList.ProductDetailPage}/:id`} component={ProductDetail}/>
+                <Route location={location} exact={true} path={`${RoutePageList.TradeDetailPage}/:gradeId/:couponId`} component={TradeDetail} />             
+              </div> 
+            </CSSTransitionGroup> 
             <Redirect path="*" to={RoutePageList.HomePage} />
-          </CSSTransitionGroup> 
+          </>
         )} 
       />
     </Router>

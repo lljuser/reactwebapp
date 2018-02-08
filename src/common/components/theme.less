@@ -49,3 +49,26 @@ a {
   outline: none;
 }
  
+.abstransition-enter { 
+  transform-origin: 0 0;
+  transform: translateX(100%);
+  transition-duration: 300ms;
+}
+
+.abstransition-enter.abstransition-enter-active { 
+  transform-origin: 0 0;
+  transform: translateX(0%); 
+}
+
+.abstransition-leave { 
+  opacity: 0;
+  transform-origin: 0 0;
+  transform: translateX(0%);
+  transition-duration: 300ms;
+}
+
+.abstransition-leave.abstransition-leave-active {
+  opacity: 0;
+  transform-origin: 0 0;
+  transform: translateX(100%);
+}
