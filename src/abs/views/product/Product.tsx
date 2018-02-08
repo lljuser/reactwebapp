@@ -198,7 +198,7 @@ class Product extends React.Component<any, {}> {
             pullToRefresh={<PullToRefresh
               getScrollContainer={() => this.lv}
               refreshing={this.props.refreshing}
-              onRefresh={this.onRefresh}
+              onRefresh={this.onRefresh} 
             />}
             onEndReached={this.onEndReached}
             onScroll={this.onScroll}

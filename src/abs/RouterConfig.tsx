@@ -2,7 +2,7 @@
  * @Author: ljliu kuizhang
  * @Date: 2018-02-01 14:40:22 
  * @Last Modified by: ljliu
- * @Last Modified time: 2018-02-08 18:01:48
+ * @Last Modified time: 2018-02-08 20:56:41
  */
 
 import * as React from 'react';
@@ -14,6 +14,19 @@ import SpinnerLoader from '../components/spinner-loader';
 // import ContentLoader from '../common/components/content-loader';
 import SpinkitLoader from '../components/spinkit-loader'; 
 import { CSSTransitionGroup } from 'react-transition-group';
+import { StyleSheet, css } from 'aphrodite'; 
+import { slideLeft, slideRightReturn } from 'react-magic';
+
+const styles = StyleSheet.create({
+  spaceInRight: {
+    animationName: slideRightReturn,
+    animationDuration: '0.4s'
+  },
+  spaceOutLeft: {
+    animationName: slideLeft,
+    animationDuration: '0.4s'
+  }
+});
 /**
  * RoutePageList 
  */
@@ -62,15 +75,21 @@ export function RouterConfig({ history, app }: any) {
     component: () => import(/*webpackChunkName:'tradedetail'*/'./views/trade/TradeDetail')
   });
  
-  return ( 
- 
- <Router history={history}>
+  return (  
+    <Router history={history}>
       <Switch>
         <Route
           render={({location}) => (
             <>
               <CSSTransitionGroup
-                transitionName="abstransition"
+                transitionName={ {
+                  enter: css(styles.spaceInRight),
+                  enterActive: css(styles.spaceInRight),
+                  leave: css(styles.spaceOutLeft),
+                  leaveActive: css(styles.spaceOutLeft),
+                  // appear: css(styles.magic),
+                  // appearActive: css(styles.magic)
+                } }
                 transitionEnter={true}
                 transitionLeave={true}
                 transitionEnterTimeout={350}
