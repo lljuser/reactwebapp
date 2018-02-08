@@ -71,24 +71,42 @@
             tr{
                 td{
                     .fn-table('td');
-                    .abs-tradeIcon-div{
-                        float: left;
-                        width: 15px;
-                        height: 15px;
-                        text-align: center;
+                    .abs_icon_square_char{
+                        width: 16px;
+                        height: 16px;
+                        text-align: center;   
                         font-size: 13px;
-                    } 
+                        line-height: 16px;
+                        color: #ffffff;
+                    }
+                    .abs_icon_square_ch_char{
+                        width: 16px;
+                        height: 16px;
+                        text-align: center;   
+                        font-size: 12px;
+                        line-height: 16px;
+                        color: #ffffff;
+                    }
                     .abs_bg_blue{
                         background:#0066cc;
                     }
                     .abs_bg_purple{
                         background:#9966ff;
                     }
-
+                    .abs_ellipsis{
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        overflow: hidden;
+                    }
                 }
                 &:last-child[title='总计']{
                     td{
                         font-weight: bolder;
+                    }
+                }
+                &:last-child{
+                    td{
+                        border-bottom: none;
                     }
                 }
                 .highLight-red{
@@ -133,6 +151,7 @@
     }
     &:last-child {
         padding-right: @abs-table-padding-left-right;
+
     }
     a {
         color: @abs-brand-yellow;
@@ -277,6 +296,9 @@
   .am-list-view-scrollview {
     height: 100%;
   }
+  .am-pull-to-refresh-content{
+    transform:none !important;
+}
 }
 
 .abs-spinkit-loader { 
