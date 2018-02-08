@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Loader  from 'react-loader-spinner';
+import Loader  from '../react-loader-spinner';
 import { Flex, WhiteSpace } from 'antd-mobile';  
  
 export default class SpinnerLoader extends React.Component<any, any> {

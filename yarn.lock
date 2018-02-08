@@ -543,7 +543,7 @@ babel-register@^6.26.0:
     mkdirp "^0.5.1"
     source-map-support "^0.4.15"
 
-babel-runtime@6.x, babel-runtime@^6.22.0, babel-runtime@^6.23.0, babel-runtime@^6.26.0, babel-runtime@^6.6.1:
+babel-runtime@6.x, babel-runtime@^6.22.0, babel-runtime@^6.23.0, babel-runtime@^6.26.0:
   version "6.26.0"
   resolved "http://registry.npm.taobao.org/babel-runtime/download/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
   dependencies:
@@ -4943,12 +4943,6 @@ react-loadable@^5.3.1:
   resolved "http://registry.npm.taobao.org/react-loadable/download/react-loadable-5.3.1.tgz#9699e9a08fed49bacd69caaa282034b62a76bcdd"
   dependencies:
     prop-types "^15.5.0"
-
-react-loader-spinner@^1.4.7:
-  version "1.4.7"
-  resolved "http://registry.npm.taobao.org/react-loader-spinner/download/react-loader-spinner-1.4.7.tgz#9a914dbb54341bfab0be293365756fecf67dcf75"
-  dependencies:
-    babel-runtime "^6.6.1"
 
 react-magic@^0.2.3:
   version "0.2.3"

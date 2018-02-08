@@ -42,7 +42,6 @@
     "react-dom": "^16.2.0",
     "react-highcharts": "^16.0.1",
     "react-loadable": "^5.3.1",
-    "react-loader-spinner": "^1.4.7",
     "react-magic": "^0.2.3",
     "react-transition-group": "1.x",
     "source-map-loader": "^0.2.1",
