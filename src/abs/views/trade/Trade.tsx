@@ -26,10 +26,10 @@ function MyBody(props: any) {
             <table cellSpacing={0} cellPadding={0} style={{ tableLayout: 'fixed' }}>
                 <thead>
                     <tr>
-                        <th style={{ width: '20px' }} />
+                        <th style={{ width: '8px' }} />
                         <th className="text-left">证券简称</th>
-                        <th style={{ width: '55px' }}>金额(亿)</th>
-                        <th>资产类别</th>
+                        <th style={{ width: '65px' }}>金额(亿)</th>
+                        <th style={{ width: '33%' }}>资产类别</th>
                     </tr>
                 </thead>
                 <tbody>

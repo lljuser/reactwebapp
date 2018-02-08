@@ -17,8 +17,8 @@ function MyBody(props: any) {
         <thead>
           <tr>
             <th className="text-left">产品名称</th>
-            <th style={{ width: '55px' }}>总额(亿)</th>
-            <th>产品分类</th>
+            <th style={{ width: '65px' }}>总额(亿)</th>
+            <th style={{ width: '31%' }}>产品分类</th>
           </tr>
         </thead>
         <tbody>
