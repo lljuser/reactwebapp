@@ -4,7 +4,7 @@ import { ABSNavBar } from '../components/abs-navbar';
 import './theme_old.less';
 import './tradeDetail.less';
 import RoutePageList from '../../RouterConfig';
-import { PageLoader } from '../PageLoader';
+import { ABSContentLoader } from '../components/abs-loader/index';
 import ABSPanel from '../components/abs-panel';
 
 function tradeDetailStateToProps(state: any) {
@@ -66,7 +66,7 @@ class TradeDetailComponent extends React.Component<any, any> {
                             state: { type: 'trade' }
                         }}
                     />
-                    <PageLoader />
+                    <ABSContentLoader />
                 </React.Fragment>
             );
         } else {

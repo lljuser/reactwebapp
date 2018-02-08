@@ -7,7 +7,7 @@ import { ABSNavBar } from '../components/abs-navbar';
 import ABSChartMarket from '../components/abs-chart';
 import { connect } from 'dva';
 import RoutePageList from '../../RouterConfig';
-import { PageLoader } from '../PageLoader';
+import { ABSContentLoader } from '../components/abs-loader/index';
 import './theme_old.less';
 import '../components/index.less';
 
@@ -41,7 +41,7 @@ class ProductDetail extends React.Component<any, any> {
               }
             }}
           />
-          <PageLoader />
+          <ABSContentLoader />
         </React.Fragment>
       );
     } else {
@@ -57,25 +57,24 @@ class ProductDetail extends React.Component<any, any> {
               }
             }}
           />
-          <div className="appH5_body">
-            <div className="appH5_content">
-              <ABSPanel title="产品要素" >
-                <Detail detail={this.props.detail} />
-              </ABSPanel>
-              <ABSPanel title="证券结构" >
-                <Structure noteConsTable={this.props.noteConsTable} />
-              </ABSPanel>
-              <ABSPanel title="证券列表" >
-                <NoteList detail={this.props.detail} />
-              </ABSPanel>
-              {
-                (!this.props.chart) ? null :
-                  <ABSPanel title="证券偿付">
-                    <ABSChartMarket data={this.props.chart} />
-                  </ABSPanel>
-              }
-            </div>
-          </div>
+       
+          <div className="appH5_content">
+            <ABSPanel title="产品要素" >
+              <Detail detail={this.props.detail} />
+            </ABSPanel>
+            <ABSPanel title="证券结构" >
+              <Structure noteConsTable={this.props.noteConsTable} />
+            </ABSPanel>
+            <ABSPanel title="证券列表" >
+              <NoteList detail={this.props.detail} />
+            </ABSPanel>
+            {
+              (!this.props.chart) ? null :
+                <ABSPanel title="证券偿付">
+                  <ABSChartMarket data={this.props.chart} />
+                </ABSPanel>
+            }
+          </div> 
         </React.Fragment>
       );
     }

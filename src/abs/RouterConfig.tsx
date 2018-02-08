@@ -2,17 +2,18 @@
  * @Author: ljliu kuizhang
  * @Date: 2018-02-01 14:40:22 
  * @Last Modified by: ljliu
- * @Last Modified time: 2018-02-07 13:21:25
+ * @Last Modified time: 2018-02-08 10:41:39
  */
 
 import * as React from 'react';
-import { Router, Switch, Route , Redirect } from 'dva/router';  
+import { Router, Route, Redirect } from 'dva/router';  
 import dynamic from 'dva/dynamic';  
 // import asyncLoader from '../common/ayncLoader';  
 // const AsyncHome = asyncLoader(import(/*webpackChunkName:'home'*/'./Home'));    
-import SpinnerLoader from '../common/components/spinner-loader';
-import ContentLoader from '../common/components/content-loader';
+// import SpinnerLoader from '../common/components/spinner-loader';
+// import ContentLoader from '../common/components/content-loader';
 // import SpinkitLoader from '../common/components/spinkit-loader'; 
+import { CSSTransitionGroup } from 'react-transition-group';
 /**
  * RoutePageList 
  */
@@ -63,15 +64,24 @@ export function RouterConfig({ history, app }: any) {
  
   return ( 
     <Router history={history}>
-        <Switch>
-          <Route exact={true} path={RoutePageList.HomePage} component={Home}/>  
-          <Route exact={true} path={`${RoutePageList.ProductDetailPage}/:id`} component={ProductDetail}/>
-          <Route exact={true} path={`${RoutePageList.TradeDetailPage}/:gradeId/:couponId`} component={TradeDetail} /> 
-          <Route exact={true} path="/demo/spinnerloader" component={SpinnerLoader}/>
-          <Route exact={true} path="/demo/contentloader" component={ContentLoader}/>
-          {/* <Route exact={true} path="/demo/spinkitloader" component={SpinkitLoader}/> */}
-          <Redirect path="*" to={RoutePageList.HomePage} />
-      </Switch>
+      <Route
+        render={({location}) => (
+          <CSSTransitionGroup
+            transitionName="example"
+            transitionEnter={true}
+            transitionLeave={true}
+            transitionEnterTimeout={300}
+            transitionLeaveTimeout={300}
+          >
+            <div key={location.pathname}>
+              <Route location={location} exact={true} path={RoutePageList.HomePage} component={Home}/>  
+              <Route location={location} exact={true} path={`${RoutePageList.ProductDetailPage}/:id`} component={ProductDetail}/>
+              <Route location={location} exact={true} path={`${RoutePageList.TradeDetailPage}/:gradeId/:couponId`} component={TradeDetail} />             
+            </div>
+            <Redirect path="*" to={RoutePageList.HomePage} />
+          </CSSTransitionGroup> 
+        )} 
+      />
     </Router>
   ); 
 }  
