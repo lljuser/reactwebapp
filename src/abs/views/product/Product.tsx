@@ -13,11 +13,11 @@ import PickerChildren from '../components/abs-pickerchildren';
 function MyBody(props: any) {
   return (
     <div className="abs-table abs-table-product">
-      <table>
+      <table cellSpacing={0} cellPadding={0} style={{ tableLayout: 'fixed' }}>
         <thead>
           <tr>
             <th className="text-left">产品名称</th>
-            <th>总额(亿)</th>
+            <th style={{ width: '55px' }}>总额(亿)</th>
             <th>产品分类</th>
           </tr>
         </thead>
@@ -27,7 +27,7 @@ function MyBody(props: any) {
       </table>
     </div>
   );
-} 
+}
 
 class Product extends React.Component<any, {}> {
   lv: ListView | null;
@@ -86,11 +86,11 @@ class Product extends React.Component<any, {}> {
   }
 
   // 滚动条滚动至指定距离
-  scrollTo(scrollTop: number) { 
+  scrollTo(scrollTop: number) {
     if (this.lv) {
       this.lv.scrollTo(0, scrollTop);
     }
-   
+
   }
 
   /**
@@ -144,10 +144,10 @@ class Product extends React.Component<any, {}> {
       return (
         <tr key={rowData.DealId} className={rowData.DealId} >
           <td className={'text-left'}>
-            <Link to={`${RoutePageList.ProductDetailPage}/${rowData.DealId}`}><div className={'td_elips1'}>{rowData.DealName}</div></Link>
+            <Link to={`${RoutePageList.ProductDetailPage}/${rowData.DealId}`}><div className={'abs_ellipsis'} style={{ width: '108%' }}>{rowData.DealName}</div></Link>
           </td>
           <td className={'text-right highLight-red'} style={{ fontSize: '17px' }}>{rowData.TotalOffering}</td>
-          <td style={{ color: 'white' }} className={'text-right td_elips2'}><div style={{ width: '100%', float: 'right' }}><div>{rowData.DealType}</div></div></td>
+          <td style={{ color: 'white' }} className={'text-right'}><div className={'abs_ellipsis'} style={{ width: '108%' }}>{rowData.DealType}</div></td>
         </tr >
       );
     };

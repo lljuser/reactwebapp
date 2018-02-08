@@ -12,7 +12,7 @@ import TradeItem from './TradeItem';
 import '../components/index.less';
 import { connect } from 'dva';
 import ABSPanel from '../components/abs-panel';
-import PickerChildren from '../components/abs-pickerchildren'; 
+import PickerChildren from '../components/abs-pickerchildren';
 
 /**
  * 自定义组件
@@ -23,12 +23,12 @@ import PickerChildren from '../components/abs-pickerchildren';
 function MyBody(props: any) {
     return (
         <div className="abs-table">
-            <table cellSpacing={0} cellPadding={0}>
+            <table cellSpacing={0} cellPadding={0} style={{ tableLayout: 'fixed' }}>
                 <thead>
                     <tr>
-                        {/* <th style={{ width: '20px' }} /> */}
-                        <th className="text-left" colSpan={2}>证券简称</th>
-                        <th>金额(亿)</th>
+                        <th style={{ width: '20px' }} />
+                        <th className="text-left">证券简称</th>
+                        <th style={{ width: '55px' }}>金额(亿)</th>
                         <th>资产类别</th>
                     </tr>
                 </thead>
@@ -73,10 +73,10 @@ class Trade extends React.Component<any, {}> {
     }
 
     // 滚动条滚动至指定距离
-    scrollTo(scrollTop: number) {       
+    scrollTo(scrollTop: number) {
         if (this.lv) {
             this.lv.scrollTo(0, scrollTop);
-        } 
+        }
     }
 
     /**
@@ -86,7 +86,7 @@ class Trade extends React.Component<any, {}> {
      * 
      * @memberof Trade
      */
-    componentDidMount() { 
+    componentDidMount() {
         this.scrollTo(this.props.scrollTop);
         if (this.props.rData.length === 0) {
             this.props.dispatch({
