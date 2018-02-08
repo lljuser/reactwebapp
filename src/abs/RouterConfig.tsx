@@ -2,11 +2,11 @@
  * @Author: ljliu kuizhang
  * @Date: 2018-02-01 14:40:22 
  * @Last Modified by: ljliu
- * @Last Modified time: 2018-02-07 13:21:25
+ * @Last Modified time: 2018-02-08 10:41:39
  */
 
 import * as React from 'react';
-import { Router, Route } from 'dva/router';  
+import { Router, Route, Redirect } from 'dva/router';  
 import dynamic from 'dva/dynamic';  
 // import asyncLoader from '../common/ayncLoader';  
 // const AsyncHome = asyncLoader(import(/*webpackChunkName:'home'*/'./Home'));    
@@ -76,13 +76,10 @@ export function RouterConfig({ history, app }: any) {
             <div key={location.pathname}>
               <Route location={location} exact={true} path={RoutePageList.HomePage} component={Home}/>  
               <Route location={location} exact={true} path={`${RoutePageList.ProductDetailPage}/:id`} component={ProductDetail}/>
-              <Route location={location} exact={true} path={`${RoutePageList.TradeDetailPage}/:gradeId/:couponId`} component={TradeDetail} /> 
-              {/* <Route location={location} key={4} exact={true} path="/demo/spinnerloader" component={SpinnerLoader}/>
-              <Route location={location} key={5} exact={true} path="/demo/contentloader" component={ContentLoader}/> */}
-            {/* <Route exact={true} path="/demo/spinkitloader" component={SpinkitLoader}/> */}
-            {/* <Redirect path="*" to={RoutePageList.HomePage} /> */}
+              <Route location={location} exact={true} path={`${RoutePageList.TradeDetailPage}/:gradeId/:couponId`} component={TradeDetail} />             
             </div>
-          </CSSTransitionGroup>
+            <Redirect path="*" to={RoutePageList.HomePage} />
+          </CSSTransitionGroup> 
         )} 
       />
     </Router>
