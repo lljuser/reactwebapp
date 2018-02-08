@@ -2,7 +2,7 @@
  * @Author: ljliu kuizhang
  * @Date: 2018-02-01 14:40:22 
  * @Last Modified by: ljliu
- * @Last Modified time: 2018-02-08 17:40:00
+ * @Last Modified time: 2018-02-08 18:01:48
  */
 
 import * as React from 'react';
@@ -10,9 +10,9 @@ import { Router, Route, Switch } from 'dva/router';
 import dynamic from 'dva/dynamic';  
 // import asyncLoader from '../common/ayncLoader';  
 // const AsyncHome = asyncLoader(import(/*webpackChunkName:'home'*/'./Home'));    
-import SpinnerLoader from '../common/components/spinner-loader';
+import SpinnerLoader from '../components/spinner-loader';
 // import ContentLoader from '../common/components/content-loader';
-import SpinkitLoader from '../common/components/spinkit-loader'; 
+import SpinkitLoader from '../components/spinkit-loader'; 
 import { CSSTransitionGroup } from 'react-transition-group';
 /**
  * RoutePageList 

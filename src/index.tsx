@@ -2,7 +2,7 @@
  * @Author: ljliu
  * @Date: 2018-02-01 14:39:36 
  * @Last Modified by: ljliu
- * @Last Modified time: 2018-02-08 11:10:10
+ * @Last Modified time: 2018-02-08 18:08:18
  */
 
 import dva from 'dva';
@@ -11,7 +11,7 @@ import defaultHistory from './common/http/request/listener';
 import registerServiceWorker from './registerServiceWorker'; 
 import { RouterConfig } from './abs/RouterConfig';  
 import 'amfe-flexible'; 
-import './common/components/theme.less';
+import './components/theme.less';
 // import { createLogger } from 'redux-logger';
  
 /**

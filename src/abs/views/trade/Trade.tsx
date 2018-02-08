@@ -2,12 +2,12 @@
  * @Author: zhipeng.he 
  * @Date: 2018-02-06 17:19:44 
  * @Last Modified by: ljliu
- * @Last Modified time: 2018-02-07 13:56:36
+ * @Last Modified time: 2018-02-08 18:01:34
  */
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { ListView, Picker } from 'antd-mobile';
-import PullToRefresh from '../../../common/components/rmc-pull-to-refresh';
+import PullToRefresh from '../../../components/rmc-pull-to-refresh';
 import TradeItem from './TradeItem';
 import '../components/index.less';
 import { connect } from 'dva';
