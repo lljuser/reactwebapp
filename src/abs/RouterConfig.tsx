@@ -2,7 +2,7 @@
  * @Author: ljliu kuizhang
  * @Date: 2018-02-01 14:40:22 
  * @Last Modified by: ljliu
- * @Last Modified time: 2018-02-08 15:06:40
+ * @Last Modified time: 2018-02-08 16:27:13
  */
 
 import * as React from 'react';
@@ -24,7 +24,7 @@ const RoutePageList = {
     ProductDetailPage: `${ApiRoutePath}productdetail`,
     TradeDetailPage: `${ApiRoutePath}tradedetail`, 
     DemoPage: `${ApiRoutePath}demo`,
-};
+}; 
  
 export default RoutePageList;
 
@@ -63,7 +63,8 @@ export function RouterConfig({ history, app }: any) {
   });
  
   return ( 
-    <Router history={history}>
+ 
+ <Router history={history}>
       <Switch>
         <Route
           render={({location}) => (
@@ -72,8 +73,8 @@ export function RouterConfig({ history, app }: any) {
                 transitionName="abstransition"
                 transitionEnter={true}
                 transitionLeave={true}
-                transitionEnterTimeout={300}
-                transitionLeaveTimeout={300}
+                transitionEnterTimeout={200}
+                transitionLeaveTimeout={150}
               >
                 <div key={location.pathname}>
                   <Route location={location} exact={true} path={RoutePageList.HomePage} component={Home}/>  
@@ -88,6 +89,6 @@ export function RouterConfig({ history, app }: any) {
           )} 
         />
       </Switch> 
-    </Router>
+    </Router>  
   ); 
 }  
