@@ -58,29 +58,25 @@ class ProductDetail extends React.Component<any, any> {
               }
             }}
           />   
+          <div className="appH5_content">
           <ABSPanel title="产品要素" >
-            <div className="appH5_content">
+            
               <Detail detail={this.props.detail} />
-            </div> 
           </ABSPanel>
           <ABSPanel title="证券结构" >
-            <div className="appH5_content">
               <Structure noteConsTable={this.props.noteConsTable} />
-            </div> 
+           
           </ABSPanel>
           <ABSPanel title="证券列表" >
-          <div className="appH5_content">
             <NoteList detail={this.props.detail} />
-            </div> 
           </ABSPanel>
           {
             (!this.props.chart) ? null :
               <ABSPanel title="证券偿付">
-                  <div className="appH5_content">
                     <ABSChartMarket data={this.props.chart} />
-                </div> 
               </ABSPanel>
-          } 
+          }
+          </div> 
         </ABSContainer> 
       );
     }

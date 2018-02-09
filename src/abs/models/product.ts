@@ -27,7 +27,8 @@ export default {
         info: '',                   // 结尾信息
         rows: 15,                   // 数据查询条数
         pageIndex: 0,               // 数据查询页数
-        rData: []                   // 查询所得所有数据
+        rData: [],                  // 查询所得所有数据
+        firstloading: true          // 控制第一次加载时显示遮蔽
         },
       reducers: {
         /**

@@ -8,6 +8,7 @@ import ABSPanel from '../components/abs-panel';
 import RoutePageList from '../../RouterConfig';
 import ReactDOM from 'react-dom';
 import PickerChildren from '../components/abs-pickerchildren';
+import { ABSContentLoader } from '../components/abs-loader/index';
 
 // 列表组件
 function MyBody(props: any) {
