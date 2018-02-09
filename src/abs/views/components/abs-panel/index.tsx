@@ -1,7 +1,6 @@
 import * as React from 'react';
 // import { WingBlank } from 'antd-mobile';
 import './index.less';
-import 'amfe-flexible';
 
 interface Props {
     title?: string;
@@ -10,7 +9,7 @@ interface Props {
     className?: string;
 }  
 
-export default class ABSPanelComponent extends React.Component<Props, {}> {
+export default class ABSPanel extends React.Component<Props, {}> {
 
     constructor(props: any) {
         super(props);

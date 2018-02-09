@@ -2,7 +2,7 @@
  * @Author: ljliu kuizhang
  * @Date: 2018-02-01 14:40:22 
  * @Last Modified by: ljliu
- * @Last Modified time: 2018-02-09 09:44:00
+ * @Last Modified time: 2018-02-09 14:05:52
  */
 
 import * as React from 'react';
@@ -92,8 +92,8 @@ export function RouterConfig({ history, app }: any) {
                 } }
                 transitionEnter={true}
                 transitionLeave={true}
-                transitionEnterTimeout={400}
-                transitionLeaveTimeout={400}
+                transitionEnterTimeout={500}
+                transitionLeaveTimeout={500}
               >
                 <div key={location.pathname}>
                   <Route location={location} path={RoutePageList.HomePage} component={Home}/>  

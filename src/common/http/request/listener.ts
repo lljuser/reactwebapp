@@ -1,4 +1,4 @@
-import createHistory from 'history/createHashHistory';
+import createHistory from 'history/createBrowserHistory';
 import AbortBus from './abort';
 
 const history = createHistory();
