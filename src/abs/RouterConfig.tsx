@@ -2,7 +2,7 @@
  * @Author: ljliu kuizhang
  * @Date: 2018-02-01 14:40:22 
  * @Last Modified by: ljliu
- * @Last Modified time: 2018-02-09 14:05:52
+ * @Last Modified time: 2018-02-09 15:10:16
  */
 
 import * as React from 'react';
@@ -10,23 +10,8 @@ import { Router, Route, Switch, Redirect } from 'dva/router';
 import dynamic from 'dva/dynamic';  
 // import asyncLoader from '../common/ayncLoader';  
 // const AsyncHome = asyncLoader(import(/*webpackChunkName:'home'*/'./Home'));    
-import SpinnerLoader from '../components/spinner-loader';
-// import ContentLoader from '../common/components/content-loader';
-import SpinkitLoader from '../components/spinkit-loader'; 
-import { CSSTransitionGroup } from 'react-transition-group';
-import { StyleSheet, css } from 'aphrodite'; 
-import { slideLeft, slideRightReturn } from 'react-magic';
+import SpinnerLoader from '../components/spinner-loader'; 
 
-const styles = StyleSheet.create({
-  spaceInRight: {
-    animationName: slideRightReturn,
-    animationDuration: '0.5s'
-  },
-  spaceOutLeft: {
-    animationName: slideLeft,
-    animationDuration: '0.5s'
-  }
-});
 /**
  * RoutePageList 
  */
@@ -77,36 +62,12 @@ export function RouterConfig({ history, app }: any) {
  
   return (  
     <Router history={history}>
-      <Switch>
-        <Route
-          render={({location}) => (
-            <>
-              <CSSTransitionGroup
-                transitionName={ {
-                  enter: css(styles.spaceInRight),
-                  enterActive: css(styles.spaceInRight),
-                  leave: css(styles.spaceOutLeft),
-                  leaveActive: css(styles.spaceOutLeft),
-                  // appear: css(styles.magic),
-                  // appearActive: css(styles.magic)
-                } }
-                transitionEnter={true}
-                transitionLeave={true}
-                transitionEnterTimeout={500}
-                transitionLeaveTimeout={500}
-              >
-                <div key={location.pathname}>
-                  <Route location={location} path={RoutePageList.HomePage} component={Home}/>  
-                  <Route location={location} exact={true} path={`${RoutePageList.ProductDetailPage}/:id`} component={ProductDetail}/>
-                  <Route location={location} exact={true} path={`${RoutePageList.TradeDetailPage}/:gradeId/:couponId`} component={TradeDetail} />  
-                  <Route location={location} exact={true} path="/demo/spinnerloader" component={SpinnerLoader} /> 
-                  <Route location={location} exact={true} path="/demo/spinkitLoader" component={SpinkitLoader} />                          
-                </div> 
-              </CSSTransitionGroup> 
-              <Redirect path="*" to={RoutePageList.HomePage}/>
-            </>
-          )} 
-        />
+      <Switch> 
+        <Route exact={true} path={RoutePageList.HomePage} component={Home}/>  
+        <Route exact={true} path={`${RoutePageList.ProductDetailPage}/:id`} component={ProductDetail}/>
+        <Route exact={true} path={`${RoutePageList.TradeDetailPage}/:gradeId/:couponId`} component={TradeDetail} />  
+        <Route exact={true} path="/demo/spinnerloader" component={SpinnerLoader} />  
+        <Redirect path="*" to={RoutePageList.HomePage}/> 
       </Switch> 
     </Router>  
   ); 
