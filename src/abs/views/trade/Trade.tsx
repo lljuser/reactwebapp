@@ -2,7 +2,7 @@
  * @Author: zhipeng.he 
  * @Date: 2018-02-06 17:19:44 
  * @Last Modified by: zhipeng.he
- * @Last Modified time: 2018-02-09 15:02:06
+ * @Last Modified time: 2018-02-09 15:21:23
  */
 import * as React from 'react';
 import ReactDOM from 'react-dom';
@@ -188,7 +188,7 @@ class Trade extends React.Component<any, {}> {
                         ref={el => this.lv = el}
                         dataSource={this.props.dataSource}
                         initialListSize={this.props.initialListSize}
-                        renderFooter={() => (<div style={{ textAlign: 'center' }}>
+                        renderFooter={() => (<div style={{ textAlign: 'center', color: 'grey' }}>
                             {this.props.info}
                         </div>)}
                         renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey} />}
@@ -200,9 +200,9 @@ class Trade extends React.Component<any, {}> {
                                 refreshing={this.props.refreshing}
                                 onRefresh={this.onRefresh}
                                 indicator={{
-                                    activate: <div style={{ height: 25, textAlign: 'center'}}>释放更新</div>,
+                                    activate: <div style={{ height: 25, textAlign: 'center' }}>释放更新</div>,
                                     deactivate: <div style={{ height: 25, textAlign: 'center' }}>下拉刷新</div>,
-                                    release: <div style={{ height: 25, textAlign: 'center'}}>正在刷新...</div>,
+                                    release: <div style={{ height: 25, textAlign: 'center' }}>正在刷新...</div>,
                                     finish: <div style={{ height: 25, textAlign: 'center' }}>完成刷新</div>
                                 }}
                             />}
