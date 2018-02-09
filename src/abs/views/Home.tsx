@@ -1,12 +1,11 @@
 import * as React from 'react'; 
 // import { Route } from 'dva/router';
 import { connect } from 'dva';
-import { Tabs } from 'antd-mobile';
-
+import { Tabs } from 'antd-mobile'; 
 import Market from './market/Market';
 import Product from './product/Product';
-import Trade from './trade/Trade';
-import './components/index.less';
+import Trade from './trade/Trade'; 
+import './components/control.less';
 
 class Home extends React.Component<any, any> {
   private tabs = [
