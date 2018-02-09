@@ -114,11 +114,10 @@ yarn point
 plugin
 =====================
 -get-query-param
--react-loader-spinner
--react-redux-loading-bar
--react-content-loader
--react-lazy-load
--react-topbar-progress-indicator
+-react-redux-spinner (topbar loading)
+-react-core-loading-spinner (loading)
+-styled-spinkit (loading)
+-react-content-loader (facbook content loading)
 
 for admin:
 =================== 
