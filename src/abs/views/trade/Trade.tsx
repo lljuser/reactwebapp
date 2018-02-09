@@ -1,8 +1,8 @@
 /*
  * @Author: zhipeng.he 
  * @Date: 2018-02-06 17:19:44 
- * @Last Modified by: ljliu
- * @Last Modified time: 2018-02-08 18:01:34
+ * @Last Modified by: zhipeng.he
+ * @Last Modified time: 2018-02-09 14:33:22
  */
 import * as React from 'react';
 import ReactDOM from 'react-dom';
@@ -199,6 +199,12 @@ class Trade extends React.Component<any, {}> {
                                 getScrollContainer={() => this.lv}
                                 refreshing={this.props.refreshing}
                                 onRefresh={this.onRefresh}
+                                indicator={{
+                                    activate: <div style={{ height: 40, fontSize: 20 }}>松开立即刷新</div>,
+                                    deactivate: <div style={{ height: 40, fontSize: 20 }}>下拉刷新</div>,
+                                    release: <div style={{ height: 40, fontSize: 20 }}>正在刷新</div>,
+                                    finish: <div style={{ height: 40, fontSize: 20 }}>完成刷新</div>,
+                                }}
                             />}
                         onEndReached={this.onEndReached}
                         onScroll={this.onScroll}
