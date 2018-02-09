@@ -189,7 +189,7 @@ class Product extends React.Component<any, {}> {
             ref={el => this.lv = el}
             dataSource={this.props.dataSource}
             initialListSize={this.props.initialListSize}
-            renderFooter={() => (<div style={{ textAlign: 'center' }}>
+            renderFooter={() => (<div style={{ textAlign: 'center', color: 'grey' }}>
               {this.props.info}
             </div>)}
             renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey} CurrentStatus={this.props.currentStatus} CurrentStatusValue={this.props.currentStatusValue} DealType={this.props.dealType} DealTypeValue={this.props.dealTypeValue} ProductType={this.props.productType} ProductTypeValue={this.props.productTypeValue} />}
