@@ -1,16 +1,8 @@
 import * as React from 'react';
 // import { WingBlank } from 'antd-mobile';
 import './index.less';
-import 'amfe-flexible';
 
-interface Props {
-    title?: string;
-    data?: any; 
-    minHeight?: string;
-    className?: string;
-}  
-
-export default class ABSPanel extends React.Component<Props, {}> {
+export default class ABSContainer extends React.Component<any, {}> {
 
     constructor(props: any) {
         super(props);

@@ -10,7 +10,7 @@ interface Props {
   style?: any;
 }
 
-class ABSChartComponent extends React.Component<Props> { 
+class ABSChart extends React.Component<Props> { 
     render() {
       if (this.props.data == null || this.props.data === undefined) {
         return null;
@@ -24,4 +24,4 @@ class ABSChartComponent extends React.Component<Props> {
     }
 } 
 
-export default ABSChartComponent;
+export default ABSChart;

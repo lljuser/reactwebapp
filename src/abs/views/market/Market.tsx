@@ -19,14 +19,14 @@ class MarketComponent extends React.Component<any, any> {
   
     render() {  
         return (
-            <React.Fragment> 
+            <div> 
                 <ABSPanel title="市场概要" >
                     <MarketTable marketSummary={this.props.marketSummary} onChangeTab={this.props.onChangeTab} />   
                 </ABSPanel> 
                 <ABSPanel title="发行统计">
                     <ABSChartMarket data={this.props.chart} style={{height: '400px'}} />
                 </ABSPanel>
-            </React.Fragment>
+            </div>
         );
     }   
 } 
