@@ -3,6 +3,7 @@ import { connect } from 'dva';
 import ABSPanel from '../components/abs-panel';
 import ABSChartMarket from '../components/abs-chart'; 
 import MarketTable from './MarketTable';   
+import ABSContainer from '../components/abs-container/index';
 
 class MarketComponent extends React.Component<any, any> { 
     constructor(props: any) {
@@ -19,14 +20,14 @@ class MarketComponent extends React.Component<any, any> {
   
     render() {  
         return (
-            <div> 
+            <ABSContainer> 
                 <ABSPanel title="市场概要" >
                     <MarketTable marketSummary={this.props.marketSummary} onChangeTab={this.props.onChangeTab} />   
                 </ABSPanel> 
                 <ABSPanel title="发行统计">
                     <ABSChartMarket data={this.props.chart} style={{height: '400px'}} />
                 </ABSPanel>
-            </div>
+            </ABSContainer>
         );
     }   
 } 
