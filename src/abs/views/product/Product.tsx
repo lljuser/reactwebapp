@@ -198,7 +198,13 @@ class Product extends React.Component<any, {}> {
             pullToRefresh={<PullToRefresh
               getScrollContainer={() => this.lv}
               refreshing={this.props.refreshing}
-              onRefresh={this.onRefresh} 
+              onRefresh={this.onRefresh}
+              indicator={{
+                activate: <div style={{ height: 25, textAlign: 'center' }}>释放更新</div>,
+                deactivate: <div style={{ height: 25, textAlign: 'center' }}>下拉刷新</div>,
+                release: <div style={{ height: 25, textAlign: 'center' }}>正在刷新...</div>,
+                finish: <div style={{ height: 25, textAlign: 'center' }}>完成刷新</div>
+              }}
             />}
             onEndReached={this.onEndReached}
             onScroll={this.onScroll}
