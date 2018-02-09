@@ -6,10 +6,10 @@ import NoteList from './NoteList';
 import { ABSNavBar } from '../components/abs-navbar';
 import ABSChartMarket from '../components/abs-chart';
 import { connect } from 'dva';
-import RoutePageList from '../../RouterConfig';
-import { ABSContentLoader } from '../components/abs-loader/index';
+import RoutePageList from '../../RouterConfig'; 
 import './theme_old.less';
 import '../components/index.less';
+import { ABSContentLoader } from '../components/abs-loader/index';
 
 function mapStateToProps(state: any) {
   return {
@@ -41,7 +41,7 @@ class ProductDetail extends React.Component<any, any> {
               }
             }}
           />
-          <ABSContentLoader />
+          <ABSContentLoader /> 
         </React.Fragment>
       );
     } else {

@@ -2,9 +2,30 @@ import * as React from 'react';
 import ContentLoader, { Facebook } from 'react-content-loader';
 import './index.less';
 import ABSPanelComponent from '../abs-panel/index'; 
- 
-// 动画-内容型
+import Loader from  '../../../../components/react-loader-spinner';
+
 export class ABSContentLoader extends React.Component<any, {}> {
+
+    constructor(props: any) {
+        super(props);
+    }
+    render() {
+        // const y = 70;
+        return (           
+            <div 
+                style={{
+                width: '40px',
+                margin: '20px auto', 
+                }}
+            >
+                <Loader type="ThreeDots" color="gray" height="40" width="40" />
+            </div>          
+        );
+    }
+} 
+
+// 动画-内容型
+export class ABSPageLoader extends React.Component<any, {}> {
 
     constructor(props: any) {
         super(props);
