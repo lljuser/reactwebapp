@@ -80,7 +80,7 @@ class TradeDetailComponent extends React.Component<any, any> {
                         }}
                     />
                     <ABSPanel>
-                    
+                        <div className="appH5_content_fullheight">
                             <table className="appH5_list_four" cellSpacing="0" cellPadding="0">
                                 <tbody>
                                     <tr>
@@ -186,6 +186,7 @@ class TradeDetailComponent extends React.Component<any, any> {
                                     </tr>
                                 </tbody>
                             </table>
+                        </div> 
                       </ABSPanel>
                       </div>
  

@@ -56,16 +56,16 @@ var UP = 'up';
 
 //此处修改下拉内容<Loader type="Audio" color="#FFC446" height={40} width={40}/>
 var activateSpinner = React.createElement(Loader, { type: 'ThreeDots', color: 'gray', height: 30, width: 30 })
-var activateHtml = React.createElement('div', { style: { width: '40px', margin: '0px auto', height: 40 } }, activateSpinner)
+var activateHtml = React.createElement('div', { style: { width: '40px', margin: '0px auto' } }, activateSpinner)
 
 var deactivateSpinner = React.createElement(Loader, { type: 'Ball-Triangle', color: 'gray', height: 27, width: 27 })
-var deactivateHtml = React.createElement('div', { style: { width: '40px', margin: '0px auto', height: 40 } }, deactivateSpinner)
+var deactivateHtml = React.createElement('div', { style: { width: '40px', margin: '0px auto' } }, deactivateSpinner)
 
 var releaseSpinner = React.createElement(Loader, { type: 'ThreeDots', color: 'gray', height: 40, width: 40 })
-var releaseHtml = React.createElement('div', { style: { width: '40px', margin: '0px auto', height: 40 } }, releaseSpinner)
+var releaseHtml = React.createElement('div', { style: { width: '40px', margin: '0px auto' } }, releaseSpinner)
 
 var finishSpinner = React.createElement(Loader, { type: 'ThreeDots', color: 'gray', height: 25, width: 25 })
-var finishHtml = React.createElement('div', { style: { width: '40px', margin: '0px auto', height: 40 } }, finishSpinner)
+var finishHtml = React.createElement('div', { style: { width: '40px', margin: '0px auto' } }, finishSpinner)
 var INDICATOR = {
     activate: activateHtml, deactivate: deactivateHtml, release: releaseHtml, finish: finishHtml
 };
@@ -189,10 +189,10 @@ var PullToRefresh = function (_React$Component2) {
                 // e.stopPropagation();
                 var _diff = Math.round(_screenY - _this2._ScreenY);
 
-                if (_diff > 0 && _this2._lastScreenY < 2) {
+                if (_diff > 0&&_this2._lastScreenY<2) {
                     _diff = 0.1
                 }
-                else if (_diff > 0 && _this2._lastScreenY >= 10) {
+                else if (_diff > 0&&_this2._lastScreenY>=10) {
                     if (_this2._lastScreenY > (maxscreeny / 2)) {
                         _diff = 1 / (_this2._lastScreenY / maxscreeny);
                     }
@@ -357,6 +357,6 @@ PullToRefresh.defaultProps = {
     direction: DOWN,
     distanceToRefresh: 45,
     indicator: INDICATOR,
-    maxscreeny: 70,//下拉阻力
+    maxscreeny: 100,//下拉阻力
     springbackheight: 30,//回弹距顶部高度
 };
