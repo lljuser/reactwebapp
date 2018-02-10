@@ -88,10 +88,11 @@ class Product extends React.Component<any, {}> {
 
   // 滚动条滚动至指定距离
   scrollTo(scrollTop: number) {
-    if (this.lv) {
-      this.lv.scrollTo(0, scrollTop);
-    }
-
+    setTimeout(() => {
+      if (this.lv) {
+        this.lv.scrollTo(0, scrollTop);
+      }
+    }, 500); 
   }
 
   /**
@@ -219,7 +220,7 @@ class Product extends React.Component<any, {}> {
           </div>
         </ABSPanel>
       );
-    }
+    } 
   }
 }
 
