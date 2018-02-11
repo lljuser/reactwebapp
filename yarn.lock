@@ -5068,6 +5068,12 @@ react-timer-mixin@^0.13.3:
   version "0.13.3"
   resolved "http://registry.npm.taobao.org/react-timer-mixin/download/react-timer-mixin-0.13.3.tgz#0da8b9f807ec07dc3e854d082c737c65605b3d22"
 
+react-topbar-progress-indicator@^2.0.0:
+  version "2.0.0"
+  resolved "http://registry.npm.taobao.org/react-topbar-progress-indicator/download/react-topbar-progress-indicator-2.0.0.tgz#cfb4b4bd85a32f90dae74338dd008d3a082355d3"
+  dependencies:
+    topbar "^0.1.3"
+
 react-tween-state@^0.1.5:
   version "0.1.5"
   resolved "http://registry.npm.taobao.org/react-tween-state/download/react-tween-state-0.1.5.tgz#e98b066551efb93cb92dd1be14995c2e3deae339"
@@ -6134,6 +6140,10 @@ to-arraybuffer@^1.0.0:
 to-fast-properties@^1.0.3:
   version "1.0.3"
   resolved "http://registry.npm.taobao.org/to-fast-properties/download/to-fast-properties-1.0.3.tgz#b83571fa4d8c25b82e231b06e3a3055de4ca1a47"
+
+topbar@^0.1.3:
+  version "0.1.3"
+  resolved "http://registry.npm.taobao.org/topbar/download/topbar-0.1.3.tgz#c9ef8776dc4469f7840e6416f4136ddeccf4b7c6"
 
 toposort@^1.0.0:
   version "1.0.6"
