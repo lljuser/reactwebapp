@@ -192,10 +192,8 @@ var PullToRefresh = function (_React$Component2) {
                 if (_diff > 0 && _this2._lastScreenY < 2) {
                     _diff = 0.25
                 }
-                else if (_diff > 0 && _this2._lastScreenY >= 10) {
-                    if (_this2._lastScreenY > (maxscreeny / 2)) {
-                        _diff = 1 / (_this2._lastScreenY / maxscreeny);
-                    }
+                else if (_diff > 0 && _this2._lastScreenY > (maxscreeny/2)) {
+                    _diff = 1 / (_this2._lastScreenY / maxscreeny); 
                 } 
 
                 _this2._ScreenY = _screenY;
