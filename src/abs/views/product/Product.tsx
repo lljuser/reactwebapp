@@ -8,7 +8,7 @@ import ABSPanel from '../components/abs-panel';
 import RoutePageList from '../../RouterConfig';
 import ReactDOM from 'react-dom';
 import PickerChildren from '../components/abs-pickerchildren';
-// import { ABSContentLoader } from '../components/abs-loader/index';
+import { ABSContentLoader } from '../components/abs-loader/index';
 
 // 列表组件
 function MyBody(props: any) {
@@ -88,10 +88,11 @@ class Product extends React.Component<any, {}> {
 
   // 滚动条滚动至指定距离
   scrollTo(scrollTop: number) {
-    if (this.lv) {
-      this.lv.scrollTo(0, scrollTop);
-    }
-
+    setTimeout(() => {
+      if (this.lv) {
+        this.lv.scrollTo(0, scrollTop);
+      }
+    }, 500); 
   }
 
   /**
@@ -153,67 +154,73 @@ class Product extends React.Component<any, {}> {
       );
     };
 
-    return (
-      <ABSPanel className={'abs-pull-refresh-wrapper'}>
-        <div className="abs-picker">
-          <Picker
-            title="选择市场"
-            data={this.props.productType}
-            cascade={false}
-            value={this.props.productTypeValue}
-            onOk={v => this.PickerChange('ProductTypeValue', v)}
-          >
-            <PickerChildren />
-          </Picker>
-          <Picker
-            title="选择产品"
-            data={this.props.dealType}
-            cascade={false}
-            value={this.props.dealTypeValue}
-            onOk={v => this.PickerChange('DealTypeValue', v)}
-          >
-            <PickerChildren />
-          </Picker>
-          <Picker
-            title="选择状态"
-            data={this.props.currentStatus}
-            cascade={false}
-            value={this.props.currentStatusValue}
-            onOk={v => this.PickerChange('CurrentStatusValue', v)}
-          >
-            <PickerChildren />
-          </Picker>
-        </div>
-        <div className="abs-scrollview-container">
-          <ListView
-            key={this.props.useBodyScroll ? '0' : '1'}
-            ref={el => this.lv = el}
-            dataSource={this.props.dataSource}
-            initialListSize={this.props.initialListSize}
-            renderFooter={() => (<div style={{ textAlign: 'center', color: 'grey' }}>
-              {this.props.info}
-            </div>)}
-            renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey} CurrentStatus={this.props.currentStatus} CurrentStatusValue={this.props.currentStatusValue} DealType={this.props.dealType} DealTypeValue={this.props.dealTypeValue} ProductType={this.props.productType} ProductTypeValue={this.props.productTypeValue} />}
-            renderRow={row}
-            useBodyScroll={this.props.useBodyScroll}
-            pullToRefresh={<PullToRefresh
-              getScrollContainer={() => this.lv}
-              refreshing={this.props.refreshing}
-              onRefresh={this.onRefresh}
-              indicator={{
-                activate: <div style={{ height: 25, textAlign: 'center' }}>释放更新</div>,
-                deactivate: <div style={{ height: 25, textAlign: 'center' }}>下拉刷新</div>,
-                release: <div style={{ height: 25, textAlign: 'center' }}>正在刷新...</div>,
-                finish: <div style={{ height: 25, textAlign: 'center' }}>完成刷新</div>
-              }}
-            />}
-            onEndReached={this.onEndReached}
-            onScroll={this.onScroll}
-            pageSize={15}
-          />
-        </div>
-      </ABSPanel>
-    );
+    if (this.props.firstloading === true) {
+      return (
+        <ABSContentLoader /> 
+      );
+    } else {
+      return (
+        <ABSPanel className={'abs-pull-refresh-wrapper'}>
+          <div className="abs-picker">
+            <Picker
+              title="选择市场"
+              data={this.props.productType}
+              cascade={false}
+              value={this.props.productTypeValue}
+              onOk={v => this.PickerChange('ProductTypeValue', v)}
+            >
+              <PickerChildren />
+            </Picker>
+            <Picker
+              title="选择产品"
+              data={this.props.dealType}
+              cascade={false}
+              value={this.props.dealTypeValue}
+              onOk={v => this.PickerChange('DealTypeValue', v)}
+            >
+              <PickerChildren />
+            </Picker>
+            <Picker
+              title="选择状态"
+              data={this.props.currentStatus}
+              cascade={false}
+              value={this.props.currentStatusValue}
+              onOk={v => this.PickerChange('CurrentStatusValue', v)}
+            >
+              <PickerChildren />
+            </Picker>
+          </div>
+          <div className="abs-scrollview-container">
+            <ListView
+              key={this.props.useBodyScroll ? '0' : '1'}
+              ref={el => this.lv = el}
+              dataSource={this.props.dataSource}
+              initialListSize={this.props.initialListSize}
+              renderFooter={() => (<div style={{ textAlign: 'center', color: 'grey' }}>
+                {this.props.info}
+              </div>)}
+              renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey} CurrentStatus={this.props.currentStatus} CurrentStatusValue={this.props.currentStatusValue} DealType={this.props.dealType} DealTypeValue={this.props.dealTypeValue} ProductType={this.props.productType} ProductTypeValue={this.props.productTypeValue} />}
+              renderRow={row}
+              useBodyScroll={this.props.useBodyScroll}
+              pullToRefresh={<PullToRefresh
+                getScrollContainer={() => this.lv}
+                refreshing={this.props.refreshing}
+                onRefresh={this.onRefresh}
+                indicator={{
+                  activate: <div style={{ height: 25, textAlign: 'center' }}>释放更新</div>,
+                  deactivate: <div style={{ height: 25, textAlign: 'center' }}>下拉刷新</div>,
+                  release: <div style={{ height: 25, textAlign: 'center' }}>正在刷新...</div>,
+                  finish: <div style={{ height: 25, textAlign: 'center' }}>完成刷新</div>
+                }}
+              />}
+              onEndReached={this.onEndReached}
+              onScroll={this.onScroll}
+              pageSize={15}
+            />
+          </div>
+        </ABSPanel>
+      );
+    } 
   }
 }
 

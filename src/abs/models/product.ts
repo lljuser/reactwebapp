@@ -168,6 +168,15 @@ export default {
                 scrollTop: action.scrollTop,
                 initialListSize: action.initialListSize
             };
+        },
+        /**
+         * 显示loading动画
+         */
+        showLoading(state: any, action: any) {
+            return {
+            ...state,
+            firstloading: action.firstloading
+            };
         }
       },
       effects: {
@@ -175,7 +184,7 @@ export default {
          * 第一次加载数据
          */
         *firstload(action: any, { call, put }: any) {
-            yield put({type: 'changeListState', info: '正在加载...' , loading: true, refreshing: false});
+            yield put({type: 'showLoading', firstloading: true});
             const res = yield call([productService, productService.getData],
                 0,
                 action.rows,
@@ -202,6 +211,8 @@ export default {
                 info: res.info,
                 loading: false
             });
+
+            yield put({type: 'showLoading', firstloading: false});
         },
         /**
          * 改变picker的值

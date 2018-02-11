@@ -58,14 +58,12 @@ class ProductDetail extends React.Component<any, any> {
               }
             }}
           />   
-          <div className="appH5_content">
+          
           <ABSPanel title="产品要素" >
-            
               <Detail detail={this.props.detail} />
           </ABSPanel>
           <ABSPanel title="证券结构" >
               <Structure noteConsTable={this.props.noteConsTable} />
-           
           </ABSPanel>
           <ABSPanel title="证券列表" >
             <NoteList detail={this.props.detail} />
@@ -75,8 +73,7 @@ class ProductDetail extends React.Component<any, any> {
               <ABSPanel title="证券偿付">
                     <ABSChartMarket data={this.props.chart} />
               </ABSPanel>
-          }
-          </div> 
+          } 
         </ABSContainer> 
       );
     }

@@ -2,7 +2,7 @@
  * @Author: ljliu
  * @Date: 2018-02-01 14:39:36 
  * @Last Modified by: ljliu
- * @Last Modified time: 2018-02-08 18:08:18
+ * @Last Modified time: 2018-02-09 16:48:40
  */
 
 import dva from 'dva';
@@ -15,7 +15,7 @@ import './components/theme.less';
 // import { createLogger } from 'redux-logger';
  
 /**
- *  1. Initialize
+ *  1. Initialize 
  */
 const app = dva({
   // use default history

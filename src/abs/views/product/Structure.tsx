@@ -39,7 +39,7 @@ class Structure extends React.Component<any, {}> {
     }
 
     return (
-      <div>
+        <div className="appH5_content">
           <div style={{textAlign: '-webkit-center'}}><div id="test" style={{margin: '0 auto', width: this.props.chartWidthPx + 'px'}}  > <div dangerouslySetInnerHTML={{__html: this.props.noteConsTable}} /> </div></div>
           <div style={{textAlign: 'center', height: '0.4rem'}}>
               <div style={{margin: '0 auto', width: '3rem'}}>
