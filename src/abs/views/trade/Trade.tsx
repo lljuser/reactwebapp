@@ -2,7 +2,7 @@
  * @Author: zhipeng.he 
  * @Date: 2018-02-06 17:19:44 
  * @Last Modified by: zhipeng.he
- * @Last Modified time: 2018-02-09 15:21:23
+ * @Last Modified time: 2018-02-11 09:10:27
  */
 import * as React from 'react';
 import ReactDOM from 'react-dom';
@@ -13,6 +13,7 @@ import '../components/index.less';
 import { connect } from 'dva';
 import ABSPanel from '../components/abs-panel';
 import PickerChildren from '../components/abs-pickerchildren';
+import { Circle } from 'styled-spinkit';
 
 /**
  * 自定义组件
@@ -202,8 +203,16 @@ class Trade extends React.Component<any, {}> {
                                 indicator={{
                                     activate: <div style={{ height: 25, textAlign: 'center' }}>释放更新</div>,
                                     deactivate: <div style={{ height: 25, textAlign: 'center' }}>下拉刷新</div>,
-                                    release: <div style={{ height: 25, textAlign: 'center' }}>正在刷新...</div>,
-                                    finish: <div style={{ height: 25, textAlign: 'center' }}>完成刷新</div>
+                                    release:
+                                        <div style={{ width: 80, margin: '0px auto' }}>
+                                            <div style={{ display: 'inline-block' }}>
+                                                <Circle size={15} color={'#7A7A7A'} style={{ margin: '0px auto' }} />
+                                            </div>
+                                            <div style={{ height: 25, textAlign: 'center', display: 'inline-block' }}>
+                                                正在刷新
+                                            </div>
+                                        </div>,
+                                    finish: <div style={{ height: 25, textAlign: 'center' }}>加载完成</div>,
                                 }}
                             />}
                         onEndReached={this.onEndReached}
@@ -211,7 +220,7 @@ class Trade extends React.Component<any, {}> {
                         pageSize={15}
                     />
                 </div>
-            </ABSPanel>
+            </ABSPanel >
         );
     }
 }
