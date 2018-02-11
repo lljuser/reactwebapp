@@ -9,6 +9,7 @@ import RoutePageList from '../../RouterConfig';
 import ReactDOM from 'react-dom';
 import PickerChildren from '../components/abs-pickerchildren';
 import { ABSContentLoader } from '../components/abs-loader/index';
+import { Circle } from 'styled-spinkit';
 
 // 列表组件
 function MyBody(props: any) {
@@ -87,10 +88,10 @@ class Product extends React.Component<any, {}> {
   }
 
   // 滚动条滚动至指定距离
-  scrollTo(scrollTop: number) { 
-      if (this.lv) {
-        this.lv.scrollTo(0, scrollTop);
-      } 
+  scrollTo(scrollTop: number) {
+    if (this.lv) {
+      this.lv.scrollTo(0, scrollTop);
+    }
   }
 
   /**
@@ -154,7 +155,7 @@ class Product extends React.Component<any, {}> {
 
     if (this.props.firstloading === true) {
       return (
-        <ABSContentLoader /> 
+        <ABSContentLoader />
       );
     } else {
       return (
@@ -207,8 +208,16 @@ class Product extends React.Component<any, {}> {
                 indicator={{
                   activate: <div style={{ height: 25, textAlign: 'center' }}>释放更新</div>,
                   deactivate: <div style={{ height: 25, textAlign: 'center' }}>下拉刷新</div>,
-                  release: <div style={{ height: 25, textAlign: 'center' }}>正在刷新...</div>,
-                  finish: <div style={{ height: 25, textAlign: 'center' }}>完成刷新</div>
+                  release:
+                    <div style={{ width: 80, margin: '0px auto' }}>
+                      <div style={{ display: 'inline-block' }}>
+                        <Circle size={15} color={'#7A7A7A'} style={{ margin: '0px auto' }} />
+                      </div>
+                      <div style={{ height: 25, textAlign: 'center', display: 'inline-block' }}>
+                        正在刷新
+                          </div>
+                    </div>,
+                  finish: <div style={{ height: 25, textAlign: 'center' }}>加载完成</div>,
                 }}
               />}
               onEndReached={this.onEndReached}
@@ -218,7 +227,7 @@ class Product extends React.Component<any, {}> {
           </div>
         </ABSPanel>
       );
-    } 
+    }
   }
 }
 
