@@ -14,6 +14,7 @@ import { connect } from 'dva';
 import ABSPanel from '../components/abs-panel';
 import PickerChildren from '../components/abs-pickerchildren';
 import { Circle } from 'styled-spinkit';
+import { ABSContentLoader } from '../components/abs-loader/index';
 
 /**
  * 自定义组件
@@ -152,76 +153,82 @@ class Trade extends React.Component<any, {}> {
                 <TradeItem TradeId={rowData.TradeId} SecurityId={rowData.SecurityId} TradeTypeId={rowData.TradeTypeId} SecurityName={rowData.SecurityName} TotalOffering={rowData.TotalOffering} AssetType={rowData.AssetType} />
             );
         };
-        return (
-            <ABSPanel className={'abs-pull-refresh-wrapper'}>
-                <div className="abs-picker">
-                    <Picker
-                        data={this.props.ratingList}
-                        title="选择评级"
-                        cols={1}
-                        value={this.props.ratingValues}
-                        onOk={v => this.onPickerChange('ratingValues', v)}
-                    >
-                        <PickerChildren />
-                    </Picker>
-                    <Picker
-                        data={this.props.couponList}
-                        title="选择利率"
-                        cols={1}
-                        value={this.props.couponValues}
-                        onOk={v => this.onPickerChange('couponValues', v)}
-                    >
-                        <PickerChildren />
-                    </Picker>
-                    <Picker
-                        data={this.props.walbuckList}
-                        title="选择期限"
-                        cols={1}
-                        value={this.props.walbuckValues}
-                        onOk={v => this.onPickerChange('walbuckValues', v)}
-                    >
-                        <PickerChildren />
-                    </Picker>
-                </div>
-                <div className="abs-scrollview-container">
-                    <ListView
-                        key={this.props.useBodyScroll ? '0' : '1'}
-                        ref={el => this.lv = el}
-                        dataSource={this.props.dataSource}
-                        initialListSize={this.props.initialListSize}
-                        renderFooter={() => (<div style={{ textAlign: 'center', color: 'grey' }}>
-                            {this.props.info}
-                        </div>)}
-                        renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey} />}
-                        renderRow={row}
-                        useBodyScroll={this.props.useBodyScroll}
-                        pullToRefresh={
-                            <PullToRefresh
-                                getScrollContainer={() => this.lv}
-                                refreshing={this.props.refreshing}
-                                onRefresh={this.onRefresh}
-                                indicator={{
-                                    activate: <div style={{ height: 25, textAlign: 'center' }}>释放更新</div>,
-                                    deactivate: <div style={{ height: 25, textAlign: 'center' }}>下拉刷新</div>,
-                                    release:
-                                        <div style={{ width: 80, margin: '0px auto' }}>
-                                            <div style={{ display: 'inline-block' }}>
-                                                <Circle size={15} color={'#7A7A7A'} style={{ margin: '0px auto' }} />
+        if (this.props.firstloading === true) {
+            return (
+                <ABSContentLoader />
+            );
+        } else {
+            return (
+                <ABSPanel className={'abs-pull-refresh-wrapper'}>
+                    <div className="abs-picker">
+                        <Picker
+                            data={this.props.ratingList}
+                            title="选择评级"
+                            cols={1}
+                            value={this.props.ratingValues}
+                            onOk={v => this.onPickerChange('ratingValues', v)}
+                        >
+                            <PickerChildren />
+                        </Picker>
+                        <Picker
+                            data={this.props.couponList}
+                            title="选择利率"
+                            cols={1}
+                            value={this.props.couponValues}
+                            onOk={v => this.onPickerChange('couponValues', v)}
+                        >
+                            <PickerChildren />
+                        </Picker>
+                        <Picker
+                            data={this.props.walbuckList}
+                            title="选择期限"
+                            cols={1}
+                            value={this.props.walbuckValues}
+                            onOk={v => this.onPickerChange('walbuckValues', v)}
+                        >
+                            <PickerChildren />
+                        </Picker>
+                    </div>
+                    <div className="abs-scrollview-container">
+                        <ListView
+                            key={this.props.useBodyScroll ? '0' : '1'}
+                            ref={el => this.lv = el}
+                            dataSource={this.props.dataSource}
+                            initialListSize={this.props.initialListSize}
+                            renderFooter={() => (<div style={{ textAlign: 'center', color: 'grey' }}>
+                                {this.props.info}
+                            </div>)}
+                            renderSectionBodyWrapper={(BodyKey) => <MyBody key={BodyKey} />}
+                            renderRow={row}
+                            useBodyScroll={this.props.useBodyScroll}
+                            pullToRefresh={
+                                <PullToRefresh
+                                    getScrollContainer={() => this.lv}
+                                    refreshing={this.props.refreshing}
+                                    onRefresh={this.onRefresh}
+                                    indicator={{
+                                        activate: <div style={{ height: 25, textAlign: 'center' }}>释放更新</div>,
+                                        deactivate: <div style={{ height: 25, textAlign: 'center' }}>下拉刷新</div>,
+                                        release:
+                                            <div style={{ width: 80, margin: '0px auto' }}>
+                                                <div style={{ display: 'inline-block' }}>
+                                                    <Circle size={15} color={'#7A7A7A'} style={{ margin: '0px auto' }} />
+                                                </div>
+                                                <div style={{ height: 25, textAlign: 'center', display: 'inline-block' }}>
+                                                    正在刷新
                                             </div>
-                                            <div style={{ height: 25, textAlign: 'center', display: 'inline-block' }}>
-                                                正在刷新
-                                            </div>
-                                        </div>,
-                                    finish: <div style={{ height: 25, textAlign: 'center' }}>加载完成</div>,
-                                }}
-                            />}
-                        onEndReached={this.onEndReached}
-                        onScroll={this.onScroll}
-                        pageSize={15}
-                    />
-                </div>
-            </ABSPanel >
-        );
+                                            </div>,
+                                        finish: <div style={{ height: 25, textAlign: 'center' }}>加载完成</div>,
+                                    }}
+                                />}
+                            onEndReached={this.onEndReached}
+                            onScroll={this.onScroll}
+                            pageSize={15}
+                        />
+                    </div>
+                </ABSPanel >
+            );
+        }
     }
 }
 

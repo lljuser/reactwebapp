@@ -28,7 +28,8 @@ export default {
         couponList: [], // 利率集合
         walbuckValues: [], // 期限value集合
         walbuckList: [], // 期限集合
-        detailInfo: {}
+        detailInfo: {},
+        firstloading: true          // 控制第一次加载时显示遮蔽
     },
     reducers: {
         /**
@@ -157,6 +158,15 @@ export default {
                 scrollTop: action.scrollTop,
                 initialListSize: action.initialListSize
             };
+        },
+        /**
+         * 显示loading动画
+         */
+        showLoading(state: any, action: any) {
+            return {
+            ...state,
+            firstloading: action.firstloading
+            };
         }
     },
     effects: {
@@ -204,6 +214,8 @@ export default {
          * @param {*} { call, put } 
          */
         *componentDidMount(action: any, { call, put }: any) {
+            yield put({type: 'showLoading', firstloading: true});
+
             yield put({ type: 'updateLoadingState', info: '正在加载...', loading: true, refreshing: false });
             const resWalbuck = yield call([tradeService, tradeService.getWalbuckList]);
             yield put({ type: 'formatPickerData', cmd: 'resWalbuck', walbuckValues: resWalbuck.walbuckValues, walbuckList: resWalbuck.walbuckList });
@@ -217,6 +229,8 @@ export default {
             // 第一次请求数据源
             const resGenData = yield call([tradeService, tradeService.genData], true, 0, 1, [], action.rows);
             yield put({ type: 'updateDataSource', rData: resGenData.rData, info: resGenData.info, hasMore: resGenData.hasMore, pageIndex: 0, loading: false });
+        
+            yield put({type: 'showLoading', firstloading: false});
         },
         /**
          * 刷新数据源
