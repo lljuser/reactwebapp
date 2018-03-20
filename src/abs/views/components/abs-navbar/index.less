@@ -1,0 +1,32 @@
+
+
+/*!
+ * @author Dengju Deng from ABS-UI
+ * @version 1.0
+ * @date 2018/1/23
+ * @description 移动端通用导航切换组件
+ */
+
+ @import "../index.less";
+
+ @navbar-prefix-cls: ~"@{ant-prefix}-navbar";
+ // 根据node_module中navbar,对蚂蚁UI部分重写和覆盖
+ 
+.@{navbar-prefix-cls}{
+    background-color: @abs-brand-black;
+    &-left{
+        &-icon{
+            a{
+                color: @abs-brand-yellow;
+            }
+        }
+    }
+    &-right{ 
+        color: @abs-brand-yellow;  
+    }
+    // &-title{
+    //      color: @abs-brand-yellow;
+    // }
+}
+
+ 

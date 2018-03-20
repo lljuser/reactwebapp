@@ -1,0 +1,304 @@
+@import './index.less';
+
+/*****************abs-tabs*************************/ 
+@tabs-prefix-cls: ~"@{abs-prefix}-tabs";
+.@{tabs-prefix-cls}{
+    background: @absLink-tabs-bgColor; 
+    height: 100vh;
+    .am-tabs-default-bar-top{
+        background: @absLink-tabBar-bgColor !important;
+        .am-tabs-default-bar-content{
+            position: relative;
+            width: 300px;
+            margin: auto;
+            .am-tabs-default-bar-tab {
+                color: @absLink-tabBar-color;
+                font-size: 19px;
+                &:after{
+                  height: 0px;
+                }
+            }
+            .am-tabs-default-bar-tab-active{
+              color: @absLink-tabBar-activeColor;
+            }
+            .am-tabs-default-bar-underline{
+                div{
+                    background-color: @absLink-tabBar-activeColor;
+                    width: 50;
+                    height: 2;
+                    margin-left: 'auto';
+                    margin-right: 'auto';
+                }
+            }
+        }
+    } 
+    // .am-tabs-tab-bar-wrap {
+    //     // position: fixed;
+    //     // z-index: 100;
+    //     // width: 100%;
+    // }
+    // .am-tabs-content-wrap {
+    //     // padding-top: 43.5 * @hd;
+    //     .am-tabs-pane-wrap{
+    //         // display: flex;
+    //         // width: 100%;
+    //         // flex-direction: column;
+    //     }
+    // }
+}
+/******************abs-table**********************************/ 
+@table-prefix-cls: ~"@{abs-prefix}-table";
+.@{table-prefix-cls}{
+    table{
+        color: @absLink-table-color;
+        border-collapse: collapse;
+        width:100%;
+        background: @absLink-table-bgColor;
+        font-size: 17px;
+        font-family: "Microsoft YaHei","\5FAE\8F6F\96C5\9ED1","SimSun","\5B8B\4F53","arial", "serif";
+        thead{
+            tr{
+                th{
+                    .fn-table('th');
+                    &:last-child{
+                        padding-right: @abs-table-padding-left-right;
+                    }
+                }
+                background-color: @abs-brand-gray-table;
+            }
+        }
+        tbody{
+            tr{
+                td{
+                    .fn-table('td');
+                    .abs_icon_square_char{
+                        width: 16px;
+                        height: 16px;
+                        text-align: center;   
+                        font-size: 13px;
+                        line-height: 16px;
+                        color: #ffffff;
+                    }
+                    .abs_icon_square_ch_char{
+                        width: 16px;
+                        height: 16px;
+                        text-align: center;   
+                        font-size: 12px;
+                        line-height: 16px;
+                        color: #ffffff;
+                    }
+                    .abs_bg_blue{
+                        background:#0066cc;
+                    }
+                    .abs_bg_purple{
+                        background:#9966ff;
+                    }
+                    .abs_ellipsis{
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        overflow: hidden;
+                    }
+                }
+                &:last-child[title='总计']{
+                    td{
+                        font-weight: bolder;
+                    }
+                }
+                &:last-child{
+                    td{
+                        border-bottom: none;
+                    }
+                }
+                .highLight-red{
+                    color: @absLink-table-color-red;
+                    // color: #FF3333;
+                    letter-spacing: -0.36px;
+                }
+            }
+        }
+    }
+} 
+// 表格less配置函树
+
+.fn-table(@type) when (@type = 'th') {
+    text-align: right;
+    padding: 0.28rem 0.146667rem;
+    font-size: 13px;
+    font-weight: 400;
+    background-color: @abs-brand-gray-table;
+    border-bottom: 1px solid #222222;
+    color:@abs-brand-white;
+    line-height: 16px;
+    // position: fixed;
+    // top:30px;
+    &:first-child{
+        text-align: center;
+        padding-left: @abs-table-padding-left-right;
+    }
+    &:last-child{
+        padding-left: @abs-table-padding-left-right;
+    }
+}
+
+.fn-table(@type) when (@type = 'td') {
+    text-align: right;
+    padding: 0.26rem 0.146667rem;
+    font-size: 17px;
+    border-bottom:1px solid @abs-brand-gray-table;
+    &:first-child {
+        text-align: center;
+        padding-left: @abs-table-padding-left-right;
+    }
+    &:last-child {
+        padding-right: @abs-table-padding-left-right;
+
+    }
+    a {
+        color: @abs-brand-yellow;
+    }
+}
+
+.fn-table(@type) when (@type = 'td'), (@type = 'th')  {
+  &.text-left {
+    text-align: left;
+  }
+  &.text-right {
+    text-align: right;
+  }
+  &.text-center {
+    text-align: center;
+  }
+}
+/*********************abs-picker**************************/
+@picker-prefix-cls: ~"@{ant-prefix}-picker";
+@picker-prefix-cls-abs:~"@{abs-prefix}-picker";
+// 时间拾取滚动轴
+.@{picker-prefix-cls}{
+    
+    &-col{
+        &-item {
+            color: @abs-brand-yellow;
+        }
+        &-mask {
+            background-image:
+            -webkit-linear-gradient(top, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.6)),
+            -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.6));
+            background-image:
+            linear-gradient(to bottom, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.6)),
+            linear-gradient(to top, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.6));
+            background-position: top, bottom;
+            background-repeat: no-repeat;
+        }
+        &-indicator {
+            &::before{
+                height: 0px !important;
+            }
+            &::after{
+                height: 0px !important;
+            }
+        }
+    }
+
+}
+// 时间拾取外边框
+.@{picker-prefix-cls}-popup {
+    background-color: @abs-brand-black;
+    &-header{
+        &-left{
+            color: @abs-brand-yellow;
+        }
+        &-right{
+            color: @abs-brand-yellow;
+        }
+        &::after{
+            height: 0px !important;
+            background-color: @abs-brand-yellow;
+        }
+    }
+    &-title{
+        color: @abs-brand-white;
+    }
+}
+// 时间拾取控件
+@selector_height:30px;
+.@{picker-prefix-cls-abs}{
+    // height: .746667rem;
+     margin-bottom:10px;
+    .picker-trigger{
+        .selector{
+            border-radius: 0;
+            height: 20px;
+            line-height: 20px;
+            background-color: @abs-brand-black;
+            color: rgb(238, 234, 212);
+        } 
+        font-size: 12px;
+        color: #444;
+        float: left;
+        width: 30%;
+        margin-left: 5%;
+        margin-left: 0;
+        width: 33.333333%;
+    }
+    &>div:first-child .selector{
+       text-align :left;
+       padding-left: @abs-table-padding-left-right;
+    }
+    &>div:nth-child(2) .selector{
+        text-align :center;
+    }
+    &>div:last-child .selector{
+        text-align :right;
+        padding-right: @abs-table-padding-left-right;
+    }
+    &:after{
+        clear: both;
+    }
+    .first {
+        margin-left: 0%;
+    }
+}
+
+/*********************abs-scrollview**************************/
+.abs-scrollview-container {
+  .am-list-view-scrollview {
+    .am-pull-to-refresh-down{
+        .am-pull-to-refresh-indicator{
+            margin-top: -25px;
+            color: grey;
+            font-size: 12px;
+        }
+    }
+    .am-list-body{
+      background-color: transparent;
+      &:before{
+        height: 0;
+      }
+    }
+    .am-list-footer {
+      color: #fff;
+      font-size: 12px;
+    }
+  }
+}
+/*********************abs-pull-refresh**************************/
+.abs-pull-refresh-wrapper{
+  height: 100%;
+  padding-bottom: 0 !important;
+  .abs-panel-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex: 1;
+    .abs-scrollview-container{
+      flex: 1;
+    }
+  }
+  .am-list-view-scrollview {
+    height: 100%;
+  }
+//   .am-list-body::after{
+//     background-color:transparent !important;
+//   }
+} 
